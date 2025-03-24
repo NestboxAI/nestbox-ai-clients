@@ -9,8 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -43,6 +44,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/NestboxAI/nestbox-ai-dashboard-api-client.git
           git add generated-client
           git commit -m "Automatically generated API client from OpenAPI spec" || echo "No changes to commit"
-          git push
+          git push origin HEAD:${{ github.ref }}
