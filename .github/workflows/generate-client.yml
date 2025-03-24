@@ -33,6 +33,7 @@ jobs:
         run: |
             cd nestbox-ai-dashboard-api
             yarn install
+            yarn build
             npm run generate:swagger
             cp nestbox-ai-admin.json ../nestbox-ai-admin.json
 
