@@ -25,6 +25,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'NestboxAI/nestbox-ai-dashboard-api'
+          ref: 'dev'
           path: 'nestbox-ai-dashboard-api'
           token: ${{ secrets.GITHUB_TOKEN }}
   
