@@ -20,11 +20,15 @@ jobs:
       - name: Download OpenAPI Spec
         run: curl -o openapi.json https://demo-api.nestbox.ai/v1/api-json
 
+
       - name: Show existing files
         run: ls -la
 
       - name: Install OpenAPI Generator CLI
         run: npm install @openapitools/openapi-generator-cli -g
+
+      - name: Validate OpenAPI Spec
+        run: openapi-generator-cli validate -i openapi.json
 
       - name: Generate API Client
         run: |
@@ -32,6 +36,7 @@ jobs:
             -i openapi.json \
             -g typescript-axios \
             -o generated-client \
+            --skip-validate-spec \
             --additional-properties=supportsES6=true,npmName=@yourorg/api-client,npmVersion=1.0.0
 
       - name: Commit and Push Generated Client
