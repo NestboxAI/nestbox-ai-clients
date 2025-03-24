@@ -28,7 +28,7 @@ jobs:
           ref: 'dev'
           path: 'nestbox-ai-dashboard-api'
           token: ${{ secrets.GH_PAT }}
-  
+
       - name: Generate Swagger Spec
         run: |
             cd nestbox-ai-dashboard-api
