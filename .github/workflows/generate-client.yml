@@ -1,0 +1,41 @@
+name: Generate API Client
+
+on:
+  push:
+    paths:
+      - 'https://demo-api.nestbox.ai/v1/api-json'
+
+jobs:
+  generate-client:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Show existing files
+        run: ls -la
+
+      - name: Install OpenAPI Generator CLI
+        run: npm install @openapitools/openapi-generator-cli -g
+
+      - name: Generate API Client
+        run: |
+          openapi-generator-cli generate \
+            -i openapi.yaml \
+            -g typescript-axios \
+            -o generated-client \
+            --additional-properties=supportsES6=true,npmName=@yourorg/api-client,npmVersion=1.0.0
+
+      - name: Commit and Push Generated Client
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add generated-client
+          git commit -m "Automatically generated API client from OpenAPI spec" || echo "No changes to commit"
+          git push
