@@ -1,9 +1,8 @@
 name: Generate API Client
-
 on:
   push:
-    paths:
-      - 'https://demo-api.nestbox.ai/v1/api-json'
+    branches:
+        - '*'
 
 jobs:
   generate-client:
@@ -27,7 +26,7 @@ jobs:
       - name: Generate API Client
         run: |
           openapi-generator-cli generate \
-            -i openapi.yaml \
+            -i https://demo-api.nestbox.ai/v1/api-json \
             -g typescript-axios \
             -o generated-client \
             --additional-properties=supportsES6=true,npmName=@yourorg/api-client,npmVersion=1.0.0
