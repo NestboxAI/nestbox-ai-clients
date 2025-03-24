@@ -1,7 +1,7 @@
 {
-  "name": "@nestbox/client",
+  "name": "@nestbox-ai/client",
   "version": "1.0.0",
-  "description": "OpenAPI client for @nestbox/client",
+  "description": "OpenAPI client for @nestbox-ai/client",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@nestbox/client"
+    "@nestbox-ai/client"
   ],
   "license": "Unlicense",
   "main": "./dist/index.js",
