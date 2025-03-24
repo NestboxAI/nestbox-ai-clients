@@ -27,7 +27,7 @@ jobs:
           repository: 'NestboxAI/nestbox-ai-dashboard-api'
           ref: 'dev'
           path: 'nestbox-ai-dashboard-api'
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_PAT }}
   
       - name: Generate Swagger Spec
         run: |
