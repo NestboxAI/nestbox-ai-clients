@@ -34,7 +34,7 @@ jobs:
             cd nestbox-ai-dashboard-api
             yarn install
             npm run generate:swagger
-            cp swagger.json ../openapi.json
+            cp nestbox-ai-admin.json ../nestbox-ai-admin.json
 
       - name: Remove API Repository
         run: rm -rf nestbox-ai-dashboard-api
@@ -43,12 +43,12 @@ jobs:
         run: npm install @openapitools/openapi-generator-cli -g
 
       - name: Validate OpenAPI Spec
-        run: openapi-generator-cli validate -i openapi.json
+        run: openapi-generator-cli validate -i nestbox-ai-admin.json
 
       - name: Generate API Client
         run: |
           openapi-generator-cli generate \
-            -i openapi.json \
+            -i nestbox-ai-admin.json \
             -g typescript-axios \
             -o admin-client \
             --skip-validate-spec \
