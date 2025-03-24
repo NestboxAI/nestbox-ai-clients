@@ -52,7 +52,7 @@ jobs:
             -g typescript-axios \
             -o generated-client \
             --skip-validate-spec \
-            --additional-properties=supportsES6=true,npmName=@nestbox-ai/client,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-dashboard-api-client.git
+            --additional-properties=supportsES6=true,npmName=@nestbox-ai/client,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-admin.git
 
       - name: Commit and Push Generated Client
         run: |
