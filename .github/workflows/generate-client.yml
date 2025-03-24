@@ -37,7 +37,7 @@ jobs:
             -g typescript-axios \
             -o generated-client \
             --skip-validate-spec \
-            --additional-properties=supportsES6=true,npmName=@yourorg/api-client,npmVersion=1.0.0
+            --additional-properties=supportsES6=true,npmName=@nestbox/client,npmVersion=1.0.0
 
       - name: Commit and Push Generated Client
         run: |
