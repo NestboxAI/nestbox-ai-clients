@@ -21,12 +21,22 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Download OpenAPI Spec
-        run: curl -o openapi.json https://demo-api.nestbox.ai/v1/api-json
+      - name: Checkout API Repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'NestboxAI/nestbox-ai-dashboard-api'
+          path: 'nestbox-ai-dashboard-api'
+          token: ${{ secrets.GITHUB_TOKEN }}
+  
+      - name: Generate Swagger Spec
+        run: |
+            cd nestbox-ai-dashboard-api
+            yarn install
+            npm run generate:swagger
+            cp swagger.json ../openapi.json
 
-
-      - name: Show existing files
-        run: ls -la
+      - name: Remove API Repository
+        run: rm -rf nestbox-ai-dashboard-api
 
       - name: Install OpenAPI Generator CLI
         run: npm install @openapitools/openapi-generator-cli -g
