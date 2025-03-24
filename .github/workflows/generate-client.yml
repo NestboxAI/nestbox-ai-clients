@@ -50,15 +50,15 @@ jobs:
           openapi-generator-cli generate \
             -i openapi.json \
             -g typescript-axios \
-            -o generated-client \
+            -o admin-client \
             --skip-validate-spec \
-            --additional-properties=supportsES6=true,npmName=@nestbox-ai/client,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-admin.git
+            --additional-properties=supportsES6=true,npmName=@nestbox-ai/admin,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-admin.git
 
       - name: Commit and Push Generated Client
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add generated-client
+          git add admin-client
           git commit -m "Automatically generated API client from OpenAPI spec [skip ci]" || echo "No changes to commit"
           git push origin HEAD:${{ github.ref_name }}
 
@@ -70,13 +70,13 @@ jobs:
 
       - name: Install Dependencies and Build
         run: |
-          cd generated-client  # assuming your client is in this directory
+          cd admin-client  # assuming your client is in this directory
           npm install
           npm run build  # ensure "build" script exists in package.json
 
       - name: Publish to npm
         run: |
-          cd generated-client
+          cd admin-client
           npm publish --access public --registry=https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
