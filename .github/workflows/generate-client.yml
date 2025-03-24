@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Download OpenAPI Spec
+        run: curl -o openapi.json https://demo-api.nestbox.ai/v1/api-json
+
       - name: Show existing files
         run: ls -la
 
@@ -26,7 +29,7 @@ jobs:
       - name: Generate API Client
         run: |
           openapi-generator-cli generate \
-            -i https://demo-api.nestbox.ai/v1/api-json \
+            -i openapi.json \
             -g typescript-axios \
             -o generated-client \
             --additional-properties=supportsES6=true,npmName=@yourorg/api-client,npmVersion=1.0.0
