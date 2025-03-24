@@ -32,7 +32,7 @@ jobs:
         run: npm install @openapitools/openapi-generator-cli -g
 
       - name: Validate OpenAPI Spec
-        run: openapi-generator-cli validate -i openapi.json --skip-online
+        run: openapi-generator-cli validate -i openapi.json
 
       - name: Generate API Client
         run: |
@@ -41,7 +41,6 @@ jobs:
             -g typescript-axios \
             -o generated-client \
             --skip-validate-spec \
-            --skip-online \
             --additional-properties=supportsES6=true,npmName=@nestbox/client,npmVersion=1.0.0,repositoryUrl=https://github.com/NestboxAI/nestbox-ai-dashboard-api-client.git
 
       - name: Commit and Push Generated Client
