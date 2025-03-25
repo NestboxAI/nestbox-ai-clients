@@ -1,0 +1,660 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getStatus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Server Live Status"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/models/{id}/query": {
+      "post": {
+        "operationId": "ModelOperationsQueryController_createQuery",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryHandlerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Query"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/models/{id}/events": {
+      "get": {
+        "operationId": "ModelOperationsEventLogsController_getEventLogs",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Event Logs"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/models/{id}/eventsByQueryId": {
+      "get": {
+        "operationId": "ModelOperationsEventLogsController_getEventLogsByQueryId",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Event Logs"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/models/{id}/webhooks": {
+      "get": {
+        "operationId": "ModelOperationsWebhooksController_getAllWebhooks",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ModelOperationsWebhooksController_createWebhook",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWebhookDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/models/{id}/webhooks/{webhookId}": {
+      "get": {
+        "operationId": "ModelOperationsWebhooksController_getWebhook",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "webhookId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the webhook.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "ModelOperationsWebhooksController_updateWebhook",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "webhookId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the webhook.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWebhookDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ModelOperationsWebhooksController_deleteWebhook",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "webhookId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the webhook.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/models/{id}/guardrails": {
+      "get": {
+        "operationId": "ModelOperationsGuardrailsController_getAllGuardrails",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Guardrails"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "ModelOperationsGuardrailsController_createGuardrails",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGuardrailDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Guardrails"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/models/{id}/guardrails/{guardrailsId}": {
+      "get": {
+        "operationId": "ModelOperationsGuardrailsController_getGuardrails",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "guardrailsId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the guardrails.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Guardrails"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "ModelOperationsGuardrailsController_updateGuardrails",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "guardrailsId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the guardrails.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGuardrailDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Guardrails"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ModelOperationsGuardrailsController_deleteGuardrails",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the model.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "guardrailsId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the guardrails.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Guardrails"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Nestbox API Agents API",
+    "description": "API for Nestbox Agents, control your agents",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "ParamsDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "QueryHandlerDto": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "description": "Parameters for the query, must include temperature, top_p, and max_tokens",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ParamsDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "params"
+        ]
+      },
+      "CreateWebhookDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "example": "https://example.com",
+            "description": "The URL for the webhook"
+          },
+          "notifications": {
+            "type": "string",
+            "example": "QUERY_CREATED,QUERY_COMPLETED",
+            "description": "Comma-separated notifications. Valid values: QUERY_CREATED, QUERY_COMPLETED, QUERY_FAILED, EVENT_CREATED, EVENT_UPDATED"
+          }
+        },
+        "required": [
+          "url",
+          "notifications"
+        ]
+      },
+      "UpdateWebhookDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "example": "https://example.com",
+            "description": "The URL for the webhook"
+          },
+          "notifications": {
+            "type": "string",
+            "example": "QUERY_CREATED,EVENT_CREATED",
+            "description": "Comma-separated notifications. Valid values: QUERY_CREATED, QUERY_COMPLETED, QUERY_FAILED, EVENT_CREATED, EVENT_UPDATED"
+          }
+        }
+      },
+      "GuardrailUserDto": {
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "description": "Username of the user",
+            "example": "johndoe"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email of the user",
+            "example": "johndoe@example.com"
+          }
+        },
+        "required": [
+          "userName",
+          "email"
+        ]
+      },
+      "CreateGuardrailDto": {
+        "type": "object",
+        "properties": {
+          "isActive": {
+            "type": "boolean",
+            "description": "Whether the guardrail is active",
+            "example": true
+          },
+          "thresholdSetting": {
+            "type": "number",
+            "description": "Threshold setting ranging from 0.0 to 1.0",
+            "example": 0.5
+          },
+          "severity": {
+            "type": "string",
+            "description": "Severity level of the guardrail",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "example": "medium"
+          },
+          "risk": {
+            "type": "string",
+            "description": "Risk level of the guardrail",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "example": "medium"
+          },
+          "flag": {
+            "type": "string",
+            "description": "Flag status for the guardrail",
+            "enum": [
+              "pass",
+              "block"
+            ],
+            "example": "pass"
+          },
+          "guardrailUsers": {
+            "description": "List of users associated with the guardrail",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GuardrailUserDto"
+            }
+          }
+        },
+        "required": [
+          "isActive",
+          "thresholdSetting",
+          "severity",
+          "risk",
+          "flag"
+        ]
+      }
+    }
+  }
+}
