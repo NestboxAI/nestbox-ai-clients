@@ -1,7 +1,7 @@
 {
-  "name": "@nestbox-ai/documents",
+  "name": "@nestbox-ai/agents",
   "version": "1.0.25",
-  "description": "OpenAPI client for @nestbox-ai/documents",
+  "description": "OpenAPI client for @nestbox-ai/agents",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@nestbox-ai/documents"
+    "@nestbox-ai/agents"
   ],
   "license": "Unlicense",
   "main": "./dist/index.js",
