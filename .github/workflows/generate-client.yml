@@ -37,7 +37,7 @@ jobs:
           path: 'nestbox-ai-document-base'
           token: ${{ secrets.GH_PAT }}
 
-      - name: Checkout API Documents Repository
+      - name: Checkout API Model Repository
         uses: actions/checkout@v4
         with:
           repository: 'NestboxAI/nestbox-ai-model-base'
@@ -45,32 +45,29 @@ jobs:
           path: 'nestbox-ai-model-base'
           token: ${{ secrets.GH_PAT }}
 
-      - name: Generate Swagger Spec
+      - name: Generate Swagger Specs
         run: |
-            cd nestbox-ai-dashboard-api
-            yarn install
-            yarn build
-            npm run generate:swagger
-            cp nestbox-ai-admin.json ../nestbox-ai-admin.json
+          mkdir -p specs
 
-      - name: Generate Swagger Spec
-        run: |
-            cd nestbox-ai-document-base
-            yarn install
-            yarn build
-            npm run generate:swagger
-            cp nestbox-ai-documents.json ../nestbox-ai-documents.json
+          cd nestbox-ai-dashboard-api
+          yarn install && yarn build
+          npm run generate:swagger
+          cp nestbox-ai-admin.json ../specs/openapi-admin.json
+          cd ..
 
-      - name: Generate Swagger Spec
-        run: |
-            cd nestbox-ai-model-base
-            yarn install
-            yarn db:generate
-            yarn build
-            npm run generate:swagger agents
-            npm run generate:swagger instances
-            cp nestbox-ai-agents.json ../nestbox-ai-agents.json
-            cp nestbox-ai-instances.json ../nestbox-ai-instances.json
+          cd nestbox-ai-document-base
+          yarn install && yarn build
+          npm run generate:swagger
+          cp nestbox-ai-documents.json ../specs/openapi-documents.json
+          cd ..
+
+          cd nestbox-ai-model-base
+          yarn install && yarn db:generate && yarn build
+          npm run generate:swagger agents
+          npm run generate:swagger instances
+          cp nestbox-ai-agents.json ../specs/openapi-agents.json
+          cp nestbox-ai-instances.json ../specs/openapi-instances.json
+          cd ..
 
       - name: Remove API Repositories
         run: rm -rf nestbox-ai-dashboard-api nestbox-ai-document-base nestbox-ai-model-base
@@ -78,119 +75,43 @@ jobs:
       - name: Install OpenAPI Generator CLI
         run: npm install @openapitools/openapi-generator-cli -g
 
-      - name: Validate OpenAPI Spec
+      - name: Validate OpenAPI Specs
         run:  |
-          openapi-generator-cli validate -i nestbox-ai-admin.json
-          openapi-generator-cli validate -i nestbox-ai-documents.json
-          openapi-generator-cli validate -i nestbox-ai-agents.json
-          openapi-generator-cli validate -i nestbox-ai-instances.json
+          for spec in specs/openapi-*.json; do
+            openapi-generator-cli validate -i "$spec"
+          done
 
-      - name: Generate API Admin Client
+      - name: Generate API Clients
         run: |
-          openapi-generator-cli generate \
-            -i nestbox-ai-admin.json \
-            -g typescript-axios \
-            -o admin-client \
-            --skip-validate-spec \
-            --additional-properties=supportsES6=true,npmName=@nestbox-ai/admin,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
+          openapi-generator-cli generate -i specs/openapi-admin.json -g typescript-axios -o admin --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/admin,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
 
-      - name: Generate API Documents Client
-        run: |
-          openapi-generator-cli generate \
-            -i nestbox-ai-documents.json \
-            -g typescript-axios \
-            -o documents-client \
-            --skip-validate-spec \
-            --additional-properties=supportsES6=true,npmName=@nestbox-ai/documents,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
+          openapi-generator-cli generate -i specs/openapi-documents.json -g typescript-axios -o documents --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/documents,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
 
-      - name: Generate API Agents Client
-        run: |
-          openapi-generator-cli generate \
-            -i nestbox-ai-agents.json \
-            -g typescript-axios \
-            -o agents-client \
-            --skip-validate-spec \
-            --additional-properties=supportsES6=true,npmName=@nestbox-ai/agents,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
+          openapi-generator-cli generate -i specs/openapi-agents.json -g typescript-axios -o agents --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/agents,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
 
-      - name: Generate API Instances Client
-        run: |
-          openapi-generator-cli generate \
-            -i nestbox-ai-instances.json \
-            -g typescript-axios \
-            -o instances-client \
-            --skip-validate-spec \
-            --additional-properties=supportsES6=true,npmName=@nestbox-ai/instances,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
+          openapi-generator-cli generate -i specs/openapi-instances.json -g typescript-axios -o instances --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/instances,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
 
-      - name: Commit and Push Generated Client
+      - name: Commit and Push Generated Clients
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add admin-client
-          git add documents-client
-          git add agents-client
-          git add instances-client
-          git add nestbox-ai-admin.json
-          git add nestbox-ai-documents.json
-          git add nestbox-ai-agents.json
-          git add nestbox-ai-instances.json
+          git add specs admin documents agents instances
           git commit -m "Automatically generated API client from OpenAPI spec [skip ci]" || echo "No changes to commit"
           git push origin HEAD:${{ github.ref_name }}
 
-      - name: Setup Node.js
+      - name: Setup Node.js for npm Publish
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install Admin Dependencies and Build
+      - name: Build and Publish Clients to npm
         run: |
-          cd admin-client  
-          npm install
-          npm run build  
-
-      - name: Install Documents Dependencies and Build
-        run: |
-          cd documents-client  
-          npm install
-          npm run build  
-
-      - name: Install Agents Dependencies and Build
-        run: |
-          cd agents-client  
-          npm install
-          npm run build  
-
-      - name: Install Instances Dependencies and Build
-        run: |
-          cd instances-client  
-          npm install
-          npm run build  
-
-      - name: Publish Admin Client to npm
-        run: |
-          cd admin-client
-          npm publish --access public --registry=https://registry.npmjs.org
+          for client in admin documents agents instances; do
+            cd $client
+            npm install && npm run build
+            npm publish --access public --registry=https://registry.npmjs.org
+            cd ..
+          done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish Documents Client to npm
-        run: |
-          cd documents-client
-          npm publish --access public --registry=https://registry.npmjs.org
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish Agents Client to npm
-        run: |
-          cd agents-client
-          npm publish --access public --registry=https://registry.npmjs.org
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish Instances Client to npm
-        run: |
-          cd instances-client
-          npm publish --access public --registry=https://registry.npmjs.org
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
