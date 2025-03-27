@@ -1,78 +1,116 @@
-# **OpenAPI Clients Generator**
+# **Nestbox AI Clients**
 
-This repository automates the generation of OpenAPI JSON specification files and corresponding client SDKs for interacting with our API across four specific client contexts:
+This repository contains the official OpenAPI specifications and automatically generated TypeScript SDKs for the Nestbox AI Platform clients. The clients are designed to simplify integration, management, and scalability when building and deploying AI-driven agents and workflows.
 
-* **Admin Client**
+## **Available Clients**
 
-* **Instances Client**
+Each client provides distinct functionalities and maintains its own OpenAPI specification and SDK:
 
-* **Documents Client**
+### **1\. Admin Client**
 
-* **Agents Client**
+* Manage platform-wide configurations, settings, and permissions.
 
-Each client has its own dedicated OpenAPI specification and automatically generated SDK, streamlining the process of maintaining accurate, up-to-date, and consistent API integrations.
+* Monitor usage statistics and performance metrics.
 
----
+* Oversee user and access management functionalities.
 
-## **📂 Repository Structure**
+### **2\. Instances Client**
+
+* Create, configure, and manage individual instances of AI workflows.
+
+* Monitor instance status and execution details.
+
+* Scale and optimize instance resources and settings.
+
+### **3\. Documents Client**
+
+* Efficiently parse, catalog, tag, store, and manage documents.
+
+* Query and retrieve documents through powerful search APIs.
+
+* Integrate document handling seamlessly into your AI workflows.
+
+### **4\. Agents Client**
+
+* Deploy, configure, and manage intelligent AI agents.
+
+* Integrate agents seamlessly with third-party services and APIs.
+
+* Monitor agent performance, interactions, and outcomes.
+
+## **OpenAPI Specifications**
+
+Each client maintains a dedicated OpenAPI specification file in YAML format, located within the `specs/` directory:
 
 ```
-/
-├── specs/
-│   ├── admin-openapi.json
-│   ├── instances-openapi.json
-│   ├── documents-openapi.json
-│   └── agents-openapi.json
-├── clients/
-│   ├── admin/
-│   ├── instances/
-│   ├── documents/
-│   └── agents/
-├── .github/workflow/
-│   └── generate-clients.sh
-└── README.md
+specs/
+├── admin-client.yaml
+├── instances-client.yaml
+├── documents-client.yaml
+└── agents-client.yaml
 ```
 
----
+## **TypeScript SDKs**
 
-## **🚀 Getting Started**
+Automatically generated SDKs from OpenAPI specifications are available for easy integration into your TypeScript projects. SDKs reside in the `sdks/` directory:
 
-### **Prerequisites**
-
-* [Node.js](https://nodejs.org/) (LTS version recommended)
-
-* [OpenAPI Generator CLI](https://openapi-generator.tech/docs/installation)
+```
+sdks/
+├── admin-client/
+├── instances-client/
+├── documents-client/
+└── agents-client/
+```
 
 ### **Installation**
 
-Clone this repository:
+Install the required SDK via npm or yarn. Example for the Documents Client:
 
 ```
-git clone https://github.com/your-username/openapi-clients-generator.git
-cd openapi-clients-generator
+npm install @nestbox/documents-client
+# or
+yarn add @nestbox/documents-client
 ```
 
-Install dependencies:
+### **Usage Example**
+
+Basic usage example for Documents Client:
 
 ```
-npm install
+import { DocumentsClient } from '@nestbox/documents-client';
+
+const documentsClient = new DocumentsClient({
+  apiKey: 'YOUR_API_KEY',
+  baseUrl: 'https://api.nestbox.ai/documents',
+});
+
+async function queryDocuments(query: string) {
+  const results = await documentsClient.searchDocuments({ query });
+  console.log(results);
+}
+
+queryDocuments('agent workflows');
 ```
 
----
+## **Generating SDKs**
 
-## **⚙️ Generating Clients**
-
-To generate the OpenAPI JSON files and all client SDKs, run:
+To regenerate SDKs from OpenAPI specifications, use the provided scripts:
 
 ```
-npm run generate
+npm run generate-sdks
 ```
 
-This script will:
+Ensure your environment has [OpenAPI Generator CLI](https://github.com/OpenAPITools/openapi-generator-cli) installed.
 
-1. Generate/update the OpenAPI specification JSON files.
+## **Documentation**
 
-2. Generate SDK clients for each target (Admin, Instances, Documents, Agents).
+Detailed API documentation is automatically generated from the OpenAPI specs and can be accessed online or locally by hosting the included YAML files in Swagger UI or similar tools.
 
-Generated
+## **Contributing**
+
+Contributions, suggestions, and improvements are welcome\! Please create an issue or submit a pull request.
+
+## **License**
+
+This project is licensed under the MIT License. See [LICENSE](https://chatgpt.com/g/g-p-677d3b441f3c819188ef78cb69c1ffe1-nestbox/c/LICENSE) for details.
 
