@@ -161,6 +161,12 @@ export interface CreateMachineAgentDto {
     'description'?: string;
     /**
      * 
+     * @type {string}
+     * @memberof CreateMachineAgentDto
+     */
+    'entryFunctionName'?: string;
+    /**
+     * 
      * @type {Array<AgentParameterDto>}
      * @memberof CreateMachineAgentDto
      */

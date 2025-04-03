@@ -167,6 +167,93 @@ export const EventLogsApiAxiosParamCreator = function (configuration?: Configura
     return {
         /**
          * 
+         * @param {string} id ID of the agent.
+         * @param {string} page 
+         * @param {string} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsEventLogsControllerGetEventLogs: async (id: string, page: string, limit: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsEventLogsControllerGetEventLogs', 'id', id)
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('agentOperationsEventLogsControllerGetEventLogs', 'page', page)
+            // verify required parameter 'limit' is not null or undefined
+            assertParamExists('agentOperationsEventLogsControllerGetEventLogs', 'limit', limit)
+            const localVarPath = `/agents/{id}/events`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} queryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsEventLogsControllerGetEventLogsByQueryId: async (id: string, queryId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsEventLogsControllerGetEventLogsByQueryId', 'id', id)
+            // verify required parameter 'queryId' is not null or undefined
+            assertParamExists('agentOperationsEventLogsControllerGetEventLogsByQueryId', 'queryId', queryId)
+            const localVarPath = `/agents/{id}/eventsByQueryId`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (queryId !== undefined) {
+                localVarQueryParameter['queryId'] = queryId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id ID of the model.
          * @param {string} page 
          * @param {string} limit 
@@ -264,6 +351,33 @@ export const EventLogsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} id ID of the agent.
+         * @param {string} page 
+         * @param {string} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsEventLogsControllerGetEventLogs(id: string, page: string, limit: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsEventLogsControllerGetEventLogs(id, page, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EventLogsApi.agentOperationsEventLogsControllerGetEventLogs']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} queryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsEventLogsControllerGetEventLogsByQueryId(id: string, queryId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsEventLogsControllerGetEventLogsByQueryId(id, queryId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EventLogsApi.agentOperationsEventLogsControllerGetEventLogsByQueryId']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {string} id ID of the model.
          * @param {string} page 
          * @param {string} limit 
@@ -301,6 +415,27 @@ export const EventLogsApiFactory = function (configuration?: Configuration, base
     return {
         /**
          * 
+         * @param {string} id ID of the agent.
+         * @param {string} page 
+         * @param {string} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsEventLogsControllerGetEventLogs(id: string, page: string, limit: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsEventLogsControllerGetEventLogs(id, page, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} queryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsEventLogsControllerGetEventLogsByQueryId(id: string, queryId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsEventLogsControllerGetEventLogsByQueryId(id, queryId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id ID of the model.
          * @param {string} page 
          * @param {string} limit 
@@ -330,6 +465,31 @@ export const EventLogsApiFactory = function (configuration?: Configuration, base
  * @extends {BaseAPI}
  */
 export class EventLogsApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {string} page 
+     * @param {string} limit 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventLogsApi
+     */
+    public agentOperationsEventLogsControllerGetEventLogs(id: string, page: string, limit: string, options?: RawAxiosRequestConfig) {
+        return EventLogsApiFp(this.configuration).agentOperationsEventLogsControllerGetEventLogs(id, page, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {string} queryId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventLogsApi
+     */
+    public agentOperationsEventLogsControllerGetEventLogsByQueryId(id: string, queryId: string, options?: RawAxiosRequestConfig) {
+        return EventLogsApiFp(this.configuration).agentOperationsEventLogsControllerGetEventLogsByQueryId(id, queryId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {string} id ID of the model.
@@ -364,6 +524,195 @@ export class EventLogsApi extends BaseAPI {
  */
 export const GuardrailsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {CreateGuardrailDto} createGuardrailDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsGuardrailsControllerCreateGuardrails: async (id: string, createGuardrailDto: CreateGuardrailDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsGuardrailsControllerCreateGuardrails', 'id', id)
+            // verify required parameter 'createGuardrailDto' is not null or undefined
+            assertParamExists('agentOperationsGuardrailsControllerCreateGuardrails', 'createGuardrailDto', createGuardrailDto)
+            const localVarPath = `/agents/{id}/guardrails`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createGuardrailDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} guardrailsId ID of the guardrails.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsGuardrailsControllerDeleteGuardrails: async (id: string, guardrailsId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsGuardrailsControllerDeleteGuardrails', 'id', id)
+            // verify required parameter 'guardrailsId' is not null or undefined
+            assertParamExists('agentOperationsGuardrailsControllerDeleteGuardrails', 'guardrailsId', guardrailsId)
+            const localVarPath = `/agents/{id}/guardrails/{guardrailsId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"guardrailsId"}}`, encodeURIComponent(String(guardrailsId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsGuardrailsControllerGetAllGuardrails: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsGuardrailsControllerGetAllGuardrails', 'id', id)
+            const localVarPath = `/agents/{id}/guardrails`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} guardrailsId ID of the guardrails.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsGuardrailsControllerGetGuardrails: async (id: string, guardrailsId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsGuardrailsControllerGetGuardrails', 'id', id)
+            // verify required parameter 'guardrailsId' is not null or undefined
+            assertParamExists('agentOperationsGuardrailsControllerGetGuardrails', 'guardrailsId', guardrailsId)
+            const localVarPath = `/agents/{id}/guardrails/{guardrailsId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"guardrailsId"}}`, encodeURIComponent(String(guardrailsId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} guardrailsId ID of the guardrails.
+         * @param {CreateGuardrailDto} createGuardrailDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsGuardrailsControllerUpdateGuardrails: async (id: string, guardrailsId: string, createGuardrailDto: CreateGuardrailDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsGuardrailsControllerUpdateGuardrails', 'id', id)
+            // verify required parameter 'guardrailsId' is not null or undefined
+            assertParamExists('agentOperationsGuardrailsControllerUpdateGuardrails', 'guardrailsId', guardrailsId)
+            // verify required parameter 'createGuardrailDto' is not null or undefined
+            assertParamExists('agentOperationsGuardrailsControllerUpdateGuardrails', 'createGuardrailDto', createGuardrailDto)
+            const localVarPath = `/agents/{id}/guardrails/{guardrailsId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"guardrailsId"}}`, encodeURIComponent(String(guardrailsId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createGuardrailDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {string} id ID of the model.
@@ -565,6 +914,71 @@ export const GuardrailsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} id ID of the agent.
+         * @param {CreateGuardrailDto} createGuardrailDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsGuardrailsControllerCreateGuardrails(id: string, createGuardrailDto: CreateGuardrailDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsGuardrailsControllerCreateGuardrails(id, createGuardrailDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['GuardrailsApi.agentOperationsGuardrailsControllerCreateGuardrails']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} guardrailsId ID of the guardrails.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsGuardrailsControllerDeleteGuardrails(id: string, guardrailsId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsGuardrailsControllerDeleteGuardrails(id, guardrailsId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['GuardrailsApi.agentOperationsGuardrailsControllerDeleteGuardrails']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsGuardrailsControllerGetAllGuardrails(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsGuardrailsControllerGetAllGuardrails(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['GuardrailsApi.agentOperationsGuardrailsControllerGetAllGuardrails']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} guardrailsId ID of the guardrails.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsGuardrailsControllerGetGuardrails(id: string, guardrailsId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsGuardrailsControllerGetGuardrails(id, guardrailsId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['GuardrailsApi.agentOperationsGuardrailsControllerGetGuardrails']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} guardrailsId ID of the guardrails.
+         * @param {CreateGuardrailDto} createGuardrailDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsGuardrailsControllerUpdateGuardrails(id: string, guardrailsId: string, createGuardrailDto: CreateGuardrailDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsGuardrailsControllerUpdateGuardrails(id, guardrailsId, createGuardrailDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['GuardrailsApi.agentOperationsGuardrailsControllerUpdateGuardrails']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {string} id ID of the model.
          * @param {CreateGuardrailDto} createGuardrailDto 
          * @param {*} [options] Override http request option.
@@ -640,6 +1054,56 @@ export const GuardrailsApiFactory = function (configuration?: Configuration, bas
     return {
         /**
          * 
+         * @param {string} id ID of the agent.
+         * @param {CreateGuardrailDto} createGuardrailDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsGuardrailsControllerCreateGuardrails(id: string, createGuardrailDto: CreateGuardrailDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsGuardrailsControllerCreateGuardrails(id, createGuardrailDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} guardrailsId ID of the guardrails.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsGuardrailsControllerDeleteGuardrails(id: string, guardrailsId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsGuardrailsControllerDeleteGuardrails(id, guardrailsId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsGuardrailsControllerGetAllGuardrails(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsGuardrailsControllerGetAllGuardrails(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} guardrailsId ID of the guardrails.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsGuardrailsControllerGetGuardrails(id: string, guardrailsId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsGuardrailsControllerGetGuardrails(id, guardrailsId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} guardrailsId ID of the guardrails.
+         * @param {CreateGuardrailDto} createGuardrailDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsGuardrailsControllerUpdateGuardrails(id: string, guardrailsId: string, createGuardrailDto: CreateGuardrailDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsGuardrailsControllerUpdateGuardrails(id, guardrailsId, createGuardrailDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id ID of the model.
          * @param {CreateGuardrailDto} createGuardrailDto 
          * @param {*} [options] Override http request option.
@@ -698,6 +1162,66 @@ export const GuardrailsApiFactory = function (configuration?: Configuration, bas
  * @extends {BaseAPI}
  */
 export class GuardrailsApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {CreateGuardrailDto} createGuardrailDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GuardrailsApi
+     */
+    public agentOperationsGuardrailsControllerCreateGuardrails(id: string, createGuardrailDto: CreateGuardrailDto, options?: RawAxiosRequestConfig) {
+        return GuardrailsApiFp(this.configuration).agentOperationsGuardrailsControllerCreateGuardrails(id, createGuardrailDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {string} guardrailsId ID of the guardrails.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GuardrailsApi
+     */
+    public agentOperationsGuardrailsControllerDeleteGuardrails(id: string, guardrailsId: string, options?: RawAxiosRequestConfig) {
+        return GuardrailsApiFp(this.configuration).agentOperationsGuardrailsControllerDeleteGuardrails(id, guardrailsId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GuardrailsApi
+     */
+    public agentOperationsGuardrailsControllerGetAllGuardrails(id: string, options?: RawAxiosRequestConfig) {
+        return GuardrailsApiFp(this.configuration).agentOperationsGuardrailsControllerGetAllGuardrails(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {string} guardrailsId ID of the guardrails.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GuardrailsApi
+     */
+    public agentOperationsGuardrailsControllerGetGuardrails(id: string, guardrailsId: string, options?: RawAxiosRequestConfig) {
+        return GuardrailsApiFp(this.configuration).agentOperationsGuardrailsControllerGetGuardrails(id, guardrailsId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {string} guardrailsId ID of the guardrails.
+     * @param {CreateGuardrailDto} createGuardrailDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GuardrailsApi
+     */
+    public agentOperationsGuardrailsControllerUpdateGuardrails(id: string, guardrailsId: string, createGuardrailDto: CreateGuardrailDto, options?: RawAxiosRequestConfig) {
+        return GuardrailsApiFp(this.configuration).agentOperationsGuardrailsControllerUpdateGuardrails(id, guardrailsId, createGuardrailDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {string} id ID of the model.
@@ -769,6 +1293,45 @@ export const QueryApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * 
+         * @param {string} id ID of the agent.
+         * @param {QueryHandlerDto} queryHandlerDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsQueryControllerCreateQuery: async (id: string, queryHandlerDto: QueryHandlerDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsQueryControllerCreateQuery', 'id', id)
+            // verify required parameter 'queryHandlerDto' is not null or undefined
+            assertParamExists('agentOperationsQueryControllerCreateQuery', 'queryHandlerDto', queryHandlerDto)
+            const localVarPath = `/agents/{id}/query`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(queryHandlerDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id ID of the model.
          * @param {QueryHandlerDto} queryHandlerDto 
          * @param {*} [options] Override http request option.
@@ -818,6 +1381,19 @@ export const QueryApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} id ID of the agent.
+         * @param {QueryHandlerDto} queryHandlerDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsQueryControllerCreateQuery(id: string, queryHandlerDto: QueryHandlerDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsQueryControllerCreateQuery(id, queryHandlerDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['QueryApi.agentOperationsQueryControllerCreateQuery']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {string} id ID of the model.
          * @param {QueryHandlerDto} queryHandlerDto 
          * @param {*} [options] Override http request option.
@@ -841,6 +1417,16 @@ export const QueryApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * 
+         * @param {string} id ID of the agent.
+         * @param {QueryHandlerDto} queryHandlerDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsQueryControllerCreateQuery(id: string, queryHandlerDto: QueryHandlerDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsQueryControllerCreateQuery(id, queryHandlerDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id ID of the model.
          * @param {QueryHandlerDto} queryHandlerDto 
          * @param {*} [options] Override http request option.
@@ -859,6 +1445,18 @@ export const QueryApiFactory = function (configuration?: Configuration, basePath
  * @extends {BaseAPI}
  */
 export class QueryApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {QueryHandlerDto} queryHandlerDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QueryApi
+     */
+    public agentOperationsQueryControllerCreateQuery(id: string, queryHandlerDto: QueryHandlerDto, options?: RawAxiosRequestConfig) {
+        return QueryApiFp(this.configuration).agentOperationsQueryControllerCreateQuery(id, queryHandlerDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {string} id ID of the model.
@@ -977,6 +1575,195 @@ export class ServerLiveStatusApi extends BaseAPI {
  */
 export const WebhooksApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {CreateWebhookDto} createWebhookDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsWebhooksControllerCreateWebhook: async (id: string, createWebhookDto: CreateWebhookDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsWebhooksControllerCreateWebhook', 'id', id)
+            // verify required parameter 'createWebhookDto' is not null or undefined
+            assertParamExists('agentOperationsWebhooksControllerCreateWebhook', 'createWebhookDto', createWebhookDto)
+            const localVarPath = `/agents/{id}/webhooks`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createWebhookDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} webhookId ID of the webhook.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsWebhooksControllerDeleteWebhook: async (id: string, webhookId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsWebhooksControllerDeleteWebhook', 'id', id)
+            // verify required parameter 'webhookId' is not null or undefined
+            assertParamExists('agentOperationsWebhooksControllerDeleteWebhook', 'webhookId', webhookId)
+            const localVarPath = `/agents/{id}/webhooks/{webhookId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"webhookId"}}`, encodeURIComponent(String(webhookId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsWebhooksControllerGetAllWebhooks: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsWebhooksControllerGetAllWebhooks', 'id', id)
+            const localVarPath = `/agents/{id}/webhooks`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} webhookId ID of the webhook.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsWebhooksControllerGetWebhook: async (id: string, webhookId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsWebhooksControllerGetWebhook', 'id', id)
+            // verify required parameter 'webhookId' is not null or undefined
+            assertParamExists('agentOperationsWebhooksControllerGetWebhook', 'webhookId', webhookId)
+            const localVarPath = `/agents/{id}/webhooks/{webhookId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"webhookId"}}`, encodeURIComponent(String(webhookId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} webhookId ID of the webhook.
+         * @param {UpdateWebhookDto} updateWebhookDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsWebhooksControllerUpdateWebhook: async (id: string, webhookId: string, updateWebhookDto: UpdateWebhookDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('agentOperationsWebhooksControllerUpdateWebhook', 'id', id)
+            // verify required parameter 'webhookId' is not null or undefined
+            assertParamExists('agentOperationsWebhooksControllerUpdateWebhook', 'webhookId', webhookId)
+            // verify required parameter 'updateWebhookDto' is not null or undefined
+            assertParamExists('agentOperationsWebhooksControllerUpdateWebhook', 'updateWebhookDto', updateWebhookDto)
+            const localVarPath = `/agents/{id}/webhooks/{webhookId}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"webhookId"}}`, encodeURIComponent(String(webhookId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateWebhookDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * 
          * @param {string} id ID of the model.
@@ -1178,6 +1965,71 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} id ID of the agent.
+         * @param {CreateWebhookDto} createWebhookDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsWebhooksControllerCreateWebhook(id: string, createWebhookDto: CreateWebhookDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsWebhooksControllerCreateWebhook(id, createWebhookDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhooksApi.agentOperationsWebhooksControllerCreateWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} webhookId ID of the webhook.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsWebhooksControllerDeleteWebhook(id: string, webhookId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsWebhooksControllerDeleteWebhook(id, webhookId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhooksApi.agentOperationsWebhooksControllerDeleteWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsWebhooksControllerGetAllWebhooks(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsWebhooksControllerGetAllWebhooks(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhooksApi.agentOperationsWebhooksControllerGetAllWebhooks']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} webhookId ID of the webhook.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsWebhooksControllerGetWebhook(id: string, webhookId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsWebhooksControllerGetWebhook(id, webhookId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhooksApi.agentOperationsWebhooksControllerGetWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} webhookId ID of the webhook.
+         * @param {UpdateWebhookDto} updateWebhookDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async agentOperationsWebhooksControllerUpdateWebhook(id: string, webhookId: string, updateWebhookDto: UpdateWebhookDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.agentOperationsWebhooksControllerUpdateWebhook(id, webhookId, updateWebhookDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhooksApi.agentOperationsWebhooksControllerUpdateWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {string} id ID of the model.
          * @param {CreateWebhookDto} createWebhookDto 
          * @param {*} [options] Override http request option.
@@ -1253,6 +2105,56 @@ export const WebhooksApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
+         * @param {string} id ID of the agent.
+         * @param {CreateWebhookDto} createWebhookDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsWebhooksControllerCreateWebhook(id: string, createWebhookDto: CreateWebhookDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsWebhooksControllerCreateWebhook(id, createWebhookDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} webhookId ID of the webhook.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsWebhooksControllerDeleteWebhook(id: string, webhookId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsWebhooksControllerDeleteWebhook(id, webhookId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsWebhooksControllerGetAllWebhooks(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsWebhooksControllerGetAllWebhooks(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} webhookId ID of the webhook.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsWebhooksControllerGetWebhook(id: string, webhookId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsWebhooksControllerGetWebhook(id, webhookId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} id ID of the agent.
+         * @param {string} webhookId ID of the webhook.
+         * @param {UpdateWebhookDto} updateWebhookDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        agentOperationsWebhooksControllerUpdateWebhook(id: string, webhookId: string, updateWebhookDto: UpdateWebhookDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.agentOperationsWebhooksControllerUpdateWebhook(id, webhookId, updateWebhookDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {string} id ID of the model.
          * @param {CreateWebhookDto} createWebhookDto 
          * @param {*} [options] Override http request option.
@@ -1311,6 +2213,66 @@ export const WebhooksApiFactory = function (configuration?: Configuration, baseP
  * @extends {BaseAPI}
  */
 export class WebhooksApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {CreateWebhookDto} createWebhookDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhooksApi
+     */
+    public agentOperationsWebhooksControllerCreateWebhook(id: string, createWebhookDto: CreateWebhookDto, options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).agentOperationsWebhooksControllerCreateWebhook(id, createWebhookDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {string} webhookId ID of the webhook.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhooksApi
+     */
+    public agentOperationsWebhooksControllerDeleteWebhook(id: string, webhookId: string, options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).agentOperationsWebhooksControllerDeleteWebhook(id, webhookId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhooksApi
+     */
+    public agentOperationsWebhooksControllerGetAllWebhooks(id: string, options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).agentOperationsWebhooksControllerGetAllWebhooks(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {string} webhookId ID of the webhook.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhooksApi
+     */
+    public agentOperationsWebhooksControllerGetWebhook(id: string, webhookId: string, options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).agentOperationsWebhooksControllerGetWebhook(id, webhookId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} id ID of the agent.
+     * @param {string} webhookId ID of the webhook.
+     * @param {UpdateWebhookDto} updateWebhookDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhooksApi
+     */
+    public agentOperationsWebhooksControllerUpdateWebhook(id: string, webhookId: string, updateWebhookDto: UpdateWebhookDto, options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).agentOperationsWebhooksControllerUpdateWebhook(id, webhookId, updateWebhookDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @param {string} id ID of the model.
