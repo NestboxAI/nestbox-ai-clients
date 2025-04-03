@@ -8,7 +8,7 @@ Each client provides distinct functionalities and maintains its own OpenAPI spec
 
 ### **1\. Admin Client**
 
-* Manage platform-wide configurations, settings, and permissions.
+* Manage platform-wide configurations, projects, settings, and permissions.
 
 * Monitor usage statistics and performance metrics.
 
