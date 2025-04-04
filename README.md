@@ -14,6 +14,8 @@ Each client provides distinct functionalities and maintains its own OpenAPI spec
 
 * Oversee user and access management functionalities.
 
+* Manage instances of documents and agents
+
 ### **2\. Instances Client**
 
 * Create, configure, and manage individual instances of AI workflows.
