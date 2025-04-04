@@ -483,6 +483,9 @@
           "description": {
             "type": "string"
           },
+          "entryFunctionName": {
+            "type": "string"
+          },
           "parameters": {
             "type": "array",
             "items": {

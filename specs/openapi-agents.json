@@ -512,6 +512,499 @@
           }
         ]
       }
+    },
+    "/agents/{id}/webhooks": {
+      "get": {
+        "operationId": "AgentOperationsWebhooksController_getAllWebhooks",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "AgentOperationsWebhooksController_createWebhook",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWebhookDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/agents/{id}/webhooks/{webhookId}": {
+      "get": {
+        "operationId": "AgentOperationsWebhooksController_getWebhook",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "webhookId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the webhook.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "AgentOperationsWebhooksController_updateWebhook",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "webhookId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the webhook.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWebhookDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "AgentOperationsWebhooksController_deleteWebhook",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "webhookId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the webhook.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/agents/{id}/guardrails": {
+      "get": {
+        "operationId": "AgentOperationsGuardrailsController_getAllGuardrails",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Guardrails"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "AgentOperationsGuardrailsController_createGuardrails",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGuardrailDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Guardrails"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/agents/{id}/guardrails/{guardrailsId}": {
+      "get": {
+        "operationId": "AgentOperationsGuardrailsController_getGuardrails",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "guardrailsId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the guardrails.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Guardrails"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "AgentOperationsGuardrailsController_updateGuardrails",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "guardrailsId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the guardrails.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGuardrailDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Guardrails"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "AgentOperationsGuardrailsController_deleteGuardrails",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "guardrailsId",
+            "required": true,
+            "in": "path",
+            "description": "ID of the guardrails.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Guardrails"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/agents/{id}/events": {
+      "get": {
+        "operationId": "AgentOperationsEventLogsController_getEventLogs",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Event Logs"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/agents/{id}/eventsByQueryId": {
+      "get": {
+        "operationId": "AgentOperationsEventLogsController_getEventLogsByQueryId",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "queryId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Event Logs"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/agents/{id}/query": {
+      "post": {
+        "operationId": "AgentOperationsQueryController_createQuery",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryHandlerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Query"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
     }
   },
   "info": {
