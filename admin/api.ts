@@ -183,83 +183,72 @@ export interface BooleanResponseDTO {
 /**
  * 
  * @export
- * @interface CreateDeviceRequestDTO
+ * @interface ChunkFileRequestDTO
  */
-export interface CreateDeviceRequestDTO {
+export interface ChunkFileRequestDTO {
     /**
      * 
      * @type {string}
-     * @memberof CreateDeviceRequestDTO
+     * @memberof ChunkFileRequestDTO
      */
-    'type': CreateDeviceRequestDTOTypeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateDeviceRequestDTO
-     */
-    'userId': number;
+    'type': string;
     /**
      * 
      * @type {string}
-     * @memberof CreateDeviceRequestDTO
+     * @memberof ChunkFileRequestDTO
      */
-    'userAgent'?: string;
+    'url': string;
+    /**
+     * 
+     * @type {object}
+     * @memberof ChunkFileRequestDTO
+     */
+    'options': object;
 }
-
-export const CreateDeviceRequestDTOTypeEnum = {
-    Web: 'WEB',
-    Android: 'ANDROID',
-    Ios: 'IOS'
-} as const;
-
-export type CreateDeviceRequestDTOTypeEnum = typeof CreateDeviceRequestDTOTypeEnum[keyof typeof CreateDeviceRequestDTOTypeEnum];
-
 /**
  * 
  * @export
- * @interface CreateDeviceResponseDTO
+ * @interface CreateCollectionRequestDTO
  */
-export interface CreateDeviceResponseDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateDeviceResponseDTO
-     */
-    'id': number;
+export interface CreateCollectionRequestDTO {
     /**
      * 
      * @type {string}
-     * @memberof CreateDeviceResponseDTO
+     * @memberof CreateCollectionRequestDTO
      */
-    'uuid': string;
+    'name': string;
     /**
      * 
-     * @type {number}
-     * @memberof CreateDeviceResponseDTO
+     * @type {object}
+     * @memberof CreateCollectionRequestDTO
      */
-    'userId': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateDeviceResponseDTO
-     */
-    'type': CreateDeviceResponseDTOTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateDeviceResponseDTO
-     */
-    'userAgent': string;
+    'metadata': object;
 }
-
-export const CreateDeviceResponseDTOTypeEnum = {
-    Web: 'WEB',
-    Android: 'ANDROID',
-    Ios: 'IOS'
-} as const;
-
-export type CreateDeviceResponseDTOTypeEnum = typeof CreateDeviceResponseDTOTypeEnum[keyof typeof CreateDeviceResponseDTOTypeEnum];
-
+/**
+ * 
+ * @export
+ * @interface CreateDocumentRequestDTO
+ */
+export interface CreateDocumentRequestDTO {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDocumentRequestDTO
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDocumentRequestDTO
+     */
+    'document': string;
+    /**
+     * 
+     * @type {object}
+     * @memberof CreateDocumentRequestDTO
+     */
+    'metadata': object;
+}
 /**
  * 
  * @export
@@ -558,25 +547,6 @@ export interface FatalErrorExceptionResponse {
 /**
  * 
  * @export
- * @interface FindUsersResponseDTO
- */
-export interface FindUsersResponseDTO {
-    /**
-     * 
-     * @type {Array<UserResponseModel>}
-     * @memberof FindUsersResponseDTO
-     */
-    'data': Array<UserResponseModel>;
-    /**
-     * 
-     * @type {number}
-     * @memberof FindUsersResponseDTO
-     */
-    'count': number;
-}
-/**
- * 
- * @export
  * @interface ForbiddenExceptionResponse
  */
 export interface ForbiddenExceptionResponse {
@@ -768,93 +738,6 @@ export interface GetAllRoleDTO {
 /**
  * 
  * @export
- * @interface GetMeResponseDTO
- */
-export interface GetMeResponseDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetMeResponseDTO
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMeResponseDTO
-     */
-    'firstName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMeResponseDTO
-     */
-    'lastName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMeResponseDTO
-     */
-    'type': GetMeResponseDTOTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMeResponseDTO
-     */
-    'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMeResponseDTO
-     */
-    'phone': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMeResponseDTO
-     */
-    'status': GetMeResponseDTOStatusEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetMeResponseDTO
-     */
-    'profilePictureId': number;
-    /**
-     * 
-     * @type {UserSettingsModel}
-     * @memberof GetMeResponseDTO
-     */
-    'settings': UserSettingsModel;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMeResponseDTO
-     */
-    'bio': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetMeResponseDTO
-     */
-    'profilePictureUrl': string;
-}
-
-export const GetMeResponseDTOTypeEnum = {
-    User: 'USER',
-    Admin: 'ADMIN'
-} as const;
-
-export type GetMeResponseDTOTypeEnum = typeof GetMeResponseDTOTypeEnum[keyof typeof GetMeResponseDTOTypeEnum];
-export const GetMeResponseDTOStatusEnum = {
-    Active: 'ACTIVE',
-    Inactive: 'INACTIVE'
-} as const;
-
-export type GetMeResponseDTOStatusEnum = typeof GetMeResponseDTOStatusEnum[keyof typeof GetMeResponseDTOStatusEnum];
-
-/**
- * 
- * @export
  * @interface GetProjectByIDResponseDTO
  */
 export interface GetProjectByIDResponseDTO {
@@ -912,93 +795,6 @@ export interface GetRoleDTO {
 /**
  * 
  * @export
- * @interface GetUserByIdResponseDTO
- */
-export interface GetUserByIdResponseDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'firstName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'lastName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'type': GetUserByIdResponseDTOTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'bio': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'phone': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'status': GetUserByIdResponseDTOStatusEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'profilePictureId': number;
-    /**
-     * 
-     * @type {MediaResponseModel}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'profilePicture': MediaResponseModel;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetUserByIdResponseDTO
-     */
-    'profilePictureUrl': string;
-}
-
-export const GetUserByIdResponseDTOTypeEnum = {
-    User: 'USER',
-    Admin: 'ADMIN'
-} as const;
-
-export type GetUserByIdResponseDTOTypeEnum = typeof GetUserByIdResponseDTOTypeEnum[keyof typeof GetUserByIdResponseDTOTypeEnum];
-export const GetUserByIdResponseDTOStatusEnum = {
-    Active: 'ACTIVE',
-    Inactive: 'INACTIVE'
-} as const;
-
-export type GetUserByIdResponseDTOStatusEnum = typeof GetUserByIdResponseDTOStatusEnum[keyof typeof GetUserByIdResponseDTOStatusEnum];
-
-/**
- * 
- * @export
  * @interface GetUserProjectRoleByRoleIdResponseDto
  */
 export interface GetUserProjectRoleByRoleIdResponseDto {
@@ -1044,100 +840,16 @@ export interface LoginResponseDTO {
 /**
  * 
  * @export
- * @interface MediaResponseModel
+ * @interface MessageResponseDTO
  */
-export interface MediaResponseModel {
-    /**
-     * 
-     * @type {number}
-     * @memberof MediaResponseModel
-     */
-    'id': number;
+export interface MessageResponseDTO {
     /**
      * 
      * @type {string}
-     * @memberof MediaResponseModel
+     * @memberof MessageResponseDTO
      */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MediaResponseModel
-     */
-    'extension': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MediaResponseModel
-     */
-    'type': MediaResponseModelTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof MediaResponseModel
-     */
-    'access': MediaResponseModelAccessEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof MediaResponseModel
-     */
-    'size': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MediaResponseModel
-     */
-    'path': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MediaResponseModel
-     */
-    'thumbPath': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MediaResponseModel
-     */
-    'status': MediaResponseModelStatusEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof MediaResponseModel
-     */
-    'userId': number;
-    /**
-     * 
-     * @type {object}
-     * @memberof MediaResponseModel
-     */
-    'meta': object;
+    'message': string;
 }
-
-export const MediaResponseModelTypeEnum = {
-    Image: 'IMAGE',
-    Video: 'VIDEO',
-    Document: 'DOCUMENT',
-    Archive: 'ARCHIVE',
-    Other: 'OTHER'
-} as const;
-
-export type MediaResponseModelTypeEnum = typeof MediaResponseModelTypeEnum[keyof typeof MediaResponseModelTypeEnum];
-export const MediaResponseModelAccessEnum = {
-    Public: 'PUBLIC',
-    Private: 'PRIVATE'
-} as const;
-
-export type MediaResponseModelAccessEnum = typeof MediaResponseModelAccessEnum[keyof typeof MediaResponseModelAccessEnum];
-export const MediaResponseModelStatusEnum = {
-    Uploading: 'UPLOADING',
-    Ready: 'READY',
-    Stale: 'STALE'
-} as const;
-
-export type MediaResponseModelStatusEnum = typeof MediaResponseModelStatusEnum[keyof typeof MediaResponseModelStatusEnum];
-
 /**
  * 
  * @export
@@ -1269,19 +981,6 @@ export interface ProjectResponseModel {
      * @memberof ProjectResponseModel
      */
     'deletedAt': string;
-}
-/**
- * 
- * @export
- * @interface RegisteredUserResponseDTO
- */
-export interface RegisteredUserResponseDTO {
-    /**
-     * registered
-     * @type {boolean}
-     * @memberof RegisteredUserResponseDTO
-     */
-    'registered': boolean;
 }
 /**
  * 
@@ -1431,6 +1130,37 @@ export interface SignupResponseDTO {
 /**
  * 
  * @export
+ * @interface SimilaritySearchQueryDTO
+ */
+export interface SimilaritySearchQueryDTO {
+    /**
+     * 
+     * @type {string}
+     * @memberof SimilaritySearchQueryDTO
+     */
+    'query': string;
+    /**
+     * 
+     * @type {object}
+     * @memberof SimilaritySearchQueryDTO
+     */
+    'params': object;
+    /**
+     * 
+     * @type {object}
+     * @memberof SimilaritySearchQueryDTO
+     */
+    'filter': object;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof SimilaritySearchQueryDTO
+     */
+    'include': Array<string>;
+}
+/**
+ * 
+ * @export
  * @interface TeamMemberDto
  */
 export interface TeamMemberDto {
@@ -1471,6 +1201,25 @@ export interface UnauthorizedExceptionResponse {
      * @memberof UnauthorizedExceptionResponse
      */
     'message': string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateDocumentRequestDTO
+ */
+export interface UpdateDocumentRequestDTO {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateDocumentRequestDTO
+     */
+    'document': string;
+    /**
+     * 
+     * @type {object}
+     * @memberof UpdateDocumentRequestDTO
+     */
+    'metadata': object;
 }
 /**
  * 
@@ -1670,263 +1419,6 @@ export interface UpdateTeamMemberStatusRequestDTO {
 /**
  * 
  * @export
- * @interface UpdateUserRequestDTO
- */
-export interface UpdateUserRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserRequestDTO
-     */
-    'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserRequestDTO
-     */
-    'firstName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserRequestDTO
-     */
-    'lastName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserRequestDTO
-     */
-    'bio': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserRequestDTO
-     */
-    'phone': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateUserRequestDTO
-     */
-    'image'?: string;
-}
-/**
- * 
- * @export
- * @interface UpdateUserSettingsRequestDTO
- */
-export interface UpdateUserSettingsRequestDTO {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdateUserSettingsRequestDTO
-     */
-    'notificationsEnabled'?: boolean;
-}
-/**
- * 
- * @export
- * @interface UploadFinalizeMediaRequestDTO
- */
-export interface UploadFinalizeMediaRequestDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof UploadFinalizeMediaRequestDTO
-     */
-    'id': number;
-}
-/**
- * 
- * @export
- * @interface UploadFinalizeMediaResponseDTO
- */
-export interface UploadFinalizeMediaResponseDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'extension': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'type': UploadFinalizeMediaResponseDTOTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'access': UploadFinalizeMediaResponseDTOAccessEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'size': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'path': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'thumbPath': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'status': UploadFinalizeMediaResponseDTOStatusEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'userId': number;
-    /**
-     * 
-     * @type {object}
-     * @memberof UploadFinalizeMediaResponseDTO
-     */
-    'meta': object;
-}
-
-export const UploadFinalizeMediaResponseDTOTypeEnum = {
-    Image: 'IMAGE',
-    Video: 'VIDEO',
-    Document: 'DOCUMENT',
-    Archive: 'ARCHIVE',
-    Other: 'OTHER'
-} as const;
-
-export type UploadFinalizeMediaResponseDTOTypeEnum = typeof UploadFinalizeMediaResponseDTOTypeEnum[keyof typeof UploadFinalizeMediaResponseDTOTypeEnum];
-export const UploadFinalizeMediaResponseDTOAccessEnum = {
-    Public: 'PUBLIC',
-    Private: 'PRIVATE'
-} as const;
-
-export type UploadFinalizeMediaResponseDTOAccessEnum = typeof UploadFinalizeMediaResponseDTOAccessEnum[keyof typeof UploadFinalizeMediaResponseDTOAccessEnum];
-export const UploadFinalizeMediaResponseDTOStatusEnum = {
-    Uploading: 'UPLOADING',
-    Ready: 'READY',
-    Stale: 'STALE'
-} as const;
-
-export type UploadFinalizeMediaResponseDTOStatusEnum = typeof UploadFinalizeMediaResponseDTOStatusEnum[keyof typeof UploadFinalizeMediaResponseDTOStatusEnum];
-
-/**
- * 
- * @export
- * @interface UploadInitiateMediaRequestDTO
- */
-export interface UploadInitiateMediaRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadInitiateMediaRequestDTO
-     */
-    'name': string;
-    /**
-     * Size in KB
-     * @type {number}
-     * @memberof UploadInitiateMediaRequestDTO
-     */
-    'size': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadInitiateMediaRequestDTO
-     */
-    'type': UploadInitiateMediaRequestDTOTypeEnum;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UploadInitiateMediaRequestDTO
-     */
-    'public'?: boolean;
-}
-
-export const UploadInitiateMediaRequestDTOTypeEnum = {
-    Image: 'IMAGE',
-    Video: 'VIDEO',
-    Document: 'DOCUMENT',
-    Archive: 'ARCHIVE',
-    Other: 'OTHER'
-} as const;
-
-export type UploadInitiateMediaRequestDTOTypeEnum = typeof UploadInitiateMediaRequestDTOTypeEnum[keyof typeof UploadInitiateMediaRequestDTOTypeEnum];
-
-/**
- * 
- * @export
- * @interface UploadInitiateMediaResponseDTO
- */
-export interface UploadInitiateMediaResponseDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadInitiateMediaResponseDTO
-     */
-    'accessKeyId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadInitiateMediaResponseDTO
-     */
-    'secretAccessKey': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadInitiateMediaResponseDTO
-     */
-    'sessionToken': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof UploadInitiateMediaResponseDTO
-     */
-    'mediaId': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadInitiateMediaResponseDTO
-     */
-    'location': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadInitiateMediaResponseDTO
-     */
-    'bucket': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadInitiateMediaResponseDTO
-     */
-    'region': string;
-}
-/**
- * 
- * @export
  * @interface UserDto
  */
 export interface UserDto {
@@ -1972,106 +1464,6 @@ export interface UserDto {
      * @memberof UserDto
      */
     'bio': string;
-}
-/**
- * 
- * @export
- * @interface UserResponseModel
- */
-export interface UserResponseModel {
-    /**
-     * 
-     * @type {number}
-     * @memberof UserResponseModel
-     */
-    'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserResponseModel
-     */
-    'firstName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserResponseModel
-     */
-    'lastName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserResponseModel
-     */
-    'type': UserResponseModelTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserResponseModel
-     */
-    'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserResponseModel
-     */
-    'bio': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserResponseModel
-     */
-    'phone': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserResponseModel
-     */
-    'status': UserResponseModelStatusEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof UserResponseModel
-     */
-    'profilePictureId': number;
-    /**
-     * 
-     * @type {MediaResponseModel}
-     * @memberof UserResponseModel
-     */
-    'profilePicture': MediaResponseModel;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserResponseModel
-     */
-    'profilePictureUrl': string;
-}
-
-export const UserResponseModelTypeEnum = {
-    User: 'USER',
-    Admin: 'ADMIN'
-} as const;
-
-export type UserResponseModelTypeEnum = typeof UserResponseModelTypeEnum[keyof typeof UserResponseModelTypeEnum];
-export const UserResponseModelStatusEnum = {
-    Active: 'ACTIVE',
-    Inactive: 'INACTIVE'
-} as const;
-
-export type UserResponseModelStatusEnum = typeof UserResponseModelStatusEnum[keyof typeof UserResponseModelStatusEnum];
-
-/**
- * 
- * @export
- * @interface UserSettingsModel
- */
-export interface UserSettingsModel {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UserSettingsModel
-     */
-    'notificationsEnabled': boolean;
 }
 
 /**
@@ -2540,18 +1932,304 @@ export class AuthApi extends BaseAPI {
 
 
 /**
- * DefaultApi - axios parameter creator
+ * DocumentsApi - axios parameter creator
  * @export
  */
-export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
+export const DocumentsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary Add a new doc
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {CreateDocumentRequestDTO} createDocumentRequestDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        appControllerGetHello: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/`;
+        documentControllerAddDocToCollection: async (projectId: string, instanceId: string, collectionId: string, createDocumentRequestDTO: CreateDocumentRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerAddDocToCollection', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerAddDocToCollection', 'instanceId', instanceId)
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('documentControllerAddDocToCollection', 'collectionId', collectionId)
+            // verify required parameter 'createDocumentRequestDTO' is not null or undefined
+            assertParamExists('documentControllerAddDocToCollection', 'createDocumentRequestDTO', createDocumentRequestDTO)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections/{collectionId}/docs`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createDocumentRequestDTO, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Use a file to chunk and add to collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {ChunkFileRequestDTO} chunkFileRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerAddDocToCollectionFromFile: async (projectId: string, instanceId: string, collectionId: string, chunkFileRequestDTO: ChunkFileRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerAddDocToCollectionFromFile', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerAddDocToCollectionFromFile', 'instanceId', instanceId)
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('documentControllerAddDocToCollectionFromFile', 'collectionId', collectionId)
+            // verify required parameter 'chunkFileRequestDTO' is not null or undefined
+            assertParamExists('documentControllerAddDocToCollectionFromFile', 'chunkFileRequestDTO', chunkFileRequestDTO)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections/{collectionId}/docs/file`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(chunkFileRequestDTO, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerCreateCollection: async (projectId: string, instanceId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerCreateCollection', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerCreateCollection', 'instanceId', instanceId)
+            // verify required parameter 'createCollectionRequestDTO' is not null or undefined
+            assertParamExists('documentControllerCreateCollection', 'createCollectionRequestDTO', createCollectionRequestDTO)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createCollectionRequestDTO, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerDeleteCollection: async (projectId: string, instanceId: string, collectionId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerDeleteCollection', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerDeleteCollection', 'instanceId', instanceId)
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('documentControllerDeleteCollection', 'collectionId', collectionId)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections/{collectionId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete doc by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} docId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerDeleteDocById: async (projectId: string, instanceId: string, collectionId: string, docId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerDeleteDocById', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerDeleteDocById', 'instanceId', instanceId)
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('documentControllerDeleteDocById', 'collectionId', collectionId)
+            // verify required parameter 'docId' is not null or undefined
+            assertParamExists('documentControllerDeleteDocById', 'docId', docId)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections/{collectionId}/docs/{docId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)))
+                .replace(`{${"docId"}}`, encodeURIComponent(String(docId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete docs based on metadata filters
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} filter 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerDeleteDocsFromCollection: async (projectId: string, instanceId: string, collectionId: string, filter: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerDeleteDocsFromCollection', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerDeleteDocsFromCollection', 'instanceId', instanceId)
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('documentControllerDeleteDocsFromCollection', 'collectionId', collectionId)
+            // verify required parameter 'filter' is not null or undefined
+            assertParamExists('documentControllerDeleteDocsFromCollection', 'filter', filter)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections/{collectionId}/docs`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (filter !== undefined) {
+                localVarQueryParameter['filter'] = filter;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get all collections
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerGetAllCollections: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerGetAllCollections', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerGetAllCollections', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2574,191 +2252,26 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
-    }
-};
-
-/**
- * DefaultApi - functional programming interface
- * @export
- */
-export const DefaultApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration)
-    return {
         /**
          * 
+         * @summary Get collection info
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async appControllerGetHello(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.appControllerGetHello(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.appControllerGetHello']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-    }
-};
-
-/**
- * DefaultApi - factory interface
- * @export
- */
-export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = DefaultApiFp(configuration)
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        appControllerGetHello(options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.appControllerGetHello(options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * DefaultApi - object-oriented interface
- * @export
- * @class DefaultApi
- * @extends {BaseAPI}
- */
-export class DefaultApi extends BaseAPI {
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public appControllerGetHello(options?: RawAxiosRequestConfig) {
-        return DefaultApiFp(this.configuration).appControllerGetHello(options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-
-/**
- * DeviceApi - axios parameter creator
- * @export
- */
-export const DeviceApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Create a new device
-         * @param {CreateDeviceRequestDTO} createDeviceRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deviceControllerCreate: async (createDeviceRequestDTO: CreateDeviceRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'createDeviceRequestDTO' is not null or undefined
-            assertParamExists('deviceControllerCreate', 'createDeviceRequestDTO', createDeviceRequestDTO)
-            const localVarPath = `/device`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createDeviceRequestDTO, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * DeviceApi - functional programming interface
- * @export
- */
-export const DeviceApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = DeviceApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @summary Create a new device
-         * @param {CreateDeviceRequestDTO} createDeviceRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async deviceControllerCreate(createDeviceRequestDTO: CreateDeviceRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateDeviceResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deviceControllerCreate(createDeviceRequestDTO, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DeviceApi.deviceControllerCreate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-    }
-};
-
-/**
- * DeviceApi - factory interface
- * @export
- */
-export const DeviceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = DeviceApiFp(configuration)
-    return {
-        /**
-         * 
-         * @summary Create a new device
-         * @param {CreateDeviceRequestDTO} createDeviceRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deviceControllerCreate(createDeviceRequestDTO: CreateDeviceRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<CreateDeviceResponseDTO> {
-            return localVarFp.deviceControllerCreate(createDeviceRequestDTO, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * DeviceApi - object-oriented interface
- * @export
- * @class DeviceApi
- * @extends {BaseAPI}
- */
-export class DeviceApi extends BaseAPI {
-    /**
-     * 
-     * @summary Create a new device
-     * @param {CreateDeviceRequestDTO} createDeviceRequestDTO 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DeviceApi
-     */
-    public deviceControllerCreate(createDeviceRequestDTO: CreateDeviceRequestDTO, options?: RawAxiosRequestConfig) {
-        return DeviceApiFp(this.configuration).deviceControllerCreate(createDeviceRequestDTO, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-
-/**
- * MachineImagesApi - axios parameter creator
- * @export
- */
-export const MachineImagesApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineImagesControllerGetJsonData: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/machineImages`;
+        documentControllerGetCollectionInfo: async (projectId: string, instanceId: string, collectionId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerGetCollectionInfo', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerGetCollectionInfo', 'instanceId', instanceId)
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('documentControllerGetCollectionInfo', 'collectionId', collectionId)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections/{collectionId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2781,85 +2294,767 @@ export const MachineImagesApiAxiosParamCreator = function (configuration?: Confi
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Get doc by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} docId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerGetDocById: async (projectId: string, instanceId: string, collectionId: string, docId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerGetDocById', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerGetDocById', 'instanceId', instanceId)
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('documentControllerGetDocById', 'collectionId', collectionId)
+            // verify required parameter 'docId' is not null or undefined
+            assertParamExists('documentControllerGetDocById', 'docId', docId)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections/{collectionId}/docs/{docId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)))
+                .replace(`{${"docId"}}`, encodeURIComponent(String(docId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Similarity search query
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {SimilaritySearchQueryDTO} similaritySearchQueryDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerSimilaritySearch: async (projectId: string, instanceId: string, collectionId: string, similaritySearchQueryDTO: SimilaritySearchQueryDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerSimilaritySearch', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerSimilaritySearch', 'instanceId', instanceId)
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('documentControllerSimilaritySearch', 'collectionId', collectionId)
+            // verify required parameter 'similaritySearchQueryDTO' is not null or undefined
+            assertParamExists('documentControllerSimilaritySearch', 'similaritySearchQueryDTO', similaritySearchQueryDTO)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections/{collectionId}/query`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(similaritySearchQueryDTO, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerUpdateCollection: async (projectId: string, instanceId: string, collectionId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerUpdateCollection', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerUpdateCollection', 'instanceId', instanceId)
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('documentControllerUpdateCollection', 'collectionId', collectionId)
+            // verify required parameter 'createCollectionRequestDTO' is not null or undefined
+            assertParamExists('documentControllerUpdateCollection', 'createCollectionRequestDTO', createCollectionRequestDTO)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections/{collectionId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createCollectionRequestDTO, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update or upsert doc
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} docId 
+         * @param {UpdateDocumentRequestDTO} updateDocumentRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerUpdateDoc: async (projectId: string, instanceId: string, collectionId: string, docId: string, updateDocumentRequestDTO: UpdateDocumentRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentControllerUpdateDoc', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentControllerUpdateDoc', 'instanceId', instanceId)
+            // verify required parameter 'collectionId' is not null or undefined
+            assertParamExists('documentControllerUpdateDoc', 'collectionId', collectionId)
+            // verify required parameter 'docId' is not null or undefined
+            assertParamExists('documentControllerUpdateDoc', 'docId', docId)
+            // verify required parameter 'updateDocumentRequestDTO' is not null or undefined
+            assertParamExists('documentControllerUpdateDoc', 'updateDocumentRequestDTO', updateDocumentRequestDTO)
+            const localVarPath = `/projects/{projectId}/document/{instanceId}/collections/{collectionId}/docs/{docId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)))
+                .replace(`{${"docId"}}`, encodeURIComponent(String(docId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateDocumentRequestDTO, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
 /**
- * MachineImagesApi - functional programming interface
+ * DocumentsApi - functional programming interface
  * @export
  */
-export const MachineImagesApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = MachineImagesApiAxiosParamCreator(configuration)
+export const DocumentsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = DocumentsApiAxiosParamCreator(configuration)
     return {
         /**
          * 
+         * @summary Add a new doc
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {CreateDocumentRequestDTO} createDocumentRequestDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async machineImagesControllerGetJsonData(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineImagesControllerGetJsonData(options);
+        async documentControllerAddDocToCollection(projectId: string, instanceId: string, collectionId: string, createDocumentRequestDTO: CreateDocumentRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerAddDocToCollection(projectId, instanceId, collectionId, createDocumentRequestDTO, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['MachineImagesApi.machineImagesControllerGetJsonData']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerAddDocToCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Use a file to chunk and add to collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {ChunkFileRequestDTO} chunkFileRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerAddDocToCollectionFromFile(projectId: string, instanceId: string, collectionId: string, chunkFileRequestDTO: ChunkFileRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerAddDocToCollectionFromFile(projectId, instanceId, collectionId, chunkFileRequestDTO, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerAddDocToCollectionFromFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerCreateCollection(projectId: string, instanceId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerCreateCollection(projectId, instanceId, createCollectionRequestDTO, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerCreateCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerDeleteCollection(projectId: string, instanceId: string, collectionId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerDeleteCollection(projectId, instanceId, collectionId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerDeleteCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete doc by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} docId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerDeleteDocById(projectId: string, instanceId: string, collectionId: string, docId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerDeleteDocById(projectId, instanceId, collectionId, docId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerDeleteDocById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete docs based on metadata filters
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} filter 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerDeleteDocsFromCollection(projectId: string, instanceId: string, collectionId: string, filter: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerDeleteDocsFromCollection(projectId, instanceId, collectionId, filter, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerDeleteDocsFromCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get all collections
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerGetAllCollections(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerGetAllCollections(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerGetAllCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get collection info
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerGetCollectionInfo(projectId: string, instanceId: string, collectionId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerGetCollectionInfo(projectId, instanceId, collectionId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerGetCollectionInfo']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get doc by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} docId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerGetDocById(projectId: string, instanceId: string, collectionId: string, docId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerGetDocById(projectId, instanceId, collectionId, docId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerGetDocById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Similarity search query
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {SimilaritySearchQueryDTO} similaritySearchQueryDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerSimilaritySearch(projectId: string, instanceId: string, collectionId: string, similaritySearchQueryDTO: SimilaritySearchQueryDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerSimilaritySearch(projectId, instanceId, collectionId, similaritySearchQueryDTO, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerSimilaritySearch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerUpdateCollection(projectId: string, instanceId: string, collectionId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerUpdateCollection(projectId, instanceId, collectionId, createCollectionRequestDTO, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerUpdateCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update or upsert doc
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} docId 
+         * @param {UpdateDocumentRequestDTO} updateDocumentRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentControllerUpdateDoc(projectId: string, instanceId: string, collectionId: string, docId: string, updateDocumentRequestDTO: UpdateDocumentRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MessageResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentControllerUpdateDoc(projectId, instanceId, collectionId, docId, updateDocumentRequestDTO, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentControllerUpdateDoc']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * MachineImagesApi - factory interface
+ * DocumentsApi - factory interface
  * @export
  */
-export const MachineImagesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = MachineImagesApiFp(configuration)
+export const DocumentsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = DocumentsApiFp(configuration)
     return {
         /**
          * 
+         * @summary Add a new doc
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {CreateDocumentRequestDTO} createDocumentRequestDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineImagesControllerGetJsonData(options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.machineImagesControllerGetJsonData(options).then((request) => request(axios, basePath));
+        documentControllerAddDocToCollection(projectId: string, instanceId: string, collectionId: string, createDocumentRequestDTO: CreateDocumentRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerAddDocToCollection(projectId, instanceId, collectionId, createDocumentRequestDTO, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Use a file to chunk and add to collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {ChunkFileRequestDTO} chunkFileRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerAddDocToCollectionFromFile(projectId: string, instanceId: string, collectionId: string, chunkFileRequestDTO: ChunkFileRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerAddDocToCollectionFromFile(projectId, instanceId, collectionId, chunkFileRequestDTO, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerCreateCollection(projectId: string, instanceId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerCreateCollection(projectId, instanceId, createCollectionRequestDTO, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerDeleteCollection(projectId: string, instanceId: string, collectionId: string, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerDeleteCollection(projectId, instanceId, collectionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete doc by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} docId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerDeleteDocById(projectId: string, instanceId: string, collectionId: string, docId: string, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerDeleteDocById(projectId, instanceId, collectionId, docId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete docs based on metadata filters
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} filter 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerDeleteDocsFromCollection(projectId: string, instanceId: string, collectionId: string, filter: string, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerDeleteDocsFromCollection(projectId, instanceId, collectionId, filter, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get all collections
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerGetAllCollections(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerGetAllCollections(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get collection info
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerGetCollectionInfo(projectId: string, instanceId: string, collectionId: string, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerGetCollectionInfo(projectId, instanceId, collectionId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get doc by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} docId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerGetDocById(projectId: string, instanceId: string, collectionId: string, docId: string, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerGetDocById(projectId, instanceId, collectionId, docId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Similarity search query
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {SimilaritySearchQueryDTO} similaritySearchQueryDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerSimilaritySearch(projectId: string, instanceId: string, collectionId: string, similaritySearchQueryDTO: SimilaritySearchQueryDTO, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerSimilaritySearch(projectId, instanceId, collectionId, similaritySearchQueryDTO, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update collection
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerUpdateCollection(projectId: string, instanceId: string, collectionId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerUpdateCollection(projectId, instanceId, collectionId, createCollectionRequestDTO, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update or upsert doc
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} collectionId 
+         * @param {string} docId 
+         * @param {UpdateDocumentRequestDTO} updateDocumentRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentControllerUpdateDoc(projectId: string, instanceId: string, collectionId: string, docId: string, updateDocumentRequestDTO: UpdateDocumentRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<MessageResponseDTO> {
+            return localVarFp.documentControllerUpdateDoc(projectId, instanceId, collectionId, docId, updateDocumentRequestDTO, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * MachineImagesApi - object-oriented interface
+ * DocumentsApi - object-oriented interface
  * @export
- * @class MachineImagesApi
+ * @class DocumentsApi
  * @extends {BaseAPI}
  */
-export class MachineImagesApi extends BaseAPI {
+export class DocumentsApi extends BaseAPI {
     /**
      * 
+     * @summary Add a new doc
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} collectionId 
+     * @param {CreateDocumentRequestDTO} createDocumentRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineImagesApi
+     * @memberof DocumentsApi
      */
-    public machineImagesControllerGetJsonData(options?: RawAxiosRequestConfig) {
-        return MachineImagesApiFp(this.configuration).machineImagesControllerGetJsonData(options).then((request) => request(this.axios, this.basePath));
+    public documentControllerAddDocToCollection(projectId: string, instanceId: string, collectionId: string, createDocumentRequestDTO: CreateDocumentRequestDTO, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerAddDocToCollection(projectId, instanceId, collectionId, createDocumentRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Use a file to chunk and add to collection
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} collectionId 
+     * @param {ChunkFileRequestDTO} chunkFileRequestDTO 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerAddDocToCollectionFromFile(projectId: string, instanceId: string, collectionId: string, chunkFileRequestDTO: ChunkFileRequestDTO, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerAddDocToCollectionFromFile(projectId, instanceId, collectionId, chunkFileRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create collection
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerCreateCollection(projectId: string, instanceId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerCreateCollection(projectId, instanceId, createCollectionRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete collection
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} collectionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerDeleteCollection(projectId: string, instanceId: string, collectionId: string, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerDeleteCollection(projectId, instanceId, collectionId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete doc by ID
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} collectionId 
+     * @param {string} docId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerDeleteDocById(projectId: string, instanceId: string, collectionId: string, docId: string, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerDeleteDocById(projectId, instanceId, collectionId, docId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete docs based on metadata filters
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} collectionId 
+     * @param {string} filter 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerDeleteDocsFromCollection(projectId: string, instanceId: string, collectionId: string, filter: string, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerDeleteDocsFromCollection(projectId, instanceId, collectionId, filter, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get all collections
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerGetAllCollections(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerGetAllCollections(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get collection info
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} collectionId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerGetCollectionInfo(projectId: string, instanceId: string, collectionId: string, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerGetCollectionInfo(projectId, instanceId, collectionId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get doc by ID
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} collectionId 
+     * @param {string} docId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerGetDocById(projectId: string, instanceId: string, collectionId: string, docId: string, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerGetDocById(projectId, instanceId, collectionId, docId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Similarity search query
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} collectionId 
+     * @param {SimilaritySearchQueryDTO} similaritySearchQueryDTO 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerSimilaritySearch(projectId: string, instanceId: string, collectionId: string, similaritySearchQueryDTO: SimilaritySearchQueryDTO, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerSimilaritySearch(projectId, instanceId, collectionId, similaritySearchQueryDTO, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update collection
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} collectionId 
+     * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerUpdateCollection(projectId: string, instanceId: string, collectionId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerUpdateCollection(projectId, instanceId, collectionId, createCollectionRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update or upsert doc
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} collectionId 
+     * @param {string} docId 
+     * @param {UpdateDocumentRequestDTO} updateDocumentRequestDTO 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DocumentsApi
+     */
+    public documentControllerUpdateDoc(projectId: string, instanceId: string, collectionId: string, docId: string, updateDocumentRequestDTO: UpdateDocumentRequestDTO, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentControllerUpdateDoc(projectId, instanceId, collectionId, docId, updateDocumentRequestDTO, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
 
 
 /**
- * MediaApi - axios parameter creator
+ * EvaluationTestApi - axios parameter creator
  * @export
  */
-export const MediaApiAxiosParamCreator = function (configuration?: Configuration) {
+export const EvaluationTestApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Finalize media
-         * @param {UploadFinalizeMediaRequestDTO} uploadFinalizeMediaRequestDTO 
+         * @summary Add new evaluation test.
+         * @param {string} projectId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mediaControllerUploadFinalize: async (uploadFinalizeMediaRequestDTO: UploadFinalizeMediaRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'uploadFinalizeMediaRequestDTO' is not null or undefined
-            assertParamExists('mediaControllerUploadFinalize', 'uploadFinalizeMediaRequestDTO', uploadFinalizeMediaRequestDTO)
-            const localVarPath = `/media/finalize`;
+        evaluationTestControllerAddEvaluationTest: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('evaluationTestControllerAddEvaluationTest', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/evaluation-tests`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2873,12 +3068,9 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(uploadFinalizeMediaRequestDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2887,15 +3079,20 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
-         * @summary Upload media
-         * @param {UploadInitiateMediaRequestDTO} uploadInitiateMediaRequestDTO 
+         * @summary Delete evaluation
+         * @param {string} projectId 
+         * @param {string} testId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mediaControllerUploadInitiate: async (uploadInitiateMediaRequestDTO: UploadInitiateMediaRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'uploadInitiateMediaRequestDTO' is not null or undefined
-            assertParamExists('mediaControllerUploadInitiate', 'uploadInitiateMediaRequestDTO', uploadInitiateMediaRequestDTO)
-            const localVarPath = `/media/init`;
+        evaluationTestControllerDeleteEvaluation: async (projectId: string, testId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('evaluationTestControllerDeleteEvaluation', 'projectId', projectId)
+            // verify required parameter 'testId' is not null or undefined
+            assertParamExists('evaluationTestControllerDeleteEvaluation', 'testId', testId)
+            const localVarPath = `/projects/{projectId}/evaluation-tests/{testId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"testId"}}`, encodeURIComponent(String(testId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2903,18 +3100,15 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(uploadInitiateMediaRequestDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2923,15 +3117,20 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
-         * @summary Finalize public media
-         * @param {UploadFinalizeMediaRequestDTO} uploadFinalizeMediaRequestDTO 
+         * @summary Execute evaluation test.
+         * @param {string} projectId 
+         * @param {string} testId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mediaControllerUploadPublicFinalize: async (uploadFinalizeMediaRequestDTO: UploadFinalizeMediaRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'uploadFinalizeMediaRequestDTO' is not null or undefined
-            assertParamExists('mediaControllerUploadPublicFinalize', 'uploadFinalizeMediaRequestDTO', uploadFinalizeMediaRequestDTO)
-            const localVarPath = `/media/public/finalize`;
+        evaluationTestControllerExecuteEvaluation: async (projectId: string, testId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('evaluationTestControllerExecuteEvaluation', 'projectId', projectId)
+            // verify required parameter 'testId' is not null or undefined
+            assertParamExists('evaluationTestControllerExecuteEvaluation', 'testId', testId)
+            const localVarPath = `/projects/{projectId}/evaluation-tests/{testId}/execute`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"testId"}}`, encodeURIComponent(String(testId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2939,18 +3138,15 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(uploadFinalizeMediaRequestDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2959,15 +3155,20 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
-         * @summary Upload public media
-         * @param {UploadInitiateMediaRequestDTO} uploadInitiateMediaRequestDTO 
+         * @summary Fetch evaluation test.
+         * @param {string} projectId 
+         * @param {string} modelId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mediaControllerUploadPublicInitiate: async (uploadInitiateMediaRequestDTO: UploadInitiateMediaRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'uploadInitiateMediaRequestDTO' is not null or undefined
-            assertParamExists('mediaControllerUploadPublicInitiate', 'uploadInitiateMediaRequestDTO', uploadInitiateMediaRequestDTO)
-            const localVarPath = `/media/public/init`;
+        evaluationTestControllerGetEvaluationTest: async (projectId: string, modelId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('evaluationTestControllerGetEvaluationTest', 'projectId', projectId)
+            // verify required parameter 'modelId' is not null or undefined
+            assertParamExists('evaluationTestControllerGetEvaluationTest', 'modelId', modelId)
+            const localVarPath = `/projects/{projectId}/evaluation-tests/{modelId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2975,18 +3176,53 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(uploadInitiateMediaRequestDTO, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update evaluation test
+         * @param {string} projectId 
+         * @param {string} testId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        evaluationTestControllerUpdateEvaluation: async (projectId: string, testId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('evaluationTestControllerUpdateEvaluation', 'projectId', projectId)
+            // verify required parameter 'testId' is not null or undefined
+            assertParamExists('evaluationTestControllerUpdateEvaluation', 'testId', testId)
+            const localVarPath = `/projects/{projectId}/evaluation-tests/{testId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"testId"}}`, encodeURIComponent(String(testId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2997,192 +3233,243 @@ export const MediaApiAxiosParamCreator = function (configuration?: Configuration
 };
 
 /**
- * MediaApi - functional programming interface
+ * EvaluationTestApi - functional programming interface
  * @export
  */
-export const MediaApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = MediaApiAxiosParamCreator(configuration)
+export const EvaluationTestApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = EvaluationTestApiAxiosParamCreator(configuration)
     return {
         /**
          * 
-         * @summary Finalize media
-         * @param {UploadFinalizeMediaRequestDTO} uploadFinalizeMediaRequestDTO 
+         * @summary Add new evaluation test.
+         * @param {string} projectId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async mediaControllerUploadFinalize(uploadFinalizeMediaRequestDTO: UploadFinalizeMediaRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadFinalizeMediaResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.mediaControllerUploadFinalize(uploadFinalizeMediaRequestDTO, options);
+        async evaluationTestControllerAddEvaluationTest(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.evaluationTestControllerAddEvaluationTest(projectId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['MediaApi.mediaControllerUploadFinalize']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['EvaluationTestApi.evaluationTestControllerAddEvaluationTest']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Upload media
-         * @param {UploadInitiateMediaRequestDTO} uploadInitiateMediaRequestDTO 
+         * @summary Delete evaluation
+         * @param {string} projectId 
+         * @param {string} testId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async mediaControllerUploadInitiate(uploadInitiateMediaRequestDTO: UploadInitiateMediaRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadInitiateMediaResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.mediaControllerUploadInitiate(uploadInitiateMediaRequestDTO, options);
+        async evaluationTestControllerDeleteEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.evaluationTestControllerDeleteEvaluation(projectId, testId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['MediaApi.mediaControllerUploadInitiate']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['EvaluationTestApi.evaluationTestControllerDeleteEvaluation']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Finalize public media
-         * @param {UploadFinalizeMediaRequestDTO} uploadFinalizeMediaRequestDTO 
+         * @summary Execute evaluation test.
+         * @param {string} projectId 
+         * @param {string} testId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async mediaControllerUploadPublicFinalize(uploadFinalizeMediaRequestDTO: UploadFinalizeMediaRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadFinalizeMediaResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.mediaControllerUploadPublicFinalize(uploadFinalizeMediaRequestDTO, options);
+        async evaluationTestControllerExecuteEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.evaluationTestControllerExecuteEvaluation(projectId, testId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['MediaApi.mediaControllerUploadPublicFinalize']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['EvaluationTestApi.evaluationTestControllerExecuteEvaluation']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Upload public media
-         * @param {UploadInitiateMediaRequestDTO} uploadInitiateMediaRequestDTO 
+         * @summary Fetch evaluation test.
+         * @param {string} projectId 
+         * @param {string} modelId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async mediaControllerUploadPublicInitiate(uploadInitiateMediaRequestDTO: UploadInitiateMediaRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadInitiateMediaResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.mediaControllerUploadPublicInitiate(uploadInitiateMediaRequestDTO, options);
+        async evaluationTestControllerGetEvaluationTest(projectId: string, modelId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.evaluationTestControllerGetEvaluationTest(projectId, modelId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['MediaApi.mediaControllerUploadPublicInitiate']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['EvaluationTestApi.evaluationTestControllerGetEvaluationTest']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update evaluation test
+         * @param {string} projectId 
+         * @param {string} testId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async evaluationTestControllerUpdateEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.evaluationTestControllerUpdateEvaluation(projectId, testId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['EvaluationTestApi.evaluationTestControllerUpdateEvaluation']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * MediaApi - factory interface
+ * EvaluationTestApi - factory interface
  * @export
  */
-export const MediaApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = MediaApiFp(configuration)
+export const EvaluationTestApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = EvaluationTestApiFp(configuration)
     return {
         /**
          * 
-         * @summary Finalize media
-         * @param {UploadFinalizeMediaRequestDTO} uploadFinalizeMediaRequestDTO 
+         * @summary Add new evaluation test.
+         * @param {string} projectId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mediaControllerUploadFinalize(uploadFinalizeMediaRequestDTO: UploadFinalizeMediaRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<UploadFinalizeMediaResponseDTO> {
-            return localVarFp.mediaControllerUploadFinalize(uploadFinalizeMediaRequestDTO, options).then((request) => request(axios, basePath));
+        evaluationTestControllerAddEvaluationTest(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.evaluationTestControllerAddEvaluationTest(projectId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Upload media
-         * @param {UploadInitiateMediaRequestDTO} uploadInitiateMediaRequestDTO 
+         * @summary Delete evaluation
+         * @param {string} projectId 
+         * @param {string} testId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mediaControllerUploadInitiate(uploadInitiateMediaRequestDTO: UploadInitiateMediaRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<UploadInitiateMediaResponseDTO> {
-            return localVarFp.mediaControllerUploadInitiate(uploadInitiateMediaRequestDTO, options).then((request) => request(axios, basePath));
+        evaluationTestControllerDeleteEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.evaluationTestControllerDeleteEvaluation(projectId, testId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Finalize public media
-         * @param {UploadFinalizeMediaRequestDTO} uploadFinalizeMediaRequestDTO 
+         * @summary Execute evaluation test.
+         * @param {string} projectId 
+         * @param {string} testId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mediaControllerUploadPublicFinalize(uploadFinalizeMediaRequestDTO: UploadFinalizeMediaRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<UploadFinalizeMediaResponseDTO> {
-            return localVarFp.mediaControllerUploadPublicFinalize(uploadFinalizeMediaRequestDTO, options).then((request) => request(axios, basePath));
+        evaluationTestControllerExecuteEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.evaluationTestControllerExecuteEvaluation(projectId, testId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Upload public media
-         * @param {UploadInitiateMediaRequestDTO} uploadInitiateMediaRequestDTO 
+         * @summary Fetch evaluation test.
+         * @param {string} projectId 
+         * @param {string} modelId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mediaControllerUploadPublicInitiate(uploadInitiateMediaRequestDTO: UploadInitiateMediaRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<UploadInitiateMediaResponseDTO> {
-            return localVarFp.mediaControllerUploadPublicInitiate(uploadInitiateMediaRequestDTO, options).then((request) => request(axios, basePath));
+        evaluationTestControllerGetEvaluationTest(projectId: string, modelId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.evaluationTestControllerGetEvaluationTest(projectId, modelId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update evaluation test
+         * @param {string} projectId 
+         * @param {string} testId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        evaluationTestControllerUpdateEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.evaluationTestControllerUpdateEvaluation(projectId, testId, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * MediaApi - object-oriented interface
+ * EvaluationTestApi - object-oriented interface
  * @export
- * @class MediaApi
+ * @class EvaluationTestApi
  * @extends {BaseAPI}
  */
-export class MediaApi extends BaseAPI {
+export class EvaluationTestApi extends BaseAPI {
     /**
      * 
-     * @summary Finalize media
-     * @param {UploadFinalizeMediaRequestDTO} uploadFinalizeMediaRequestDTO 
+     * @summary Add new evaluation test.
+     * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MediaApi
+     * @memberof EvaluationTestApi
      */
-    public mediaControllerUploadFinalize(uploadFinalizeMediaRequestDTO: UploadFinalizeMediaRequestDTO, options?: RawAxiosRequestConfig) {
-        return MediaApiFp(this.configuration).mediaControllerUploadFinalize(uploadFinalizeMediaRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    public evaluationTestControllerAddEvaluationTest(projectId: string, options?: RawAxiosRequestConfig) {
+        return EvaluationTestApiFp(this.configuration).evaluationTestControllerAddEvaluationTest(projectId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Upload media
-     * @param {UploadInitiateMediaRequestDTO} uploadInitiateMediaRequestDTO 
+     * @summary Delete evaluation
+     * @param {string} projectId 
+     * @param {string} testId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MediaApi
+     * @memberof EvaluationTestApi
      */
-    public mediaControllerUploadInitiate(uploadInitiateMediaRequestDTO: UploadInitiateMediaRequestDTO, options?: RawAxiosRequestConfig) {
-        return MediaApiFp(this.configuration).mediaControllerUploadInitiate(uploadInitiateMediaRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    public evaluationTestControllerDeleteEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig) {
+        return EvaluationTestApiFp(this.configuration).evaluationTestControllerDeleteEvaluation(projectId, testId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Finalize public media
-     * @param {UploadFinalizeMediaRequestDTO} uploadFinalizeMediaRequestDTO 
+     * @summary Execute evaluation test.
+     * @param {string} projectId 
+     * @param {string} testId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MediaApi
+     * @memberof EvaluationTestApi
      */
-    public mediaControllerUploadPublicFinalize(uploadFinalizeMediaRequestDTO: UploadFinalizeMediaRequestDTO, options?: RawAxiosRequestConfig) {
-        return MediaApiFp(this.configuration).mediaControllerUploadPublicFinalize(uploadFinalizeMediaRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    public evaluationTestControllerExecuteEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig) {
+        return EvaluationTestApiFp(this.configuration).evaluationTestControllerExecuteEvaluation(projectId, testId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Upload public media
-     * @param {UploadInitiateMediaRequestDTO} uploadInitiateMediaRequestDTO 
+     * @summary Fetch evaluation test.
+     * @param {string} projectId 
+     * @param {string} modelId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MediaApi
+     * @memberof EvaluationTestApi
      */
-    public mediaControllerUploadPublicInitiate(uploadInitiateMediaRequestDTO: UploadInitiateMediaRequestDTO, options?: RawAxiosRequestConfig) {
-        return MediaApiFp(this.configuration).mediaControllerUploadPublicInitiate(uploadInitiateMediaRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    public evaluationTestControllerGetEvaluationTest(projectId: string, modelId: string, options?: RawAxiosRequestConfig) {
+        return EvaluationTestApiFp(this.configuration).evaluationTestControllerGetEvaluationTest(projectId, modelId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update evaluation test
+     * @param {string} projectId 
+     * @param {string} testId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EvaluationTestApi
+     */
+    public evaluationTestControllerUpdateEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig) {
+        return EvaluationTestApiFp(this.configuration).evaluationTestControllerUpdateEvaluation(projectId, testId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
 
 
 /**
- * ProjectApi - axios parameter creator
+ * MachineAgentApi - axios parameter creator
  * @export
  */
-export const ProjectApiAxiosParamCreator = function (configuration?: Configuration) {
+export const MachineAgentApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
          * @summary Create New Machine Agent
+         * @param {string} projectId 
          * @param {CreateMachineAgentDto} createMachineAgentDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineAgentControllerCreateMachineAgent: async (createMachineAgentDto: CreateMachineAgentDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        machineAgentControllerCreateMachineAgent: async (projectId: string, createMachineAgentDto: CreateMachineAgentDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineAgentControllerCreateMachineAgent', 'projectId', projectId)
             // verify required parameter 'createMachineAgentDto' is not null or undefined
             assertParamExists('machineAgentControllerCreateMachineAgent', 'createMachineAgentDto', createMachineAgentDto)
-            const localVarPath = `/project/agent`;
+            const localVarPath = `/projects/{projectId}/agents`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3211,14 +3498,22 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary Delete machine agent
+         * @param {string} projectId 
+         * @param {string} agentId 
          * @param {Array<string>} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineAgentControllerDeleteMachineAgents: async (requestBody: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        machineAgentControllerDeleteMachineAgents: async (projectId: string, agentId: string, requestBody: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineAgentControllerDeleteMachineAgents', 'projectId', projectId)
+            // verify required parameter 'agentId' is not null or undefined
+            assertParamExists('machineAgentControllerDeleteMachineAgents', 'agentId', agentId)
             // verify required parameter 'requestBody' is not null or undefined
             assertParamExists('machineAgentControllerDeleteMachineAgents', 'requestBody', requestBody)
-            const localVarPath = `/project/agent`;
+            const localVarPath = `/projects/{projectId}/agents/{agentId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"agentId"}}`, encodeURIComponent(String(agentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3260,7 +3555,7 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('machineAgentControllerGetMachineAgentByProjectId', 'page', page)
             // verify required parameter 'limit' is not null or undefined
             assertParamExists('machineAgentControllerGetMachineAgentByProjectId', 'limit', limit)
-            const localVarPath = `/project/agent/{projectId}`
+            const localVarPath = `/projects/{projectId}/agents`
                 .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3295,11 +3590,19 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * 
          * @summary Update machine agent by id
+         * @param {string} projectId 
+         * @param {string} agentId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineAgentControllerUpdateMachineAgent: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/project/agent`;
+        machineAgentControllerUpdateMachineAgent: async (projectId: string, agentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineAgentControllerUpdateMachineAgent', 'projectId', projectId)
+            // verify required parameter 'agentId' is not null or undefined
+            assertParamExists('machineAgentControllerUpdateMachineAgent', 'agentId', agentId)
+            const localVarPath = `/projects/{projectId}/agents/{agentId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"agentId"}}`, encodeURIComponent(String(agentId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3322,14 +3625,215 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * MachineAgentApi - functional programming interface
+ * @export
+ */
+export const MachineAgentApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MachineAgentApiAxiosParamCreator(configuration)
+    return {
         /**
          * 
-         * @summary Add new evaluation test.
+         * @summary Create New Machine Agent
+         * @param {string} projectId 
+         * @param {CreateMachineAgentDto} createMachineAgentDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineModelControllerAddEvaluationTest: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/project/evaluationTest`;
+        async machineAgentControllerCreateMachineAgent(projectId: string, createMachineAgentDto: CreateMachineAgentDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMachineAgentDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineAgentControllerCreateMachineAgent(projectId, createMachineAgentDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineAgentApi.machineAgentControllerCreateMachineAgent']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete machine agent
+         * @param {string} projectId 
+         * @param {string} agentId 
+         * @param {Array<string>} requestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineAgentControllerDeleteMachineAgents(projectId: string, agentId: string, requestBody: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMachineAgentDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineAgentControllerDeleteMachineAgents(projectId, agentId, requestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineAgentApi.machineAgentControllerDeleteMachineAgents']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get all machine agent with count
+         * @param {string} projectId 
+         * @param {number} page 
+         * @param {number} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMachineAgentDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineAgentApi.machineAgentControllerGetMachineAgentByProjectId']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update machine agent by id
+         * @param {string} projectId 
+         * @param {string} agentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineAgentControllerUpdateMachineAgent(projectId: string, agentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMachineAgentDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineAgentControllerUpdateMachineAgent(projectId, agentId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineAgentApi.machineAgentControllerUpdateMachineAgent']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * MachineAgentApi - factory interface
+ * @export
+ */
+export const MachineAgentApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MachineAgentApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Create New Machine Agent
+         * @param {string} projectId 
+         * @param {CreateMachineAgentDto} createMachineAgentDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineAgentControllerCreateMachineAgent(projectId: string, createMachineAgentDto: CreateMachineAgentDto, options?: RawAxiosRequestConfig): AxiosPromise<CreateMachineAgentDto> {
+            return localVarFp.machineAgentControllerCreateMachineAgent(projectId, createMachineAgentDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete machine agent
+         * @param {string} projectId 
+         * @param {string} agentId 
+         * @param {Array<string>} requestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineAgentControllerDeleteMachineAgents(projectId: string, agentId: string, requestBody: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<CreateMachineAgentDto> {
+            return localVarFp.machineAgentControllerDeleteMachineAgents(projectId, agentId, requestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get all machine agent with count
+         * @param {string} projectId 
+         * @param {number} page 
+         * @param {number} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): AxiosPromise<CreateMachineAgentDto> {
+            return localVarFp.machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update machine agent by id
+         * @param {string} projectId 
+         * @param {string} agentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineAgentControllerUpdateMachineAgent(projectId: string, agentId: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateMachineAgentDto> {
+            return localVarFp.machineAgentControllerUpdateMachineAgent(projectId, agentId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * MachineAgentApi - object-oriented interface
+ * @export
+ * @class MachineAgentApi
+ * @extends {BaseAPI}
+ */
+export class MachineAgentApi extends BaseAPI {
+    /**
+     * 
+     * @summary Create New Machine Agent
+     * @param {string} projectId 
+     * @param {CreateMachineAgentDto} createMachineAgentDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineAgentApi
+     */
+    public machineAgentControllerCreateMachineAgent(projectId: string, createMachineAgentDto: CreateMachineAgentDto, options?: RawAxiosRequestConfig) {
+        return MachineAgentApiFp(this.configuration).machineAgentControllerCreateMachineAgent(projectId, createMachineAgentDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete machine agent
+     * @param {string} projectId 
+     * @param {string} agentId 
+     * @param {Array<string>} requestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineAgentApi
+     */
+    public machineAgentControllerDeleteMachineAgents(projectId: string, agentId: string, requestBody: Array<string>, options?: RawAxiosRequestConfig) {
+        return MachineAgentApiFp(this.configuration).machineAgentControllerDeleteMachineAgents(projectId, agentId, requestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get all machine agent with count
+     * @param {string} projectId 
+     * @param {number} page 
+     * @param {number} limit 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineAgentApi
+     */
+    public machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
+        return MachineAgentApiFp(this.configuration).machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update machine agent by id
+     * @param {string} projectId 
+     * @param {string} agentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineAgentApi
+     */
+    public machineAgentControllerUpdateMachineAgent(projectId: string, agentId: string, options?: RawAxiosRequestConfig) {
+        return MachineAgentApiFp(this.configuration).machineAgentControllerUpdateMachineAgent(projectId, agentId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * MachineInstancesApi - axios parameter creator
+ * @export
+ */
+export const MachineInstancesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create Machine Instance
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerCreateMachineInstance: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineInstancesControllerCreateMachineInstance', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/instances`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3354,15 +3858,494 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Create New Machine Model
+         * @summary Delete machine instances by ids
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerDeleteMachineInstance: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineInstancesControllerDeleteMachineInstance', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/instances`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve running status of instances
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetInstanceRunningStatus: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineInstancesControllerGetInstanceRunningStatus', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/instances/status`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve running status of instances
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {number} page 
+         * @param {number} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetMachineInstanceById: async (projectId: string, machineId: string, page: number, limit: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineInstanceById', 'projectId', projectId)
+            // verify required parameter 'machineId' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineInstanceById', 'machineId', machineId)
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineInstanceById', 'page', page)
+            // verify required parameter 'limit' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineInstanceById', 'limit', limit)
+            const localVarPath = `/projects/{projectId}/instances/machine/{machineId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"machineId"}}`, encodeURIComponent(String(machineId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve all machine instances with count
+         * @param {string} projectId 
+         * @param {number} page 
+         * @param {number} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetMachineInstanceByUserId: async (projectId: string, page: number, limit: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineInstanceByUserId', 'projectId', projectId)
+            // verify required parameter 'page' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineInstanceByUserId', 'page', page)
+            // verify required parameter 'limit' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineInstanceByUserId', 'limit', limit)
+            const localVarPath = `/projects/{projectId}/instances`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update Machine Instance Running Status
+         * @param {string} projectId 
          * @param {object} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineModelControllerCreateMachineModel: async (body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        machineInstancesControllerUpdateRunningStatus: async (projectId: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineInstancesControllerUpdateRunningStatus', 'projectId', projectId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('machineInstancesControllerUpdateRunningStatus', 'body', body)
+            const localVarPath = `/projects/{projectId}/instances/status`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * MachineInstancesApi - functional programming interface
+ * @export
+ */
+export const MachineInstancesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MachineInstancesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Create Machine Instance
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineInstancesControllerCreateMachineInstance(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineInstancesControllerCreateMachineInstance(projectId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineInstancesApi.machineInstancesControllerCreateMachineInstance']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete machine instances by ids
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineInstancesControllerDeleteMachineInstance(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineInstancesControllerDeleteMachineInstance(projectId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineInstancesApi.machineInstancesControllerDeleteMachineInstance']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve running status of instances
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineInstancesControllerGetInstanceRunningStatus(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineInstancesControllerGetInstanceRunningStatus(projectId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineInstancesApi.machineInstancesControllerGetInstanceRunningStatus']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve running status of instances
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {number} page 
+         * @param {number} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineInstancesControllerGetMachineInstanceById(projectId: string, machineId: string, page: number, limit: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineInstancesControllerGetMachineInstanceById(projectId, machineId, page, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineInstancesApi.machineInstancesControllerGetMachineInstanceById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve all machine instances with count
+         * @param {string} projectId 
+         * @param {number} page 
+         * @param {number} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineInstancesControllerGetMachineInstanceByUserId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineInstancesControllerGetMachineInstanceByUserId(projectId, page, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineInstancesApi.machineInstancesControllerGetMachineInstanceByUserId']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update Machine Instance Running Status
+         * @param {string} projectId 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineInstancesControllerUpdateRunningStatus(projectId: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineInstancesControllerUpdateRunningStatus(projectId, body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineInstancesApi.machineInstancesControllerUpdateRunningStatus']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * MachineInstancesApi - factory interface
+ * @export
+ */
+export const MachineInstancesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MachineInstancesApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Create Machine Instance
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerCreateMachineInstance(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.machineInstancesControllerCreateMachineInstance(projectId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete machine instances by ids
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerDeleteMachineInstance(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.machineInstancesControllerDeleteMachineInstance(projectId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve running status of instances
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetInstanceRunningStatus(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.machineInstancesControllerGetInstanceRunningStatus(projectId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve running status of instances
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {number} page 
+         * @param {number} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetMachineInstanceById(projectId: string, machineId: string, page: number, limit: number, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.machineInstancesControllerGetMachineInstanceById(projectId, machineId, page, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve all machine instances with count
+         * @param {string} projectId 
+         * @param {number} page 
+         * @param {number} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetMachineInstanceByUserId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.machineInstancesControllerGetMachineInstanceByUserId(projectId, page, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update Machine Instance Running Status
+         * @param {string} projectId 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerUpdateRunningStatus(projectId: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.machineInstancesControllerUpdateRunningStatus(projectId, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * MachineInstancesApi - object-oriented interface
+ * @export
+ * @class MachineInstancesApi
+ * @extends {BaseAPI}
+ */
+export class MachineInstancesApi extends BaseAPI {
+    /**
+     * 
+     * @summary Create Machine Instance
+     * @param {string} projectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineInstancesApi
+     */
+    public machineInstancesControllerCreateMachineInstance(projectId: string, options?: RawAxiosRequestConfig) {
+        return MachineInstancesApiFp(this.configuration).machineInstancesControllerCreateMachineInstance(projectId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete machine instances by ids
+     * @param {string} projectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineInstancesApi
+     */
+    public machineInstancesControllerDeleteMachineInstance(projectId: string, options?: RawAxiosRequestConfig) {
+        return MachineInstancesApiFp(this.configuration).machineInstancesControllerDeleteMachineInstance(projectId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve running status of instances
+     * @param {string} projectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineInstancesApi
+     */
+    public machineInstancesControllerGetInstanceRunningStatus(projectId: string, options?: RawAxiosRequestConfig) {
+        return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetInstanceRunningStatus(projectId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve running status of instances
+     * @param {string} projectId 
+     * @param {string} machineId 
+     * @param {number} page 
+     * @param {number} limit 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineInstancesApi
+     */
+    public machineInstancesControllerGetMachineInstanceById(projectId: string, machineId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
+        return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetMachineInstanceById(projectId, machineId, page, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve all machine instances with count
+     * @param {string} projectId 
+     * @param {number} page 
+     * @param {number} limit 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineInstancesApi
+     */
+    public machineInstancesControllerGetMachineInstanceByUserId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
+        return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetMachineInstanceByUserId(projectId, page, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update Machine Instance Running Status
+     * @param {string} projectId 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineInstancesApi
+     */
+    public machineInstancesControllerUpdateRunningStatus(projectId: string, body: object, options?: RawAxiosRequestConfig) {
+        return MachineInstancesApiFp(this.configuration).machineInstancesControllerUpdateRunningStatus(projectId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * MachineModelsApi - axios parameter creator
+ * @export
+ */
+export const MachineModelsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create New Machine Model
+         * @param {string} projectId 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineModelControllerCreateMachineModel: async (projectId: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineModelControllerCreateMachineModel', 'projectId', projectId)
             // verify required parameter 'body' is not null or undefined
             assertParamExists('machineModelControllerCreateMachineModel', 'body', body)
-            const localVarPath = `/project/machineModel`;
+            const localVarPath = `/projects/{projectId}/models`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3390,75 +4373,23 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Create webhook
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerCreateWebhook: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/project/webhook`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Delete evaluation
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerDeleteEvaluation: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/project/evaluationTest`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Create New Machine Model
+         * @param {string} projectId 
+         * @param {string} modelId 
          * @param {Array<string>} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineModelControllerDeleteMachineModels: async (requestBody: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        machineModelControllerDeleteMachineModels: async (projectId: string, modelId: string, requestBody: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineModelControllerDeleteMachineModels', 'projectId', projectId)
+            // verify required parameter 'modelId' is not null or undefined
+            assertParamExists('machineModelControllerDeleteMachineModels', 'modelId', modelId)
             // verify required parameter 'requestBody' is not null or undefined
             assertParamExists('machineModelControllerDeleteMachineModels', 'requestBody', requestBody)
-            const localVarPath = `/project/machineModel`;
+            const localVarPath = `/projects/{projectId}/models/{modelId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3486,220 +4417,6 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Delete webhook
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerDeleteWebhook: async (modelId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'modelId' is not null or undefined
-            assertParamExists('machineModelControllerDeleteWebhook', 'modelId', modelId)
-            const localVarPath = `/project/webhook/{modelId}`
-                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Execute evaluation test.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerExecuteEvaluation: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/project/evaluationTest`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Fetch Swagger JSON
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerFetchSwaggerJSON: async (modelId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'modelId' is not null or undefined
-            assertParamExists('machineModelControllerFetchSwaggerJSON', 'modelId', modelId)
-            const localVarPath = `/project/SwaggerJSON/{modelId}`
-                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Fetch webhook
-         * @param {string} modelId 
-         * @param {boolean} isAgentWebhook 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerFetchWebhook: async (modelId: string, isAgentWebhook: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'modelId' is not null or undefined
-            assertParamExists('machineModelControllerFetchWebhook', 'modelId', modelId)
-            // verify required parameter 'isAgentWebhook' is not null or undefined
-            assertParamExists('machineModelControllerFetchWebhook', 'isAgentWebhook', isAgentWebhook)
-            const localVarPath = `/project/webhook/{modelId}`
-                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (isAgentWebhook !== undefined) {
-                localVarQueryParameter['isAgentWebhook'] = isAgentWebhook;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Fetch evaluation test.
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerGetEvaluationTest: async (modelId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'modelId' is not null or undefined
-            assertParamExists('machineModelControllerGetEvaluationTest', 'modelId', modelId)
-            const localVarPath = `/project/evaluationTest/{modelId}`
-                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Fetch Swagger JSON
-         * @param {string} modelId 
-         * @param {string} queryId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerGetEventLogsByQueryId: async (modelId: string, queryId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'modelId' is not null or undefined
-            assertParamExists('machineModelControllerGetEventLogsByQueryId', 'modelId', modelId)
-            // verify required parameter 'queryId' is not null or undefined
-            assertParamExists('machineModelControllerGetEventLogsByQueryId', 'queryId', queryId)
-            const localVarPath = `/project/queryData/{modelId}`
-                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (queryId !== undefined) {
-                localVarQueryParameter['queryId'] = queryId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Get all machine models with count
          * @param {string} projectId 
          * @param {number} page 
@@ -3714,7 +4431,7 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
             assertParamExists('machineModelControllerGetMachineInstanceByProjectId', 'page', page)
             // verify required parameter 'limit' is not null or undefined
             assertParamExists('machineModelControllerGetMachineInstanceByProjectId', 'limit', limit)
-            const localVarPath = `/project/machineModel/{projectId}`
+            const localVarPath = `/projects/{projectId}/models`
                 .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3748,72 +4465,20 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Run Query
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerRunQuery: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/project/runQuery`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Update evaluation
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerUpdateEvaluation: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/project/evaluationTestUpdate`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Update machine model by id
+         * @param {string} projectId 
+         * @param {string} modelId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineModelControllerUpdateMachineModel: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/project/machineModel`;
+        machineModelControllerUpdateMachineModel: async (projectId: string, modelId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineModelControllerUpdateMachineModel', 'projectId', projectId)
+            // verify required parameter 'modelId' is not null or undefined
+            assertParamExists('machineModelControllerUpdateMachineModel', 'modelId', modelId)
+            const localVarPath = `/projects/{projectId}/models/{modelId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3836,51 +4501,218 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * MachineModelsApi - functional programming interface
+ * @export
+ */
+export const MachineModelsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MachineModelsApiAxiosParamCreator(configuration)
+    return {
         /**
          * 
-         * @summary Update webhook
+         * @summary Create New Machine Model
+         * @param {string} projectId 
+         * @param {object} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineModelControllerUpdateWebhook: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/project/webhook`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
+        async machineModelControllerCreateMachineModel(projectId: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerCreateMachineModel(projectId, body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineModelsApi.machineModelControllerCreateMachineModel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Add team member to project
-         * @param {string} id 
+         * @summary Create New Machine Model
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {Array<string>} requestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineModelControllerDeleteMachineModels(projectId: string, modelId: string, requestBody: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerDeleteMachineModels(projectId, modelId, requestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineModelsApi.machineModelControllerDeleteMachineModels']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get all machine models with count
+         * @param {string} projectId 
+         * @param {number} page 
+         * @param {number} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineModelControllerGetMachineInstanceByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerGetMachineInstanceByProjectId(projectId, page, limit, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineModelsApi.machineModelControllerGetMachineInstanceByProjectId']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update machine model by id
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineModelControllerUpdateMachineModel(projectId: string, modelId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerUpdateMachineModel(projectId, modelId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineModelsApi.machineModelControllerUpdateMachineModel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * MachineModelsApi - factory interface
+ * @export
+ */
+export const MachineModelsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MachineModelsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Create New Machine Model
+         * @param {string} projectId 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineModelControllerCreateMachineModel(projectId: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.machineModelControllerCreateMachineModel(projectId, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create New Machine Model
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {Array<string>} requestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineModelControllerDeleteMachineModels(projectId: string, modelId: string, requestBody: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.machineModelControllerDeleteMachineModels(projectId, modelId, requestBody, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get all machine models with count
+         * @param {string} projectId 
+         * @param {number} page 
+         * @param {number} limit 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineModelControllerGetMachineInstanceByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.machineModelControllerGetMachineInstanceByProjectId(projectId, page, limit, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update machine model by id
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineModelControllerUpdateMachineModel(projectId: string, modelId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.machineModelControllerUpdateMachineModel(projectId, modelId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * MachineModelsApi - object-oriented interface
+ * @export
+ * @class MachineModelsApi
+ * @extends {BaseAPI}
+ */
+export class MachineModelsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Create New Machine Model
+     * @param {string} projectId 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineModelsApi
+     */
+    public machineModelControllerCreateMachineModel(projectId: string, body: object, options?: RawAxiosRequestConfig) {
+        return MachineModelsApiFp(this.configuration).machineModelControllerCreateMachineModel(projectId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create New Machine Model
+     * @param {string} projectId 
+     * @param {string} modelId 
+     * @param {Array<string>} requestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineModelsApi
+     */
+    public machineModelControllerDeleteMachineModels(projectId: string, modelId: string, requestBody: Array<string>, options?: RawAxiosRequestConfig) {
+        return MachineModelsApiFp(this.configuration).machineModelControllerDeleteMachineModels(projectId, modelId, requestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get all machine models with count
+     * @param {string} projectId 
+     * @param {number} page 
+     * @param {number} limit 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineModelsApi
+     */
+    public machineModelControllerGetMachineInstanceByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
+        return MachineModelsApiFp(this.configuration).machineModelControllerGetMachineInstanceByProjectId(projectId, page, limit, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update machine model by id
+     * @param {string} projectId 
+     * @param {string} modelId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineModelsApi
+     */
+    public machineModelControllerUpdateMachineModel(projectId: string, modelId: string, options?: RawAxiosRequestConfig) {
+        return MachineModelsApiFp(this.configuration).machineModelControllerUpdateMachineModel(projectId, modelId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * MembersApi - axios parameter creator
+ * @export
+ */
+export const MembersApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Add a team member
+         * @param {string} projectId 
          * @param {AddProjectMemberDto} addProjectMemberDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerAddTeamMemberToProject: async (id: string, addProjectMemberDto: AddProjectMemberDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerAddTeamMemberToProject', 'id', id)
+        membersControllerAddTeamMemberToProject: async (projectId: string, addProjectMemberDto: AddProjectMemberDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('membersControllerAddTeamMemberToProject', 'projectId', projectId)
             // verify required parameter 'addProjectMemberDto' is not null or undefined
-            assertParamExists('projectControllerAddTeamMemberToProject', 'addProjectMemberDto', addProjectMemberDto)
-            const localVarPath = `/project/{id}/team/add`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            assertParamExists('membersControllerAddTeamMemberToProject', 'addProjectMemberDto', addProjectMemberDto)
+            const localVarPath = `/projects/{projectId}/members`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -3908,342 +4740,22 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Create Machine Instance
+         * @summary Retrieve all team members
          * @param {string} projectId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerCreateMachineInstance: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('projectControllerCreateMachineInstance', 'projectId', projectId)
-            const localVarPath = `/project/{projectId}/machineInstance`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create Project
-         * @param {CreateProjectDTO} createProjectDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerCreateProject: async (createProjectDTO: CreateProjectDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'createProjectDTO' is not null or undefined
-            assertParamExists('projectControllerCreateProject', 'createProjectDTO', createProjectDTO)
-            const localVarPath = `/project/create`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createProjectDTO, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create Project Role
-         * @param {string} id 
-         * @param {CreateRoleDto} createRoleDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerCreateProjectRole: async (id: string, createRoleDto: CreateRoleDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerCreateProjectRole', 'id', id)
-            // verify required parameter 'createRoleDto' is not null or undefined
-            assertParamExists('projectControllerCreateProjectRole', 'createRoleDto', createRoleDto)
-            const localVarPath = `/project/{id}/role/create`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createRoleDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Delete machine instances by ids
-         * @param {string} projectId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerDeleteMachineInstance: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('projectControllerDeleteMachineInstance', 'projectId', projectId)
-            const localVarPath = `/project/{projectId}/machineInstance`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Delete project by id
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerDeleteProjectById: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerDeleteProjectById', 'id', id)
-            const localVarPath = `/project/{id}/delete`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Delete Project Role
-         * @param {string} id 
-         * @param {number} roleId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerDeleteProjectRole: async (id: string, roleId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerDeleteProjectRole', 'id', id)
-            // verify required parameter 'roleId' is not null or undefined
-            assertParamExists('projectControllerDeleteProjectRole', 'roleId', roleId)
-            const localVarPath = `/project/{id}/role/{roleId}/delete`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"roleId"}}`, encodeURIComponent(String(roleId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get all project roles
-         * @param {string} id 
          * @param {number} [page] 
          * @param {number} [limit] 
          * @param {string} [column] 
-         * @param {ProjectControllerGetAllProjectRolesDirectionEnum} [direction] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetAllProjectRoles: async (id: string, page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectRolesDirectionEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerGetAllProjectRoles', 'id', id)
-            const localVarPath = `/project/{id}/role/all`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (column !== undefined) {
-                localVarQueryParameter['column'] = column;
-            }
-
-            if (direction !== undefined) {
-                localVarQueryParameter['direction'] = direction;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get all projects
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {string} [column] 
-         * @param {ProjectControllerGetAllProjectsDirectionEnum} [direction] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetAllProjects: async (page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectsDirectionEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/project/all`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (column !== undefined) {
-                localVarQueryParameter['column'] = column;
-            }
-
-            if (direction !== undefined) {
-                localVarQueryParameter['direction'] = direction;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get all team members of project
-         * @param {string} id 
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {string} [column] 
-         * @param {ProjectControllerGetAllTeamMembersOfProjectDirectionEnum} [direction] 
+         * @param {MembersControllerGetAllTeamMembersOfProjectDirectionEnum} [direction] 
          * @param {Array<string>} [teamMemberStatus] 
          * @param {Array<number>} [roleIds] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerGetAllTeamMembersOfProject: async (id: string, page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllTeamMembersOfProjectDirectionEnum, teamMemberStatus?: Array<string>, roleIds?: Array<number>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerGetAllTeamMembersOfProject', 'id', id)
-            const localVarPath = `/project/{id}/team/all`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        membersControllerGetAllTeamMembersOfProject: async (projectId: string, page?: number, limit?: number, column?: string, direction?: MembersControllerGetAllTeamMembersOfProjectDirectionEnum, teamMemberStatus?: Array<string>, roleIds?: Array<number>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('membersControllerGetAllTeamMembersOfProject', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/members`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4292,16 +4804,23 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Get running status of instances.
+         * @summary Update team member details
          * @param {string} projectId 
+         * @param {string} memberId 
+         * @param {UpdateTeamMemberRequestDTO} updateTeamMemberRequestDTO 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerGetInstanceRunningStatus: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        membersControllerUpdateTeamMemberRole: async (projectId: string, memberId: string, updateTeamMemberRequestDTO: UpdateTeamMemberRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('projectControllerGetInstanceRunningStatus', 'projectId', projectId)
-            const localVarPath = `/project/{projectId}/instanceRunningStatus`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            assertParamExists('membersControllerUpdateTeamMemberRole', 'projectId', projectId)
+            // verify required parameter 'memberId' is not null or undefined
+            assertParamExists('membersControllerUpdateTeamMemberRole', 'memberId', memberId)
+            // verify required parameter 'updateTeamMemberRequestDTO' is not null or undefined
+            assertParamExists('membersControllerUpdateTeamMemberRole', 'updateTeamMemberRequestDTO', updateTeamMemberRequestDTO)
+            const localVarPath = `/projects/{projectId}/members/{memberId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"memberId"}}`, encodeURIComponent(String(memberId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4309,33 +4828,211 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateTeamMemberRequestDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * MembersApi - functional programming interface
+ * @export
+ */
+export const MembersApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MembersApiAxiosParamCreator(configuration)
+    return {
         /**
          * 
-         * @summary Fetch last 5 notifications
+         * @summary Add a team member
          * @param {string} projectId 
+         * @param {AddProjectMemberDto} addProjectMemberDto 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerGetLastFiveNotifications: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('projectControllerGetLastFiveNotifications', 'projectId', projectId)
-            const localVarPath = `/project/{projectId}/notifications`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+        async membersControllerAddTeamMemberToProject(projectId: string, addProjectMemberDto: AddProjectMemberDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddProjectMemberResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.membersControllerAddTeamMemberToProject(projectId, addProjectMemberDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MembersApi.membersControllerAddTeamMemberToProject']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve all team members
+         * @param {string} projectId 
+         * @param {number} [page] 
+         * @param {number} [limit] 
+         * @param {string} [column] 
+         * @param {MembersControllerGetAllTeamMembersOfProjectDirectionEnum} [direction] 
+         * @param {Array<string>} [teamMemberStatus] 
+         * @param {Array<number>} [roleIds] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async membersControllerGetAllTeamMembersOfProject(projectId: string, page?: number, limit?: number, column?: string, direction?: MembersControllerGetAllTeamMembersOfProjectDirectionEnum, teamMemberStatus?: Array<string>, roleIds?: Array<number>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAllProjectMemberResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.membersControllerGetAllTeamMembersOfProject(projectId, page, limit, column, direction, teamMemberStatus, roleIds, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MembersApi.membersControllerGetAllTeamMembersOfProject']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update team member details
+         * @param {string} projectId 
+         * @param {string} memberId 
+         * @param {UpdateTeamMemberRequestDTO} updateTeamMemberRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async membersControllerUpdateTeamMemberRole(projectId: string, memberId: string, updateTeamMemberRequestDTO: UpdateTeamMemberRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddProjectMemberResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.membersControllerUpdateTeamMemberRole(projectId, memberId, updateTeamMemberRequestDTO, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MembersApi.membersControllerUpdateTeamMemberRole']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * MembersApi - factory interface
+ * @export
+ */
+export const MembersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MembersApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Add a team member
+         * @param {string} projectId 
+         * @param {AddProjectMemberDto} addProjectMemberDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        membersControllerAddTeamMemberToProject(projectId: string, addProjectMemberDto: AddProjectMemberDto, options?: RawAxiosRequestConfig): AxiosPromise<AddProjectMemberResponseDTO> {
+            return localVarFp.membersControllerAddTeamMemberToProject(projectId, addProjectMemberDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve all team members
+         * @param {string} projectId 
+         * @param {number} [page] 
+         * @param {number} [limit] 
+         * @param {string} [column] 
+         * @param {MembersControllerGetAllTeamMembersOfProjectDirectionEnum} [direction] 
+         * @param {Array<string>} [teamMemberStatus] 
+         * @param {Array<number>} [roleIds] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        membersControllerGetAllTeamMembersOfProject(projectId: string, page?: number, limit?: number, column?: string, direction?: MembersControllerGetAllTeamMembersOfProjectDirectionEnum, teamMemberStatus?: Array<string>, roleIds?: Array<number>, options?: RawAxiosRequestConfig): AxiosPromise<GetAllProjectMemberResponseDto> {
+            return localVarFp.membersControllerGetAllTeamMembersOfProject(projectId, page, limit, column, direction, teamMemberStatus, roleIds, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update team member details
+         * @param {string} projectId 
+         * @param {string} memberId 
+         * @param {UpdateTeamMemberRequestDTO} updateTeamMemberRequestDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        membersControllerUpdateTeamMemberRole(projectId: string, memberId: string, updateTeamMemberRequestDTO: UpdateTeamMemberRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<AddProjectMemberResponseDTO> {
+            return localVarFp.membersControllerUpdateTeamMemberRole(projectId, memberId, updateTeamMemberRequestDTO, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * MembersApi - object-oriented interface
+ * @export
+ * @class MembersApi
+ * @extends {BaseAPI}
+ */
+export class MembersApi extends BaseAPI {
+    /**
+     * 
+     * @summary Add a team member
+     * @param {string} projectId 
+     * @param {AddProjectMemberDto} addProjectMemberDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MembersApi
+     */
+    public membersControllerAddTeamMemberToProject(projectId: string, addProjectMemberDto: AddProjectMemberDto, options?: RawAxiosRequestConfig) {
+        return MembersApiFp(this.configuration).membersControllerAddTeamMemberToProject(projectId, addProjectMemberDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve all team members
+     * @param {string} projectId 
+     * @param {number} [page] 
+     * @param {number} [limit] 
+     * @param {string} [column] 
+     * @param {MembersControllerGetAllTeamMembersOfProjectDirectionEnum} [direction] 
+     * @param {Array<string>} [teamMemberStatus] 
+     * @param {Array<number>} [roleIds] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MembersApi
+     */
+    public membersControllerGetAllTeamMembersOfProject(projectId: string, page?: number, limit?: number, column?: string, direction?: MembersControllerGetAllTeamMembersOfProjectDirectionEnum, teamMemberStatus?: Array<string>, roleIds?: Array<number>, options?: RawAxiosRequestConfig) {
+        return MembersApiFp(this.configuration).membersControllerGetAllTeamMembersOfProject(projectId, page, limit, column, direction, teamMemberStatus, roleIds, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update team member details
+     * @param {string} projectId 
+     * @param {string} memberId 
+     * @param {UpdateTeamMemberRequestDTO} updateTeamMemberRequestDTO 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MembersApi
+     */
+    public membersControllerUpdateTeamMemberRole(projectId: string, memberId: string, updateTeamMemberRequestDTO: UpdateTeamMemberRequestDTO, options?: RawAxiosRequestConfig) {
+        return MembersApiFp(this.configuration).membersControllerUpdateTeamMemberRole(projectId, memberId, updateTeamMemberRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const MembersControllerGetAllTeamMembersOfProjectDirectionEnum = {
+    Asc: 'ASC',
+    Desc: 'DESC'
+} as const;
+export type MembersControllerGetAllTeamMembersOfProjectDirectionEnum = typeof MembersControllerGetAllTeamMembersOfProjectDirectionEnum[keyof typeof MembersControllerGetAllTeamMembersOfProjectDirectionEnum];
+
+
+/**
+ * MiscellaneousApi - axios parameter creator
+ * @export
+ */
+export const MiscellaneousApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Get machine id matching instances.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        miscellaneousControllerGetData: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/projects/machine/images`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4365,10 +5062,10 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerGetMachineInstanceByImageId: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        miscellaneousControllerGetMachineInstanceByImageId: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('projectControllerGetMachineInstanceByImageId', 'projectId', projectId)
-            const localVarPath = `/project/{projectId}/allMachineInstance`
+            assertParamExists('miscellaneousControllerGetMachineInstanceByImageId', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/allMachineInstance`
                 .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4386,364 +5083,6 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get all machineInstances with count
-         * @param {string} projectId 
-         * @param {number} page 
-         * @param {number} limit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetMachineInstanceByUserId: async (projectId: string, page: number, limit: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('projectControllerGetMachineInstanceByUserId', 'projectId', projectId)
-            // verify required parameter 'page' is not null or undefined
-            assertParamExists('projectControllerGetMachineInstanceByUserId', 'page', page)
-            // verify required parameter 'limit' is not null or undefined
-            assertParamExists('projectControllerGetMachineInstanceByUserId', 'limit', limit)
-            const localVarPath = `/project/{projectId}/machineInstance`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get project by id
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetProjectById: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerGetProjectById', 'id', id)
-            const localVarPath = `/project/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get project role by id
-         * @param {string} id 
-         * @param {number} roleId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetProjectRoleById: async (id: string, roleId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerGetProjectRoleById', 'id', id)
-            // verify required parameter 'roleId' is not null or undefined
-            assertParamExists('projectControllerGetProjectRoleById', 'roleId', roleId)
-            const localVarPath = `/project/{id}/role/{roleId}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"roleId"}}`, encodeURIComponent(String(roleId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get user project role
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetUserProjectRole: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerGetUserProjectRole', 'id', id)
-            const localVarPath = `/project/{id}/member/role`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Mark read
-         * @param {string} projectId 
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerMarkNotificationsAsRead: async (projectId: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('projectControllerMarkNotificationsAsRead', 'projectId', projectId)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('projectControllerMarkNotificationsAsRead', 'body', body)
-            const localVarPath = `/project/{projectId}/notificationStatus`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Update project by id
-         * @param {string} id 
-         * @param {UpdateProjectByIdRequest} updateProjectByIdRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerUpdateProjectById: async (id: string, updateProjectByIdRequest: UpdateProjectByIdRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerUpdateProjectById', 'id', id)
-            // verify required parameter 'updateProjectByIdRequest' is not null or undefined
-            assertParamExists('projectControllerUpdateProjectById', 'updateProjectByIdRequest', updateProjectByIdRequest)
-            const localVarPath = `/project/{id}/update`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateProjectByIdRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Update project role by id
-         * @param {string} id 
-         * @param {number} roleId 
-         * @param {UpdateRoleByIdDto} updateRoleByIdDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerUpdateProjectRoleById: async (id: string, roleId: number, updateRoleByIdDto: UpdateRoleByIdDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerUpdateProjectRoleById', 'id', id)
-            // verify required parameter 'roleId' is not null or undefined
-            assertParamExists('projectControllerUpdateProjectRoleById', 'roleId', roleId)
-            // verify required parameter 'updateRoleByIdDto' is not null or undefined
-            assertParamExists('projectControllerUpdateProjectRoleById', 'updateRoleByIdDto', updateRoleByIdDto)
-            const localVarPath = `/project/{id}/role/{roleId}/update`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"roleId"}}`, encodeURIComponent(String(roleId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateRoleByIdDto, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Update Machine Instance Running Status
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerUpdateRunningStatus: async (body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('projectControllerUpdateRunningStatus', 'body', body)
-            const localVarPath = `/project/updateRunningStatus`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Update team member
-         * @param {string} id 
-         * @param {string} teamMemberId 
-         * @param {UpdateTeamMemberRequestDTO} updateTeamMemberRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerUpdateTeamMemberRole: async (id: string, teamMemberId: string, updateTeamMemberRequestDTO: UpdateTeamMemberRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('projectControllerUpdateTeamMemberRole', 'id', id)
-            // verify required parameter 'teamMemberId' is not null or undefined
-            assertParamExists('projectControllerUpdateTeamMemberRole', 'teamMemberId', teamMemberId)
-            // verify required parameter 'updateTeamMemberRequestDTO' is not null or undefined
-            assertParamExists('projectControllerUpdateTeamMemberRole', 'updateTeamMemberRequestDTO', updateTeamMemberRequestDTO)
-            const localVarPath = `/project/{id}/team/{teamMemberId}/update`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
-                .replace(`{${"teamMemberId"}}`, encodeURIComponent(String(teamMemberId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateTeamMemberRequestDTO, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4757,10 +5096,10 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerUpdateTeamMemberStatus: async (updateTeamMemberStatusRequestDTO: UpdateTeamMemberStatusRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        miscellaneousControllerUpdateTeamMemberStatus: async (updateTeamMemberStatusRequestDTO: UpdateTeamMemberStatusRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'updateTeamMemberStatusRequestDTO' is not null or undefined
-            assertParamExists('projectControllerUpdateTeamMemberStatus', 'updateTeamMemberStatusRequestDTO', updateTeamMemberStatusRequestDTO)
-            const localVarPath = `/project/join`;
+            assertParamExists('miscellaneousControllerUpdateTeamMemberStatus', 'updateTeamMemberStatusRequestDTO', updateTeamMemberStatusRequestDTO)
+            const localVarPath = `/projects/member/join`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4790,439 +5129,22 @@ export const ProjectApiAxiosParamCreator = function (configuration?: Configurati
 };
 
 /**
- * ProjectApi - functional programming interface
+ * MiscellaneousApi - functional programming interface
  * @export
  */
-export const ProjectApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ProjectApiAxiosParamCreator(configuration)
+export const MiscellaneousApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MiscellaneousApiAxiosParamCreator(configuration)
     return {
         /**
          * 
-         * @summary Create New Machine Agent
-         * @param {CreateMachineAgentDto} createMachineAgentDto 
+         * @summary Get machine id matching instances.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async machineAgentControllerCreateMachineAgent(createMachineAgentDto: CreateMachineAgentDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMachineAgentDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineAgentControllerCreateMachineAgent(createMachineAgentDto, options);
+        async miscellaneousControllerGetData(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.miscellaneousControllerGetData(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineAgentControllerCreateMachineAgent']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Delete machine agent
-         * @param {Array<string>} requestBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineAgentControllerDeleteMachineAgents(requestBody: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMachineAgentDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineAgentControllerDeleteMachineAgents(requestBody, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineAgentControllerDeleteMachineAgents']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get all machine agent with count
-         * @param {string} projectId 
-         * @param {number} page 
-         * @param {number} limit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMachineAgentDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineAgentControllerGetMachineAgentByProjectId']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update machine agent by id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineAgentControllerUpdateMachineAgent(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMachineAgentDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineAgentControllerUpdateMachineAgent(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineAgentControllerUpdateMachineAgent']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Add new evaluation test.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerAddEvaluationTest(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerAddEvaluationTest(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerAddEvaluationTest']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Create New Machine Model
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerCreateMachineModel(body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerCreateMachineModel(body, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerCreateMachineModel']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Create webhook
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerCreateWebhook(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateWebhookDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerCreateWebhook(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerCreateWebhook']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Delete evaluation
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerDeleteEvaluation(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerDeleteEvaluation(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerDeleteEvaluation']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Create New Machine Model
-         * @param {Array<string>} requestBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerDeleteMachineModels(requestBody: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerDeleteMachineModels(requestBody, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerDeleteMachineModels']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Delete webhook
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerDeleteWebhook(modelId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateWebhookDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerDeleteWebhook(modelId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerDeleteWebhook']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Execute evaluation test.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerExecuteEvaluation(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerExecuteEvaluation(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerExecuteEvaluation']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Fetch Swagger JSON
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerFetchSwaggerJSON(modelId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerFetchSwaggerJSON(modelId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerFetchSwaggerJSON']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Fetch webhook
-         * @param {string} modelId 
-         * @param {boolean} isAgentWebhook 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerFetchWebhook(modelId: string, isAgentWebhook: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateWebhookDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerFetchWebhook(modelId, isAgentWebhook, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerFetchWebhook']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Fetch evaluation test.
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerGetEvaluationTest(modelId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerGetEvaluationTest(modelId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerGetEvaluationTest']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Fetch Swagger JSON
-         * @param {string} modelId 
-         * @param {string} queryId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerGetEventLogsByQueryId(modelId: string, queryId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerGetEventLogsByQueryId(modelId, queryId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerGetEventLogsByQueryId']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get all machine models with count
-         * @param {string} projectId 
-         * @param {number} page 
-         * @param {number} limit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerGetMachineInstanceByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerGetMachineInstanceByProjectId(projectId, page, limit, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerGetMachineInstanceByProjectId']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Run Query
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerRunQuery(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateWebhookDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerRunQuery(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerRunQuery']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update evaluation
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerUpdateEvaluation(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerUpdateEvaluation(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerUpdateEvaluation']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update machine model by id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerUpdateMachineModel(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerUpdateMachineModel(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerUpdateMachineModel']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update webhook
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerUpdateWebhook(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateWebhookDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerUpdateWebhook(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.machineModelControllerUpdateWebhook']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Add team member to project
-         * @param {string} id 
-         * @param {AddProjectMemberDto} addProjectMemberDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerAddTeamMemberToProject(id: string, addProjectMemberDto: AddProjectMemberDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddProjectMemberResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerAddTeamMemberToProject(id, addProjectMemberDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerAddTeamMemberToProject']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Create Machine Instance
-         * @param {string} projectId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerCreateMachineInstance(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerCreateMachineInstance(projectId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerCreateMachineInstance']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Create Project
-         * @param {CreateProjectDTO} createProjectDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerCreateProject(createProjectDTO: CreateProjectDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateProjectResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerCreateProject(createProjectDTO, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerCreateProject']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Create Project Role
-         * @param {string} id 
-         * @param {CreateRoleDto} createRoleDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerCreateProjectRole(id: string, createRoleDto: CreateRoleDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateProjectRoleResponseDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerCreateProjectRole(id, createRoleDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerCreateProjectRole']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Delete machine instances by ids
-         * @param {string} projectId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerDeleteMachineInstance(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerDeleteMachineInstance(projectId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerDeleteMachineInstance']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Delete project by id
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerDeleteProjectById(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteProjectResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerDeleteProjectById(id, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerDeleteProjectById']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Delete Project Role
-         * @param {string} id 
-         * @param {number} roleId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerDeleteProjectRole(id: string, roleId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteProjectRoleByIdResponseDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerDeleteProjectRole(id, roleId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerDeleteProjectRole']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get all project roles
-         * @param {string} id 
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {string} [column] 
-         * @param {ProjectControllerGetAllProjectRolesDirectionEnum} [direction] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerGetAllProjectRoles(id: string, page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectRolesDirectionEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAllProjectRoleResponseDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetAllProjectRoles(id, page, limit, column, direction, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetAllProjectRoles']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get all projects
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {string} [column] 
-         * @param {ProjectControllerGetAllProjectsDirectionEnum} [direction] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerGetAllProjects(page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectsDirectionEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAllProjectsResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetAllProjects(page, limit, column, direction, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetAllProjects']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get all team members of project
-         * @param {string} id 
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {string} [column] 
-         * @param {ProjectControllerGetAllTeamMembersOfProjectDirectionEnum} [direction] 
-         * @param {Array<string>} [teamMemberStatus] 
-         * @param {Array<number>} [roleIds] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerGetAllTeamMembersOfProject(id: string, page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllTeamMembersOfProjectDirectionEnum, teamMemberStatus?: Array<string>, roleIds?: Array<number>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAllProjectMemberResponseDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetAllTeamMembersOfProject(id, page, limit, column, direction, teamMemberStatus, roleIds, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetAllTeamMembersOfProject']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get running status of instances.
-         * @param {string} projectId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerGetInstanceRunningStatus(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetInstanceRunningStatus(projectId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetInstanceRunningStatus']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Fetch last 5 notifications
-         * @param {string} projectId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerGetLastFiveNotifications(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetLastFiveNotifications(projectId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetLastFiveNotifications']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['MiscellaneousApi.miscellaneousControllerGetData']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -5232,136 +5154,10 @@ export const ProjectApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async projectControllerGetMachineInstanceByImageId(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetMachineInstanceByImageId(projectId, options);
+        async miscellaneousControllerGetMachineInstanceByImageId(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.miscellaneousControllerGetMachineInstanceByImageId(projectId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetMachineInstanceByImageId']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get all machineInstances with count
-         * @param {string} projectId 
-         * @param {number} page 
-         * @param {number} limit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerGetMachineInstanceByUserId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetMachineInstanceByUserId(projectId, page, limit, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetMachineInstanceByUserId']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get project by id
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerGetProjectById(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetProjectByIDResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetProjectById(id, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetProjectById']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get project role by id
-         * @param {string} id 
-         * @param {number} roleId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerGetProjectRoleById(id: string, roleId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetProjectRoleByIdResponseDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetProjectRoleById(id, roleId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetProjectRoleById']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get user project role
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerGetUserProjectRole(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserProjectRoleByRoleIdResponseDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetUserProjectRole(id, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerGetUserProjectRole']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Mark read
-         * @param {string} projectId 
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerMarkNotificationsAsRead(projectId: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerMarkNotificationsAsRead(projectId, body, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerMarkNotificationsAsRead']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update project by id
-         * @param {string} id 
-         * @param {UpdateProjectByIdRequest} updateProjectByIdRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerUpdateProjectById(id: string, updateProjectByIdRequest: UpdateProjectByIdRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateProjectByIDResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerUpdateProjectById(id, updateProjectByIdRequest, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerUpdateProjectById']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update project role by id
-         * @param {string} id 
-         * @param {number} roleId 
-         * @param {UpdateRoleByIdDto} updateRoleByIdDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerUpdateProjectRoleById(id: string, roleId: number, updateRoleByIdDto: UpdateRoleByIdDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateProjectRoleResponseDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerUpdateProjectRoleById(id, roleId, updateRoleByIdDto, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerUpdateProjectRoleById']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update Machine Instance Running Status
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerUpdateRunningStatus(body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerUpdateRunningStatus(body, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerUpdateRunningStatus']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update team member
-         * @param {string} id 
-         * @param {string} teamMemberId 
-         * @param {UpdateTeamMemberRequestDTO} updateTeamMemberRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async projectControllerUpdateTeamMemberRole(id: string, teamMemberId: string, updateTeamMemberRequestDTO: UpdateTeamMemberRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddProjectMemberResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerUpdateTeamMemberRole(id, teamMemberId, updateTeamMemberRequestDTO, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerUpdateTeamMemberRole']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['MiscellaneousApi.miscellaneousControllerGetMachineInstanceByImageId']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -5371,354 +5167,30 @@ export const ProjectApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async projectControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO: UpdateTeamMemberStatusRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddProjectMemberResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO, options);
+        async miscellaneousControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO: UpdateTeamMemberStatusRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AddProjectMemberResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.miscellaneousControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ProjectApi.projectControllerUpdateTeamMemberStatus']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['MiscellaneousApi.miscellaneousControllerUpdateTeamMemberStatus']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * ProjectApi - factory interface
+ * MiscellaneousApi - factory interface
  * @export
  */
-export const ProjectApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ProjectApiFp(configuration)
+export const MiscellaneousApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MiscellaneousApiFp(configuration)
     return {
         /**
          * 
-         * @summary Create New Machine Agent
-         * @param {CreateMachineAgentDto} createMachineAgentDto 
+         * @summary Get machine id matching instances.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineAgentControllerCreateMachineAgent(createMachineAgentDto: CreateMachineAgentDto, options?: RawAxiosRequestConfig): AxiosPromise<CreateMachineAgentDto> {
-            return localVarFp.machineAgentControllerCreateMachineAgent(createMachineAgentDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Delete machine agent
-         * @param {Array<string>} requestBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineAgentControllerDeleteMachineAgents(requestBody: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<CreateMachineAgentDto> {
-            return localVarFp.machineAgentControllerDeleteMachineAgents(requestBody, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get all machine agent with count
-         * @param {string} projectId 
-         * @param {number} page 
-         * @param {number} limit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): AxiosPromise<CreateMachineAgentDto> {
-            return localVarFp.machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update machine agent by id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineAgentControllerUpdateMachineAgent(options?: RawAxiosRequestConfig): AxiosPromise<CreateMachineAgentDto> {
-            return localVarFp.machineAgentControllerUpdateMachineAgent(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Add new evaluation test.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerAddEvaluationTest(options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerAddEvaluationTest(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Create New Machine Model
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerCreateMachineModel(body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerCreateMachineModel(body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Create webhook
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerCreateWebhook(options?: RawAxiosRequestConfig): AxiosPromise<CreateWebhookDto> {
-            return localVarFp.machineModelControllerCreateWebhook(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Delete evaluation
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerDeleteEvaluation(options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerDeleteEvaluation(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Create New Machine Model
-         * @param {Array<string>} requestBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerDeleteMachineModels(requestBody: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerDeleteMachineModels(requestBody, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Delete webhook
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerDeleteWebhook(modelId: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateWebhookDto> {
-            return localVarFp.machineModelControllerDeleteWebhook(modelId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Execute evaluation test.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerExecuteEvaluation(options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerExecuteEvaluation(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Fetch Swagger JSON
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerFetchSwaggerJSON(modelId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerFetchSwaggerJSON(modelId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Fetch webhook
-         * @param {string} modelId 
-         * @param {boolean} isAgentWebhook 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerFetchWebhook(modelId: string, isAgentWebhook: boolean, options?: RawAxiosRequestConfig): AxiosPromise<CreateWebhookDto> {
-            return localVarFp.machineModelControllerFetchWebhook(modelId, isAgentWebhook, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Fetch evaluation test.
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerGetEvaluationTest(modelId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerGetEvaluationTest(modelId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Fetch Swagger JSON
-         * @param {string} modelId 
-         * @param {string} queryId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerGetEventLogsByQueryId(modelId: string, queryId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerGetEventLogsByQueryId(modelId, queryId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get all machine models with count
-         * @param {string} projectId 
-         * @param {number} page 
-         * @param {number} limit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerGetMachineInstanceByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerGetMachineInstanceByProjectId(projectId, page, limit, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Run Query
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerRunQuery(options?: RawAxiosRequestConfig): AxiosPromise<CreateWebhookDto> {
-            return localVarFp.machineModelControllerRunQuery(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update evaluation
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerUpdateEvaluation(options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerUpdateEvaluation(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update machine model by id
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerUpdateMachineModel(options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerUpdateMachineModel(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update webhook
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerUpdateWebhook(options?: RawAxiosRequestConfig): AxiosPromise<CreateWebhookDto> {
-            return localVarFp.machineModelControllerUpdateWebhook(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Add team member to project
-         * @param {string} id 
-         * @param {AddProjectMemberDto} addProjectMemberDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerAddTeamMemberToProject(id: string, addProjectMemberDto: AddProjectMemberDto, options?: RawAxiosRequestConfig): AxiosPromise<AddProjectMemberResponseDTO> {
-            return localVarFp.projectControllerAddTeamMemberToProject(id, addProjectMemberDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Create Machine Instance
-         * @param {string} projectId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerCreateMachineInstance(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.projectControllerCreateMachineInstance(projectId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Create Project
-         * @param {CreateProjectDTO} createProjectDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerCreateProject(createProjectDTO: CreateProjectDTO, options?: RawAxiosRequestConfig): AxiosPromise<CreateProjectResponseDTO> {
-            return localVarFp.projectControllerCreateProject(createProjectDTO, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Create Project Role
-         * @param {string} id 
-         * @param {CreateRoleDto} createRoleDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerCreateProjectRole(id: string, createRoleDto: CreateRoleDto, options?: RawAxiosRequestConfig): AxiosPromise<CreateProjectRoleResponseDto> {
-            return localVarFp.projectControllerCreateProjectRole(id, createRoleDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Delete machine instances by ids
-         * @param {string} projectId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerDeleteMachineInstance(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.projectControllerDeleteMachineInstance(projectId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Delete project by id
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerDeleteProjectById(id: string, options?: RawAxiosRequestConfig): AxiosPromise<DeleteProjectResponseDTO> {
-            return localVarFp.projectControllerDeleteProjectById(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Delete Project Role
-         * @param {string} id 
-         * @param {number} roleId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerDeleteProjectRole(id: string, roleId: number, options?: RawAxiosRequestConfig): AxiosPromise<DeleteProjectRoleByIdResponseDto> {
-            return localVarFp.projectControllerDeleteProjectRole(id, roleId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get all project roles
-         * @param {string} id 
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {string} [column] 
-         * @param {ProjectControllerGetAllProjectRolesDirectionEnum} [direction] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetAllProjectRoles(id: string, page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectRolesDirectionEnum, options?: RawAxiosRequestConfig): AxiosPromise<GetAllProjectRoleResponseDto> {
-            return localVarFp.projectControllerGetAllProjectRoles(id, page, limit, column, direction, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get all projects
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {string} [column] 
-         * @param {ProjectControllerGetAllProjectsDirectionEnum} [direction] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetAllProjects(page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectsDirectionEnum, options?: RawAxiosRequestConfig): AxiosPromise<GetAllProjectsResponseDTO> {
-            return localVarFp.projectControllerGetAllProjects(page, limit, column, direction, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get all team members of project
-         * @param {string} id 
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {string} [column] 
-         * @param {ProjectControllerGetAllTeamMembersOfProjectDirectionEnum} [direction] 
-         * @param {Array<string>} [teamMemberStatus] 
-         * @param {Array<number>} [roleIds] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetAllTeamMembersOfProject(id: string, page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllTeamMembersOfProjectDirectionEnum, teamMemberStatus?: Array<string>, roleIds?: Array<number>, options?: RawAxiosRequestConfig): AxiosPromise<GetAllProjectMemberResponseDto> {
-            return localVarFp.projectControllerGetAllTeamMembersOfProject(id, page, limit, column, direction, teamMemberStatus, roleIds, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get running status of instances.
-         * @param {string} projectId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetInstanceRunningStatus(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.projectControllerGetInstanceRunningStatus(projectId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Fetch last 5 notifications
-         * @param {string} projectId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetLastFiveNotifications(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.projectControllerGetLastFiveNotifications(projectId, options).then((request) => request(axios, basePath));
+        miscellaneousControllerGetData(options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.miscellaneousControllerGetData(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5727,107 +5199,8 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerGetMachineInstanceByImageId(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.projectControllerGetMachineInstanceByImageId(projectId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get all machineInstances with count
-         * @param {string} projectId 
-         * @param {number} page 
-         * @param {number} limit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetMachineInstanceByUserId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.projectControllerGetMachineInstanceByUserId(projectId, page, limit, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get project by id
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetProjectById(id: string, options?: RawAxiosRequestConfig): AxiosPromise<GetProjectByIDResponseDTO> {
-            return localVarFp.projectControllerGetProjectById(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get project role by id
-         * @param {string} id 
-         * @param {number} roleId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetProjectRoleById(id: string, roleId: number, options?: RawAxiosRequestConfig): AxiosPromise<GetProjectRoleByIdResponseDto> {
-            return localVarFp.projectControllerGetProjectRoleById(id, roleId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get user project role
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerGetUserProjectRole(id: string, options?: RawAxiosRequestConfig): AxiosPromise<GetUserProjectRoleByRoleIdResponseDto> {
-            return localVarFp.projectControllerGetUserProjectRole(id, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Mark read
-         * @param {string} projectId 
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerMarkNotificationsAsRead(projectId: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.projectControllerMarkNotificationsAsRead(projectId, body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update project by id
-         * @param {string} id 
-         * @param {UpdateProjectByIdRequest} updateProjectByIdRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerUpdateProjectById(id: string, updateProjectByIdRequest: UpdateProjectByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<UpdateProjectByIDResponseDTO> {
-            return localVarFp.projectControllerUpdateProjectById(id, updateProjectByIdRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update project role by id
-         * @param {string} id 
-         * @param {number} roleId 
-         * @param {UpdateRoleByIdDto} updateRoleByIdDto 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerUpdateProjectRoleById(id: string, roleId: number, updateRoleByIdDto: UpdateRoleByIdDto, options?: RawAxiosRequestConfig): AxiosPromise<UpdateProjectRoleResponseDto> {
-            return localVarFp.projectControllerUpdateProjectRoleById(id, roleId, updateRoleByIdDto, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update Machine Instance Running Status
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerUpdateRunningStatus(body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.projectControllerUpdateRunningStatus(body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update team member
-         * @param {string} id 
-         * @param {string} teamMemberId 
-         * @param {UpdateTeamMemberRequestDTO} updateTeamMemberRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        projectControllerUpdateTeamMemberRole(id: string, teamMemberId: string, updateTeamMemberRequestDTO: UpdateTeamMemberRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<AddProjectMemberResponseDTO> {
-            return localVarFp.projectControllerUpdateTeamMemberRole(id, teamMemberId, updateTeamMemberRequestDTO, options).then((request) => request(axios, basePath));
+        miscellaneousControllerGetMachineInstanceByImageId(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.miscellaneousControllerGetMachineInstanceByImageId(projectId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5836,414 +5209,28 @@ export const ProjectApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        projectControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO: UpdateTeamMemberStatusRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<AddProjectMemberResponseDTO> {
-            return localVarFp.projectControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO, options).then((request) => request(axios, basePath));
+        miscellaneousControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO: UpdateTeamMemberStatusRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<AddProjectMemberResponseDTO> {
+            return localVarFp.miscellaneousControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * ProjectApi - object-oriented interface
+ * MiscellaneousApi - object-oriented interface
  * @export
- * @class ProjectApi
+ * @class MiscellaneousApi
  * @extends {BaseAPI}
  */
-export class ProjectApi extends BaseAPI {
+export class MiscellaneousApi extends BaseAPI {
     /**
      * 
-     * @summary Create New Machine Agent
-     * @param {CreateMachineAgentDto} createMachineAgentDto 
+     * @summary Get machine id matching instances.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectApi
+     * @memberof MiscellaneousApi
      */
-    public machineAgentControllerCreateMachineAgent(createMachineAgentDto: CreateMachineAgentDto, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineAgentControllerCreateMachineAgent(createMachineAgentDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Delete machine agent
-     * @param {Array<string>} requestBody 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineAgentControllerDeleteMachineAgents(requestBody: Array<string>, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineAgentControllerDeleteMachineAgents(requestBody, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get all machine agent with count
-     * @param {string} projectId 
-     * @param {number} page 
-     * @param {number} limit 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update machine agent by id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineAgentControllerUpdateMachineAgent(options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineAgentControllerUpdateMachineAgent(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Add new evaluation test.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerAddEvaluationTest(options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerAddEvaluationTest(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Create New Machine Model
-     * @param {object} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerCreateMachineModel(body: object, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerCreateMachineModel(body, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Create webhook
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerCreateWebhook(options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerCreateWebhook(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Delete evaluation
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerDeleteEvaluation(options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerDeleteEvaluation(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Create New Machine Model
-     * @param {Array<string>} requestBody 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerDeleteMachineModels(requestBody: Array<string>, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerDeleteMachineModels(requestBody, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Delete webhook
-     * @param {string} modelId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerDeleteWebhook(modelId: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerDeleteWebhook(modelId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Execute evaluation test.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerExecuteEvaluation(options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerExecuteEvaluation(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Fetch Swagger JSON
-     * @param {string} modelId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerFetchSwaggerJSON(modelId: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerFetchSwaggerJSON(modelId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Fetch webhook
-     * @param {string} modelId 
-     * @param {boolean} isAgentWebhook 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerFetchWebhook(modelId: string, isAgentWebhook: boolean, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerFetchWebhook(modelId, isAgentWebhook, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Fetch evaluation test.
-     * @param {string} modelId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerGetEvaluationTest(modelId: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerGetEvaluationTest(modelId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Fetch Swagger JSON
-     * @param {string} modelId 
-     * @param {string} queryId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerGetEventLogsByQueryId(modelId: string, queryId: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerGetEventLogsByQueryId(modelId, queryId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get all machine models with count
-     * @param {string} projectId 
-     * @param {number} page 
-     * @param {number} limit 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerGetMachineInstanceByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerGetMachineInstanceByProjectId(projectId, page, limit, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Run Query
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerRunQuery(options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerRunQuery(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update evaluation
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerUpdateEvaluation(options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerUpdateEvaluation(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update machine model by id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerUpdateMachineModel(options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerUpdateMachineModel(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update webhook
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public machineModelControllerUpdateWebhook(options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).machineModelControllerUpdateWebhook(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Add team member to project
-     * @param {string} id 
-     * @param {AddProjectMemberDto} addProjectMemberDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerAddTeamMemberToProject(id: string, addProjectMemberDto: AddProjectMemberDto, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerAddTeamMemberToProject(id, addProjectMemberDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Create Machine Instance
-     * @param {string} projectId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerCreateMachineInstance(projectId: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerCreateMachineInstance(projectId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Create Project
-     * @param {CreateProjectDTO} createProjectDTO 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerCreateProject(createProjectDTO: CreateProjectDTO, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerCreateProject(createProjectDTO, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Create Project Role
-     * @param {string} id 
-     * @param {CreateRoleDto} createRoleDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerCreateProjectRole(id: string, createRoleDto: CreateRoleDto, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerCreateProjectRole(id, createRoleDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Delete machine instances by ids
-     * @param {string} projectId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerDeleteMachineInstance(projectId: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerDeleteMachineInstance(projectId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Delete project by id
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerDeleteProjectById(id: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerDeleteProjectById(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Delete Project Role
-     * @param {string} id 
-     * @param {number} roleId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerDeleteProjectRole(id: string, roleId: number, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerDeleteProjectRole(id, roleId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get all project roles
-     * @param {string} id 
-     * @param {number} [page] 
-     * @param {number} [limit] 
-     * @param {string} [column] 
-     * @param {ProjectControllerGetAllProjectRolesDirectionEnum} [direction] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerGetAllProjectRoles(id: string, page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectRolesDirectionEnum, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerGetAllProjectRoles(id, page, limit, column, direction, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get all projects
-     * @param {number} [page] 
-     * @param {number} [limit] 
-     * @param {string} [column] 
-     * @param {ProjectControllerGetAllProjectsDirectionEnum} [direction] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerGetAllProjects(page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectsDirectionEnum, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerGetAllProjects(page, limit, column, direction, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get all team members of project
-     * @param {string} id 
-     * @param {number} [page] 
-     * @param {number} [limit] 
-     * @param {string} [column] 
-     * @param {ProjectControllerGetAllTeamMembersOfProjectDirectionEnum} [direction] 
-     * @param {Array<string>} [teamMemberStatus] 
-     * @param {Array<number>} [roleIds] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerGetAllTeamMembersOfProject(id: string, page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllTeamMembersOfProjectDirectionEnum, teamMemberStatus?: Array<string>, roleIds?: Array<number>, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerGetAllTeamMembersOfProject(id, page, limit, column, direction, teamMemberStatus, roleIds, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get running status of instances.
-     * @param {string} projectId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerGetInstanceRunningStatus(projectId: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerGetInstanceRunningStatus(projectId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Fetch last 5 notifications
-     * @param {string} projectId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerGetLastFiveNotifications(projectId: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerGetLastFiveNotifications(projectId, options).then((request) => request(this.axios, this.basePath));
+    public miscellaneousControllerGetData(options?: RawAxiosRequestConfig) {
+        return MiscellaneousApiFp(this.configuration).miscellaneousControllerGetData(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6252,127 +5239,10 @@ export class ProjectApi extends BaseAPI {
      * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectApi
+     * @memberof MiscellaneousApi
      */
-    public projectControllerGetMachineInstanceByImageId(projectId: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerGetMachineInstanceByImageId(projectId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get all machineInstances with count
-     * @param {string} projectId 
-     * @param {number} page 
-     * @param {number} limit 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerGetMachineInstanceByUserId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerGetMachineInstanceByUserId(projectId, page, limit, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get project by id
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerGetProjectById(id: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerGetProjectById(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get project role by id
-     * @param {string} id 
-     * @param {number} roleId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerGetProjectRoleById(id: string, roleId: number, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerGetProjectRoleById(id, roleId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get user project role
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerGetUserProjectRole(id: string, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerGetUserProjectRole(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Mark read
-     * @param {string} projectId 
-     * @param {object} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerMarkNotificationsAsRead(projectId: string, body: object, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerMarkNotificationsAsRead(projectId, body, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update project by id
-     * @param {string} id 
-     * @param {UpdateProjectByIdRequest} updateProjectByIdRequest 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerUpdateProjectById(id: string, updateProjectByIdRequest: UpdateProjectByIdRequest, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerUpdateProjectById(id, updateProjectByIdRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update project role by id
-     * @param {string} id 
-     * @param {number} roleId 
-     * @param {UpdateRoleByIdDto} updateRoleByIdDto 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerUpdateProjectRoleById(id: string, roleId: number, updateRoleByIdDto: UpdateRoleByIdDto, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerUpdateProjectRoleById(id, roleId, updateRoleByIdDto, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update Machine Instance Running Status
-     * @param {object} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerUpdateRunningStatus(body: object, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerUpdateRunningStatus(body, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update team member
-     * @param {string} id 
-     * @param {string} teamMemberId 
-     * @param {UpdateTeamMemberRequestDTO} updateTeamMemberRequestDTO 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ProjectApi
-     */
-    public projectControllerUpdateTeamMemberRole(id: string, teamMemberId: string, updateTeamMemberRequestDTO: UpdateTeamMemberRequestDTO, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerUpdateTeamMemberRole(id, teamMemberId, updateTeamMemberRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    public miscellaneousControllerGetMachineInstanceByImageId(projectId: string, options?: RawAxiosRequestConfig) {
+        return MiscellaneousApiFp(this.configuration).miscellaneousControllerGetMachineInstanceByImageId(projectId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -6381,58 +5251,289 @@ export class ProjectApi extends BaseAPI {
      * @param {UpdateTeamMemberStatusRequestDTO} updateTeamMemberStatusRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectApi
+     * @memberof MiscellaneousApi
      */
-    public projectControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO: UpdateTeamMemberStatusRequestDTO, options?: RawAxiosRequestConfig) {
-        return ProjectApiFp(this.configuration).projectControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    public miscellaneousControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO: UpdateTeamMemberStatusRequestDTO, options?: RawAxiosRequestConfig) {
+        return MiscellaneousApiFp(this.configuration).miscellaneousControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
-export const ProjectControllerGetAllProjectRolesDirectionEnum = {
-    Asc: 'ASC',
-    Desc: 'DESC'
-} as const;
-export type ProjectControllerGetAllProjectRolesDirectionEnum = typeof ProjectControllerGetAllProjectRolesDirectionEnum[keyof typeof ProjectControllerGetAllProjectRolesDirectionEnum];
-/**
- * @export
- */
-export const ProjectControllerGetAllProjectsDirectionEnum = {
-    Asc: 'ASC',
-    Desc: 'DESC'
-} as const;
-export type ProjectControllerGetAllProjectsDirectionEnum = typeof ProjectControllerGetAllProjectsDirectionEnum[keyof typeof ProjectControllerGetAllProjectsDirectionEnum];
-/**
- * @export
- */
-export const ProjectControllerGetAllTeamMembersOfProjectDirectionEnum = {
-    Asc: 'ASC',
-    Desc: 'DESC'
-} as const;
-export type ProjectControllerGetAllTeamMembersOfProjectDirectionEnum = typeof ProjectControllerGetAllTeamMembersOfProjectDirectionEnum[keyof typeof ProjectControllerGetAllTeamMembersOfProjectDirectionEnum];
 
 
 /**
- * UserApi - axios parameter creator
+ * NotificationsApi - axios parameter creator
  * @export
  */
-export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
+export const NotificationsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Get users listing
-         * @param {number} [page] 
-         * @param {number} [limit] 
-         * @param {string} [column] 
-         * @param {UserControllerFindDirectionEnum} [direction] 
-         * @param {UserControllerFindTypeEnum} [type] 
+         * @summary Retrieve last notifications
+         * @param {string} projectId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userControllerFind: async (page?: number, limit?: number, column?: string, direction?: UserControllerFindDirectionEnum, type?: UserControllerFindTypeEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/users`;
+        notificationsControllerGetLastFiveNotifications: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('notificationsControllerGetLastFiveNotifications', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/notifications`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Mark notification as read
+         * @param {string} projectId 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notificationsControllerMarkNotificationsAsRead: async (projectId: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('notificationsControllerMarkNotificationsAsRead', 'projectId', projectId)
+            // verify required parameter 'body' is not null or undefined
+            assertParamExists('notificationsControllerMarkNotificationsAsRead', 'body', body)
+            const localVarPath = `/projects/{projectId}/notifications/status`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * NotificationsApi - functional programming interface
+ * @export
+ */
+export const NotificationsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = NotificationsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Retrieve last notifications
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notificationsControllerGetLastFiveNotifications(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsControllerGetLastFiveNotifications(projectId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notificationsControllerGetLastFiveNotifications']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Mark notification as read
+         * @param {string} projectId 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async notificationsControllerMarkNotificationsAsRead(projectId: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.notificationsControllerMarkNotificationsAsRead(projectId, body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['NotificationsApi.notificationsControllerMarkNotificationsAsRead']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * NotificationsApi - factory interface
+ * @export
+ */
+export const NotificationsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = NotificationsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Retrieve last notifications
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notificationsControllerGetLastFiveNotifications(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.notificationsControllerGetLastFiveNotifications(projectId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Mark notification as read
+         * @param {string} projectId 
+         * @param {object} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        notificationsControllerMarkNotificationsAsRead(projectId: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.notificationsControllerMarkNotificationsAsRead(projectId, body, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * NotificationsApi - object-oriented interface
+ * @export
+ * @class NotificationsApi
+ * @extends {BaseAPI}
+ */
+export class NotificationsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Retrieve last notifications
+     * @param {string} projectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NotificationsApi
+     */
+    public notificationsControllerGetLastFiveNotifications(projectId: string, options?: RawAxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notificationsControllerGetLastFiveNotifications(projectId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Mark notification as read
+     * @param {string} projectId 
+     * @param {object} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NotificationsApi
+     */
+    public notificationsControllerMarkNotificationsAsRead(projectId: string, body: object, options?: RawAxiosRequestConfig) {
+        return NotificationsApiFp(this.configuration).notificationsControllerMarkNotificationsAsRead(projectId, body, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * ProjectsApi - axios parameter creator
+ * @export
+ */
+export const ProjectsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create Project
+         * @param {CreateProjectDTO} createProjectDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerCreateProject: async (createProjectDTO: CreateProjectDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'createProjectDTO' is not null or undefined
+            assertParamExists('projectControllerCreateProject', 'createProjectDTO', createProjectDTO)
+            const localVarPath = `/projects`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createProjectDTO, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete project by id
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerDeleteProjectById: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('projectControllerDeleteProjectById', 'id', id)
+            const localVarPath = `/projects/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get all projects
+         * @param {number} [page] 
+         * @param {number} [limit] 
+         * @param {string} [column] 
+         * @param {ProjectControllerGetAllProjectsDirectionEnum} [direction] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerGetAllProjects: async (page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectsDirectionEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/projects`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -6460,10 +5561,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
                 localVarQueryParameter['direction'] = direction;
             }
 
-            if (type !== undefined) {
-                localVarQueryParameter['type'] = type;
-            }
-
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6477,15 +5574,15 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary Get user by id
-         * @param {number} id 
+         * @summary Get project by id
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userControllerGet: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        projectControllerGetProjectById: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('userControllerGet', 'id', id)
-            const localVarPath = `/user/{id}`
+            assertParamExists('projectControllerGetProjectById', 'id', id)
+            const localVarPath = `/projects/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6511,115 +5608,19 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary Get current user details
+         * @summary Update project by id
+         * @param {string} id 
+         * @param {UpdateProjectByIdRequest} updateProjectByIdRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userControllerGetMe: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/user/me`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Check if user is registered
-         * @param {string} email 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userControllerIsRegistered: async (email: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'email' is not null or undefined
-            assertParamExists('userControllerIsRegistered', 'email', email)
-            const localVarPath = `/user/{email}/registered`
-                .replace(`{${"email"}}`, encodeURIComponent(String(email)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Update user data
-         * @param {UpdateUserRequestDTO} updateUserRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userControllerUpdate: async (updateUserRequestDTO: UpdateUserRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'updateUserRequestDTO' is not null or undefined
-            assertParamExists('userControllerUpdate', 'updateUserRequestDTO', updateUserRequestDTO)
-            const localVarPath = `/user/update`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateUserRequestDTO, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Update user settings
-         * @param {UpdateUserSettingsRequestDTO} updateUserSettingsRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userSettingsControllerUpdate: async (updateUserSettingsRequestDTO: UpdateUserSettingsRequestDTO, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'updateUserSettingsRequestDTO' is not null or undefined
-            assertParamExists('userSettingsControllerUpdate', 'updateUserSettingsRequestDTO', updateUserSettingsRequestDTO)
-            const localVarPath = `/user/settings`;
+        projectControllerUpdateProjectById: async (id: string, updateProjectByIdRequest: UpdateProjectByIdRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('projectControllerUpdateProjectById', 'id', id)
+            // verify required parameter 'updateProjectByIdRequest' is not null or undefined
+            assertParamExists('projectControllerUpdateProjectById', 'updateProjectByIdRequest', updateProjectByIdRequest)
+            const localVarPath = `/projects/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -6638,7 +5639,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateUserSettingsRequestDTO, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateProjectByIdRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -6649,267 +5650,1375 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 };
 
 /**
- * UserApi - functional programming interface
+ * ProjectsApi - functional programming interface
  * @export
  */
-export const UserApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
+export const ProjectsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ProjectsApiAxiosParamCreator(configuration)
     return {
         /**
          * 
-         * @summary Get users listing
+         * @summary Create Project
+         * @param {CreateProjectDTO} createProjectDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async projectControllerCreateProject(createProjectDTO: CreateProjectDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateProjectResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerCreateProject(createProjectDTO, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProjectsApi.projectControllerCreateProject']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete project by id
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async projectControllerDeleteProjectById(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteProjectResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerDeleteProjectById(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProjectsApi.projectControllerDeleteProjectById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get all projects
          * @param {number} [page] 
          * @param {number} [limit] 
          * @param {string} [column] 
-         * @param {UserControllerFindDirectionEnum} [direction] 
-         * @param {UserControllerFindTypeEnum} [type] 
+         * @param {ProjectControllerGetAllProjectsDirectionEnum} [direction] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userControllerFind(page?: number, limit?: number, column?: string, direction?: UserControllerFindDirectionEnum, type?: UserControllerFindTypeEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FindUsersResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerFind(page, limit, column, direction, type, options);
+        async projectControllerGetAllProjects(page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectsDirectionEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAllProjectsResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetAllProjects(page, limit, column, direction, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.userControllerFind']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ProjectsApi.projectControllerGetAllProjects']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Get user by id
-         * @param {number} id 
+         * @summary Get project by id
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userControllerGet(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserByIdResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerGet(id, options);
+        async projectControllerGetProjectById(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetProjectByIDResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerGetProjectById(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.userControllerGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ProjectsApi.projectControllerGetProjectById']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Get current user details
+         * @summary Update project by id
+         * @param {string} id 
+         * @param {UpdateProjectByIdRequest} updateProjectByIdRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async userControllerGetMe(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMeResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerGetMe(options);
+        async projectControllerUpdateProjectById(id: string, updateProjectByIdRequest: UpdateProjectByIdRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateProjectByIDResponseDTO>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.projectControllerUpdateProjectById(id, updateProjectByIdRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.userControllerGetMe']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Check if user is registered
-         * @param {string} email 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async userControllerIsRegistered(email: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegisteredUserResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerIsRegistered(email, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.userControllerIsRegistered']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update user data
-         * @param {UpdateUserRequestDTO} updateUserRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async userControllerUpdate(updateUserRequestDTO: UpdateUserRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserByIdResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userControllerUpdate(updateUserRequestDTO, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.userControllerUpdate']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update user settings
-         * @param {UpdateUserSettingsRequestDTO} updateUserSettingsRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async userSettingsControllerUpdate(updateUserSettingsRequestDTO: UpdateUserSettingsRequestDTO, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BooleanResponseDTO>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.userSettingsControllerUpdate(updateUserSettingsRequestDTO, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['UserApi.userSettingsControllerUpdate']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['ProjectsApi.projectControllerUpdateProjectById']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * UserApi - factory interface
+ * ProjectsApi - factory interface
  * @export
  */
-export const UserApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = UserApiFp(configuration)
+export const ProjectsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ProjectsApiFp(configuration)
     return {
         /**
          * 
-         * @summary Get users listing
+         * @summary Create Project
+         * @param {CreateProjectDTO} createProjectDTO 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerCreateProject(createProjectDTO: CreateProjectDTO, options?: RawAxiosRequestConfig): AxiosPromise<CreateProjectResponseDTO> {
+            return localVarFp.projectControllerCreateProject(createProjectDTO, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete project by id
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        projectControllerDeleteProjectById(id: string, options?: RawAxiosRequestConfig): AxiosPromise<DeleteProjectResponseDTO> {
+            return localVarFp.projectControllerDeleteProjectById(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get all projects
          * @param {number} [page] 
          * @param {number} [limit] 
          * @param {string} [column] 
-         * @param {UserControllerFindDirectionEnum} [direction] 
-         * @param {UserControllerFindTypeEnum} [type] 
+         * @param {ProjectControllerGetAllProjectsDirectionEnum} [direction] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userControllerFind(page?: number, limit?: number, column?: string, direction?: UserControllerFindDirectionEnum, type?: UserControllerFindTypeEnum, options?: RawAxiosRequestConfig): AxiosPromise<FindUsersResponseDTO> {
-            return localVarFp.userControllerFind(page, limit, column, direction, type, options).then((request) => request(axios, basePath));
+        projectControllerGetAllProjects(page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectsDirectionEnum, options?: RawAxiosRequestConfig): AxiosPromise<GetAllProjectsResponseDTO> {
+            return localVarFp.projectControllerGetAllProjects(page, limit, column, direction, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Get user by id
-         * @param {number} id 
+         * @summary Get project by id
+         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userControllerGet(id: number, options?: RawAxiosRequestConfig): AxiosPromise<GetUserByIdResponseDTO> {
-            return localVarFp.userControllerGet(id, options).then((request) => request(axios, basePath));
+        projectControllerGetProjectById(id: string, options?: RawAxiosRequestConfig): AxiosPromise<GetProjectByIDResponseDTO> {
+            return localVarFp.projectControllerGetProjectById(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Get current user details
+         * @summary Update project by id
+         * @param {string} id 
+         * @param {UpdateProjectByIdRequest} updateProjectByIdRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        userControllerGetMe(options?: RawAxiosRequestConfig): AxiosPromise<GetMeResponseDTO> {
-            return localVarFp.userControllerGetMe(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Check if user is registered
-         * @param {string} email 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userControllerIsRegistered(email: string, options?: RawAxiosRequestConfig): AxiosPromise<RegisteredUserResponseDTO> {
-            return localVarFp.userControllerIsRegistered(email, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update user data
-         * @param {UpdateUserRequestDTO} updateUserRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userControllerUpdate(updateUserRequestDTO: UpdateUserRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<GetUserByIdResponseDTO> {
-            return localVarFp.userControllerUpdate(updateUserRequestDTO, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update user settings
-         * @param {UpdateUserSettingsRequestDTO} updateUserSettingsRequestDTO 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        userSettingsControllerUpdate(updateUserSettingsRequestDTO: UpdateUserSettingsRequestDTO, options?: RawAxiosRequestConfig): AxiosPromise<BooleanResponseDTO> {
-            return localVarFp.userSettingsControllerUpdate(updateUserSettingsRequestDTO, options).then((request) => request(axios, basePath));
+        projectControllerUpdateProjectById(id: string, updateProjectByIdRequest: UpdateProjectByIdRequest, options?: RawAxiosRequestConfig): AxiosPromise<UpdateProjectByIDResponseDTO> {
+            return localVarFp.projectControllerUpdateProjectById(id, updateProjectByIdRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * UserApi - object-oriented interface
+ * ProjectsApi - object-oriented interface
  * @export
- * @class UserApi
+ * @class ProjectsApi
  * @extends {BaseAPI}
  */
-export class UserApi extends BaseAPI {
+export class ProjectsApi extends BaseAPI {
     /**
      * 
-     * @summary Get users listing
+     * @summary Create Project
+     * @param {CreateProjectDTO} createProjectDTO 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectsApi
+     */
+    public projectControllerCreateProject(createProjectDTO: CreateProjectDTO, options?: RawAxiosRequestConfig) {
+        return ProjectsApiFp(this.configuration).projectControllerCreateProject(createProjectDTO, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete project by id
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProjectsApi
+     */
+    public projectControllerDeleteProjectById(id: string, options?: RawAxiosRequestConfig) {
+        return ProjectsApiFp(this.configuration).projectControllerDeleteProjectById(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get all projects
      * @param {number} [page] 
      * @param {number} [limit] 
      * @param {string} [column] 
-     * @param {UserControllerFindDirectionEnum} [direction] 
-     * @param {UserControllerFindTypeEnum} [type] 
+     * @param {ProjectControllerGetAllProjectsDirectionEnum} [direction] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof UserApi
+     * @memberof ProjectsApi
      */
-    public userControllerFind(page?: number, limit?: number, column?: string, direction?: UserControllerFindDirectionEnum, type?: UserControllerFindTypeEnum, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userControllerFind(page, limit, column, direction, type, options).then((request) => request(this.axios, this.basePath));
+    public projectControllerGetAllProjects(page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectsDirectionEnum, options?: RawAxiosRequestConfig) {
+        return ProjectsApiFp(this.configuration).projectControllerGetAllProjects(page, limit, column, direction, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get user by id
-     * @param {number} id 
+     * @summary Get project by id
+     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof UserApi
+     * @memberof ProjectsApi
      */
-    public userControllerGet(id: number, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userControllerGet(id, options).then((request) => request(this.axios, this.basePath));
+    public projectControllerGetProjectById(id: string, options?: RawAxiosRequestConfig) {
+        return ProjectsApiFp(this.configuration).projectControllerGetProjectById(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get current user details
+     * @summary Update project by id
+     * @param {string} id 
+     * @param {UpdateProjectByIdRequest} updateProjectByIdRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof UserApi
+     * @memberof ProjectsApi
      */
-    public userControllerGetMe(options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userControllerGetMe(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Check if user is registered
-     * @param {string} email 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserApi
-     */
-    public userControllerIsRegistered(email: string, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userControllerIsRegistered(email, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update user data
-     * @param {UpdateUserRequestDTO} updateUserRequestDTO 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserApi
-     */
-    public userControllerUpdate(updateUserRequestDTO: UpdateUserRequestDTO, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userControllerUpdate(updateUserRequestDTO, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update user settings
-     * @param {UpdateUserSettingsRequestDTO} updateUserSettingsRequestDTO 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof UserApi
-     */
-    public userSettingsControllerUpdate(updateUserSettingsRequestDTO: UpdateUserSettingsRequestDTO, options?: RawAxiosRequestConfig) {
-        return UserApiFp(this.configuration).userSettingsControllerUpdate(updateUserSettingsRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    public projectControllerUpdateProjectById(id: string, updateProjectByIdRequest: UpdateProjectByIdRequest, options?: RawAxiosRequestConfig) {
+        return ProjectsApiFp(this.configuration).projectControllerUpdateProjectById(id, updateProjectByIdRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
 /**
  * @export
  */
-export const UserControllerFindDirectionEnum = {
+export const ProjectControllerGetAllProjectsDirectionEnum = {
     Asc: 'ASC',
     Desc: 'DESC'
 } as const;
-export type UserControllerFindDirectionEnum = typeof UserControllerFindDirectionEnum[keyof typeof UserControllerFindDirectionEnum];
+export type ProjectControllerGetAllProjectsDirectionEnum = typeof ProjectControllerGetAllProjectsDirectionEnum[keyof typeof ProjectControllerGetAllProjectsDirectionEnum];
+
+
+/**
+ * QueriesAndDocumentationsApi - axios parameter creator
+ * @export
+ */
+export const QueriesAndDocumentationsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Fetch Swagger JSON
+         * @param {string} modelId 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        queriesAndDocControllerFetchSwaggerJSON: async (modelId: string, projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'modelId' is not null or undefined
+            assertParamExists('queriesAndDocControllerFetchSwaggerJSON', 'modelId', modelId)
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('queriesAndDocControllerFetchSwaggerJSON', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/models/{modelId}/swagger`
+                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)))
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Fetch Swagger JSON
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {string} queryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        queriesAndDocControllerGetEventLogsByQueryId: async (projectId: string, modelId: string, queryId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('queriesAndDocControllerGetEventLogsByQueryId', 'projectId', projectId)
+            // verify required parameter 'modelId' is not null or undefined
+            assertParamExists('queriesAndDocControllerGetEventLogsByQueryId', 'modelId', modelId)
+            // verify required parameter 'queryId' is not null or undefined
+            assertParamExists('queriesAndDocControllerGetEventLogsByQueryId', 'queryId', queryId)
+            const localVarPath = `/projects/{projectId}/queryData/{modelId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (queryId !== undefined) {
+                localVarQueryParameter['queryId'] = queryId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Run Query
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        queriesAndDocControllerRunQuery: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('queriesAndDocControllerRunQuery', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/queries`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * QueriesAndDocumentationsApi - functional programming interface
+ * @export
+ */
+export const QueriesAndDocumentationsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = QueriesAndDocumentationsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Fetch Swagger JSON
+         * @param {string} modelId 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['QueriesAndDocumentationsApi.queriesAndDocControllerFetchSwaggerJSON']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Fetch Swagger JSON
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {string} queryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async queriesAndDocControllerGetEventLogsByQueryId(projectId: string, modelId: string, queryId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.queriesAndDocControllerGetEventLogsByQueryId(projectId, modelId, queryId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['QueriesAndDocumentationsApi.queriesAndDocControllerGetEventLogsByQueryId']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Run Query
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async queriesAndDocControllerRunQuery(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateWebhookDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.queriesAndDocControllerRunQuery(projectId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['QueriesAndDocumentationsApi.queriesAndDocControllerRunQuery']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * QueriesAndDocumentationsApi - factory interface
+ * @export
+ */
+export const QueriesAndDocumentationsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = QueriesAndDocumentationsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Fetch Swagger JSON
+         * @param {string} modelId 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Fetch Swagger JSON
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {string} queryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        queriesAndDocControllerGetEventLogsByQueryId(projectId: string, modelId: string, queryId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.queriesAndDocControllerGetEventLogsByQueryId(projectId, modelId, queryId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Run Query
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        queriesAndDocControllerRunQuery(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateWebhookDto> {
+            return localVarFp.queriesAndDocControllerRunQuery(projectId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * QueriesAndDocumentationsApi - object-oriented interface
+ * @export
+ * @class QueriesAndDocumentationsApi
+ * @extends {BaseAPI}
+ */
+export class QueriesAndDocumentationsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Fetch Swagger JSON
+     * @param {string} modelId 
+     * @param {string} projectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QueriesAndDocumentationsApi
+     */
+    public queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, options?: RawAxiosRequestConfig) {
+        return QueriesAndDocumentationsApiFp(this.configuration).queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Fetch Swagger JSON
+     * @param {string} projectId 
+     * @param {string} modelId 
+     * @param {string} queryId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QueriesAndDocumentationsApi
+     */
+    public queriesAndDocControllerGetEventLogsByQueryId(projectId: string, modelId: string, queryId: string, options?: RawAxiosRequestConfig) {
+        return QueriesAndDocumentationsApiFp(this.configuration).queriesAndDocControllerGetEventLogsByQueryId(projectId, modelId, queryId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Run Query
+     * @param {string} projectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof QueriesAndDocumentationsApi
+     */
+    public queriesAndDocControllerRunQuery(projectId: string, options?: RawAxiosRequestConfig) {
+        return QueriesAndDocumentationsApiFp(this.configuration).queriesAndDocControllerRunQuery(projectId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * RolesApi - axios parameter creator
+ * @export
+ */
+export const RolesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create a new role
+         * @param {string} projectId 
+         * @param {CreateRoleDto} createRoleDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerCreateProjectRole: async (projectId: string, createRoleDto: CreateRoleDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('rolesControllerCreateProjectRole', 'projectId', projectId)
+            // verify required parameter 'createRoleDto' is not null or undefined
+            assertParamExists('rolesControllerCreateProjectRole', 'createRoleDto', createRoleDto)
+            const localVarPath = `/projects/{projectId}/roles`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createRoleDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete Project Role
+         * @param {string} projectId 
+         * @param {number} roleId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerDeleteProjectRole: async (projectId: string, roleId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('rolesControllerDeleteProjectRole', 'projectId', projectId)
+            // verify required parameter 'roleId' is not null or undefined
+            assertParamExists('rolesControllerDeleteProjectRole', 'roleId', roleId)
+            const localVarPath = `/projects/{projectId}/roles/{roleId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"roleId"}}`, encodeURIComponent(String(roleId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve all roles
+         * @param {string} projectId 
+         * @param {number} [page] 
+         * @param {number} [limit] 
+         * @param {string} [column] 
+         * @param {RolesControllerGetAllProjectRolesDirectionEnum} [direction] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerGetAllProjectRoles: async (projectId: string, page?: number, limit?: number, column?: string, direction?: RolesControllerGetAllProjectRolesDirectionEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('rolesControllerGetAllProjectRoles', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/roles`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (column !== undefined) {
+                localVarQueryParameter['column'] = column;
+            }
+
+            if (direction !== undefined) {
+                localVarQueryParameter['direction'] = direction;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve a role by ID
+         * @param {string} projectId 
+         * @param {number} roleId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerGetProjectRoleById: async (projectId: string, roleId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('rolesControllerGetProjectRoleById', 'projectId', projectId)
+            // verify required parameter 'roleId' is not null or undefined
+            assertParamExists('rolesControllerGetProjectRoleById', 'roleId', roleId)
+            const localVarPath = `/projects/{projectId}/roles/{roleId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"roleId"}}`, encodeURIComponent(String(roleId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve the role of a specific member
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerGetUserProjectRole: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('rolesControllerGetUserProjectRole', 'id', id)
+            const localVarPath = `/projects/{id}/members/role`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update a role
+         * @param {string} projectId 
+         * @param {number} roleId 
+         * @param {UpdateRoleByIdDto} updateRoleByIdDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerUpdateProjectRoleById: async (projectId: string, roleId: number, updateRoleByIdDto: UpdateRoleByIdDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('rolesControllerUpdateProjectRoleById', 'projectId', projectId)
+            // verify required parameter 'roleId' is not null or undefined
+            assertParamExists('rolesControllerUpdateProjectRoleById', 'roleId', roleId)
+            // verify required parameter 'updateRoleByIdDto' is not null or undefined
+            assertParamExists('rolesControllerUpdateProjectRoleById', 'updateRoleByIdDto', updateRoleByIdDto)
+            const localVarPath = `/projects/{projectId}/roles/{roleId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"roleId"}}`, encodeURIComponent(String(roleId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateRoleByIdDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * RolesApi - functional programming interface
+ * @export
+ */
+export const RolesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = RolesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Create a new role
+         * @param {string} projectId 
+         * @param {CreateRoleDto} createRoleDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async rolesControllerCreateProjectRole(projectId: string, createRoleDto: CreateRoleDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateProjectRoleResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rolesControllerCreateProjectRole(projectId, createRoleDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RolesApi.rolesControllerCreateProjectRole']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete Project Role
+         * @param {string} projectId 
+         * @param {number} roleId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async rolesControllerDeleteProjectRole(projectId: string, roleId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteProjectRoleByIdResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rolesControllerDeleteProjectRole(projectId, roleId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RolesApi.rolesControllerDeleteProjectRole']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve all roles
+         * @param {string} projectId 
+         * @param {number} [page] 
+         * @param {number} [limit] 
+         * @param {string} [column] 
+         * @param {RolesControllerGetAllProjectRolesDirectionEnum} [direction] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async rolesControllerGetAllProjectRoles(projectId: string, page?: number, limit?: number, column?: string, direction?: RolesControllerGetAllProjectRolesDirectionEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAllProjectRoleResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rolesControllerGetAllProjectRoles(projectId, page, limit, column, direction, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RolesApi.rolesControllerGetAllProjectRoles']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve a role by ID
+         * @param {string} projectId 
+         * @param {number} roleId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async rolesControllerGetProjectRoleById(projectId: string, roleId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetProjectRoleByIdResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rolesControllerGetProjectRoleById(projectId, roleId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RolesApi.rolesControllerGetProjectRoleById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve the role of a specific member
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async rolesControllerGetUserProjectRole(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUserProjectRoleByRoleIdResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rolesControllerGetUserProjectRole(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RolesApi.rolesControllerGetUserProjectRole']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update a role
+         * @param {string} projectId 
+         * @param {number} roleId 
+         * @param {UpdateRoleByIdDto} updateRoleByIdDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async rolesControllerUpdateProjectRoleById(projectId: string, roleId: number, updateRoleByIdDto: UpdateRoleByIdDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateProjectRoleResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rolesControllerUpdateProjectRoleById(projectId, roleId, updateRoleByIdDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RolesApi.rolesControllerUpdateProjectRoleById']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * RolesApi - factory interface
+ * @export
+ */
+export const RolesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = RolesApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Create a new role
+         * @param {string} projectId 
+         * @param {CreateRoleDto} createRoleDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerCreateProjectRole(projectId: string, createRoleDto: CreateRoleDto, options?: RawAxiosRequestConfig): AxiosPromise<CreateProjectRoleResponseDto> {
+            return localVarFp.rolesControllerCreateProjectRole(projectId, createRoleDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete Project Role
+         * @param {string} projectId 
+         * @param {number} roleId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerDeleteProjectRole(projectId: string, roleId: number, options?: RawAxiosRequestConfig): AxiosPromise<DeleteProjectRoleByIdResponseDto> {
+            return localVarFp.rolesControllerDeleteProjectRole(projectId, roleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve all roles
+         * @param {string} projectId 
+         * @param {number} [page] 
+         * @param {number} [limit] 
+         * @param {string} [column] 
+         * @param {RolesControllerGetAllProjectRolesDirectionEnum} [direction] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerGetAllProjectRoles(projectId: string, page?: number, limit?: number, column?: string, direction?: RolesControllerGetAllProjectRolesDirectionEnum, options?: RawAxiosRequestConfig): AxiosPromise<GetAllProjectRoleResponseDto> {
+            return localVarFp.rolesControllerGetAllProjectRoles(projectId, page, limit, column, direction, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve a role by ID
+         * @param {string} projectId 
+         * @param {number} roleId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerGetProjectRoleById(projectId: string, roleId: number, options?: RawAxiosRequestConfig): AxiosPromise<GetProjectRoleByIdResponseDto> {
+            return localVarFp.rolesControllerGetProjectRoleById(projectId, roleId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve the role of a specific member
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerGetUserProjectRole(id: string, options?: RawAxiosRequestConfig): AxiosPromise<GetUserProjectRoleByRoleIdResponseDto> {
+            return localVarFp.rolesControllerGetUserProjectRole(id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update a role
+         * @param {string} projectId 
+         * @param {number} roleId 
+         * @param {UpdateRoleByIdDto} updateRoleByIdDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rolesControllerUpdateProjectRoleById(projectId: string, roleId: number, updateRoleByIdDto: UpdateRoleByIdDto, options?: RawAxiosRequestConfig): AxiosPromise<UpdateProjectRoleResponseDto> {
+            return localVarFp.rolesControllerUpdateProjectRoleById(projectId, roleId, updateRoleByIdDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * RolesApi - object-oriented interface
+ * @export
+ * @class RolesApi
+ * @extends {BaseAPI}
+ */
+export class RolesApi extends BaseAPI {
+    /**
+     * 
+     * @summary Create a new role
+     * @param {string} projectId 
+     * @param {CreateRoleDto} createRoleDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RolesApi
+     */
+    public rolesControllerCreateProjectRole(projectId: string, createRoleDto: CreateRoleDto, options?: RawAxiosRequestConfig) {
+        return RolesApiFp(this.configuration).rolesControllerCreateProjectRole(projectId, createRoleDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete Project Role
+     * @param {string} projectId 
+     * @param {number} roleId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RolesApi
+     */
+    public rolesControllerDeleteProjectRole(projectId: string, roleId: number, options?: RawAxiosRequestConfig) {
+        return RolesApiFp(this.configuration).rolesControllerDeleteProjectRole(projectId, roleId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve all roles
+     * @param {string} projectId 
+     * @param {number} [page] 
+     * @param {number} [limit] 
+     * @param {string} [column] 
+     * @param {RolesControllerGetAllProjectRolesDirectionEnum} [direction] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RolesApi
+     */
+    public rolesControllerGetAllProjectRoles(projectId: string, page?: number, limit?: number, column?: string, direction?: RolesControllerGetAllProjectRolesDirectionEnum, options?: RawAxiosRequestConfig) {
+        return RolesApiFp(this.configuration).rolesControllerGetAllProjectRoles(projectId, page, limit, column, direction, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve a role by ID
+     * @param {string} projectId 
+     * @param {number} roleId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RolesApi
+     */
+    public rolesControllerGetProjectRoleById(projectId: string, roleId: number, options?: RawAxiosRequestConfig) {
+        return RolesApiFp(this.configuration).rolesControllerGetProjectRoleById(projectId, roleId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve the role of a specific member
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RolesApi
+     */
+    public rolesControllerGetUserProjectRole(id: string, options?: RawAxiosRequestConfig) {
+        return RolesApiFp(this.configuration).rolesControllerGetUserProjectRole(id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update a role
+     * @param {string} projectId 
+     * @param {number} roleId 
+     * @param {UpdateRoleByIdDto} updateRoleByIdDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RolesApi
+     */
+    public rolesControllerUpdateProjectRoleById(projectId: string, roleId: number, updateRoleByIdDto: UpdateRoleByIdDto, options?: RawAxiosRequestConfig) {
+        return RolesApiFp(this.configuration).rolesControllerUpdateProjectRoleById(projectId, roleId, updateRoleByIdDto, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 /**
  * @export
  */
-export const UserControllerFindTypeEnum = {
-    User: 'USER',
-    Admin: 'ADMIN'
+export const RolesControllerGetAllProjectRolesDirectionEnum = {
+    Asc: 'ASC',
+    Desc: 'DESC'
 } as const;
-export type UserControllerFindTypeEnum = typeof UserControllerFindTypeEnum[keyof typeof UserControllerFindTypeEnum];
+export type RolesControllerGetAllProjectRolesDirectionEnum = typeof RolesControllerGetAllProjectRolesDirectionEnum[keyof typeof RolesControllerGetAllProjectRolesDirectionEnum];
+
+
+/**
+ * WebhookApi - axios parameter creator
+ * @export
+ */
+export const WebhookApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create webhook
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webhookControllerCreateWebhook: async (projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('webhookControllerCreateWebhook', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/webhooks`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete webhook
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webhookControllerDeleteWebhook: async (projectId: string, modelId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('webhookControllerDeleteWebhook', 'projectId', projectId)
+            // verify required parameter 'modelId' is not null or undefined
+            assertParamExists('webhookControllerDeleteWebhook', 'modelId', modelId)
+            const localVarPath = `/projects/{projectId}/webhooks/{modelId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Fetch webhook
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {boolean} isAgentWebhook 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webhookControllerFetchWebhook: async (projectId: string, modelId: string, isAgentWebhook: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('webhookControllerFetchWebhook', 'projectId', projectId)
+            // verify required parameter 'modelId' is not null or undefined
+            assertParamExists('webhookControllerFetchWebhook', 'modelId', modelId)
+            // verify required parameter 'isAgentWebhook' is not null or undefined
+            assertParamExists('webhookControllerFetchWebhook', 'isAgentWebhook', isAgentWebhook)
+            const localVarPath = `/projects/{projectId}/webhooks/{modelId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (isAgentWebhook !== undefined) {
+                localVarQueryParameter['isAgentWebhook'] = isAgentWebhook;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update webhook
+         * @param {string} webhookId 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webhookControllerUpdateWebhook: async (webhookId: string, projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookId' is not null or undefined
+            assertParamExists('webhookControllerUpdateWebhook', 'webhookId', webhookId)
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('webhookControllerUpdateWebhook', 'projectId', projectId)
+            const localVarPath = `/projects/{projectId}/webhooks/{webhookId}`
+                .replace(`{${"webhookId"}}`, encodeURIComponent(String(webhookId)))
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * WebhookApi - functional programming interface
+ * @export
+ */
+export const WebhookApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = WebhookApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Create webhook
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async webhookControllerCreateWebhook(projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateWebhookDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.webhookControllerCreateWebhook(projectId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.webhookControllerCreateWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete webhook
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async webhookControllerDeleteWebhook(projectId: string, modelId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateWebhookDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.webhookControllerDeleteWebhook(projectId, modelId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.webhookControllerDeleteWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Fetch webhook
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {boolean} isAgentWebhook 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async webhookControllerFetchWebhook(projectId: string, modelId: string, isAgentWebhook: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateWebhookDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.webhookControllerFetchWebhook(projectId, modelId, isAgentWebhook, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.webhookControllerFetchWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update webhook
+         * @param {string} webhookId 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async webhookControllerUpdateWebhook(webhookId: string, projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateWebhookDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.webhookControllerUpdateWebhook(webhookId, projectId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhookApi.webhookControllerUpdateWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * WebhookApi - factory interface
+ * @export
+ */
+export const WebhookApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = WebhookApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Create webhook
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webhookControllerCreateWebhook(projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateWebhookDto> {
+            return localVarFp.webhookControllerCreateWebhook(projectId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete webhook
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webhookControllerDeleteWebhook(projectId: string, modelId: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateWebhookDto> {
+            return localVarFp.webhookControllerDeleteWebhook(projectId, modelId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Fetch webhook
+         * @param {string} projectId 
+         * @param {string} modelId 
+         * @param {boolean} isAgentWebhook 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webhookControllerFetchWebhook(projectId: string, modelId: string, isAgentWebhook: boolean, options?: RawAxiosRequestConfig): AxiosPromise<CreateWebhookDto> {
+            return localVarFp.webhookControllerFetchWebhook(projectId, modelId, isAgentWebhook, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update webhook
+         * @param {string} webhookId 
+         * @param {string} projectId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webhookControllerUpdateWebhook(webhookId: string, projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateWebhookDto> {
+            return localVarFp.webhookControllerUpdateWebhook(webhookId, projectId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * WebhookApi - object-oriented interface
+ * @export
+ * @class WebhookApi
+ * @extends {BaseAPI}
+ */
+export class WebhookApi extends BaseAPI {
+    /**
+     * 
+     * @summary Create webhook
+     * @param {string} projectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApi
+     */
+    public webhookControllerCreateWebhook(projectId: string, options?: RawAxiosRequestConfig) {
+        return WebhookApiFp(this.configuration).webhookControllerCreateWebhook(projectId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete webhook
+     * @param {string} projectId 
+     * @param {string} modelId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApi
+     */
+    public webhookControllerDeleteWebhook(projectId: string, modelId: string, options?: RawAxiosRequestConfig) {
+        return WebhookApiFp(this.configuration).webhookControllerDeleteWebhook(projectId, modelId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Fetch webhook
+     * @param {string} projectId 
+     * @param {string} modelId 
+     * @param {boolean} isAgentWebhook 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApi
+     */
+    public webhookControllerFetchWebhook(projectId: string, modelId: string, isAgentWebhook: boolean, options?: RawAxiosRequestConfig) {
+        return WebhookApiFp(this.configuration).webhookControllerFetchWebhook(projectId, modelId, isAgentWebhook, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update webhook
+     * @param {string} webhookId 
+     * @param {string} projectId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApi
+     */
+    public webhookControllerUpdateWebhook(webhookId: string, projectId: string, options?: RawAxiosRequestConfig) {
+        return WebhookApiFp(this.configuration).webhookControllerUpdateWebhook(webhookId, projectId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 
