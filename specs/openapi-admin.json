@@ -3875,7 +3875,7 @@
         ]
       }
     },
-    "/projects/{projectId}/models/{modelId}/swagger": {
+    "/projects/{projectId}/{fieldName}/{modelId}/swagger": {
       "get": {
         "operationId": "QueriesAndDocController_fetchSwaggerJSON",
         "summary": "Fetch Swagger JSON",
@@ -3890,6 +3890,14 @@
           },
           {
             "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fieldName",
             "required": true,
             "in": "path",
             "schema": {

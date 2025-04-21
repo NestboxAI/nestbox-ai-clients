@@ -5885,17 +5885,21 @@ export const QueriesAndDocumentationsApiAxiosParamCreator = function (configurat
          * @summary Fetch Swagger JSON
          * @param {string} modelId 
          * @param {string} projectId 
+         * @param {string} fieldName 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        queriesAndDocControllerFetchSwaggerJSON: async (modelId: string, projectId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        queriesAndDocControllerFetchSwaggerJSON: async (modelId: string, projectId: string, fieldName: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'modelId' is not null or undefined
             assertParamExists('queriesAndDocControllerFetchSwaggerJSON', 'modelId', modelId)
             // verify required parameter 'projectId' is not null or undefined
             assertParamExists('queriesAndDocControllerFetchSwaggerJSON', 'projectId', projectId)
-            const localVarPath = `/projects/{projectId}/models/{modelId}/swagger`
+            // verify required parameter 'fieldName' is not null or undefined
+            assertParamExists('queriesAndDocControllerFetchSwaggerJSON', 'fieldName', fieldName)
+            const localVarPath = `/projects/{projectId}/{fieldName}/{modelId}/swagger`
                 .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)))
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"fieldName"}}`, encodeURIComponent(String(fieldName)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -6012,11 +6016,12 @@ export const QueriesAndDocumentationsApiFp = function(configuration?: Configurat
          * @summary Fetch Swagger JSON
          * @param {string} modelId 
          * @param {string} projectId 
+         * @param {string} fieldName 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, options);
+        async queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, fieldName: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, fieldName, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['QueriesAndDocumentationsApi.queriesAndDocControllerFetchSwaggerJSON']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -6064,11 +6069,12 @@ export const QueriesAndDocumentationsApiFactory = function (configuration?: Conf
          * @summary Fetch Swagger JSON
          * @param {string} modelId 
          * @param {string} projectId 
+         * @param {string} fieldName 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, options).then((request) => request(axios, basePath));
+        queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, fieldName: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, fieldName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6107,12 +6113,13 @@ export class QueriesAndDocumentationsApi extends BaseAPI {
      * @summary Fetch Swagger JSON
      * @param {string} modelId 
      * @param {string} projectId 
+     * @param {string} fieldName 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof QueriesAndDocumentationsApi
      */
-    public queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, options?: RawAxiosRequestConfig) {
-        return QueriesAndDocumentationsApiFp(this.configuration).queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, options).then((request) => request(this.axios, this.basePath));
+    public queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, fieldName: string, options?: RawAxiosRequestConfig) {
+        return QueriesAndDocumentationsApiFp(this.configuration).queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, fieldName, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

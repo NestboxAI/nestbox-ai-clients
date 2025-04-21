@@ -1,6 +1,6 @@
 {
   "name": "@nestbox-ai/agents",
-  "version": "1.0.38",
+  "version": "1.0.39",
   "description": "OpenAPI client for @nestbox-ai/agents",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
