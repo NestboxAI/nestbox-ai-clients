@@ -20,15 +20,15 @@
         ]
       }
     },
-    "/models/{id}/query": {
+    "/agents/{id}/query": {
       "post": {
-        "operationId": "ModelOperationsQueryController_createQuery",
+        "operationId": "AgentOperationsQueryController_createQuery",
         "parameters": [
           {
             "name": "id",
             "required": true,
             "in": "path",
-            "description": "ID of the model.",
+            "description": "ID of the agent.",
             "schema": {
               "type": "string"
             }
@@ -59,15 +59,54 @@
         ]
       }
     },
-    "/models/{id}/events": {
-      "get": {
-        "operationId": "ModelOperationsEventLogsController_getEventLogs",
+    "/agents/{id}/chat": {
+      "post": {
+        "operationId": "AgentOperationsChatController_createQuery",
         "parameters": [
           {
             "name": "id",
             "required": true,
             "in": "path",
-            "description": "ID of the model.",
+            "description": "ID of the agent.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueryHandlerDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Chat"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/agents/{id}/events": {
+      "get": {
+        "operationId": "AgentOperationsEventLogsController_getEventLogs",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "ID of the agent.",
             "schema": {
               "type": "string"
             }
@@ -104,15 +143,15 @@
         ]
       }
     },
-    "/models/{id}/eventsByQueryId": {
+    "/agents/{id}/eventsByQueryId": {
       "get": {
-        "operationId": "ModelOperationsEventLogsController_getEventLogsByQueryId",
+        "operationId": "AgentOperationsEventLogsController_getEventLogsByQueryId",
         "parameters": [
           {
             "name": "id",
             "required": true,
             "in": "path",
-            "description": "ID of the model.",
+            "description": "ID of the agent.",
             "schema": {
               "type": "string"
             }
@@ -133,378 +172,6 @@
         },
         "tags": [
           "Event Logs"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      }
-    },
-    "/models/{id}/webhooks": {
-      "get": {
-        "operationId": "ModelOperationsWebhooksController_getAllWebhooks",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the model.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Webhooks"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      },
-      "post": {
-        "operationId": "ModelOperationsWebhooksController_createWebhook",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the model.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateWebhookDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Webhooks"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      }
-    },
-    "/models/{id}/webhooks/{webhookId}": {
-      "get": {
-        "operationId": "ModelOperationsWebhooksController_getWebhook",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the model.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "webhookId",
-            "required": true,
-            "in": "path",
-            "description": "ID of the webhook.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Webhooks"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      },
-      "put": {
-        "operationId": "ModelOperationsWebhooksController_updateWebhook",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the model.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "webhookId",
-            "required": true,
-            "in": "path",
-            "description": "ID of the webhook.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateWebhookDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Webhooks"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      },
-      "delete": {
-        "operationId": "ModelOperationsWebhooksController_deleteWebhook",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the model.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "webhookId",
-            "required": true,
-            "in": "path",
-            "description": "ID of the webhook.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Webhooks"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      }
-    },
-    "/models/{id}/guardrails": {
-      "get": {
-        "operationId": "ModelOperationsGuardrailsController_getAllGuardrails",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the model.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Guardrails"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      },
-      "post": {
-        "operationId": "ModelOperationsGuardrailsController_createGuardrails",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the model.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateGuardrailDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Guardrails"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      }
-    },
-    "/models/{id}/guardrails/{guardrailsId}": {
-      "get": {
-        "operationId": "ModelOperationsGuardrailsController_getGuardrails",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the model.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "guardrailsId",
-            "required": true,
-            "in": "path",
-            "description": "ID of the guardrails.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Guardrails"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      },
-      "put": {
-        "operationId": "ModelOperationsGuardrailsController_updateGuardrails",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the model.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "guardrailsId",
-            "required": true,
-            "in": "path",
-            "description": "ID of the guardrails.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateGuardrailDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Guardrails"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      },
-      "delete": {
-        "operationId": "ModelOperationsGuardrailsController_deleteGuardrails",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the model.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "guardrailsId",
-            "required": true,
-            "in": "path",
-            "description": "ID of the guardrails.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Guardrails"
         ],
         "security": [
           {
@@ -884,127 +551,6 @@
           }
         ]
       }
-    },
-    "/agents/{id}/events": {
-      "get": {
-        "operationId": "AgentOperationsEventLogsController_getEventLogs",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the agent.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "page",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Event Logs"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      }
-    },
-    "/agents/{id}/eventsByQueryId": {
-      "get": {
-        "operationId": "AgentOperationsEventLogsController_getEventLogsByQueryId",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the agent.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "queryId",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Event Logs"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      }
-    },
-    "/agents/{id}/query": {
-      "post": {
-        "operationId": "AgentOperationsQueryController_createQuery",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "ID of the agent.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/QueryHandlerDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Query"
-        ],
-        "security": [
-          {
-            "authorization": []
-          }
-        ]
-      }
     }
   },
   "info": {
@@ -1021,6 +567,31 @@
         "type": "object",
         "properties": {}
       },
+      "MessageDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1",
+            "description": "Unique message ID"
+          },
+          "role": {
+            "type": "string",
+            "example": "system",
+            "description": "Role of the message sender (system, user, assistant)"
+          },
+          "content": {
+            "type": "string",
+            "example": "You are a helpful assistant.",
+            "description": "Content of the message"
+          }
+        },
+        "required": [
+          "id",
+          "role",
+          "content"
+        ]
+      },
       "QueryHandlerDto": {
         "type": "object",
         "properties": {
@@ -1031,6 +602,13 @@
                 "$ref": "#/components/schemas/ParamsDto"
               }
             ]
+          },
+          "messages": {
+            "description": "Messages to send to the agent",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MessageDto"
+            }
           }
         },
         "required": [

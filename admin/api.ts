@@ -305,6 +305,12 @@ export interface CreateMachineAgentDto {
     'machineManifestId': string;
     /**
      * 
+     * @type {string}
+     * @memberof CreateMachineAgentDto
+     */
+    'type': string;
+    /**
+     * 
      * @type {Array<object>}
      * @memberof CreateMachineAgentDto
      */
@@ -1474,6 +1480,40 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
     return {
         /**
          * 
+         * @summary Exchange token
+         * @param {string} token 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authControllerExchangeToken: async (token: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'token' is not null or undefined
+            assertParamExists('authControllerExchangeToken', 'token', token)
+            const localVarPath = `/auth/google/{token}`
+                .replace(`{${"token"}}`, encodeURIComponent(String(token)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Forget password initiate
          * @param {ForgetPasswordRequestDTO} forgetPasswordRequestDTO 
          * @param {*} [options] Override http request option.
@@ -1700,6 +1740,19 @@ export const AuthApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary Exchange token
+         * @param {string} token 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async authControllerExchangeToken(token: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authControllerExchangeToken(token, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuthApi.authControllerExchangeToken']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Forget password initiate
          * @param {ForgetPasswordRequestDTO} forgetPasswordRequestDTO 
          * @param {*} [options] Override http request option.
@@ -1788,6 +1841,16 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
     return {
         /**
          * 
+         * @summary Exchange token
+         * @param {string} token 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authControllerExchangeToken(token: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.authControllerExchangeToken(token, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Forget password initiate
          * @param {ForgetPasswordRequestDTO} forgetPasswordRequestDTO 
          * @param {*} [options] Override http request option.
@@ -1856,6 +1919,18 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
  * @extends {BaseAPI}
  */
 export class AuthApi extends BaseAPI {
+    /**
+     * 
+     * @summary Exchange token
+     * @param {string} token 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AuthApi
+     */
+    public authControllerExchangeToken(token: string, options?: RawAxiosRequestConfig) {
+        return AuthApiFp(this.configuration).authControllerExchangeToken(token, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @summary Forget password initiate
@@ -3545,16 +3620,19 @@ export const MachineAgentApiAxiosParamCreator = function (configuration?: Config
          * @param {string} projectId 
          * @param {number} page 
          * @param {number} limit 
+         * @param {string} type 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineAgentControllerGetMachineAgentByProjectId: async (projectId: string, page: number, limit: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        machineAgentControllerGetMachineAgentByProjectId: async (projectId: string, page: number, limit: number, type: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'projectId' is not null or undefined
             assertParamExists('machineAgentControllerGetMachineAgentByProjectId', 'projectId', projectId)
             // verify required parameter 'page' is not null or undefined
             assertParamExists('machineAgentControllerGetMachineAgentByProjectId', 'page', page)
             // verify required parameter 'limit' is not null or undefined
             assertParamExists('machineAgentControllerGetMachineAgentByProjectId', 'limit', limit)
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('machineAgentControllerGetMachineAgentByProjectId', 'type', type)
             const localVarPath = `/projects/{projectId}/agents`
                 .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3574,6 +3652,10 @@ export const MachineAgentApiAxiosParamCreator = function (configuration?: Config
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
             }
 
 
@@ -3670,11 +3752,12 @@ export const MachineAgentApiFp = function(configuration?: Configuration) {
          * @param {string} projectId 
          * @param {number} page 
          * @param {number} limit 
+         * @param {string} type 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMachineAgentDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, options);
+        async machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, type: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateMachineAgentDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, type, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['MachineAgentApi.machineAgentControllerGetMachineAgentByProjectId']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -3732,11 +3815,12 @@ export const MachineAgentApiFactory = function (configuration?: Configuration, b
          * @param {string} projectId 
          * @param {number} page 
          * @param {number} limit 
+         * @param {string} type 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): AxiosPromise<CreateMachineAgentDto> {
-            return localVarFp.machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, options).then((request) => request(axios, basePath));
+        machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, type: string, options?: RawAxiosRequestConfig): AxiosPromise<CreateMachineAgentDto> {
+            return localVarFp.machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, type, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3792,12 +3876,13 @@ export class MachineAgentApi extends BaseAPI {
      * @param {string} projectId 
      * @param {number} page 
      * @param {number} limit 
+     * @param {string} type 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MachineAgentApi
      */
-    public machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
-        return MachineAgentApiFp(this.configuration).machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, options).then((request) => request(this.axios, this.basePath));
+    public machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, type: string, options?: RawAxiosRequestConfig) {
+        return MachineAgentApiFp(this.configuration).machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, type, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3811,6 +3896,121 @@ export class MachineAgentApi extends BaseAPI {
      */
     public machineAgentControllerUpdateMachineAgent(projectId: string, agentId: string, options?: RawAxiosRequestConfig) {
         return MachineAgentApiFp(this.configuration).machineAgentControllerUpdateMachineAgent(projectId, agentId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * MachineAgentLogsApi - axios parameter creator
+ * @export
+ */
+export const MachineAgentLogsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Fetch event logs.
+         * @param {string} projectId 
+         * @param {string} agentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        logsControllerFetchEventLogs: async (projectId: string, agentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('logsControllerFetchEventLogs', 'projectId', projectId)
+            // verify required parameter 'agentId' is not null or undefined
+            assertParamExists('logsControllerFetchEventLogs', 'agentId', agentId)
+            const localVarPath = `/projects/{projectId}/fetchEventLogs/{agentId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"agentId"}}`, encodeURIComponent(String(agentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * MachineAgentLogsApi - functional programming interface
+ * @export
+ */
+export const MachineAgentLogsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MachineAgentLogsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Fetch event logs.
+         * @param {string} projectId 
+         * @param {string} agentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async logsControllerFetchEventLogs(projectId: string, agentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.logsControllerFetchEventLogs(projectId, agentId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineAgentLogsApi.logsControllerFetchEventLogs']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * MachineAgentLogsApi - factory interface
+ * @export
+ */
+export const MachineAgentLogsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MachineAgentLogsApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Fetch event logs.
+         * @param {string} projectId 
+         * @param {string} agentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        logsControllerFetchEventLogs(projectId: string, agentId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.logsControllerFetchEventLogs(projectId, agentId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * MachineAgentLogsApi - object-oriented interface
+ * @export
+ * @class MachineAgentLogsApi
+ * @extends {BaseAPI}
+ */
+export class MachineAgentLogsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Fetch event logs.
+     * @param {string} projectId 
+     * @param {string} agentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineAgentLogsApi
+     */
+    public logsControllerFetchEventLogs(projectId: string, agentId: string, options?: RawAxiosRequestConfig) {
+        return MachineAgentLogsApiFp(this.configuration).logsControllerFetchEventLogs(projectId, agentId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -4320,373 +4520,6 @@ export class MachineInstancesApi extends BaseAPI {
      */
     public machineInstancesControllerUpdateRunningStatus(projectId: string, body: object, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerUpdateRunningStatus(projectId, body, options).then((request) => request(this.axios, this.basePath));
-    }
-}
-
-
-
-/**
- * MachineModelsApi - axios parameter creator
- * @export
- */
-export const MachineModelsApiAxiosParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @summary Create New Machine Model
-         * @param {string} projectId 
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerCreateMachineModel: async (projectId: string, body: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('machineModelControllerCreateMachineModel', 'projectId', projectId)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('machineModelControllerCreateMachineModel', 'body', body)
-            const localVarPath = `/projects/{projectId}/models`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Create New Machine Model
-         * @param {string} projectId 
-         * @param {string} modelId 
-         * @param {Array<string>} requestBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerDeleteMachineModels: async (projectId: string, modelId: string, requestBody: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('machineModelControllerDeleteMachineModels', 'projectId', projectId)
-            // verify required parameter 'modelId' is not null or undefined
-            assertParamExists('machineModelControllerDeleteMachineModels', 'modelId', modelId)
-            // verify required parameter 'requestBody' is not null or undefined
-            assertParamExists('machineModelControllerDeleteMachineModels', 'requestBody', requestBody)
-            const localVarPath = `/projects/{projectId}/models/{modelId}`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get all machine models with count
-         * @param {string} projectId 
-         * @param {number} page 
-         * @param {number} limit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerGetMachineInstanceByProjectId: async (projectId: string, page: number, limit: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('machineModelControllerGetMachineInstanceByProjectId', 'projectId', projectId)
-            // verify required parameter 'page' is not null or undefined
-            assertParamExists('machineModelControllerGetMachineInstanceByProjectId', 'page', page)
-            // verify required parameter 'limit' is not null or undefined
-            assertParamExists('machineModelControllerGetMachineInstanceByProjectId', 'limit', limit)
-            const localVarPath = `/projects/{projectId}/models`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (page !== undefined) {
-                localVarQueryParameter['page'] = page;
-            }
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Update machine model by id
-         * @param {string} projectId 
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerUpdateMachineModel: async (projectId: string, modelId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('machineModelControllerUpdateMachineModel', 'projectId', projectId)
-            // verify required parameter 'modelId' is not null or undefined
-            assertParamExists('machineModelControllerUpdateMachineModel', 'modelId', modelId)
-            const localVarPath = `/projects/{projectId}/models/{modelId}`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * MachineModelsApi - functional programming interface
- * @export
- */
-export const MachineModelsApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = MachineModelsApiAxiosParamCreator(configuration)
-    return {
-        /**
-         * 
-         * @summary Create New Machine Model
-         * @param {string} projectId 
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerCreateMachineModel(projectId: string, body: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerCreateMachineModel(projectId, body, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['MachineModelsApi.machineModelControllerCreateMachineModel']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Create New Machine Model
-         * @param {string} projectId 
-         * @param {string} modelId 
-         * @param {Array<string>} requestBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerDeleteMachineModels(projectId: string, modelId: string, requestBody: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerDeleteMachineModels(projectId, modelId, requestBody, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['MachineModelsApi.machineModelControllerDeleteMachineModels']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get all machine models with count
-         * @param {string} projectId 
-         * @param {number} page 
-         * @param {number} limit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerGetMachineInstanceByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerGetMachineInstanceByProjectId(projectId, page, limit, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['MachineModelsApi.machineModelControllerGetMachineInstanceByProjectId']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Update machine model by id
-         * @param {string} projectId 
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async machineModelControllerUpdateMachineModel(projectId: string, modelId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.machineModelControllerUpdateMachineModel(projectId, modelId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['MachineModelsApi.machineModelControllerUpdateMachineModel']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-    }
-};
-
-/**
- * MachineModelsApi - factory interface
- * @export
- */
-export const MachineModelsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = MachineModelsApiFp(configuration)
-    return {
-        /**
-         * 
-         * @summary Create New Machine Model
-         * @param {string} projectId 
-         * @param {object} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerCreateMachineModel(projectId: string, body: object, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerCreateMachineModel(projectId, body, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Create New Machine Model
-         * @param {string} projectId 
-         * @param {string} modelId 
-         * @param {Array<string>} requestBody 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerDeleteMachineModels(projectId: string, modelId: string, requestBody: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerDeleteMachineModels(projectId, modelId, requestBody, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get all machine models with count
-         * @param {string} projectId 
-         * @param {number} page 
-         * @param {number} limit 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerGetMachineInstanceByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerGetMachineInstanceByProjectId(projectId, page, limit, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Update machine model by id
-         * @param {string} projectId 
-         * @param {string} modelId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        machineModelControllerUpdateMachineModel(projectId: string, modelId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.machineModelControllerUpdateMachineModel(projectId, modelId, options).then((request) => request(axios, basePath));
-        },
-    };
-};
-
-/**
- * MachineModelsApi - object-oriented interface
- * @export
- * @class MachineModelsApi
- * @extends {BaseAPI}
- */
-export class MachineModelsApi extends BaseAPI {
-    /**
-     * 
-     * @summary Create New Machine Model
-     * @param {string} projectId 
-     * @param {object} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MachineModelsApi
-     */
-    public machineModelControllerCreateMachineModel(projectId: string, body: object, options?: RawAxiosRequestConfig) {
-        return MachineModelsApiFp(this.configuration).machineModelControllerCreateMachineModel(projectId, body, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Create New Machine Model
-     * @param {string} projectId 
-     * @param {string} modelId 
-     * @param {Array<string>} requestBody 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MachineModelsApi
-     */
-    public machineModelControllerDeleteMachineModels(projectId: string, modelId: string, requestBody: Array<string>, options?: RawAxiosRequestConfig) {
-        return MachineModelsApiFp(this.configuration).machineModelControllerDeleteMachineModels(projectId, modelId, requestBody, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get all machine models with count
-     * @param {string} projectId 
-     * @param {number} page 
-     * @param {number} limit 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MachineModelsApi
-     */
-    public machineModelControllerGetMachineInstanceByProjectId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
-        return MachineModelsApiFp(this.configuration).machineModelControllerGetMachineInstanceByProjectId(projectId, page, limit, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Update machine model by id
-     * @param {string} projectId 
-     * @param {string} modelId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof MachineModelsApi
-     */
-    public machineModelControllerUpdateMachineModel(projectId: string, modelId: string, options?: RawAxiosRequestConfig) {
-        return MachineModelsApiFp(this.configuration).machineModelControllerUpdateMachineModel(projectId, modelId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -5924,51 +5757,6 @@ export const QueriesAndDocumentationsApiAxiosParamCreator = function (configurat
         },
         /**
          * 
-         * @summary Fetch Swagger JSON
-         * @param {string} projectId 
-         * @param {string} modelId 
-         * @param {string} queryId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        queriesAndDocControllerGetEventLogsByQueryId: async (projectId: string, modelId: string, queryId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'projectId' is not null or undefined
-            assertParamExists('queriesAndDocControllerGetEventLogsByQueryId', 'projectId', projectId)
-            // verify required parameter 'modelId' is not null or undefined
-            assertParamExists('queriesAndDocControllerGetEventLogsByQueryId', 'modelId', modelId)
-            // verify required parameter 'queryId' is not null or undefined
-            assertParamExists('queriesAndDocControllerGetEventLogsByQueryId', 'queryId', queryId)
-            const localVarPath = `/projects/{projectId}/queryData/{modelId}`
-                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
-                .replace(`{${"modelId"}}`, encodeURIComponent(String(modelId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            if (queryId !== undefined) {
-                localVarQueryParameter['queryId'] = queryId;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Run Query
          * @param {string} projectId 
          * @param {*} [options] Override http request option.
@@ -6028,21 +5816,6 @@ export const QueriesAndDocumentationsApiFp = function(configuration?: Configurat
         },
         /**
          * 
-         * @summary Fetch Swagger JSON
-         * @param {string} projectId 
-         * @param {string} modelId 
-         * @param {string} queryId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async queriesAndDocControllerGetEventLogsByQueryId(projectId: string, modelId: string, queryId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.queriesAndDocControllerGetEventLogsByQueryId(projectId, modelId, queryId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['QueriesAndDocumentationsApi.queriesAndDocControllerGetEventLogsByQueryId']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
          * @summary Run Query
          * @param {string} projectId 
          * @param {*} [options] Override http request option.
@@ -6078,18 +5851,6 @@ export const QueriesAndDocumentationsApiFactory = function (configuration?: Conf
         },
         /**
          * 
-         * @summary Fetch Swagger JSON
-         * @param {string} projectId 
-         * @param {string} modelId 
-         * @param {string} queryId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        queriesAndDocControllerGetEventLogsByQueryId(projectId: string, modelId: string, queryId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
-            return localVarFp.queriesAndDocControllerGetEventLogsByQueryId(projectId, modelId, queryId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary Run Query
          * @param {string} projectId 
          * @param {*} [options] Override http request option.
@@ -6120,20 +5881,6 @@ export class QueriesAndDocumentationsApi extends BaseAPI {
      */
     public queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, fieldName: string, options?: RawAxiosRequestConfig) {
         return QueriesAndDocumentationsApiFp(this.configuration).queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, fieldName, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Fetch Swagger JSON
-     * @param {string} projectId 
-     * @param {string} modelId 
-     * @param {string} queryId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof QueriesAndDocumentationsApi
-     */
-    public queriesAndDocControllerGetEventLogsByQueryId(projectId: string, modelId: string, queryId: string, options?: RawAxiosRequestConfig) {
-        return QueriesAndDocumentationsApiFp(this.configuration).queriesAndDocControllerGetEventLogsByQueryId(projectId, modelId, queryId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -1,4 +1,4 @@
-## @nestbox-ai/instances@1.0.39
+## @nestbox-ai/instances@1.0.42
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @nestbox-ai/instances@1.0.39 --save
+npm install @nestbox-ai/instances@1.0.42 --save
 ```
 
 _unPublished (not recommended):_
@@ -44,3 +44,30 @@ _unPublished (not recommended):_
 ```
 npm install PATH_TO_GENERATED_PACKAGE --save
 ```
+
+### Documentation for API Endpoints
+
+All URIs are relative to *http://localhost*
+
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+*AgentsApi* | [**agentManagementControllerCreateNewAgent**](docs/AgentsApi.md#agentmanagementcontrollercreatenewagent) | **POST** /agents | 
+*AgentsApi* | [**agentManagementControllerDeleteAgent**](docs/AgentsApi.md#agentmanagementcontrollerdeleteagent) | **DELETE** /agents/{id} | 
+*AgentsApi* | [**agentManagementControllerGetAllAgents**](docs/AgentsApi.md#agentmanagementcontrollergetallagents) | **GET** /agents | 
+*AgentsApi* | [**agentManagementControllerUpdateMachineAgent**](docs/AgentsApi.md#agentmanagementcontrollerupdatemachineagent) | **PUT** /agents/{id} | 
+*ManifestApi* | [**agentManagementManifestControllerGetManifest**](docs/ManifestApi.md#agentmanagementmanifestcontrollergetmanifest) | **GET** /manifest | 
+*ServerLiveStatusApi* | [**appControllerGetStatus**](docs/ServerLiveStatusApi.md#appcontrollergetstatus) | **GET** / | 
+
+
+### Documentation For Models
+
+ - [AdditionalAgentParameterDto](docs/AdditionalAgentParameterDto.md)
+ - [AgentParameterDto](docs/AgentParameterDto.md)
+ - [CreateMachineAgentDto](docs/CreateMachineAgentDto.md)
+
+
+<a id="documentation-for-authorization"></a>
+## Documentation For Authorization
+
+Endpoints do not require authorization.
+

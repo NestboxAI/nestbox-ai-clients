@@ -5,6 +5,12 @@ api.ts
 base.ts
 common.ts
 configuration.ts
+docs/AdditionalAgentParameterDto.md
+docs/AgentParameterDto.md
+docs/AgentsApi.md
+docs/CreateMachineAgentDto.md
+docs/ManifestApi.md
+docs/ServerLiveStatusApi.md
 git_push.sh
 index.ts
 package.json
