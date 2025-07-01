@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'NestboxAI/nestbox-ai-nests'
-          ref: 'dev'
+          ref: 'main'
           path: 'nestbox-ai-nests'
           token: ${{ secrets.GH_PAT }}
 
