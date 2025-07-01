@@ -29,20 +29,12 @@ jobs:
           path: 'nestbox-ai-dashboard-api'
           token: ${{ secrets.GH_PAT }}
 
-      - name: Checkout API Documents Repository
-        uses: actions/checkout@v4
-        with:
-          repository: 'NestboxAI/nestbox-ai-document-base'
-          ref: 'dev'
-          path: 'nestbox-ai-document-base'
-          token: ${{ secrets.GH_PAT }}
-
       - name: Checkout API Model Repository
         uses: actions/checkout@v4
         with:
-          repository: 'NestboxAI/nestbox-ai-model-base'
+          repository: 'NestboxAI/nestbox-ai-nests'
           ref: 'dev'
-          path: 'nestbox-ai-model-base'
+          path: 'nestbox-ai-nests'
           token: ${{ secrets.GH_PAT }}
 
       - name: Generate Swagger Specs
@@ -55,22 +47,21 @@ jobs:
           cp nestbox-ai-admin.json ../specs/openapi-admin.json
           cd ..
 
-          cd nestbox-ai-document-base
-          yarn install && yarn build
-          npm run generate:swagger
+          cd nestbox-ai-nests
+          pnpm install
+          pnpm --filter=@nestbox/nest-agent exec prisma generate
+          pnpm --filter=@nestbox/nest-agent build
+          pnpm --filter=@nestbox/nest-document build
+          node ./packages/nest-agent/scripts/generate-swagger.js agents
+          node ./packages/nest-agent/scripts/generate-swagger.js instances
+          node ./packages/nest-document/scripts/generate-swagger.js
+          cp nestbox-ai-agents.json ../specs/openapi-agents.json
+          cp nestbox-ai-instances.json ../specs/openapi-instances.json
           cp nestbox-ai-documents.json ../specs/openapi-documents.json
           cd ..
 
-          cd nestbox-ai-model-base
-          yarn install && yarn db:generate && yarn build
-          npm run generate:swagger agents
-          npm run generate:swagger instances
-          cp nestbox-ai-agents.json ../specs/openapi-agents.json
-          cp nestbox-ai-instances.json ../specs/openapi-instances.json
-          cd ..
-
       - name: Remove API Repositories
-        run: rm -rf nestbox-ai-dashboard-api nestbox-ai-document-base nestbox-ai-model-base
+        run: rm -rf nestbox-ai-dashboard-api nestbox-ai-nests
 
       - name: Install OpenAPI Generator CLI
         run: npm install @openapitools/openapi-generator-cli -g
