@@ -5,6 +5,7 @@ api.ts
 base.ts
 common.ts
 configuration.ts
+docs/AdHocCallbackDto.md
 docs/ChatApi.md
 docs/CreateGuardrailDto.md
 docs/CreateWebhookDto.md

@@ -3909,6 +3909,58 @@ export const MachineAgentLogsApiAxiosParamCreator = function (configuration?: Co
     return {
         /**
          * 
+         * @summary Fetch agent logs.
+         * @param {string} projectId 
+         * @param {string} agentId 
+         * @param {string} direction 
+         * @param {string} cursor 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        logsControllerFetchAgentLogs: async (projectId: string, agentId: string, direction: string, cursor: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('logsControllerFetchAgentLogs', 'projectId', projectId)
+            // verify required parameter 'agentId' is not null or undefined
+            assertParamExists('logsControllerFetchAgentLogs', 'agentId', agentId)
+            // verify required parameter 'direction' is not null or undefined
+            assertParamExists('logsControllerFetchAgentLogs', 'direction', direction)
+            // verify required parameter 'cursor' is not null or undefined
+            assertParamExists('logsControllerFetchAgentLogs', 'cursor', cursor)
+            const localVarPath = `/projects/{projectId}/logs/{agentId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"agentId"}}`, encodeURIComponent(String(agentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (direction !== undefined) {
+                localVarQueryParameter['direction'] = direction;
+            }
+
+            if (cursor !== undefined) {
+                localVarQueryParameter['cursor'] = cursor;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Fetch event logs.
          * @param {string} projectId 
          * @param {string} agentId 
@@ -3957,6 +4009,22 @@ export const MachineAgentLogsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary Fetch agent logs.
+         * @param {string} projectId 
+         * @param {string} agentId 
+         * @param {string} direction 
+         * @param {string} cursor 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async logsControllerFetchAgentLogs(projectId: string, agentId: string, direction: string, cursor: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.logsControllerFetchAgentLogs(projectId, agentId, direction, cursor, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineAgentLogsApi.logsControllerFetchAgentLogs']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Fetch event logs.
          * @param {string} projectId 
          * @param {string} agentId 
@@ -3981,6 +4049,19 @@ export const MachineAgentLogsApiFactory = function (configuration?: Configuratio
     return {
         /**
          * 
+         * @summary Fetch agent logs.
+         * @param {string} projectId 
+         * @param {string} agentId 
+         * @param {string} direction 
+         * @param {string} cursor 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        logsControllerFetchAgentLogs(projectId: string, agentId: string, direction: string, cursor: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.logsControllerFetchAgentLogs(projectId, agentId, direction, cursor, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Fetch event logs.
          * @param {string} projectId 
          * @param {string} agentId 
@@ -4000,6 +4081,21 @@ export const MachineAgentLogsApiFactory = function (configuration?: Configuratio
  * @extends {BaseAPI}
  */
 export class MachineAgentLogsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Fetch agent logs.
+     * @param {string} projectId 
+     * @param {string} agentId 
+     * @param {string} direction 
+     * @param {string} cursor 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineAgentLogsApi
+     */
+    public logsControllerFetchAgentLogs(projectId: string, agentId: string, direction: string, cursor: string, options?: RawAxiosRequestConfig) {
+        return MachineAgentLogsApiFp(this.configuration).logsControllerFetchAgentLogs(projectId, agentId, direction, cursor, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @summary Fetch event logs.

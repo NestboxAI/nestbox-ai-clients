@@ -592,11 +592,37 @@
           "content"
         ]
       },
+      "AdHocCallbackDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "example": "https://example.com/webhook",
+            "description": "URL to send the callback to"
+          },
+          "eventTypes": {
+            "example": [
+              "QUERY_CREATED",
+              "QUERY_COMPLETED",
+              "QUERY_FAILED"
+            ],
+            "description": "List of event types to subscribe to, such as QUERY_FAILED, QUERY_COMPLETED, etc.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "url",
+          "eventTypes"
+        ]
+      },
       "QueryHandlerDto": {
         "type": "object",
         "properties": {
           "params": {
-            "description": "Parameters for the query, must include temperature, top_p, and max_tokens",
+            "description": "Parameters for the query",
             "allOf": [
               {
                 "$ref": "#/components/schemas/ParamsDto"
@@ -609,6 +635,14 @@
             "items": {
               "$ref": "#/components/schemas/MessageDto"
             }
+          },
+          "adHocCallback": {
+            "description": "Ephemeral callback registration webhook",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AdHocCallbackDto"
+              }
+            ]
           }
         },
         "required": [

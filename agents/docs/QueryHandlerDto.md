@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**params** | **object** | Parameters for the query, must include temperature, top_p, and max_tokens | [default to undefined]
+**params** | **object** | Parameters for the query | [default to undefined]
 **messages** | [**Array&lt;MessageDto&gt;**](MessageDto.md) | Messages to send to the agent | [optional] [default to undefined]
+**adHocCallback** | [**AdHocCallbackDto**](AdHocCallbackDto.md) | Ephemeral callback registration webhook | [optional] [default to undefined]
 
 ## Example
 
@@ -16,6 +17,7 @@ import { QueryHandlerDto } from '@nestbox-ai/agents';
 const instance: QueryHandlerDto = {
     params,
     messages,
+    adHocCallback,
 };
 ```
 

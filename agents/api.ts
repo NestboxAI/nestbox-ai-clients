@@ -26,6 +26,25 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
+ * @interface AdHocCallbackDto
+ */
+export interface AdHocCallbackDto {
+    /**
+     * URL to send the callback to
+     * @type {string}
+     * @memberof AdHocCallbackDto
+     */
+    'url': string;
+    /**
+     * List of event types to subscribe to, such as QUERY_FAILED, QUERY_COMPLETED, etc.
+     * @type {Array<string>}
+     * @memberof AdHocCallbackDto
+     */
+    'eventTypes': Array<string>;
+}
+/**
+ * 
+ * @export
  * @interface CreateGuardrailDto
  */
 export interface CreateGuardrailDto {
@@ -158,7 +177,7 @@ export interface MessageDto {
  */
 export interface QueryHandlerDto {
     /**
-     * Parameters for the query, must include temperature, top_p, and max_tokens
+     * Parameters for the query
      * @type {object}
      * @memberof QueryHandlerDto
      */
@@ -169,6 +188,12 @@ export interface QueryHandlerDto {
      * @memberof QueryHandlerDto
      */
     'messages'?: Array<MessageDto>;
+    /**
+     * Ephemeral callback registration webhook
+     * @type {AdHocCallbackDto}
+     * @memberof QueryHandlerDto
+     */
+    'adHocCallback'?: AdHocCallbackDto;
 }
 /**
  * 
