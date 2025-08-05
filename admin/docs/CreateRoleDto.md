@@ -1,20 +1,22 @@
-# CreateRoleDto
+# CreateRoleDTO
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **number** |  | [default to undefined]
 **name** | **string** |  | [default to undefined]
 **description** | **string** |  | [default to undefined]
-**resources** | [**Array&lt;CreateResourceDto&gt;**](CreateResourceDto.md) |  | [default to undefined]
+**resources** | [**Array&lt;ResourceDTO&gt;**](ResourceDTO.md) |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { CreateRoleDto } from '@nestbox-ai/admin';
+import { CreateRoleDTO } from '@nestbox-ai/admin';
 
-const instance: CreateRoleDto = {
+const instance: CreateRoleDTO = {
+    id,
     name,
     description,
     resources,
