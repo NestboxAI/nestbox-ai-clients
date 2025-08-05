@@ -2,7 +2,7 @@ name: Generate API Client
 on:
   push:
     branches:
-        - '*'
+        - main
 
 permissions:
   contents: write
