@@ -2927,6 +2927,288 @@
         ]
       }
     },
+    "/projects/{projectId}/instances/machine/{machineId}/status": {
+      "get": {
+        "operationId": "MachineInstancesController_getMachineBootstrapStatus",
+        "summary": "Retrieve status of a specific machine instance",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "machineId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MachineStatusDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestExceptionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedExceptionResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenExceptionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundExceptionResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FatalErrorExceptionResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Machine Instances"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/projects/{projectId}/instances/machine/{machineId}/benchmarking-reports": {
+      "get": {
+        "operationId": "MachineInstancesController_getMachineBenchmarkingReports",
+        "summary": "Retrieve benchmarking reports for a specific machine",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "machineId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BenchmarkingReportsDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestExceptionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedExceptionResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenExceptionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundExceptionResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FatalErrorExceptionResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Machine Instances"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
+    "/projects/{projectId}/instances/machine/{machineId}/benchmarking-datapoints": {
+      "get": {
+        "operationId": "MachineInstancesController_getMachineBenchmarkingDatapoints",
+        "summary": "Retrieve CSV benchmarking datapoints for a specific machine",
+        "parameters": [
+          {
+            "name": "projectId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "machineId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BenchmarkingDatapointDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestExceptionResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedExceptionResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForbiddenExceptionResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundExceptionResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FatalErrorExceptionResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Machine Instances"
+        ],
+        "security": [
+          {
+            "authorization": []
+          }
+        ]
+      }
+    },
     "/projects/{projectId}/evaluation-tests": {
       "post": {
         "operationId": "EvaluationTestController_addEvaluationTest",
@@ -6927,6 +7209,69 @@
       "MachineInstanceDto": {
         "type": "object",
         "properties": {}
+      },
+      "MachineStatusDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Current status of the machine instance",
+            "example": "Job in Progress"
+          },
+          "logs": {
+            "type": "string",
+            "description": "Logs from the machine instance execution",
+            "example": "2025-08-20T00:05:45.455Z:  \n 2025-08-20T00:05:45.466Z: + /app/jobs/595ddb1c-b746-4192-b47f-7d46f9b651d0/dispose.sh\n \n 2025-08-20T00:05:45.469Z: BASE_DATABASE_URL=postgresql://admin:jkdashfuiewyiuqyr3764826DFDGhjksd@34.121.252.141:5432/nestbox-ai-models?connect_timeout=30&pool_max_conns=20&pool_timeout=30&application_name=models&schema= ID=595ddb1c-b746-4192-b47f-7d46f9b651d0 ORIGINAL_JOB_ID=128df4ce-ff14-48ef-9468-d6d26fbd980b\n"
+          },
+          "timeStamp": {
+            "type": "string",
+            "description": "Timestamp of the status update",
+            "example": "2025-08-20T00:05:45.469Z"
+          }
+        },
+        "required": [
+          "status",
+          "logs",
+          "timeStamp"
+        ]
+      },
+      "BenchmarkingReportsDto": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Combined markdown content of all benchmarking reports",
+            "example": "## Report from 2025-08-18T22:33:43.000Z\n\n[report content]\n\n---\n"
+          },
+          "totalReports": {
+            "type": "number",
+            "description": "Total number of reports found",
+            "example": 5
+          }
+        },
+        "required": [
+          "content",
+          "totalReports"
+        ]
+      },
+      "BenchmarkingDatapointDto": {
+        "type": "object",
+        "properties": {
+          "lines": {
+            "type": "string",
+            "description": "Combined content of all benchmarking lines",
+            "example": "header1,header2,header3\nvalue1,value2,value3"
+          },
+          "totalLines": {
+            "type": "number",
+            "description": "Total number of lines found",
+            "example": 5
+          }
+        },
+        "required": [
+          "lines",
+          "totalLines"
+        ]
       },
       "UpdateMachineStatusDto": {
         "type": "object",

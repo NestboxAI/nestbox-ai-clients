@@ -1,4 +1,4 @@
-## @nestbox-ai/admin@1.0.47
+## @nestbox-ai/admin@1.0.48
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @nestbox-ai/admin@1.0.47 --save
+npm install @nestbox-ai/admin@1.0.48 --save
 ```
 
 _unPublished (not recommended):_
@@ -84,6 +84,9 @@ Class | Method | HTTP request | Description
 *MachineInstancesApi* | [**machineInstancesControllerCreateMachineInstance**](docs/MachineInstancesApi.md#machineinstancescontrollercreatemachineinstance) | **POST** /projects/{projectId}/instances | Create Machine Instance
 *MachineInstancesApi* | [**machineInstancesControllerDeleteMachineInstance**](docs/MachineInstancesApi.md#machineinstancescontrollerdeletemachineinstance) | **DELETE** /projects/{projectId}/instances | Delete machine instances by ids
 *MachineInstancesApi* | [**machineInstancesControllerGetInstanceRunningStatus**](docs/MachineInstancesApi.md#machineinstancescontrollergetinstancerunningstatus) | **GET** /projects/{projectId}/instances/status | Retrieve running status of instances
+*MachineInstancesApi* | [**machineInstancesControllerGetMachineBenchmarkingDatapoints**](docs/MachineInstancesApi.md#machineinstancescontrollergetmachinebenchmarkingdatapoints) | **GET** /projects/{projectId}/instances/machine/{machineId}/benchmarking-datapoints | Retrieve CSV benchmarking datapoints for a specific machine
+*MachineInstancesApi* | [**machineInstancesControllerGetMachineBenchmarkingReports**](docs/MachineInstancesApi.md#machineinstancescontrollergetmachinebenchmarkingreports) | **GET** /projects/{projectId}/instances/machine/{machineId}/benchmarking-reports | Retrieve benchmarking reports for a specific machine
+*MachineInstancesApi* | [**machineInstancesControllerGetMachineBootstrapStatus**](docs/MachineInstancesApi.md#machineinstancescontrollergetmachinebootstrapstatus) | **GET** /projects/{projectId}/instances/machine/{machineId}/status | Retrieve status of a specific machine instance
 *MachineInstancesApi* | [**machineInstancesControllerGetMachineInstanceById**](docs/MachineInstancesApi.md#machineinstancescontrollergetmachineinstancebyid) | **GET** /projects/{projectId}/instances/machine/{machineId} | Retrieve running status of instances
 *MachineInstancesApi* | [**machineInstancesControllerGetMachineInstanceByUserId**](docs/MachineInstancesApi.md#machineinstancescontrollergetmachineinstancebyuserid) | **GET** /projects/{projectId}/instances | Retrieve all machine instances with count
 *MachineInstancesApi* | [**machineInstancesControllerUpdateRunningStatus**](docs/MachineInstancesApi.md#machineinstancescontrollerupdaterunningstatus) | **PUT** /projects/{projectId}/instances/status | Update Machine Instance Running Status
@@ -122,6 +125,8 @@ Class | Method | HTTP request | Description
  - [AllProjectResponse](docs/AllProjectResponse.md)
  - [AllProjectResponseModel](docs/AllProjectResponseModel.md)
  - [BadRequestExceptionResponse](docs/BadRequestExceptionResponse.md)
+ - [BenchmarkingDatapointDto](docs/BenchmarkingDatapointDto.md)
+ - [BenchmarkingReportsDto](docs/BenchmarkingReportsDto.md)
  - [BooleanResponseDTO](docs/BooleanResponseDTO.md)
  - [ChunkFileRequestDTO](docs/ChunkFileRequestDTO.md)
  - [CreateCollectionRequestDTO](docs/CreateCollectionRequestDTO.md)
@@ -156,6 +161,7 @@ Class | Method | HTTP request | Description
  - [GetUserProjectRoleByRoleIdResponseDto](docs/GetUserProjectRoleByRoleIdResponseDto.md)
  - [LoginRequestDTO](docs/LoginRequestDTO.md)
  - [LoginResponseDTO](docs/LoginResponseDTO.md)
+ - [MachineStatusDto](docs/MachineStatusDto.md)
  - [MessageResponseDTO](docs/MessageResponseDTO.md)
  - [NotFoundExceptionResponse](docs/NotFoundExceptionResponse.md)
  - [OAuthLoginRequestDTO](docs/OAuthLoginRequestDTO.md)

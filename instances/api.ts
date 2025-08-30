@@ -127,6 +127,12 @@ export interface CreateMachineAgentDto {
      * @memberof CreateMachineAgentDto
      */
     'additionalParameters'?: Array<AdditionalAgentParameterDto>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateMachineAgentDto
+     */
+    'machineManifestId'?: string;
 }
 
 /**

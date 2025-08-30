@@ -611,6 +611,12 @@
             "items": {
               "type": "string"
             }
+          },
+          "headers": {
+            "type": "object",
+            "example": {
+              "Authorization": "Bearer token"
+            }
           }
         },
         "required": [

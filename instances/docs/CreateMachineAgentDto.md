@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **type** | **string** |  | [default to undefined]
 **parameters** | [**Array&lt;AgentParameterDto&gt;**](AgentParameterDto.md) |  | [optional] [default to undefined]
 **additionalParameters** | [**Array&lt;AdditionalAgentParameterDto&gt;**](AdditionalAgentParameterDto.md) |  | [optional] [default to undefined]
+**machineManifestId** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -24,6 +25,7 @@ const instance: CreateMachineAgentDto = {
     type,
     parameters,
     additionalParameters,
+    machineManifestId,
 };
 ```
 

@@ -41,6 +41,12 @@ export interface AdHocCallbackDto {
      * @memberof AdHocCallbackDto
      */
     'eventTypes': Array<string>;
+    /**
+     * 
+     * @type {object}
+     * @memberof AdHocCallbackDto
+     */
+    'headers'?: object;
 }
 /**
  * 

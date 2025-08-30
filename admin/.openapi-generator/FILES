@@ -12,6 +12,8 @@ docs/AllProjectResponse.md
 docs/AllProjectResponseModel.md
 docs/AuthApi.md
 docs/BadRequestExceptionResponse.md
+docs/BenchmarkingDatapointDto.md
+docs/BenchmarkingReportsDto.md
 docs/BooleanResponseDTO.md
 docs/ChunkFileRequestDTO.md
 docs/CreateCollectionRequestDTO.md
@@ -51,6 +53,7 @@ docs/LoginResponseDTO.md
 docs/MachineAgentApi.md
 docs/MachineAgentLogsApi.md
 docs/MachineInstancesApi.md
+docs/MachineStatusDto.md
 docs/MembersApi.md
 docs/MessageResponseDTO.md
 docs/MiscellaneousApi.md

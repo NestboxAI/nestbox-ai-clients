@@ -248,6 +248,9 @@
             "items": {
               "$ref": "#/components/schemas/AdditionalAgentParameterDto"
             }
+          },
+          "machineManifestId": {
+            "type": "string"
           }
         },
         "required": [

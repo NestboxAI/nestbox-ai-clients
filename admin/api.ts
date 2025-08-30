@@ -170,6 +170,44 @@ export interface BadRequestExceptionResponse {
 /**
  * 
  * @export
+ * @interface BenchmarkingDatapointDto
+ */
+export interface BenchmarkingDatapointDto {
+    /**
+     * Combined content of all benchmarking lines
+     * @type {string}
+     * @memberof BenchmarkingDatapointDto
+     */
+    'lines': string;
+    /**
+     * Total number of lines found
+     * @type {number}
+     * @memberof BenchmarkingDatapointDto
+     */
+    'totalLines': number;
+}
+/**
+ * 
+ * @export
+ * @interface BenchmarkingReportsDto
+ */
+export interface BenchmarkingReportsDto {
+    /**
+     * Combined markdown content of all benchmarking reports
+     * @type {string}
+     * @memberof BenchmarkingReportsDto
+     */
+    'content': string;
+    /**
+     * Total number of reports found
+     * @type {number}
+     * @memberof BenchmarkingReportsDto
+     */
+    'totalReports': number;
+}
+/**
+ * 
+ * @export
  * @interface BooleanResponseDTO
  */
 export interface BooleanResponseDTO {
@@ -842,6 +880,31 @@ export interface LoginResponseDTO {
      * @memberof LoginResponseDTO
      */
     'token': string;
+}
+/**
+ * 
+ * @export
+ * @interface MachineStatusDto
+ */
+export interface MachineStatusDto {
+    /**
+     * Current status of the machine instance
+     * @type {string}
+     * @memberof MachineStatusDto
+     */
+    'status': string;
+    /**
+     * Logs from the machine instance execution
+     * @type {string}
+     * @memberof MachineStatusDto
+     */
+    'logs': string;
+    /**
+     * Timestamp of the status update
+     * @type {string}
+     * @memberof MachineStatusDto
+     */
+    'timeStamp': string;
 }
 /**
  * 
@@ -4222,6 +4285,120 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * 
+         * @summary Retrieve CSV benchmarking datapoints for a specific machine
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetMachineBenchmarkingDatapoints: async (projectId: string, machineId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineBenchmarkingDatapoints', 'projectId', projectId)
+            // verify required parameter 'machineId' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineBenchmarkingDatapoints', 'machineId', machineId)
+            const localVarPath = `/projects/{projectId}/instances/machine/{machineId}/benchmarking-datapoints`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"machineId"}}`, encodeURIComponent(String(machineId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve benchmarking reports for a specific machine
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetMachineBenchmarkingReports: async (projectId: string, machineId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineBenchmarkingReports', 'projectId', projectId)
+            // verify required parameter 'machineId' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineBenchmarkingReports', 'machineId', machineId)
+            const localVarPath = `/projects/{projectId}/instances/machine/{machineId}/benchmarking-reports`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"machineId"}}`, encodeURIComponent(String(machineId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve status of a specific machine instance
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetMachineBootstrapStatus: async (projectId: string, machineId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineBootstrapStatus', 'projectId', projectId)
+            // verify required parameter 'machineId' is not null or undefined
+            assertParamExists('machineInstancesControllerGetMachineBootstrapStatus', 'machineId', machineId)
+            const localVarPath = `/projects/{projectId}/instances/machine/{machineId}/status`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"machineId"}}`, encodeURIComponent(String(machineId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Retrieve running status of instances
          * @param {string} projectId 
          * @param {string} machineId 
@@ -4411,6 +4588,48 @@ export const MachineInstancesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Retrieve CSV benchmarking datapoints for a specific machine
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineInstancesControllerGetMachineBenchmarkingDatapoints(projectId: string, machineId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BenchmarkingDatapointDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineInstancesControllerGetMachineBenchmarkingDatapoints(projectId, machineId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineInstancesApi.machineInstancesControllerGetMachineBenchmarkingDatapoints']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve benchmarking reports for a specific machine
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineInstancesControllerGetMachineBenchmarkingReports(projectId: string, machineId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<BenchmarkingReportsDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineInstancesControllerGetMachineBenchmarkingReports(projectId, machineId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineInstancesApi.machineInstancesControllerGetMachineBenchmarkingReports']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve status of a specific machine instance
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async machineInstancesControllerGetMachineBootstrapStatus(projectId: string, machineId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MachineStatusDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.machineInstancesControllerGetMachineBootstrapStatus(projectId, machineId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MachineInstancesApi.machineInstancesControllerGetMachineBootstrapStatus']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Retrieve running status of instances
          * @param {string} projectId 
          * @param {string} machineId 
@@ -4496,6 +4715,39 @@ export const MachineInstancesApiFactory = function (configuration?: Configuratio
         },
         /**
          * 
+         * @summary Retrieve CSV benchmarking datapoints for a specific machine
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetMachineBenchmarkingDatapoints(projectId: string, machineId: string, options?: RawAxiosRequestConfig): AxiosPromise<BenchmarkingDatapointDto> {
+            return localVarFp.machineInstancesControllerGetMachineBenchmarkingDatapoints(projectId, machineId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve benchmarking reports for a specific machine
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetMachineBenchmarkingReports(projectId: string, machineId: string, options?: RawAxiosRequestConfig): AxiosPromise<BenchmarkingReportsDto> {
+            return localVarFp.machineInstancesControllerGetMachineBenchmarkingReports(projectId, machineId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve status of a specific machine instance
+         * @param {string} projectId 
+         * @param {string} machineId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        machineInstancesControllerGetMachineBootstrapStatus(projectId: string, machineId: string, options?: RawAxiosRequestConfig): AxiosPromise<MachineStatusDto> {
+            return localVarFp.machineInstancesControllerGetMachineBootstrapStatus(projectId, machineId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Retrieve running status of instances
          * @param {string} projectId 
          * @param {string} machineId 
@@ -4574,6 +4826,45 @@ export class MachineInstancesApi extends BaseAPI {
      */
     public machineInstancesControllerGetInstanceRunningStatus(projectId: string, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetInstanceRunningStatus(projectId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve CSV benchmarking datapoints for a specific machine
+     * @param {string} projectId 
+     * @param {string} machineId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineInstancesApi
+     */
+    public machineInstancesControllerGetMachineBenchmarkingDatapoints(projectId: string, machineId: string, options?: RawAxiosRequestConfig) {
+        return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetMachineBenchmarkingDatapoints(projectId, machineId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve benchmarking reports for a specific machine
+     * @param {string} projectId 
+     * @param {string} machineId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineInstancesApi
+     */
+    public machineInstancesControllerGetMachineBenchmarkingReports(projectId: string, machineId: string, options?: RawAxiosRequestConfig) {
+        return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetMachineBenchmarkingReports(projectId, machineId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve status of a specific machine instance
+     * @param {string} projectId 
+     * @param {string} machineId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MachineInstancesApi
+     */
+    public machineInstancesControllerGetMachineBootstrapStatus(projectId: string, machineId: string, options?: RawAxiosRequestConfig) {
+        return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetMachineBootstrapStatus(projectId, machineId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
