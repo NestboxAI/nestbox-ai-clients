@@ -251,11 +251,19 @@
           },
           "machineManifestId": {
             "type": "string"
+          },
+          "toolName": {
+            "type": "string"
+          },
+          "inputSchema": {
+            "type": "object",
+            "description": "Optional Input Schema JSON for agent."
           }
         },
         "required": [
           "name",
-          "type"
+          "type",
+          "toolName"
         ]
       },
       "UpdateMachineAgentDTO": {
