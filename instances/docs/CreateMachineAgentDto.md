@@ -9,10 +9,7 @@ Name | Type | Description | Notes
 **description** | **string** |  | [optional] [default to undefined]
 **entryFunctionName** | **string** |  | [optional] [default to undefined]
 **type** | **string** |  | [default to undefined]
-**parameters** | [**Array&lt;AgentParameterDto&gt;**](AgentParameterDto.md) |  | [optional] [default to undefined]
-**additionalParameters** | [**Array&lt;AdditionalAgentParameterDto&gt;**](AdditionalAgentParameterDto.md) |  | [optional] [default to undefined]
 **machineManifestId** | **string** |  | [optional] [default to undefined]
-**toolName** | **string** |  | [default to undefined]
 **inputSchema** | **object** | Optional Input Schema JSON for agent. | [optional] [default to undefined]
 
 ## Example
@@ -25,10 +22,7 @@ const instance: CreateMachineAgentDto = {
     description,
     entryFunctionName,
     type,
-    parameters,
-    additionalParameters,
     machineManifestId,
-    toolName,
     inputSchema,
 };
 ```

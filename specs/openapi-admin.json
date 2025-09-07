@@ -6588,10 +6588,6 @@
           "data"
         ]
       },
-      "CreateParametersDTO": {
-        "type": "object",
-        "properties": {}
-      },
       "CreateMachineAgentDto": {
         "type": "object",
         "properties": {
@@ -6622,12 +6618,6 @@
           "type": {
             "type": "string"
           },
-          "parameters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CreateParametersDTO"
-            }
-          },
           "projectId": {
             "type": "string"
           },
@@ -6649,7 +6639,6 @@
           "entryFunctionName",
           "machineManifestId",
           "type",
-          "parameters",
           "projectId",
           "userId"
         ]

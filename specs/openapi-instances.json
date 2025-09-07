@@ -174,54 +174,6 @@
   "servers": [],
   "components": {
     "schemas": {
-      "AgentParameterDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "default_value": {
-            "type": "string"
-          },
-          "machineModelId": {
-            "type": "string",
-            "description": "The ID of the machine model associated with this parameter"
-          }
-        },
-        "required": [
-          "name",
-          "description",
-          "default_value",
-          "machineModelId"
-        ]
-      },
-      "AdditionalAgentParameterDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "default_value": {
-            "type": "string"
-          },
-          "machineModelId": {
-            "type": "string",
-            "description": "The ID of the machine model associated with this additional parameter"
-          }
-        },
-        "required": [
-          "name",
-          "description",
-          "default_value",
-          "machineModelId"
-        ]
-      },
       "CreateMachineAgentDto": {
         "type": "object",
         "properties": {
@@ -237,22 +189,7 @@
           "type": {
             "type": "string"
           },
-          "parameters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AgentParameterDto"
-            }
-          },
-          "additionalParameters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AdditionalAgentParameterDto"
-            }
-          },
           "machineManifestId": {
-            "type": "string"
-          },
-          "toolName": {
             "type": "string"
           },
           "inputSchema": {
@@ -262,8 +199,7 @@
         },
         "required": [
           "name",
-          "type",
-          "toolName"
+          "type"
         ]
       },
       "UpdateMachineAgentDTO": {

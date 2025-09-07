@@ -26,68 +26,6 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 /**
  * 
  * @export
- * @interface AdditionalAgentParameterDto
- */
-export interface AdditionalAgentParameterDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof AdditionalAgentParameterDto
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdditionalAgentParameterDto
-     */
-    'description': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AdditionalAgentParameterDto
-     */
-    'default_value': string;
-    /**
-     * The ID of the machine model associated with this additional parameter
-     * @type {string}
-     * @memberof AdditionalAgentParameterDto
-     */
-    'machineModelId': string;
-}
-/**
- * 
- * @export
- * @interface AgentParameterDto
- */
-export interface AgentParameterDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof AgentParameterDto
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AgentParameterDto
-     */
-    'description': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AgentParameterDto
-     */
-    'default_value': string;
-    /**
-     * The ID of the machine model associated with this parameter
-     * @type {string}
-     * @memberof AgentParameterDto
-     */
-    'machineModelId': string;
-}
-/**
- * 
- * @export
  * @interface CreateMachineAgentDto
  */
 export interface CreateMachineAgentDto {
@@ -117,28 +55,10 @@ export interface CreateMachineAgentDto {
     'type': string;
     /**
      * 
-     * @type {Array<AgentParameterDto>}
-     * @memberof CreateMachineAgentDto
-     */
-    'parameters'?: Array<AgentParameterDto>;
-    /**
-     * 
-     * @type {Array<AdditionalAgentParameterDto>}
-     * @memberof CreateMachineAgentDto
-     */
-    'additionalParameters'?: Array<AdditionalAgentParameterDto>;
-    /**
-     * 
      * @type {string}
      * @memberof CreateMachineAgentDto
      */
     'machineManifestId'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
-    'toolName': string;
     /**
      * Optional Input Schema JSON for agent.
      * @type {object}

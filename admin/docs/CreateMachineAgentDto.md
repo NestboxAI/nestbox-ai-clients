@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **entryFunctionName** | **string** |  | [default to undefined]
 **machineManifestId** | **string** |  | [default to undefined]
 **type** | **string** |  | [default to undefined]
-**parameters** | **Array&lt;object&gt;** |  | [default to undefined]
 **projectId** | **string** |  | [default to undefined]
 **userId** | **number** |  | [default to undefined]
 **inputSchema** | **object** | Optional Input Schema JSON for agent. | [optional] [default to undefined]
@@ -34,7 +33,6 @@ const instance: CreateMachineAgentDto = {
     entryFunctionName,
     machineManifestId,
     type,
-    parameters,
     projectId,
     userId,
     inputSchema,

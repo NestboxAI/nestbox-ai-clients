@@ -349,12 +349,6 @@ export interface CreateMachineAgentDto {
     'type': string;
     /**
      * 
-     * @type {Array<object>}
-     * @memberof CreateMachineAgentDto
-     */
-    'parameters': Array<object>;
-    /**
-     * 
      * @type {string}
      * @memberof CreateMachineAgentDto
      */

@@ -1,4 +1,4 @@
-## @nestbox-ai/instances@1.0.49
+## @nestbox-ai/instances@1.0.50
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @nestbox-ai/instances@1.0.49 --save
+npm install @nestbox-ai/instances@1.0.50 --save
 ```
 
 _unPublished (not recommended):_
@@ -61,8 +61,6 @@ Class | Method | HTTP request | Description
 
 ### Documentation For Models
 
- - [AdditionalAgentParameterDto](docs/AdditionalAgentParameterDto.md)
- - [AgentParameterDto](docs/AgentParameterDto.md)
  - [CreateMachineAgentDto](docs/CreateMachineAgentDto.md)
 
 
