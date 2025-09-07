@@ -365,6 +365,12 @@ export interface CreateMachineAgentDto {
      * @memberof CreateMachineAgentDto
      */
     'userId': number;
+    /**
+     * Optional Input Schema JSON for agent.
+     * @type {object}
+     * @memberof CreateMachineAgentDto
+     */
+    'inputSchema'?: object;
 }
 /**
  * 

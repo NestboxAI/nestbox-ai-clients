@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **parameters** | **Array&lt;object&gt;** |  | [default to undefined]
 **projectId** | **string** |  | [default to undefined]
 **userId** | **number** |  | [default to undefined]
+**inputSchema** | **object** | Optional Input Schema JSON for agent. | [optional] [default to undefined]
 
 ## Example
 
@@ -36,6 +37,7 @@ const instance: CreateMachineAgentDto = {
     parameters,
     projectId,
     userId,
+    inputSchema,
 };
 ```
 

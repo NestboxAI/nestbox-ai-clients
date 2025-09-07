@@ -6633,6 +6633,10 @@
           },
           "userId": {
             "type": "number"
+          },
+          "inputSchema": {
+            "type": "object",
+            "description": "Optional Input Schema JSON for agent."
           }
         },
         "required": [

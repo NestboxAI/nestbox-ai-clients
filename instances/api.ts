@@ -133,6 +133,18 @@ export interface CreateMachineAgentDto {
      * @memberof CreateMachineAgentDto
      */
     'machineManifestId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateMachineAgentDto
+     */
+    'toolName': string;
+    /**
+     * Optional Input Schema JSON for agent.
+     * @type {object}
+     * @memberof CreateMachineAgentDto
+     */
+    'inputSchema'?: object;
 }
 
 /**
