@@ -55,12 +55,15 @@ jobs:
           pnpm --filter=@nestbox/nest-agent exec prisma generate
           pnpm --filter=@nestbox/nest-agent build
           pnpm --filter=@nestbox/nest-document build
+          pnpm --filter=@nestbox/nest-doc-processing-api build
           node ./packages/nest-agent/scripts/generate-swagger.js agents
           node ./packages/nest-agent/scripts/generate-swagger.js instances
           node ./packages/nest-document/scripts/generate-swagger.js
+          node ./packages/nest-doc-processing-api/scripts/generate-swagger.js
           cp nestbox-ai-agents.json ../specs/openapi-agents.json
           cp nestbox-ai-instances.json ../specs/openapi-instances.json
           cp nestbox-ai-documents.json ../specs/openapi-documents.json
+          cp nestbox-ai-doc-processing-api.json ../specs/openapi-doc-processing-api.json
           cd ..
 
       - name: Remove API Repositories
@@ -84,6 +87,8 @@ jobs:
           openapi-generator-cli generate -i specs/openapi-agents.json -g typescript-axios -o agents --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/agents,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
 
           openapi-generator-cli generate -i specs/openapi-instances.json -g typescript-axios -o instances --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/instances,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
+
+          openapi-generator-cli generate -i specs/openapi-doc-processing-api.json -g typescript-axios -o doc-processing-api --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/doc-processing-api,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
 
       - name: Commit and Push Generated Clients
         run: |
