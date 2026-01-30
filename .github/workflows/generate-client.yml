@@ -104,7 +104,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Upgrade npm (required for OIDC)
         run: npm install -g npm@latest
