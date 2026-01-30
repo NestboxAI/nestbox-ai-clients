@@ -18,58 +18,25 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
-/**
- * 
- * @export
- * @interface CreateMachineAgentDto
- */
 export interface CreateMachineAgentDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'description'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'entryFunctionName'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'machineManifestId'?: string;
     /**
      * Optional Input Schema JSON for agent.
-     * @type {object}
-     * @memberof CreateMachineAgentDto
      */
     'inputSchema'?: object;
 }
 
 /**
  * AgentsApi - axios parameter creator
- * @export
  */
 export const AgentsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -94,8 +61,6 @@ export const AgentsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -131,7 +96,6 @@ export const AgentsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -165,7 +129,6 @@ export const AgentsApiAxiosParamCreator = function (configuration?: Configuratio
             }
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -200,8 +163,6 @@ export const AgentsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -219,7 +180,6 @@ export const AgentsApiAxiosParamCreator = function (configuration?: Configuratio
 
 /**
  * AgentsApi - functional programming interface
- * @export
  */
 export const AgentsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AgentsApiAxiosParamCreator(configuration)
@@ -278,7 +238,6 @@ export const AgentsApiFp = function(configuration?: Configuration) {
 
 /**
  * AgentsApi - factory interface
- * @export
  */
 export const AgentsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = AgentsApiFp(configuration)
@@ -325,9 +284,6 @@ export const AgentsApiFactory = function (configuration?: Configuration, basePat
 
 /**
  * AgentsApi - object-oriented interface
- * @export
- * @class AgentsApi
- * @extends {BaseAPI}
  */
 export class AgentsApi extends BaseAPI {
     /**
@@ -335,7 +291,6 @@ export class AgentsApi extends BaseAPI {
      * @param {CreateMachineAgentDto} createMachineAgentDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AgentsApi
      */
     public agentManagementControllerCreateNewAgent(createMachineAgentDto: CreateMachineAgentDto, options?: RawAxiosRequestConfig) {
         return AgentsApiFp(this.configuration).agentManagementControllerCreateNewAgent(createMachineAgentDto, options).then((request) => request(this.axios, this.basePath));
@@ -346,7 +301,6 @@ export class AgentsApi extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AgentsApi
      */
     public agentManagementControllerDeleteAgent(id: string, options?: RawAxiosRequestConfig) {
         return AgentsApiFp(this.configuration).agentManagementControllerDeleteAgent(id, options).then((request) => request(this.axios, this.basePath));
@@ -357,7 +311,6 @@ export class AgentsApi extends BaseAPI {
      * @param {AgentManagementControllerGetAllAgentsTypeEnum} [type] Type of agent.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AgentsApi
      */
     public agentManagementControllerGetAllAgents(type?: AgentManagementControllerGetAllAgentsTypeEnum, options?: RawAxiosRequestConfig) {
         return AgentsApiFp(this.configuration).agentManagementControllerGetAllAgents(type, options).then((request) => request(this.axios, this.basePath));
@@ -369,16 +322,12 @@ export class AgentsApi extends BaseAPI {
      * @param {object} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AgentsApi
      */
     public agentManagementControllerUpdateMachineAgent(id: string, body: object, options?: RawAxiosRequestConfig) {
         return AgentsApiFp(this.configuration).agentManagementControllerUpdateMachineAgent(id, body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const AgentManagementControllerGetAllAgentsTypeEnum = {
     Regular: 'REGULAR',
     Chat: 'CHAT'
@@ -388,7 +337,6 @@ export type AgentManagementControllerGetAllAgentsTypeEnum = typeof AgentManageme
 
 /**
  * ManifestApi - axios parameter creator
- * @export
  */
 export const ManifestApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -411,7 +359,6 @@ export const ManifestApiAxiosParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -426,7 +373,6 @@ export const ManifestApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * ManifestApi - functional programming interface
- * @export
  */
 export const ManifestApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ManifestApiAxiosParamCreator(configuration)
@@ -447,7 +393,6 @@ export const ManifestApiFp = function(configuration?: Configuration) {
 
 /**
  * ManifestApi - factory interface
- * @export
  */
 export const ManifestApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ManifestApiFp(configuration)
@@ -465,16 +410,12 @@ export const ManifestApiFactory = function (configuration?: Configuration, baseP
 
 /**
  * ManifestApi - object-oriented interface
- * @export
- * @class ManifestApi
- * @extends {BaseAPI}
  */
 export class ManifestApi extends BaseAPI {
     /**
      * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ManifestApi
      */
     public agentManagementManifestControllerGetManifest(options?: RawAxiosRequestConfig) {
         return ManifestApiFp(this.configuration).agentManagementManifestControllerGetManifest(options).then((request) => request(this.axios, this.basePath));
@@ -485,7 +426,6 @@ export class ManifestApi extends BaseAPI {
 
 /**
  * ServerLiveStatusApi - axios parameter creator
- * @export
  */
 export const ServerLiveStatusApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -508,7 +448,6 @@ export const ServerLiveStatusApiAxiosParamCreator = function (configuration?: Co
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -523,7 +462,6 @@ export const ServerLiveStatusApiAxiosParamCreator = function (configuration?: Co
 
 /**
  * ServerLiveStatusApi - functional programming interface
- * @export
  */
 export const ServerLiveStatusApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ServerLiveStatusApiAxiosParamCreator(configuration)
@@ -544,7 +482,6 @@ export const ServerLiveStatusApiFp = function(configuration?: Configuration) {
 
 /**
  * ServerLiveStatusApi - factory interface
- * @export
  */
 export const ServerLiveStatusApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ServerLiveStatusApiFp(configuration)
@@ -562,16 +499,12 @@ export const ServerLiveStatusApiFactory = function (configuration?: Configuratio
 
 /**
  * ServerLiveStatusApi - object-oriented interface
- * @export
- * @class ServerLiveStatusApi
- * @extends {BaseAPI}
  */
 export class ServerLiveStatusApi extends BaseAPI {
     /**
      * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ServerLiveStatusApi
      */
     public appControllerGetStatus(options?: RawAxiosRequestConfig) {
         return ServerLiveStatusApiFp(this.configuration).appControllerGetStatus(options).then((request) => request(this.axios, this.basePath));

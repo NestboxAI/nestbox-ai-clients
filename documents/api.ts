@@ -18,218 +18,57 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
-/**
- * 
- * @export
- * @interface BadRequestExceptionResponse
- */
 export interface BadRequestExceptionResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof BadRequestExceptionResponse
-     */
     'message': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof BadRequestExceptionResponse
-     */
     'errors': object | null;
 }
-/**
- * 
- * @export
- * @interface ChunkFileRequestDTO
- */
 export interface ChunkFileRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChunkFileRequestDTO
-     */
     'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChunkFileRequestDTO
-     */
     'url': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof ChunkFileRequestDTO
-     */
     'options': object;
 }
-/**
- * 
- * @export
- * @interface CreateCollectionRequestDTO
- */
 export interface CreateCollectionRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCollectionRequestDTO
-     */
     'name': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof CreateCollectionRequestDTO
-     */
     'metadata': object;
 }
-/**
- * 
- * @export
- * @interface CreateDocumentRequestDTO
- */
 export interface CreateDocumentRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateDocumentRequestDTO
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateDocumentRequestDTO
-     */
     'document': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof CreateDocumentRequestDTO
-     */
     'metadata': object;
 }
-/**
- * 
- * @export
- * @interface FatalErrorExceptionResponse
- */
 export interface FatalErrorExceptionResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof FatalErrorExceptionResponse
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface ForbiddenExceptionResponse
- */
 export interface ForbiddenExceptionResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof ForbiddenExceptionResponse
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface MessageResponseDTO
- */
 export interface MessageResponseDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof MessageResponseDTO
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface NotFoundExceptionResponse
- */
 export interface NotFoundExceptionResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof NotFoundExceptionResponse
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface SimilaritySearchQueryDTO
- */
 export interface SimilaritySearchQueryDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof SimilaritySearchQueryDTO
-     */
     'query': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof SimilaritySearchQueryDTO
-     */
     'params': object;
-    /**
-     * 
-     * @type {object}
-     * @memberof SimilaritySearchQueryDTO
-     */
     'filter': object;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof SimilaritySearchQueryDTO
-     */
     'include': Array<string>;
 }
-/**
- * 
- * @export
- * @interface UnauthorizedExceptionResponse
- */
 export interface UnauthorizedExceptionResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof UnauthorizedExceptionResponse
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface UpdateDocumentRequestDTO
- */
 export interface UpdateDocumentRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateDocumentRequestDTO
-     */
     'document': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof UpdateDocumentRequestDTO
-     */
     'metadata': object;
 }
 
 /**
  * AppApi - axios parameter creator
- * @export
  */
 export const AppApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -252,7 +91,6 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -267,7 +105,6 @@ export const AppApiAxiosParamCreator = function (configuration?: Configuration) 
 
 /**
  * AppApi - functional programming interface
- * @export
  */
 export const AppApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AppApiAxiosParamCreator(configuration)
@@ -288,7 +125,6 @@ export const AppApiFp = function(configuration?: Configuration) {
 
 /**
  * AppApi - factory interface
- * @export
  */
 export const AppApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = AppApiFp(configuration)
@@ -306,16 +142,12 @@ export const AppApiFactory = function (configuration?: Configuration, basePath?:
 
 /**
  * AppApi - object-oriented interface
- * @export
- * @class AppApi
- * @extends {BaseAPI}
  */
 export class AppApi extends BaseAPI {
     /**
      * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AppApi
      */
     public appControllerGetHello(options?: RawAxiosRequestConfig) {
         return AppApiFp(this.configuration).appControllerGetHello(options).then((request) => request(this.axios, this.basePath));
@@ -326,7 +158,6 @@ export class AppApi extends BaseAPI {
 
 /**
  * CollectionApi - axios parameter creator
- * @export
  */
 export const CollectionApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -356,9 +187,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -396,9 +226,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -432,9 +261,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -469,8 +297,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -507,8 +335,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -548,8 +376,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
                 localVarQueryParameter['filter'] = filter;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -582,8 +410,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -612,8 +440,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -650,8 +478,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -687,9 +515,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -727,9 +554,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -771,9 +597,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -790,7 +615,6 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
 
 /**
  * CollectionApi - functional programming interface
- * @export
  */
 export const CollectionApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CollectionApiAxiosParamCreator(configuration)
@@ -964,7 +788,6 @@ export const CollectionApiFp = function(configuration?: Configuration) {
 
 /**
  * CollectionApi - factory interface
- * @export
  */
 export const CollectionApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = CollectionApiFp(configuration)
@@ -1102,9 +925,6 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
 
 /**
  * CollectionApi - object-oriented interface
- * @export
- * @class CollectionApi
- * @extends {BaseAPI}
  */
 export class CollectionApi extends BaseAPI {
     /**
@@ -1114,7 +934,6 @@ export class CollectionApi extends BaseAPI {
      * @param {CreateDocumentRequestDTO} createDocumentRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerAddDocToCollection(collectionId: string, createDocumentRequestDTO: CreateDocumentRequestDTO, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerAddDocToCollection(collectionId, createDocumentRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -1127,7 +946,6 @@ export class CollectionApi extends BaseAPI {
      * @param {ChunkFileRequestDTO} chunkFileRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerChunkFileToCollection(collectionId: string, chunkFileRequestDTO: ChunkFileRequestDTO, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerChunkFileToCollection(collectionId, chunkFileRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -1139,7 +957,6 @@ export class CollectionApi extends BaseAPI {
      * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerCreateCollection(createCollectionRequestDTO: CreateCollectionRequestDTO, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerCreateCollection(createCollectionRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -1151,7 +968,6 @@ export class CollectionApi extends BaseAPI {
      * @param {string} collectionId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerDeleteCollection(collectionId: string, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerDeleteCollection(collectionId, options).then((request) => request(this.axios, this.basePath));
@@ -1164,7 +980,6 @@ export class CollectionApi extends BaseAPI {
      * @param {string} docId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerDeleteDoc(collectionId: string, docId: string, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerDeleteDoc(collectionId, docId, options).then((request) => request(this.axios, this.basePath));
@@ -1177,7 +992,6 @@ export class CollectionApi extends BaseAPI {
      * @param {string} filter 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerDeleteDocsByMetadata(collectionId: string, filter: string, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerDeleteDocsByMetadata(collectionId, filter, options).then((request) => request(this.axios, this.basePath));
@@ -1189,7 +1003,6 @@ export class CollectionApi extends BaseAPI {
      * @param {string} collectionId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerGetCollection(collectionId: string, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerGetCollection(collectionId, options).then((request) => request(this.axios, this.basePath));
@@ -1200,7 +1013,6 @@ export class CollectionApi extends BaseAPI {
      * @summary List all collections
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerGetCollections(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerGetCollections(options).then((request) => request(this.axios, this.basePath));
@@ -1213,7 +1025,6 @@ export class CollectionApi extends BaseAPI {
      * @param {string} docId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerGetDocById(collectionId: string, docId: string, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerGetDocById(collectionId, docId, options).then((request) => request(this.axios, this.basePath));
@@ -1226,7 +1037,6 @@ export class CollectionApi extends BaseAPI {
      * @param {SimilaritySearchQueryDTO} similaritySearchQueryDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerSimilaritySearch(collectionId: string, similaritySearchQueryDTO: SimilaritySearchQueryDTO, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerSimilaritySearch(collectionId, similaritySearchQueryDTO, options).then((request) => request(this.axios, this.basePath));
@@ -1239,7 +1049,6 @@ export class CollectionApi extends BaseAPI {
      * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerUpdateCollection(collectionId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerUpdateCollection(collectionId, createCollectionRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -1253,7 +1062,6 @@ export class CollectionApi extends BaseAPI {
      * @param {UpdateDocumentRequestDTO} updateDocumentRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof CollectionApi
      */
     public collectionControllerUpdateDoc(collectionId: string, docId: string, updateDocumentRequestDTO: UpdateDocumentRequestDTO, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).collectionControllerUpdateDoc(collectionId, docId, updateDocumentRequestDTO, options).then((request) => request(this.axios, this.basePath));

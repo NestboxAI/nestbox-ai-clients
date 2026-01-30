@@ -1,4 +1,4 @@
-## @nestbox-ai/admin@1.0.50
+## @nestbox-ai/admin@1.0.53
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @nestbox-ai/admin@1.0.50 --save
+npm install @nestbox-ai/admin@1.0.53 --save
 ```
 
 _unPublished (not recommended):_
@@ -56,6 +56,7 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**authControllerForgetPasswordVerification**](docs/AuthApi.md#authcontrollerforgetpasswordverification) | **POST** /auth/forget-password/verification | Forget password verification
 *AuthApi* | [**authControllerLogin**](docs/AuthApi.md#authcontrollerlogin) | **POST** /auth/login | Login to the application
 *AuthApi* | [**authControllerOAuthLogin**](docs/AuthApi.md#authcontrolleroauthlogin) | **POST** /auth/login/oauth | Login with OAuth apps
+*AuthApi* | [**authControllerRefreshToken**](docs/AuthApi.md#authcontrollerrefreshtoken) | **POST** /auth/google/refresh/{token} | Refresh Google access token
 *AuthApi* | [**authControllerResetPassword**](docs/AuthApi.md#authcontrollerresetpassword) | **POST** /auth/reset-password | Forget password initiate
 *AuthApi* | [**authControllerSignup**](docs/AuthApi.md#authcontrollersignup) | **POST** /auth/signup | Signup in the application
 *DocumentsApi* | [**documentControllerAddDocToCollection**](docs/DocumentsApi.md#documentcontrolleradddoctocollection) | **POST** /projects/{projectId}/document/{instanceId}/collections/{collectionId}/docs | Add a new doc

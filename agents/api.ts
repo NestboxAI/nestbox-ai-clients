@@ -18,76 +18,45 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
-/**
- * 
- * @export
- * @interface AdHocCallbackDto
- */
 export interface AdHocCallbackDto {
     /**
      * URL to send the callback to
-     * @type {string}
-     * @memberof AdHocCallbackDto
      */
     'url': string;
     /**
      * List of event types to subscribe to, such as QUERY_FAILED, QUERY_COMPLETED, etc.
-     * @type {Array<string>}
-     * @memberof AdHocCallbackDto
      */
     'eventTypes': Array<string>;
-    /**
-     * 
-     * @type {object}
-     * @memberof AdHocCallbackDto
-     */
     'headers'?: object;
 }
-/**
- * 
- * @export
- * @interface CreateGuardrailDto
- */
 export interface CreateGuardrailDto {
     /**
      * Whether the guardrail is active
-     * @type {boolean}
-     * @memberof CreateGuardrailDto
      */
     'isActive': boolean;
     /**
      * Threshold setting ranging from 0.0 to 1.0
-     * @type {number}
-     * @memberof CreateGuardrailDto
      */
     'thresholdSetting': number;
     /**
      * Severity level of the guardrail
-     * @type {string}
-     * @memberof CreateGuardrailDto
      */
     'severity': CreateGuardrailDtoSeverityEnum;
     /**
      * Risk level of the guardrail
-     * @type {string}
-     * @memberof CreateGuardrailDto
      */
     'risk': CreateGuardrailDtoRiskEnum;
     /**
      * Flag status for the guardrail
-     * @type {string}
-     * @memberof CreateGuardrailDto
      */
     'flag': CreateGuardrailDtoFlagEnum;
     /**
      * List of users associated with the guardrail
-     * @type {Array<GuardrailUserDto>}
-     * @memberof CreateGuardrailDto
      */
     'guardrailUsers'?: Array<GuardrailUserDto>;
 }
@@ -113,117 +82,67 @@ export const CreateGuardrailDtoFlagEnum = {
 
 export type CreateGuardrailDtoFlagEnum = typeof CreateGuardrailDtoFlagEnum[keyof typeof CreateGuardrailDtoFlagEnum];
 
-/**
- * 
- * @export
- * @interface CreateWebhookDto
- */
 export interface CreateWebhookDto {
     /**
      * The URL for the webhook
-     * @type {string}
-     * @memberof CreateWebhookDto
      */
     'url': string;
     /**
      * Comma-separated notifications. Valid values: QUERY_CREATED, QUERY_COMPLETED, QUERY_FAILED, EVENT_CREATED, EVENT_UPDATED
-     * @type {string}
-     * @memberof CreateWebhookDto
      */
     'notifications': string;
 }
-/**
- * 
- * @export
- * @interface GuardrailUserDto
- */
 export interface GuardrailUserDto {
     /**
      * Username of the user
-     * @type {string}
-     * @memberof GuardrailUserDto
      */
     'userName': string;
     /**
      * Email of the user
-     * @type {string}
-     * @memberof GuardrailUserDto
      */
     'email': string;
 }
-/**
- * 
- * @export
- * @interface MessageDto
- */
 export interface MessageDto {
     /**
      * Unique message ID
-     * @type {string}
-     * @memberof MessageDto
      */
     'id': string;
     /**
      * Role of the message sender (system, user, assistant)
-     * @type {string}
-     * @memberof MessageDto
      */
     'role': string;
     /**
      * Content of the message
-     * @type {string}
-     * @memberof MessageDto
      */
     'content': string;
 }
-/**
- * 
- * @export
- * @interface QueryHandlerDto
- */
 export interface QueryHandlerDto {
     /**
      * Parameters for the query
-     * @type {object}
-     * @memberof QueryHandlerDto
      */
     'params': object;
     /**
      * Messages to send to the agent
-     * @type {Array<MessageDto>}
-     * @memberof QueryHandlerDto
      */
     'messages'?: Array<MessageDto>;
     /**
      * Ephemeral callback registration webhook
-     * @type {AdHocCallbackDto}
-     * @memberof QueryHandlerDto
      */
     'adHocCallback'?: AdHocCallbackDto;
 }
-/**
- * 
- * @export
- * @interface UpdateWebhookDto
- */
 export interface UpdateWebhookDto {
     /**
      * The URL for the webhook
-     * @type {string}
-     * @memberof UpdateWebhookDto
      */
     'url'?: string;
     /**
      * Comma-separated notifications. Valid values: QUERY_CREATED, QUERY_COMPLETED, QUERY_FAILED, EVENT_CREATED, EVENT_UPDATED
-     * @type {string}
-     * @memberof UpdateWebhookDto
      */
     'notifications'?: string;
 }
 
 /**
  * ChatApi - axios parameter creator
- * @export
  */
 export const ChatApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -252,8 +171,6 @@ export const ChatApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -271,7 +188,6 @@ export const ChatApiAxiosParamCreator = function (configuration?: Configuration)
 
 /**
  * ChatApi - functional programming interface
- * @export
  */
 export const ChatApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ChatApiAxiosParamCreator(configuration)
@@ -294,7 +210,6 @@ export const ChatApiFp = function(configuration?: Configuration) {
 
 /**
  * ChatApi - factory interface
- * @export
  */
 export const ChatApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ChatApiFp(configuration)
@@ -314,9 +229,6 @@ export const ChatApiFactory = function (configuration?: Configuration, basePath?
 
 /**
  * ChatApi - object-oriented interface
- * @export
- * @class ChatApi
- * @extends {BaseAPI}
  */
 export class ChatApi extends BaseAPI {
     /**
@@ -325,7 +237,6 @@ export class ChatApi extends BaseAPI {
      * @param {QueryHandlerDto} queryHandlerDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ChatApi
      */
     public agentOperationsChatControllerCreateQuery(id: string, queryHandlerDto: QueryHandlerDto, options?: RawAxiosRequestConfig) {
         return ChatApiFp(this.configuration).agentOperationsChatControllerCreateQuery(id, queryHandlerDto, options).then((request) => request(this.axios, this.basePath));
@@ -336,7 +247,6 @@ export class ChatApi extends BaseAPI {
 
 /**
  * EventLogsApi - axios parameter creator
- * @export
  */
 export const EventLogsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -377,7 +287,6 @@ export const EventLogsApiAxiosParamCreator = function (configuration?: Configura
             }
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -417,7 +326,6 @@ export const EventLogsApiAxiosParamCreator = function (configuration?: Configura
             }
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -432,7 +340,6 @@ export const EventLogsApiAxiosParamCreator = function (configuration?: Configura
 
 /**
  * EventLogsApi - functional programming interface
- * @export
  */
 export const EventLogsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = EventLogsApiAxiosParamCreator(configuration)
@@ -469,7 +376,6 @@ export const EventLogsApiFp = function(configuration?: Configuration) {
 
 /**
  * EventLogsApi - factory interface
- * @export
  */
 export const EventLogsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = EventLogsApiFp(configuration)
@@ -500,9 +406,6 @@ export const EventLogsApiFactory = function (configuration?: Configuration, base
 
 /**
  * EventLogsApi - object-oriented interface
- * @export
- * @class EventLogsApi
- * @extends {BaseAPI}
  */
 export class EventLogsApi extends BaseAPI {
     /**
@@ -512,7 +415,6 @@ export class EventLogsApi extends BaseAPI {
      * @param {string} limit 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EventLogsApi
      */
     public agentOperationsEventLogsControllerGetEventLogs(id: string, page: string, limit: string, options?: RawAxiosRequestConfig) {
         return EventLogsApiFp(this.configuration).agentOperationsEventLogsControllerGetEventLogs(id, page, limit, options).then((request) => request(this.axios, this.basePath));
@@ -524,7 +426,6 @@ export class EventLogsApi extends BaseAPI {
      * @param {string} queryId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EventLogsApi
      */
     public agentOperationsEventLogsControllerGetEventLogsByQueryId(id: string, queryId: string, options?: RawAxiosRequestConfig) {
         return EventLogsApiFp(this.configuration).agentOperationsEventLogsControllerGetEventLogsByQueryId(id, queryId, options).then((request) => request(this.axios, this.basePath));
@@ -535,7 +436,6 @@ export class EventLogsApi extends BaseAPI {
 
 /**
  * GuardrailsApi - axios parameter creator
- * @export
  */
 export const GuardrailsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -564,8 +464,6 @@ export const GuardrailsApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -605,7 +503,6 @@ export const GuardrailsApiAxiosParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -638,7 +535,6 @@ export const GuardrailsApiAxiosParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -675,7 +571,6 @@ export const GuardrailsApiAxiosParamCreator = function (configuration?: Configur
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -714,8 +609,6 @@ export const GuardrailsApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -733,7 +626,6 @@ export const GuardrailsApiAxiosParamCreator = function (configuration?: Configur
 
 /**
  * GuardrailsApi - functional programming interface
- * @export
  */
 export const GuardrailsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = GuardrailsApiAxiosParamCreator(configuration)
@@ -808,7 +700,6 @@ export const GuardrailsApiFp = function(configuration?: Configuration) {
 
 /**
  * GuardrailsApi - factory interface
- * @export
  */
 export const GuardrailsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = GuardrailsApiFp(configuration)
@@ -868,9 +759,6 @@ export const GuardrailsApiFactory = function (configuration?: Configuration, bas
 
 /**
  * GuardrailsApi - object-oriented interface
- * @export
- * @class GuardrailsApi
- * @extends {BaseAPI}
  */
 export class GuardrailsApi extends BaseAPI {
     /**
@@ -879,7 +767,6 @@ export class GuardrailsApi extends BaseAPI {
      * @param {CreateGuardrailDto} createGuardrailDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GuardrailsApi
      */
     public agentOperationsGuardrailsControllerCreateGuardrails(id: string, createGuardrailDto: CreateGuardrailDto, options?: RawAxiosRequestConfig) {
         return GuardrailsApiFp(this.configuration).agentOperationsGuardrailsControllerCreateGuardrails(id, createGuardrailDto, options).then((request) => request(this.axios, this.basePath));
@@ -891,7 +778,6 @@ export class GuardrailsApi extends BaseAPI {
      * @param {string} guardrailsId ID of the guardrails.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GuardrailsApi
      */
     public agentOperationsGuardrailsControllerDeleteGuardrails(id: string, guardrailsId: string, options?: RawAxiosRequestConfig) {
         return GuardrailsApiFp(this.configuration).agentOperationsGuardrailsControllerDeleteGuardrails(id, guardrailsId, options).then((request) => request(this.axios, this.basePath));
@@ -902,7 +788,6 @@ export class GuardrailsApi extends BaseAPI {
      * @param {string} id ID of the agent.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GuardrailsApi
      */
     public agentOperationsGuardrailsControllerGetAllGuardrails(id: string, options?: RawAxiosRequestConfig) {
         return GuardrailsApiFp(this.configuration).agentOperationsGuardrailsControllerGetAllGuardrails(id, options).then((request) => request(this.axios, this.basePath));
@@ -914,7 +799,6 @@ export class GuardrailsApi extends BaseAPI {
      * @param {string} guardrailsId ID of the guardrails.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GuardrailsApi
      */
     public agentOperationsGuardrailsControllerGetGuardrails(id: string, guardrailsId: string, options?: RawAxiosRequestConfig) {
         return GuardrailsApiFp(this.configuration).agentOperationsGuardrailsControllerGetGuardrails(id, guardrailsId, options).then((request) => request(this.axios, this.basePath));
@@ -927,7 +811,6 @@ export class GuardrailsApi extends BaseAPI {
      * @param {CreateGuardrailDto} createGuardrailDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof GuardrailsApi
      */
     public agentOperationsGuardrailsControllerUpdateGuardrails(id: string, guardrailsId: string, createGuardrailDto: CreateGuardrailDto, options?: RawAxiosRequestConfig) {
         return GuardrailsApiFp(this.configuration).agentOperationsGuardrailsControllerUpdateGuardrails(id, guardrailsId, createGuardrailDto, options).then((request) => request(this.axios, this.basePath));
@@ -938,7 +821,6 @@ export class GuardrailsApi extends BaseAPI {
 
 /**
  * QueryApi - axios parameter creator
- * @export
  */
 export const QueryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -967,8 +849,6 @@ export const QueryApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -986,7 +866,6 @@ export const QueryApiAxiosParamCreator = function (configuration?: Configuration
 
 /**
  * QueryApi - functional programming interface
- * @export
  */
 export const QueryApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = QueryApiAxiosParamCreator(configuration)
@@ -1009,7 +888,6 @@ export const QueryApiFp = function(configuration?: Configuration) {
 
 /**
  * QueryApi - factory interface
- * @export
  */
 export const QueryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = QueryApiFp(configuration)
@@ -1029,9 +907,6 @@ export const QueryApiFactory = function (configuration?: Configuration, basePath
 
 /**
  * QueryApi - object-oriented interface
- * @export
- * @class QueryApi
- * @extends {BaseAPI}
  */
 export class QueryApi extends BaseAPI {
     /**
@@ -1040,7 +915,6 @@ export class QueryApi extends BaseAPI {
      * @param {QueryHandlerDto} queryHandlerDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof QueryApi
      */
     public agentOperationsQueryControllerCreateQuery(id: string, queryHandlerDto: QueryHandlerDto, options?: RawAxiosRequestConfig) {
         return QueryApiFp(this.configuration).agentOperationsQueryControllerCreateQuery(id, queryHandlerDto, options).then((request) => request(this.axios, this.basePath));
@@ -1051,7 +925,6 @@ export class QueryApi extends BaseAPI {
 
 /**
  * ServerLiveStatusApi - axios parameter creator
- * @export
  */
 export const ServerLiveStatusApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -1074,7 +947,6 @@ export const ServerLiveStatusApiAxiosParamCreator = function (configuration?: Co
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -1089,7 +961,6 @@ export const ServerLiveStatusApiAxiosParamCreator = function (configuration?: Co
 
 /**
  * ServerLiveStatusApi - functional programming interface
- * @export
  */
 export const ServerLiveStatusApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ServerLiveStatusApiAxiosParamCreator(configuration)
@@ -1110,7 +981,6 @@ export const ServerLiveStatusApiFp = function(configuration?: Configuration) {
 
 /**
  * ServerLiveStatusApi - factory interface
- * @export
  */
 export const ServerLiveStatusApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ServerLiveStatusApiFp(configuration)
@@ -1128,16 +998,12 @@ export const ServerLiveStatusApiFactory = function (configuration?: Configuratio
 
 /**
  * ServerLiveStatusApi - object-oriented interface
- * @export
- * @class ServerLiveStatusApi
- * @extends {BaseAPI}
  */
 export class ServerLiveStatusApi extends BaseAPI {
     /**
      * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ServerLiveStatusApi
      */
     public appControllerGetStatus(options?: RawAxiosRequestConfig) {
         return ServerLiveStatusApiFp(this.configuration).appControllerGetStatus(options).then((request) => request(this.axios, this.basePath));
@@ -1148,7 +1014,6 @@ export class ServerLiveStatusApi extends BaseAPI {
 
 /**
  * WebhooksApi - axios parameter creator
- * @export
  */
 export const WebhooksApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -1177,8 +1042,6 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -1218,7 +1081,6 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -1251,7 +1113,6 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -1288,7 +1149,6 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             const localVarQueryParameter = {} as any;
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -1327,8 +1187,6 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -1346,7 +1204,6 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * WebhooksApi - functional programming interface
- * @export
  */
 export const WebhooksApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = WebhooksApiAxiosParamCreator(configuration)
@@ -1421,7 +1278,6 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
 
 /**
  * WebhooksApi - factory interface
- * @export
  */
 export const WebhooksApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = WebhooksApiFp(configuration)
@@ -1481,9 +1337,6 @@ export const WebhooksApiFactory = function (configuration?: Configuration, baseP
 
 /**
  * WebhooksApi - object-oriented interface
- * @export
- * @class WebhooksApi
- * @extends {BaseAPI}
  */
 export class WebhooksApi extends BaseAPI {
     /**
@@ -1492,7 +1345,6 @@ export class WebhooksApi extends BaseAPI {
      * @param {CreateWebhookDto} createWebhookDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
     public agentOperationsWebhooksControllerCreateWebhook(id: string, createWebhookDto: CreateWebhookDto, options?: RawAxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).agentOperationsWebhooksControllerCreateWebhook(id, createWebhookDto, options).then((request) => request(this.axios, this.basePath));
@@ -1504,7 +1356,6 @@ export class WebhooksApi extends BaseAPI {
      * @param {string} webhookId ID of the webhook.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
     public agentOperationsWebhooksControllerDeleteWebhook(id: string, webhookId: string, options?: RawAxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).agentOperationsWebhooksControllerDeleteWebhook(id, webhookId, options).then((request) => request(this.axios, this.basePath));
@@ -1515,7 +1366,6 @@ export class WebhooksApi extends BaseAPI {
      * @param {string} id ID of the agent.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
     public agentOperationsWebhooksControllerGetAllWebhooks(id: string, options?: RawAxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).agentOperationsWebhooksControllerGetAllWebhooks(id, options).then((request) => request(this.axios, this.basePath));
@@ -1527,7 +1377,6 @@ export class WebhooksApi extends BaseAPI {
      * @param {string} webhookId ID of the webhook.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
     public agentOperationsWebhooksControllerGetWebhook(id: string, webhookId: string, options?: RawAxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).agentOperationsWebhooksControllerGetWebhook(id, webhookId, options).then((request) => request(this.axios, this.basePath));
@@ -1540,7 +1389,6 @@ export class WebhooksApi extends BaseAPI {
      * @param {UpdateWebhookDto} updateWebhookDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhooksApi
      */
     public agentOperationsWebhooksControllerUpdateWebhook(id: string, webhookId: string, updateWebhookDto: UpdateWebhookDto, options?: RawAxiosRequestConfig) {
         return WebhooksApiFp(this.configuration).agentOperationsWebhooksControllerUpdateWebhook(id, webhookId, updateWebhookDto, options).then((request) => request(this.axios, this.basePath));

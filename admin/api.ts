@@ -18,949 +18,243 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
-/**
- * 
- * @export
- * @interface AddProjectMemberData
- */
 export interface AddProjectMemberData {
-    /**
-     * 
-     * @type {string}
-     * @memberof AddProjectMemberData
-     */
     'message': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof AddProjectMemberData
-     */
     'project': object;
 }
-/**
- * 
- * @export
- * @interface AddProjectMemberDto
- */
 export interface AddProjectMemberDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof AddProjectMemberDto
-     */
     'firstName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddProjectMemberDto
-     */
     'lastName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AddProjectMemberDto
-     */
     'email': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof AddProjectMemberDto
-     */
     'roleId': number;
 }
-/**
- * 
- * @export
- * @interface AddProjectMemberResponseDTO
- */
 export interface AddProjectMemberResponseDTO {
-    /**
-     * 
-     * @type {AddProjectMemberData}
-     * @memberof AddProjectMemberResponseDTO
-     */
     'data': AddProjectMemberData;
 }
-/**
- * 
- * @export
- * @interface AllProjectResponse
- */
 export interface AllProjectResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof AllProjectResponse
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AllProjectResponse
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AllProjectResponse
-     */
     'description': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AllProjectResponse
-     */
     'createdAt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AllProjectResponse
-     */
     'updatedAt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof AllProjectResponse
-     */
     'deletedAt': string;
 }
-/**
- * 
- * @export
- * @interface AllProjectResponseModel
- */
 export interface AllProjectResponseModel {
-    /**
-     * 
-     * @type {Array<AllProjectResponse>}
-     * @memberof AllProjectResponseModel
-     */
     'projects': Array<AllProjectResponse>;
-    /**
-     * 
-     * @type {number}
-     * @memberof AllProjectResponseModel
-     */
     'totalCount': number;
 }
-/**
- * 
- * @export
- * @interface BadRequestExceptionResponse
- */
 export interface BadRequestExceptionResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof BadRequestExceptionResponse
-     */
     'message': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof BadRequestExceptionResponse
-     */
     'errors': object | null;
 }
-/**
- * 
- * @export
- * @interface BenchmarkingDatapointDto
- */
 export interface BenchmarkingDatapointDto {
     /**
      * Combined content of all benchmarking lines
-     * @type {string}
-     * @memberof BenchmarkingDatapointDto
      */
     'lines': string;
     /**
      * Total number of lines found
-     * @type {number}
-     * @memberof BenchmarkingDatapointDto
      */
     'totalLines': number;
 }
-/**
- * 
- * @export
- * @interface BenchmarkingReportsDto
- */
 export interface BenchmarkingReportsDto {
     /**
      * Combined markdown content of all benchmarking reports
-     * @type {string}
-     * @memberof BenchmarkingReportsDto
      */
     'content': string;
     /**
      * Total number of reports found
-     * @type {number}
-     * @memberof BenchmarkingReportsDto
      */
     'totalReports': number;
 }
-/**
- * 
- * @export
- * @interface BooleanResponseDTO
- */
 export interface BooleanResponseDTO {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof BooleanResponseDTO
-     */
     'data': boolean;
 }
-/**
- * 
- * @export
- * @interface ChunkFileRequestDTO
- */
 export interface ChunkFileRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof ChunkFileRequestDTO
-     */
     'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ChunkFileRequestDTO
-     */
     'url': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof ChunkFileRequestDTO
-     */
     'options': object;
 }
-/**
- * 
- * @export
- * @interface CreateCollectionRequestDTO
- */
 export interface CreateCollectionRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCollectionRequestDTO
-     */
     'name': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof CreateCollectionRequestDTO
-     */
     'metadata': object;
 }
-/**
- * 
- * @export
- * @interface CreateDocumentRequestDTO
- */
 export interface CreateDocumentRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateDocumentRequestDTO
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateDocumentRequestDTO
-     */
     'document': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof CreateDocumentRequestDTO
-     */
     'metadata': object;
 }
-/**
- * 
- * @export
- * @interface CreateMachineAgentDto
- */
 export interface CreateMachineAgentDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'agentName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'goal': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'modelBaseId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'machineName': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateMachineAgentDto
-     */
     'machineInstanceId': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'instanceIP': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'entryFunctionName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'machineManifestId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateMachineAgentDto
-     */
     'projectId': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateMachineAgentDto
-     */
     'userId': number;
     /**
      * Optional Input Schema JSON for agent.
-     * @type {object}
-     * @memberof CreateMachineAgentDto
      */
     'inputSchema'?: object;
 }
-/**
- * 
- * @export
- * @interface CreatePermissionDto
- */
 export interface CreatePermissionDto {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreatePermissionDto
-     */
     'read': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreatePermissionDto
-     */
     'write': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreatePermissionDto
-     */
     'update': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreatePermissionDto
-     */
     'delete': boolean;
 }
-/**
- * 
- * @export
- * @interface CreateProjectDTO
- */
 export interface CreateProjectDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateProjectDTO
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateProjectDTO
-     */
     'description': string;
 }
-/**
- * 
- * @export
- * @interface CreateProjectResponseDTO
- */
 export interface CreateProjectResponseDTO {
-    /**
-     * 
-     * @type {ProjectResponseModel}
-     * @memberof CreateProjectResponseDTO
-     */
     'data': ProjectResponseModel;
 }
-/**
- * 
- * @export
- * @interface CreateProjectRoleResponseDto
- */
 export interface CreateProjectRoleResponseDto {
-    /**
-     * 
-     * @type {CreateRoleDTO}
-     * @memberof CreateProjectRoleResponseDto
-     */
     'data': CreateRoleDTO;
 }
-/**
- * 
- * @export
- * @interface CreateResourceDto
- */
 export interface CreateResourceDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateResourceDto
-     */
     'name': string;
-    /**
-     * 
-     * @type {Array<CreatePermissionDto>}
-     * @memberof CreateResourceDto
-     */
     'permissions': Array<CreatePermissionDto>;
 }
-/**
- * 
- * @export
- * @interface CreateRoleDTO
- */
 export interface CreateRoleDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRoleDTO
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRoleDTO
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRoleDTO
-     */
     'description': string;
-    /**
-     * 
-     * @type {Array<ResourceDTO>}
-     * @memberof CreateRoleDTO
-     */
     'resources': Array<ResourceDTO>;
 }
-/**
- * 
- * @export
- * @interface CreateRoleDto
- */
 export interface CreateRoleDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRoleDto
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRoleDto
-     */
     'description': string;
-    /**
-     * 
-     * @type {Array<CreateResourceDto>}
-     * @memberof CreateRoleDto
-     */
     'resources': Array<CreateResourceDto>;
 }
-/**
- * 
- * @export
- * @interface CreateWebhookDto
- */
 export interface CreateWebhookDto {
     /**
      * The URL for the webhook
-     * @type {string}
-     * @memberof CreateWebhookDto
      */
     'url': string;
     /**
      * Comma-separated notifications. Valid values: QUERY_CREATED, QUERY_COMPLETED, QUERY_FAILED, EVENT_CREATED, EVENT_UPDATED
-     * @type {string}
-     * @memberof CreateWebhookDto
      */
     'notifications': string;
 }
-/**
- * 
- * @export
- * @interface DeleteProjectDto
- */
 export interface DeleteProjectDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeleteProjectDto
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface DeleteProjectResponseDTO
- */
 export interface DeleteProjectResponseDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof DeleteProjectResponseDTO
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface DeleteProjectRoleByIdResponseDto
- */
 export interface DeleteProjectRoleByIdResponseDto {
-    /**
-     * 
-     * @type {DeleteProjectDto}
-     * @memberof DeleteProjectRoleByIdResponseDto
-     */
     'data': DeleteProjectDto;
 }
-/**
- * 
- * @export
- * @interface FatalErrorExceptionResponse
- */
 export interface FatalErrorExceptionResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof FatalErrorExceptionResponse
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface ForbiddenExceptionResponse
- */
 export interface ForbiddenExceptionResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof ForbiddenExceptionResponse
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface ForgetPasswordRequestDTO
- */
 export interface ForgetPasswordRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof ForgetPasswordRequestDTO
-     */
     'email': string;
 }
-/**
- * 
- * @export
- * @interface ForgetPasswordResponseDTO
- */
 export interface ForgetPasswordResponseDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof ForgetPasswordResponseDTO
-     */
     'token': string;
 }
-/**
- * 
- * @export
- * @interface ForgetPasswordVerificationRequestDTO
- */
 export interface ForgetPasswordVerificationRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof ForgetPasswordVerificationRequestDTO
-     */
     'token': string;
 }
-/**
- * 
- * @export
- * @interface ForgetPasswordVerificationResponseDTO
- */
 export interface ForgetPasswordVerificationResponseDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof ForgetPasswordVerificationResponseDTO
-     */
     'token': string;
 }
-/**
- * 
- * @export
- * @interface GetAllProjectDto
- */
 export interface GetAllProjectDto {
-    /**
-     * 
-     * @type {Array<GetAllRoleDTO>}
-     * @memberof GetAllProjectDto
-     */
     'roles': Array<GetAllRoleDTO>;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetAllProjectDto
-     */
     'totalCount': number;
 }
-/**
- * 
- * @export
- * @interface GetAllProjectMemberResponse
- */
 export interface GetAllProjectMemberResponse {
-    /**
-     * 
-     * @type {Array<TeamMemberDto>}
-     * @memberof GetAllProjectMemberResponse
-     */
     'teamMembers': Array<TeamMemberDto>;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetAllProjectMemberResponse
-     */
     'totalCount': number;
 }
-/**
- * 
- * @export
- * @interface GetAllProjectMemberResponseDto
- */
 export interface GetAllProjectMemberResponseDto {
-    /**
-     * 
-     * @type {GetAllProjectMemberResponse}
-     * @memberof GetAllProjectMemberResponseDto
-     */
     'data': GetAllProjectMemberResponse;
 }
-/**
- * 
- * @export
- * @interface GetAllProjectRoleResponseDto
- */
 export interface GetAllProjectRoleResponseDto {
-    /**
-     * 
-     * @type {GetAllProjectDto}
-     * @memberof GetAllProjectRoleResponseDto
-     */
     'data': GetAllProjectDto;
 }
-/**
- * 
- * @export
- * @interface GetAllProjectsResponseDTO
- */
 export interface GetAllProjectsResponseDTO {
-    /**
-     * 
-     * @type {AllProjectResponseModel}
-     * @memberof GetAllProjectsResponseDTO
-     */
     'data': AllProjectResponseModel;
 }
-/**
- * 
- * @export
- * @interface GetAllRoleDTO
- */
 export interface GetAllRoleDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetAllRoleDTO
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetAllRoleDTO
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetAllRoleDTO
-     */
     'description': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetAllRoleDTO
-     */
     'projectId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetAllRoleDTO
-     */
     'createdAt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetAllRoleDTO
-     */
     'updatedAt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetAllRoleDTO
-     */
     'deletedAt': string;
 }
-/**
- * 
- * @export
- * @interface GetProjectByIDResponseDTO
- */
 export interface GetProjectByIDResponseDTO {
-    /**
-     * 
-     * @type {ProjectResponseModel}
-     * @memberof GetProjectByIDResponseDTO
-     */
     'data': ProjectResponseModel;
 }
-/**
- * 
- * @export
- * @interface GetProjectRoleByIdResponseDto
- */
 export interface GetProjectRoleByIdResponseDto {
-    /**
-     * 
-     * @type {GetRoleDTO}
-     * @memberof GetProjectRoleByIdResponseDto
-     */
     'data': GetRoleDTO;
 }
-/**
- * 
- * @export
- * @interface GetRoleDTO
- */
 export interface GetRoleDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetRoleDTO
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetRoleDTO
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetRoleDTO
-     */
     'description': string;
-    /**
-     * 
-     * @type {Array<ResourceDTO>}
-     * @memberof GetRoleDTO
-     */
     'resources': Array<ResourceDTO>;
 }
-/**
- * 
- * @export
- * @interface GetUserProjectRoleByRoleIdResponseDto
- */
 export interface GetUserProjectRoleByRoleIdResponseDto {
-    /**
-     * 
-     * @type {GetRoleDTO}
-     * @memberof GetUserProjectRoleByRoleIdResponseDto
-     */
     'data': GetRoleDTO;
 }
-/**
- * 
- * @export
- * @interface LoginRequestDTO
- */
 export interface LoginRequestDTO {
     /**
      * Email
-     * @type {string}
-     * @memberof LoginRequestDTO
      */
     'email': string;
     /**
      * Password
-     * @type {string}
-     * @memberof LoginRequestDTO
      */
     'password': string;
 }
-/**
- * 
- * @export
- * @interface LoginResponseDTO
- */
 export interface LoginResponseDTO {
     /**
      * Token
-     * @type {string}
-     * @memberof LoginResponseDTO
      */
     'token': string;
 }
-/**
- * 
- * @export
- * @interface MachineStatusDto
- */
 export interface MachineStatusDto {
     /**
      * Current status of the machine instance
-     * @type {string}
-     * @memberof MachineStatusDto
      */
     'status': string;
     /**
      * Logs from the machine instance execution
-     * @type {string}
-     * @memberof MachineStatusDto
      */
     'logs': string;
     /**
      * Timestamp of the status update
-     * @type {string}
-     * @memberof MachineStatusDto
      */
     'timeStamp': string;
 }
-/**
- * 
- * @export
- * @interface MessageResponseDTO
- */
 export interface MessageResponseDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof MessageResponseDTO
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface NotFoundExceptionResponse
- */
 export interface NotFoundExceptionResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof NotFoundExceptionResponse
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface OAuthLoginRequestDTO
- */
 export interface OAuthLoginRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof OAuthLoginRequestDTO
-     */
     'providerId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OAuthLoginRequestDTO
-     */
     'type': OAuthLoginRequestDTOTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof OAuthLoginRequestDTO
-     */
     'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OAuthLoginRequestDTO
-     */
     'profilePictureUrl': string;
 }
 
@@ -971,208 +265,43 @@ export const OAuthLoginRequestDTOTypeEnum = {
 
 export type OAuthLoginRequestDTOTypeEnum = typeof OAuthLoginRequestDTOTypeEnum[keyof typeof OAuthLoginRequestDTOTypeEnum];
 
-/**
- * 
- * @export
- * @interface PermissionsDTO
- */
 export interface PermissionsDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof PermissionsDTO
-     */
     'id': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PermissionsDTO
-     */
     'read': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PermissionsDTO
-     */
     'write': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PermissionsDTO
-     */
     'update': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PermissionsDTO
-     */
     'delete': boolean;
 }
-/**
- * 
- * @export
- * @interface ProjectResponseModel
- */
 export interface ProjectResponseModel {
-    /**
-     * 
-     * @type {string}
-     * @memberof ProjectResponseModel
-     */
     'id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProjectResponseModel
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProjectResponseModel
-     */
     'description': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProjectResponseModel
-     */
     'createdAt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProjectResponseModel
-     */
     'updatedAt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProjectResponseModel
-     */
     'deletedAt': string;
 }
-/**
- * 
- * @export
- * @interface ResetPasswordRequestDTO
- */
 export interface ResetPasswordRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof ResetPasswordRequestDTO
-     */
     'token': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ResetPasswordRequestDTO
-     */
     'password': string;
 }
-/**
- * 
- * @export
- * @interface ResourceDTO
- */
 export interface ResourceDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof ResourceDTO
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof ResourceDTO
-     */
     'name': string;
-    /**
-     * 
-     * @type {Array<PermissionsDTO>}
-     * @memberof ResourceDTO
-     */
     'permissions': Array<PermissionsDTO>;
 }
-/**
- * 
- * @export
- * @interface RoleDto
- */
 export interface RoleDto {
-    /**
-     * 
-     * @type {number}
-     * @memberof RoleDto
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RoleDto
-     */
     'name': string;
 }
-/**
- * 
- * @export
- * @interface SignupRequestDTO
- */
 export interface SignupRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequestDTO
-     */
     'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequestDTO
-     */
     'password'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequestDTO
-     */
     'firstName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequestDTO
-     */
     'lastName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequestDTO
-     */
     'phone': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequestDTO
-     */
     'providerId'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequestDTO
-     */
     'providerType'?: SignupRequestDTOProviderTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequestDTO
-     */
     'image'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof SignupRequestDTO
-     */
     'profilePictureUrl': string;
 }
 
@@ -1183,361 +312,83 @@ export const SignupRequestDTOProviderTypeEnum = {
 
 export type SignupRequestDTOProviderTypeEnum = typeof SignupRequestDTOProviderTypeEnum[keyof typeof SignupRequestDTOProviderTypeEnum];
 
-/**
- * 
- * @export
- * @interface SignupResponseDTO
- */
 export interface SignupResponseDTO {
     /**
      * Token
-     * @type {string}
-     * @memberof SignupResponseDTO
      */
     'token': string;
 }
-/**
- * 
- * @export
- * @interface SimilaritySearchQueryDTO
- */
 export interface SimilaritySearchQueryDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof SimilaritySearchQueryDTO
-     */
     'query': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof SimilaritySearchQueryDTO
-     */
     'params': object;
-    /**
-     * 
-     * @type {object}
-     * @memberof SimilaritySearchQueryDTO
-     */
     'filter': object;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof SimilaritySearchQueryDTO
-     */
     'include': Array<string>;
 }
-/**
- * 
- * @export
- * @interface TeamMemberDto
- */
 export interface TeamMemberDto {
-    /**
-     * 
-     * @type {number}
-     * @memberof TeamMemberDto
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof TeamMemberDto
-     */
     'status': string;
-    /**
-     * 
-     * @type {UserDto}
-     * @memberof TeamMemberDto
-     */
     'user': UserDto;
-    /**
-     * 
-     * @type {RoleDto}
-     * @memberof TeamMemberDto
-     */
     'role': RoleDto;
 }
-/**
- * 
- * @export
- * @interface UnauthorizedExceptionResponse
- */
 export interface UnauthorizedExceptionResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof UnauthorizedExceptionResponse
-     */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface UpdateDocumentRequestDTO
- */
 export interface UpdateDocumentRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateDocumentRequestDTO
-     */
     'document': string;
-    /**
-     * 
-     * @type {object}
-     * @memberof UpdateDocumentRequestDTO
-     */
     'metadata': object;
 }
-/**
- * 
- * @export
- * @interface UpdatePermissionDto
- */
 export interface UpdatePermissionDto {
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdatePermissionDto
-     */
     'id': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdatePermissionDto
-     */
     'read': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdatePermissionDto
-     */
     'write': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdatePermissionDto
-     */
     'update': boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdatePermissionDto
-     */
     'delete': boolean;
 }
-/**
- * 
- * @export
- * @interface UpdateProjectByIDResponseDTO
- */
 export interface UpdateProjectByIDResponseDTO {
-    /**
-     * 
-     * @type {ProjectResponseModel}
-     * @memberof UpdateProjectByIDResponseDTO
-     */
     'data': ProjectResponseModel;
 }
-/**
- * 
- * @export
- * @interface UpdateProjectByIdRequest
- */
 export interface UpdateProjectByIdRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateProjectByIdRequest
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateProjectByIdRequest
-     */
     'description': string;
 }
-/**
- * 
- * @export
- * @interface UpdateProjectRoleResponseDto
- */
 export interface UpdateProjectRoleResponseDto {
-    /**
-     * 
-     * @type {UpdateRoleDTO}
-     * @memberof UpdateProjectRoleResponseDto
-     */
     'data': UpdateRoleDTO;
 }
-/**
- * 
- * @export
- * @interface UpdateResourceDto
- */
 export interface UpdateResourceDto {
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateResourceDto
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateResourceDto
-     */
     'name': string;
-    /**
-     * 
-     * @type {Array<UpdatePermissionDto>}
-     * @memberof UpdateResourceDto
-     */
     'permissions': Array<UpdatePermissionDto>;
 }
-/**
- * 
- * @export
- * @interface UpdateRoleByIdDto
- */
 export interface UpdateRoleByIdDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRoleByIdDto
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRoleByIdDto
-     */
     'description': string;
-    /**
-     * 
-     * @type {Array<UpdateResourceDto>}
-     * @memberof UpdateRoleByIdDto
-     */
     'resources': Array<UpdateResourceDto>;
 }
-/**
- * 
- * @export
- * @interface UpdateRoleDTO
- */
 export interface UpdateRoleDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateRoleDTO
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRoleDTO
-     */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRoleDTO
-     */
     'description': string;
-    /**
-     * 
-     * @type {Array<ResourceDTO>}
-     * @memberof UpdateRoleDTO
-     */
     'resources': Array<ResourceDTO>;
 }
-/**
- * 
- * @export
- * @interface UpdateTeamMemberRequestDTO
- */
 export interface UpdateTeamMemberRequestDTO {
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateTeamMemberRequestDTO
-     */
     'roleId': number;
 }
-/**
- * 
- * @export
- * @interface UpdateTeamMemberStatusRequestDTO
- */
 export interface UpdateTeamMemberStatusRequestDTO {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateTeamMemberStatusRequestDTO
-     */
     'status': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateTeamMemberStatusRequestDTO
-     */
     'token': string;
 }
-/**
- * 
- * @export
- * @interface UserDto
- */
 export interface UserDto {
-    /**
-     * 
-     * @type {number}
-     * @memberof UserDto
-     */
     'id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDto
-     */
     'firstName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDto
-     */
     'lastName': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDto
-     */
     'email': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDto
-     */
     'status': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDto
-     */
     'profilePicture': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UserDto
-     */
     'bio': string;
 }
 
 /**
  * AuthApi - axios parameter creator
- * @export
  */
 export const AuthApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -1564,8 +415,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -1597,9 +448,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1633,9 +483,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1669,9 +518,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1705,14 +553,47 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(oAuthLoginRequestDTO, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Refresh Google access token
+         * @param {string} token 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authControllerRefreshToken: async (token: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'token' is not null or undefined
+            assertParamExists('authControllerRefreshToken', 'token', token)
+            const localVarPath = `/auth/google/refresh/{token}`
+                .replace(`{${"token"}}`, encodeURIComponent(String(token)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1741,9 +622,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1777,9 +657,8 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1796,7 +675,6 @@ export const AuthApiAxiosParamCreator = function (configuration?: Configuration)
 
 /**
  * AuthApi - functional programming interface
- * @export
  */
 export const AuthApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AuthApiAxiosParamCreator(configuration)
@@ -1868,6 +746,19 @@ export const AuthApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Refresh Google access token
+         * @param {string} token 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async authControllerRefreshToken(token: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.authControllerRefreshToken(token, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuthApi.authControllerRefreshToken']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Forget password initiate
          * @param {ResetPasswordRequestDTO} resetPasswordRequestDTO 
          * @param {*} [options] Override http request option.
@@ -1897,7 +788,6 @@ export const AuthApiFp = function(configuration?: Configuration) {
 
 /**
  * AuthApi - factory interface
- * @export
  */
 export const AuthApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = AuthApiFp(configuration)
@@ -1954,6 +844,16 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
+         * @summary Refresh Google access token
+         * @param {string} token 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        authControllerRefreshToken(token: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.authControllerRefreshToken(token, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Forget password initiate
          * @param {ResetPasswordRequestDTO} resetPasswordRequestDTO 
          * @param {*} [options] Override http request option.
@@ -1977,9 +877,6 @@ export const AuthApiFactory = function (configuration?: Configuration, basePath?
 
 /**
  * AuthApi - object-oriented interface
- * @export
- * @class AuthApi
- * @extends {BaseAPI}
  */
 export class AuthApi extends BaseAPI {
     /**
@@ -1988,7 +885,6 @@ export class AuthApi extends BaseAPI {
      * @param {string} token 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
      */
     public authControllerExchangeToken(token: string, options?: RawAxiosRequestConfig) {
         return AuthApiFp(this.configuration).authControllerExchangeToken(token, options).then((request) => request(this.axios, this.basePath));
@@ -2000,7 +896,6 @@ export class AuthApi extends BaseAPI {
      * @param {ForgetPasswordRequestDTO} forgetPasswordRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
      */
     public authControllerForgetPassword(forgetPasswordRequestDTO: ForgetPasswordRequestDTO, options?: RawAxiosRequestConfig) {
         return AuthApiFp(this.configuration).authControllerForgetPassword(forgetPasswordRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -2012,7 +907,6 @@ export class AuthApi extends BaseAPI {
      * @param {ForgetPasswordVerificationRequestDTO} forgetPasswordVerificationRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
      */
     public authControllerForgetPasswordVerification(forgetPasswordVerificationRequestDTO: ForgetPasswordVerificationRequestDTO, options?: RawAxiosRequestConfig) {
         return AuthApiFp(this.configuration).authControllerForgetPasswordVerification(forgetPasswordVerificationRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -2024,7 +918,6 @@ export class AuthApi extends BaseAPI {
      * @param {LoginRequestDTO} loginRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
      */
     public authControllerLogin(loginRequestDTO: LoginRequestDTO, options?: RawAxiosRequestConfig) {
         return AuthApiFp(this.configuration).authControllerLogin(loginRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -2036,10 +929,20 @@ export class AuthApi extends BaseAPI {
      * @param {OAuthLoginRequestDTO} oAuthLoginRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
      */
     public authControllerOAuthLogin(oAuthLoginRequestDTO: OAuthLoginRequestDTO, options?: RawAxiosRequestConfig) {
         return AuthApiFp(this.configuration).authControllerOAuthLogin(oAuthLoginRequestDTO, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Refresh Google access token
+     * @param {string} token 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public authControllerRefreshToken(token: string, options?: RawAxiosRequestConfig) {
+        return AuthApiFp(this.configuration).authControllerRefreshToken(token, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2048,7 +951,6 @@ export class AuthApi extends BaseAPI {
      * @param {ResetPasswordRequestDTO} resetPasswordRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
      */
     public authControllerResetPassword(resetPasswordRequestDTO: ResetPasswordRequestDTO, options?: RawAxiosRequestConfig) {
         return AuthApiFp(this.configuration).authControllerResetPassword(resetPasswordRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -2060,7 +962,6 @@ export class AuthApi extends BaseAPI {
      * @param {SignupRequestDTO} signupRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof AuthApi
      */
     public authControllerSignup(signupRequestDTO: SignupRequestDTO, options?: RawAxiosRequestConfig) {
         return AuthApiFp(this.configuration).authControllerSignup(signupRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -2071,7 +972,6 @@ export class AuthApi extends BaseAPI {
 
 /**
  * DocumentsApi - axios parameter creator
- * @export
  */
 export const DocumentsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -2109,9 +1009,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2157,9 +1056,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2201,9 +1099,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2246,8 +1143,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -2292,8 +1189,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -2341,8 +1238,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
                 localVarQueryParameter['filter'] = filter;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -2379,8 +1276,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -2421,8 +1318,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -2467,8 +1364,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -2512,9 +1409,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2560,9 +1456,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2612,9 +1507,8 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2631,7 +1525,6 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
 
 /**
  * DocumentsApi - functional programming interface
- * @export
  */
 export const DocumentsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = DocumentsApiAxiosParamCreator(configuration)
@@ -2829,7 +1722,6 @@ export const DocumentsApiFp = function(configuration?: Configuration) {
 
 /**
  * DocumentsApi - factory interface
- * @export
  */
 export const DocumentsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = DocumentsApiFp(configuration)
@@ -2991,9 +1883,6 @@ export const DocumentsApiFactory = function (configuration?: Configuration, base
 
 /**
  * DocumentsApi - object-oriented interface
- * @export
- * @class DocumentsApi
- * @extends {BaseAPI}
  */
 export class DocumentsApi extends BaseAPI {
     /**
@@ -3005,7 +1894,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {CreateDocumentRequestDTO} createDocumentRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerAddDocToCollection(projectId: string, instanceId: string, collectionId: string, createDocumentRequestDTO: CreateDocumentRequestDTO, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerAddDocToCollection(projectId, instanceId, collectionId, createDocumentRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -3020,7 +1908,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {ChunkFileRequestDTO} chunkFileRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerAddDocToCollectionFromFile(projectId: string, instanceId: string, collectionId: string, chunkFileRequestDTO: ChunkFileRequestDTO, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerAddDocToCollectionFromFile(projectId, instanceId, collectionId, chunkFileRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -3034,7 +1921,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerCreateCollection(projectId: string, instanceId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerCreateCollection(projectId, instanceId, createCollectionRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -3048,7 +1934,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {string} collectionId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerDeleteCollection(projectId: string, instanceId: string, collectionId: string, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerDeleteCollection(projectId, instanceId, collectionId, options).then((request) => request(this.axios, this.basePath));
@@ -3063,7 +1948,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {string} docId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerDeleteDocById(projectId: string, instanceId: string, collectionId: string, docId: string, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerDeleteDocById(projectId, instanceId, collectionId, docId, options).then((request) => request(this.axios, this.basePath));
@@ -3078,7 +1962,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {string} filter 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerDeleteDocsFromCollection(projectId: string, instanceId: string, collectionId: string, filter: string, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerDeleteDocsFromCollection(projectId, instanceId, collectionId, filter, options).then((request) => request(this.axios, this.basePath));
@@ -3091,7 +1974,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {string} instanceId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerGetAllCollections(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerGetAllCollections(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
@@ -3105,7 +1987,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {string} collectionId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerGetCollectionInfo(projectId: string, instanceId: string, collectionId: string, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerGetCollectionInfo(projectId, instanceId, collectionId, options).then((request) => request(this.axios, this.basePath));
@@ -3120,7 +2001,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {string} docId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerGetDocById(projectId: string, instanceId: string, collectionId: string, docId: string, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerGetDocById(projectId, instanceId, collectionId, docId, options).then((request) => request(this.axios, this.basePath));
@@ -3135,7 +2015,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {SimilaritySearchQueryDTO} similaritySearchQueryDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerSimilaritySearch(projectId: string, instanceId: string, collectionId: string, similaritySearchQueryDTO: SimilaritySearchQueryDTO, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerSimilaritySearch(projectId, instanceId, collectionId, similaritySearchQueryDTO, options).then((request) => request(this.axios, this.basePath));
@@ -3150,7 +2029,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {CreateCollectionRequestDTO} createCollectionRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerUpdateCollection(projectId: string, instanceId: string, collectionId: string, createCollectionRequestDTO: CreateCollectionRequestDTO, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerUpdateCollection(projectId, instanceId, collectionId, createCollectionRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -3166,7 +2044,6 @@ export class DocumentsApi extends BaseAPI {
      * @param {UpdateDocumentRequestDTO} updateDocumentRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DocumentsApi
      */
     public documentControllerUpdateDoc(projectId: string, instanceId: string, collectionId: string, docId: string, updateDocumentRequestDTO: UpdateDocumentRequestDTO, options?: RawAxiosRequestConfig) {
         return DocumentsApiFp(this.configuration).documentControllerUpdateDoc(projectId, instanceId, collectionId, docId, updateDocumentRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -3177,7 +2054,6 @@ export class DocumentsApi extends BaseAPI {
 
 /**
  * EvaluationTestApi - axios parameter creator
- * @export
  */
 export const EvaluationTestApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -3204,8 +2080,8 @@ export const EvaluationTestApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -3242,8 +2118,8 @@ export const EvaluationTestApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -3280,8 +2156,8 @@ export const EvaluationTestApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -3318,8 +2194,8 @@ export const EvaluationTestApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -3356,8 +2232,8 @@ export const EvaluationTestApiAxiosParamCreator = function (configuration?: Conf
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -3372,7 +2248,6 @@ export const EvaluationTestApiAxiosParamCreator = function (configuration?: Conf
 
 /**
  * EvaluationTestApi - functional programming interface
- * @export
  */
 export const EvaluationTestApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = EvaluationTestApiAxiosParamCreator(configuration)
@@ -3451,7 +2326,6 @@ export const EvaluationTestApiFp = function(configuration?: Configuration) {
 
 /**
  * EvaluationTestApi - factory interface
- * @export
  */
 export const EvaluationTestApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = EvaluationTestApiFp(configuration)
@@ -3515,9 +2389,6 @@ export const EvaluationTestApiFactory = function (configuration?: Configuration,
 
 /**
  * EvaluationTestApi - object-oriented interface
- * @export
- * @class EvaluationTestApi
- * @extends {BaseAPI}
  */
 export class EvaluationTestApi extends BaseAPI {
     /**
@@ -3526,7 +2397,6 @@ export class EvaluationTestApi extends BaseAPI {
      * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EvaluationTestApi
      */
     public evaluationTestControllerAddEvaluationTest(projectId: string, options?: RawAxiosRequestConfig) {
         return EvaluationTestApiFp(this.configuration).evaluationTestControllerAddEvaluationTest(projectId, options).then((request) => request(this.axios, this.basePath));
@@ -3539,7 +2409,6 @@ export class EvaluationTestApi extends BaseAPI {
      * @param {string} testId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EvaluationTestApi
      */
     public evaluationTestControllerDeleteEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig) {
         return EvaluationTestApiFp(this.configuration).evaluationTestControllerDeleteEvaluation(projectId, testId, options).then((request) => request(this.axios, this.basePath));
@@ -3552,7 +2421,6 @@ export class EvaluationTestApi extends BaseAPI {
      * @param {string} testId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EvaluationTestApi
      */
     public evaluationTestControllerExecuteEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig) {
         return EvaluationTestApiFp(this.configuration).evaluationTestControllerExecuteEvaluation(projectId, testId, options).then((request) => request(this.axios, this.basePath));
@@ -3565,7 +2433,6 @@ export class EvaluationTestApi extends BaseAPI {
      * @param {string} modelId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EvaluationTestApi
      */
     public evaluationTestControllerGetEvaluationTest(projectId: string, modelId: string, options?: RawAxiosRequestConfig) {
         return EvaluationTestApiFp(this.configuration).evaluationTestControllerGetEvaluationTest(projectId, modelId, options).then((request) => request(this.axios, this.basePath));
@@ -3578,7 +2445,6 @@ export class EvaluationTestApi extends BaseAPI {
      * @param {string} testId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof EvaluationTestApi
      */
     public evaluationTestControllerUpdateEvaluation(projectId: string, testId: string, options?: RawAxiosRequestConfig) {
         return EvaluationTestApiFp(this.configuration).evaluationTestControllerUpdateEvaluation(projectId, testId, options).then((request) => request(this.axios, this.basePath));
@@ -3589,7 +2455,6 @@ export class EvaluationTestApi extends BaseAPI {
 
 /**
  * MachineAgentApi - axios parameter creator
- * @export
  */
 export const MachineAgentApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -3619,9 +2484,8 @@ export const MachineAgentApiAxiosParamCreator = function (configuration?: Config
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -3663,9 +2527,8 @@ export const MachineAgentApiAxiosParamCreator = function (configuration?: Config
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -3721,8 +2584,8 @@ export const MachineAgentApiAxiosParamCreator = function (configuration?: Config
                 localVarQueryParameter['type'] = type;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -3759,8 +2622,8 @@ export const MachineAgentApiAxiosParamCreator = function (configuration?: Config
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -3775,7 +2638,6 @@ export const MachineAgentApiAxiosParamCreator = function (configuration?: Config
 
 /**
  * MachineAgentApi - functional programming interface
- * @export
  */
 export const MachineAgentApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MachineAgentApiAxiosParamCreator(configuration)
@@ -3844,7 +2706,6 @@ export const MachineAgentApiFp = function(configuration?: Configuration) {
 
 /**
  * MachineAgentApi - factory interface
- * @export
  */
 export const MachineAgentApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = MachineAgentApiFp(configuration)
@@ -3901,9 +2762,6 @@ export const MachineAgentApiFactory = function (configuration?: Configuration, b
 
 /**
  * MachineAgentApi - object-oriented interface
- * @export
- * @class MachineAgentApi
- * @extends {BaseAPI}
  */
 export class MachineAgentApi extends BaseAPI {
     /**
@@ -3913,7 +2771,6 @@ export class MachineAgentApi extends BaseAPI {
      * @param {CreateMachineAgentDto} createMachineAgentDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineAgentApi
      */
     public machineAgentControllerCreateMachineAgent(projectId: string, createMachineAgentDto: CreateMachineAgentDto, options?: RawAxiosRequestConfig) {
         return MachineAgentApiFp(this.configuration).machineAgentControllerCreateMachineAgent(projectId, createMachineAgentDto, options).then((request) => request(this.axios, this.basePath));
@@ -3927,7 +2784,6 @@ export class MachineAgentApi extends BaseAPI {
      * @param {Array<string>} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineAgentApi
      */
     public machineAgentControllerDeleteMachineAgents(projectId: string, agentId: string, requestBody: Array<string>, options?: RawAxiosRequestConfig) {
         return MachineAgentApiFp(this.configuration).machineAgentControllerDeleteMachineAgents(projectId, agentId, requestBody, options).then((request) => request(this.axios, this.basePath));
@@ -3942,7 +2798,6 @@ export class MachineAgentApi extends BaseAPI {
      * @param {string} type 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineAgentApi
      */
     public machineAgentControllerGetMachineAgentByProjectId(projectId: string, page: number, limit: number, type: string, options?: RawAxiosRequestConfig) {
         return MachineAgentApiFp(this.configuration).machineAgentControllerGetMachineAgentByProjectId(projectId, page, limit, type, options).then((request) => request(this.axios, this.basePath));
@@ -3955,7 +2810,6 @@ export class MachineAgentApi extends BaseAPI {
      * @param {string} agentId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineAgentApi
      */
     public machineAgentControllerUpdateMachineAgent(projectId: string, agentId: string, options?: RawAxiosRequestConfig) {
         return MachineAgentApiFp(this.configuration).machineAgentControllerUpdateMachineAgent(projectId, agentId, options).then((request) => request(this.axios, this.basePath));
@@ -3966,7 +2820,6 @@ export class MachineAgentApi extends BaseAPI {
 
 /**
  * MachineAgentLogsApi - axios parameter creator
- * @export
  */
 export const MachineAgentLogsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -4011,8 +2864,8 @@ export const MachineAgentLogsApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['cursor'] = cursor;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4049,8 +2902,8 @@ export const MachineAgentLogsApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4065,7 +2918,6 @@ export const MachineAgentLogsApiAxiosParamCreator = function (configuration?: Co
 
 /**
  * MachineAgentLogsApi - functional programming interface
- * @export
  */
 export const MachineAgentLogsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MachineAgentLogsApiAxiosParamCreator(configuration)
@@ -4105,7 +2957,6 @@ export const MachineAgentLogsApiFp = function(configuration?: Configuration) {
 
 /**
  * MachineAgentLogsApi - factory interface
- * @export
  */
 export const MachineAgentLogsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = MachineAgentLogsApiFp(configuration)
@@ -4139,9 +2990,6 @@ export const MachineAgentLogsApiFactory = function (configuration?: Configuratio
 
 /**
  * MachineAgentLogsApi - object-oriented interface
- * @export
- * @class MachineAgentLogsApi
- * @extends {BaseAPI}
  */
 export class MachineAgentLogsApi extends BaseAPI {
     /**
@@ -4153,7 +3001,6 @@ export class MachineAgentLogsApi extends BaseAPI {
      * @param {string} cursor 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineAgentLogsApi
      */
     public logsControllerFetchAgentLogs(projectId: string, agentId: string, direction: string, cursor: string, options?: RawAxiosRequestConfig) {
         return MachineAgentLogsApiFp(this.configuration).logsControllerFetchAgentLogs(projectId, agentId, direction, cursor, options).then((request) => request(this.axios, this.basePath));
@@ -4166,7 +3013,6 @@ export class MachineAgentLogsApi extends BaseAPI {
      * @param {string} agentId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineAgentLogsApi
      */
     public logsControllerFetchEventLogs(projectId: string, agentId: string, options?: RawAxiosRequestConfig) {
         return MachineAgentLogsApiFp(this.configuration).logsControllerFetchEventLogs(projectId, agentId, options).then((request) => request(this.axios, this.basePath));
@@ -4177,7 +3023,6 @@ export class MachineAgentLogsApi extends BaseAPI {
 
 /**
  * MachineInstancesApi - axios parameter creator
- * @export
  */
 export const MachineInstancesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -4204,8 +3049,8 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4238,8 +3083,8 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4272,8 +3117,8 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4310,8 +3155,8 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4348,8 +3193,8 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4386,8 +3231,8 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4438,8 +3283,8 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['limit'] = limit;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4486,8 +3331,8 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
                 localVarQueryParameter['limit'] = limit;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -4523,9 +3368,8 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -4542,7 +3386,6 @@ export const MachineInstancesApiAxiosParamCreator = function (configuration?: Co
 
 /**
  * MachineInstancesApi - functional programming interface
- * @export
  */
 export const MachineInstancesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MachineInstancesApiAxiosParamCreator(configuration)
@@ -4678,7 +3521,6 @@ export const MachineInstancesApiFp = function(configuration?: Configuration) {
 
 /**
  * MachineInstancesApi - factory interface
- * @export
  */
 export const MachineInstancesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = MachineInstancesApiFp(configuration)
@@ -4787,9 +3629,6 @@ export const MachineInstancesApiFactory = function (configuration?: Configuratio
 
 /**
  * MachineInstancesApi - object-oriented interface
- * @export
- * @class MachineInstancesApi
- * @extends {BaseAPI}
  */
 export class MachineInstancesApi extends BaseAPI {
     /**
@@ -4798,7 +3637,6 @@ export class MachineInstancesApi extends BaseAPI {
      * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineInstancesApi
      */
     public machineInstancesControllerCreateMachineInstance(projectId: string, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerCreateMachineInstance(projectId, options).then((request) => request(this.axios, this.basePath));
@@ -4810,7 +3648,6 @@ export class MachineInstancesApi extends BaseAPI {
      * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineInstancesApi
      */
     public machineInstancesControllerDeleteMachineInstance(projectId: string, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerDeleteMachineInstance(projectId, options).then((request) => request(this.axios, this.basePath));
@@ -4822,7 +3659,6 @@ export class MachineInstancesApi extends BaseAPI {
      * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineInstancesApi
      */
     public machineInstancesControllerGetInstanceRunningStatus(projectId: string, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetInstanceRunningStatus(projectId, options).then((request) => request(this.axios, this.basePath));
@@ -4835,7 +3671,6 @@ export class MachineInstancesApi extends BaseAPI {
      * @param {string} machineId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineInstancesApi
      */
     public machineInstancesControllerGetMachineBenchmarkingDatapoints(projectId: string, machineId: string, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetMachineBenchmarkingDatapoints(projectId, machineId, options).then((request) => request(this.axios, this.basePath));
@@ -4848,7 +3683,6 @@ export class MachineInstancesApi extends BaseAPI {
      * @param {string} machineId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineInstancesApi
      */
     public machineInstancesControllerGetMachineBenchmarkingReports(projectId: string, machineId: string, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetMachineBenchmarkingReports(projectId, machineId, options).then((request) => request(this.axios, this.basePath));
@@ -4861,7 +3695,6 @@ export class MachineInstancesApi extends BaseAPI {
      * @param {string} machineId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineInstancesApi
      */
     public machineInstancesControllerGetMachineBootstrapStatus(projectId: string, machineId: string, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetMachineBootstrapStatus(projectId, machineId, options).then((request) => request(this.axios, this.basePath));
@@ -4876,7 +3709,6 @@ export class MachineInstancesApi extends BaseAPI {
      * @param {number} limit 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineInstancesApi
      */
     public machineInstancesControllerGetMachineInstanceById(projectId: string, machineId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetMachineInstanceById(projectId, machineId, page, limit, options).then((request) => request(this.axios, this.basePath));
@@ -4890,7 +3722,6 @@ export class MachineInstancesApi extends BaseAPI {
      * @param {number} limit 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineInstancesApi
      */
     public machineInstancesControllerGetMachineInstanceByUserId(projectId: string, page: number, limit: number, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerGetMachineInstanceByUserId(projectId, page, limit, options).then((request) => request(this.axios, this.basePath));
@@ -4903,7 +3734,6 @@ export class MachineInstancesApi extends BaseAPI {
      * @param {object} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MachineInstancesApi
      */
     public machineInstancesControllerUpdateRunningStatus(projectId: string, body: object, options?: RawAxiosRequestConfig) {
         return MachineInstancesApiFp(this.configuration).machineInstancesControllerUpdateRunningStatus(projectId, body, options).then((request) => request(this.axios, this.basePath));
@@ -4914,7 +3744,6 @@ export class MachineInstancesApi extends BaseAPI {
 
 /**
  * MembersApi - axios parameter creator
- * @export
  */
 export const MembersApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -4944,9 +3773,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -5011,8 +3839,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['roleIds'] = roleIds;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -5052,9 +3880,8 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -5071,7 +3898,6 @@ export const MembersApiAxiosParamCreator = function (configuration?: Configurati
 
 /**
  * MembersApi - functional programming interface
- * @export
  */
 export const MembersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MembersApiAxiosParamCreator(configuration)
@@ -5129,7 +3955,6 @@ export const MembersApiFp = function(configuration?: Configuration) {
 
 /**
  * MembersApi - factory interface
- * @export
  */
 export const MembersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = MembersApiFp(configuration)
@@ -5178,9 +4003,6 @@ export const MembersApiFactory = function (configuration?: Configuration, basePa
 
 /**
  * MembersApi - object-oriented interface
- * @export
- * @class MembersApi
- * @extends {BaseAPI}
  */
 export class MembersApi extends BaseAPI {
     /**
@@ -5190,7 +4012,6 @@ export class MembersApi extends BaseAPI {
      * @param {AddProjectMemberDto} addProjectMemberDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public membersControllerAddTeamMemberToProject(projectId: string, addProjectMemberDto: AddProjectMemberDto, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).membersControllerAddTeamMemberToProject(projectId, addProjectMemberDto, options).then((request) => request(this.axios, this.basePath));
@@ -5208,7 +4029,6 @@ export class MembersApi extends BaseAPI {
      * @param {Array<number>} [roleIds] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public membersControllerGetAllTeamMembersOfProject(projectId: string, page?: number, limit?: number, column?: string, direction?: MembersControllerGetAllTeamMembersOfProjectDirectionEnum, teamMemberStatus?: Array<string>, roleIds?: Array<number>, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).membersControllerGetAllTeamMembersOfProject(projectId, page, limit, column, direction, teamMemberStatus, roleIds, options).then((request) => request(this.axios, this.basePath));
@@ -5222,16 +4042,12 @@ export class MembersApi extends BaseAPI {
      * @param {UpdateTeamMemberRequestDTO} updateTeamMemberRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MembersApi
      */
     public membersControllerUpdateTeamMemberRole(projectId: string, memberId: string, updateTeamMemberRequestDTO: UpdateTeamMemberRequestDTO, options?: RawAxiosRequestConfig) {
         return MembersApiFp(this.configuration).membersControllerUpdateTeamMemberRole(projectId, memberId, updateTeamMemberRequestDTO, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const MembersControllerGetAllTeamMembersOfProjectDirectionEnum = {
     Asc: 'ASC',
     Desc: 'DESC'
@@ -5241,7 +4057,6 @@ export type MembersControllerGetAllTeamMembersOfProjectDirectionEnum = typeof Me
 
 /**
  * MiscellaneousApi - axios parameter creator
- * @export
  */
 export const MiscellaneousApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -5264,8 +4079,8 @@ export const MiscellaneousApiAxiosParamCreator = function (configuration?: Confi
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -5298,8 +4113,8 @@ export const MiscellaneousApiAxiosParamCreator = function (configuration?: Confi
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -5331,9 +4146,8 @@ export const MiscellaneousApiAxiosParamCreator = function (configuration?: Confi
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -5350,7 +4164,6 @@ export const MiscellaneousApiAxiosParamCreator = function (configuration?: Confi
 
 /**
  * MiscellaneousApi - functional programming interface
- * @export
  */
 export const MiscellaneousApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = MiscellaneousApiAxiosParamCreator(configuration)
@@ -5398,7 +4211,6 @@ export const MiscellaneousApiFp = function(configuration?: Configuration) {
 
 /**
  * MiscellaneousApi - factory interface
- * @export
  */
 export const MiscellaneousApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = MiscellaneousApiFp(configuration)
@@ -5437,9 +4249,6 @@ export const MiscellaneousApiFactory = function (configuration?: Configuration, 
 
 /**
  * MiscellaneousApi - object-oriented interface
- * @export
- * @class MiscellaneousApi
- * @extends {BaseAPI}
  */
 export class MiscellaneousApi extends BaseAPI {
     /**
@@ -5447,7 +4256,6 @@ export class MiscellaneousApi extends BaseAPI {
      * @summary Get machine id matching instances.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MiscellaneousApi
      */
     public miscellaneousControllerGetData(options?: RawAxiosRequestConfig) {
         return MiscellaneousApiFp(this.configuration).miscellaneousControllerGetData(options).then((request) => request(this.axios, this.basePath));
@@ -5459,7 +4267,6 @@ export class MiscellaneousApi extends BaseAPI {
      * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MiscellaneousApi
      */
     public miscellaneousControllerGetMachineInstanceByImageId(projectId: string, options?: RawAxiosRequestConfig) {
         return MiscellaneousApiFp(this.configuration).miscellaneousControllerGetMachineInstanceByImageId(projectId, options).then((request) => request(this.axios, this.basePath));
@@ -5471,7 +4278,6 @@ export class MiscellaneousApi extends BaseAPI {
      * @param {UpdateTeamMemberStatusRequestDTO} updateTeamMemberStatusRequestDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof MiscellaneousApi
      */
     public miscellaneousControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO: UpdateTeamMemberStatusRequestDTO, options?: RawAxiosRequestConfig) {
         return MiscellaneousApiFp(this.configuration).miscellaneousControllerUpdateTeamMemberStatus(updateTeamMemberStatusRequestDTO, options).then((request) => request(this.axios, this.basePath));
@@ -5482,7 +4288,6 @@ export class MiscellaneousApi extends BaseAPI {
 
 /**
  * NotificationsApi - axios parameter creator
- * @export
  */
 export const NotificationsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -5509,8 +4314,8 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -5546,9 +4351,8 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -5565,7 +4369,6 @@ export const NotificationsApiAxiosParamCreator = function (configuration?: Confi
 
 /**
  * NotificationsApi - functional programming interface
- * @export
  */
 export const NotificationsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = NotificationsApiAxiosParamCreator(configuration)
@@ -5602,7 +4405,6 @@ export const NotificationsApiFp = function(configuration?: Configuration) {
 
 /**
  * NotificationsApi - factory interface
- * @export
  */
 export const NotificationsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = NotificationsApiFp(configuration)
@@ -5633,9 +4435,6 @@ export const NotificationsApiFactory = function (configuration?: Configuration, 
 
 /**
  * NotificationsApi - object-oriented interface
- * @export
- * @class NotificationsApi
- * @extends {BaseAPI}
  */
 export class NotificationsApi extends BaseAPI {
     /**
@@ -5644,7 +4443,6 @@ export class NotificationsApi extends BaseAPI {
      * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof NotificationsApi
      */
     public notificationsControllerGetLastFiveNotifications(projectId: string, options?: RawAxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).notificationsControllerGetLastFiveNotifications(projectId, options).then((request) => request(this.axios, this.basePath));
@@ -5657,7 +4455,6 @@ export class NotificationsApi extends BaseAPI {
      * @param {object} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof NotificationsApi
      */
     public notificationsControllerMarkNotificationsAsRead(projectId: string, body: object, options?: RawAxiosRequestConfig) {
         return NotificationsApiFp(this.configuration).notificationsControllerMarkNotificationsAsRead(projectId, body, options).then((request) => request(this.axios, this.basePath));
@@ -5668,7 +4465,6 @@ export class NotificationsApi extends BaseAPI {
 
 /**
  * ProjectsApi - axios parameter creator
- * @export
  */
 export const ProjectsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -5694,9 +4490,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -5731,8 +4526,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -5781,8 +4576,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
                 localVarQueryParameter['direction'] = direction;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -5815,8 +4610,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -5852,9 +4647,8 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -5871,7 +4665,6 @@ export const ProjectsApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * ProjectsApi - functional programming interface
- * @export
  */
 export const ProjectsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ProjectsApiAxiosParamCreator(configuration)
@@ -5950,7 +4743,6 @@ export const ProjectsApiFp = function(configuration?: Configuration) {
 
 /**
  * ProjectsApi - factory interface
- * @export
  */
 export const ProjectsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ProjectsApiFp(configuration)
@@ -6014,9 +4806,6 @@ export const ProjectsApiFactory = function (configuration?: Configuration, baseP
 
 /**
  * ProjectsApi - object-oriented interface
- * @export
- * @class ProjectsApi
- * @extends {BaseAPI}
  */
 export class ProjectsApi extends BaseAPI {
     /**
@@ -6025,7 +4814,6 @@ export class ProjectsApi extends BaseAPI {
      * @param {CreateProjectDTO} createProjectDTO 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectsApi
      */
     public projectControllerCreateProject(createProjectDTO: CreateProjectDTO, options?: RawAxiosRequestConfig) {
         return ProjectsApiFp(this.configuration).projectControllerCreateProject(createProjectDTO, options).then((request) => request(this.axios, this.basePath));
@@ -6037,7 +4825,6 @@ export class ProjectsApi extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectsApi
      */
     public projectControllerDeleteProjectById(id: string, options?: RawAxiosRequestConfig) {
         return ProjectsApiFp(this.configuration).projectControllerDeleteProjectById(id, options).then((request) => request(this.axios, this.basePath));
@@ -6052,7 +4839,6 @@ export class ProjectsApi extends BaseAPI {
      * @param {ProjectControllerGetAllProjectsDirectionEnum} [direction] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectsApi
      */
     public projectControllerGetAllProjects(page?: number, limit?: number, column?: string, direction?: ProjectControllerGetAllProjectsDirectionEnum, options?: RawAxiosRequestConfig) {
         return ProjectsApiFp(this.configuration).projectControllerGetAllProjects(page, limit, column, direction, options).then((request) => request(this.axios, this.basePath));
@@ -6064,7 +4850,6 @@ export class ProjectsApi extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectsApi
      */
     public projectControllerGetProjectById(id: string, options?: RawAxiosRequestConfig) {
         return ProjectsApiFp(this.configuration).projectControllerGetProjectById(id, options).then((request) => request(this.axios, this.basePath));
@@ -6077,16 +4862,12 @@ export class ProjectsApi extends BaseAPI {
      * @param {UpdateProjectByIdRequest} updateProjectByIdRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ProjectsApi
      */
     public projectControllerUpdateProjectById(id: string, updateProjectByIdRequest: UpdateProjectByIdRequest, options?: RawAxiosRequestConfig) {
         return ProjectsApiFp(this.configuration).projectControllerUpdateProjectById(id, updateProjectByIdRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const ProjectControllerGetAllProjectsDirectionEnum = {
     Asc: 'ASC',
     Desc: 'DESC'
@@ -6096,7 +4877,6 @@ export type ProjectControllerGetAllProjectsDirectionEnum = typeof ProjectControl
 
 /**
  * QueriesAndDocumentationsApi - axios parameter creator
- * @export
  */
 export const QueriesAndDocumentationsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -6131,8 +4911,8 @@ export const QueriesAndDocumentationsApiAxiosParamCreator = function (configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6165,8 +4945,8 @@ export const QueriesAndDocumentationsApiAxiosParamCreator = function (configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6181,7 +4961,6 @@ export const QueriesAndDocumentationsApiAxiosParamCreator = function (configurat
 
 /**
  * QueriesAndDocumentationsApi - functional programming interface
- * @export
  */
 export const QueriesAndDocumentationsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = QueriesAndDocumentationsApiAxiosParamCreator(configuration)
@@ -6219,7 +4998,6 @@ export const QueriesAndDocumentationsApiFp = function(configuration?: Configurat
 
 /**
  * QueriesAndDocumentationsApi - factory interface
- * @export
  */
 export const QueriesAndDocumentationsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = QueriesAndDocumentationsApiFp(configuration)
@@ -6251,9 +5029,6 @@ export const QueriesAndDocumentationsApiFactory = function (configuration?: Conf
 
 /**
  * QueriesAndDocumentationsApi - object-oriented interface
- * @export
- * @class QueriesAndDocumentationsApi
- * @extends {BaseAPI}
  */
 export class QueriesAndDocumentationsApi extends BaseAPI {
     /**
@@ -6264,7 +5039,6 @@ export class QueriesAndDocumentationsApi extends BaseAPI {
      * @param {string} fieldName 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof QueriesAndDocumentationsApi
      */
     public queriesAndDocControllerFetchSwaggerJSON(modelId: string, projectId: string, fieldName: string, options?: RawAxiosRequestConfig) {
         return QueriesAndDocumentationsApiFp(this.configuration).queriesAndDocControllerFetchSwaggerJSON(modelId, projectId, fieldName, options).then((request) => request(this.axios, this.basePath));
@@ -6276,7 +5050,6 @@ export class QueriesAndDocumentationsApi extends BaseAPI {
      * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof QueriesAndDocumentationsApi
      */
     public queriesAndDocControllerRunQuery(projectId: string, options?: RawAxiosRequestConfig) {
         return QueriesAndDocumentationsApiFp(this.configuration).queriesAndDocControllerRunQuery(projectId, options).then((request) => request(this.axios, this.basePath));
@@ -6287,7 +5060,6 @@ export class QueriesAndDocumentationsApi extends BaseAPI {
 
 /**
  * RolesApi - axios parameter creator
- * @export
  */
 export const RolesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -6317,9 +5089,8 @@ export const RolesApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -6358,8 +5129,8 @@ export const RolesApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6412,8 +5183,8 @@ export const RolesApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['direction'] = direction;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6450,8 +5221,8 @@ export const RolesApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6484,8 +5255,8 @@ export const RolesApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6525,9 +5296,8 @@ export const RolesApiAxiosParamCreator = function (configuration?: Configuration
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -6544,7 +5314,6 @@ export const RolesApiAxiosParamCreator = function (configuration?: Configuration
 
 /**
  * RolesApi - functional programming interface
- * @export
  */
 export const RolesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = RolesApiAxiosParamCreator(configuration)
@@ -6641,7 +5410,6 @@ export const RolesApiFp = function(configuration?: Configuration) {
 
 /**
  * RolesApi - factory interface
- * @export
  */
 export const RolesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = RolesApiFp(configuration)
@@ -6720,9 +5488,6 @@ export const RolesApiFactory = function (configuration?: Configuration, basePath
 
 /**
  * RolesApi - object-oriented interface
- * @export
- * @class RolesApi
- * @extends {BaseAPI}
  */
 export class RolesApi extends BaseAPI {
     /**
@@ -6732,7 +5497,6 @@ export class RolesApi extends BaseAPI {
      * @param {CreateRoleDto} createRoleDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RolesApi
      */
     public rolesControllerCreateProjectRole(projectId: string, createRoleDto: CreateRoleDto, options?: RawAxiosRequestConfig) {
         return RolesApiFp(this.configuration).rolesControllerCreateProjectRole(projectId, createRoleDto, options).then((request) => request(this.axios, this.basePath));
@@ -6745,7 +5509,6 @@ export class RolesApi extends BaseAPI {
      * @param {number} roleId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RolesApi
      */
     public rolesControllerDeleteProjectRole(projectId: string, roleId: number, options?: RawAxiosRequestConfig) {
         return RolesApiFp(this.configuration).rolesControllerDeleteProjectRole(projectId, roleId, options).then((request) => request(this.axios, this.basePath));
@@ -6761,7 +5524,6 @@ export class RolesApi extends BaseAPI {
      * @param {RolesControllerGetAllProjectRolesDirectionEnum} [direction] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RolesApi
      */
     public rolesControllerGetAllProjectRoles(projectId: string, page?: number, limit?: number, column?: string, direction?: RolesControllerGetAllProjectRolesDirectionEnum, options?: RawAxiosRequestConfig) {
         return RolesApiFp(this.configuration).rolesControllerGetAllProjectRoles(projectId, page, limit, column, direction, options).then((request) => request(this.axios, this.basePath));
@@ -6774,7 +5536,6 @@ export class RolesApi extends BaseAPI {
      * @param {number} roleId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RolesApi
      */
     public rolesControllerGetProjectRoleById(projectId: string, roleId: number, options?: RawAxiosRequestConfig) {
         return RolesApiFp(this.configuration).rolesControllerGetProjectRoleById(projectId, roleId, options).then((request) => request(this.axios, this.basePath));
@@ -6786,7 +5547,6 @@ export class RolesApi extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RolesApi
      */
     public rolesControllerGetUserProjectRole(id: string, options?: RawAxiosRequestConfig) {
         return RolesApiFp(this.configuration).rolesControllerGetUserProjectRole(id, options).then((request) => request(this.axios, this.basePath));
@@ -6800,16 +5560,12 @@ export class RolesApi extends BaseAPI {
      * @param {UpdateRoleByIdDto} updateRoleByIdDto 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RolesApi
      */
     public rolesControllerUpdateProjectRoleById(projectId: string, roleId: number, updateRoleByIdDto: UpdateRoleByIdDto, options?: RawAxiosRequestConfig) {
         return RolesApiFp(this.configuration).rolesControllerUpdateProjectRoleById(projectId, roleId, updateRoleByIdDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const RolesControllerGetAllProjectRolesDirectionEnum = {
     Asc: 'ASC',
     Desc: 'DESC'
@@ -6819,7 +5575,6 @@ export type RolesControllerGetAllProjectRolesDirectionEnum = typeof RolesControl
 
 /**
  * WebhookApi - axios parameter creator
- * @export
  */
 export const WebhookApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -6846,8 +5601,8 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6884,8 +5639,8 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6929,8 +5684,8 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['isAgentWebhook'] = isAgentWebhook;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6967,8 +5722,8 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -6983,7 +5738,6 @@ export const WebhookApiAxiosParamCreator = function (configuration?: Configurati
 
 /**
  * WebhookApi - functional programming interface
- * @export
  */
 export const WebhookApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = WebhookApiAxiosParamCreator(configuration)
@@ -7049,7 +5803,6 @@ export const WebhookApiFp = function(configuration?: Configuration) {
 
 /**
  * WebhookApi - factory interface
- * @export
  */
 export const WebhookApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = WebhookApiFp(configuration)
@@ -7103,9 +5856,6 @@ export const WebhookApiFactory = function (configuration?: Configuration, basePa
 
 /**
  * WebhookApi - object-oriented interface
- * @export
- * @class WebhookApi
- * @extends {BaseAPI}
  */
 export class WebhookApi extends BaseAPI {
     /**
@@ -7114,7 +5864,6 @@ export class WebhookApi extends BaseAPI {
      * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhookApi
      */
     public webhookControllerCreateWebhook(projectId: string, options?: RawAxiosRequestConfig) {
         return WebhookApiFp(this.configuration).webhookControllerCreateWebhook(projectId, options).then((request) => request(this.axios, this.basePath));
@@ -7127,7 +5876,6 @@ export class WebhookApi extends BaseAPI {
      * @param {string} modelId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhookApi
      */
     public webhookControllerDeleteWebhook(projectId: string, modelId: string, options?: RawAxiosRequestConfig) {
         return WebhookApiFp(this.configuration).webhookControllerDeleteWebhook(projectId, modelId, options).then((request) => request(this.axios, this.basePath));
@@ -7141,7 +5889,6 @@ export class WebhookApi extends BaseAPI {
      * @param {boolean} isAgentWebhook 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhookApi
      */
     public webhookControllerFetchWebhook(projectId: string, modelId: string, isAgentWebhook: boolean, options?: RawAxiosRequestConfig) {
         return WebhookApiFp(this.configuration).webhookControllerFetchWebhook(projectId, modelId, isAgentWebhook, options).then((request) => request(this.axios, this.basePath));
@@ -7154,7 +5901,6 @@ export class WebhookApi extends BaseAPI {
      * @param {string} projectId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof WebhookApi
      */
     public webhookControllerUpdateWebhook(webhookId: string, projectId: string, options?: RawAxiosRequestConfig) {
         return WebhookApiFp(this.configuration).webhookControllerUpdateWebhook(webhookId, projectId, options).then((request) => request(this.axios, this.basePath));
