@@ -1,0 +1,2394 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/documents/{documentId}/artifacts": {
+      "get": {
+        "description": "Downloads artifacts produced by the pipeline (e.g., GraphRAG outputs, DB snapshots, visualizations) as a single archive.",
+        "operationId": "ArtifactsController_downloadDocumentArtifacts",
+        "parameters": [
+          {
+            "name": "documentId",
+            "required": true,
+            "in": "path",
+            "description": "Document ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Artifacts archive (application/zip)"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Download document artifacts",
+        "tags": [
+          "Artifacts"
+        ]
+      }
+    },
+    "/documents": {
+      "get": {
+        "description": "List processed documents. Supports filtering by profileId.",
+        "operationId": "DocumentsController_listDocuments",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "1-based page number.",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Page size.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "profileId",
+            "required": false,
+            "in": "query",
+            "description": "Filter documents by profile/config ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of documents",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedDocumentsDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List documents",
+        "tags": [
+          "Documents"
+        ]
+      },
+      "post": {
+        "description": "Upload a document file (pdf/md/html/docx/etc) via multipart form to start processing.",
+        "operationId": "DocumentsController_createDocument",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "profileId",
+                  "file"
+                ],
+                "properties": {
+                  "profileId": {
+                    "type": "string",
+                    "description": "Profile/config ID to use for processing (maps to CLI --config)."
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Document file to process (pdf/md/html/docx/etc)."
+                  },
+                  "stages": {
+                    "type": "string",
+                    "description": "Comma-separated stages to run (e.g., docling,chunking,graphrag). If omitted, auto-detected by server."
+                  },
+                  "priority": {
+                    "type": "string",
+                    "enum": [
+                      "low",
+                      "normal",
+                      "high"
+                    ],
+                    "default": "normal"
+                  },
+                  "visualize": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Whether to generate graph visualization artifacts."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Document accepted/created. Processing typically runs as a background job.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentCreateResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create document processing job",
+        "tags": [
+          "Documents"
+        ]
+      }
+    },
+    "/documents/{documentId}": {
+      "get": {
+        "operationId": "DocumentsController_getDocument",
+        "parameters": [
+          {
+            "name": "documentId",
+            "required": true,
+            "in": "path",
+            "description": "Document ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Document details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Read document",
+        "tags": [
+          "Documents"
+        ]
+      }
+    },
+    "/documents/{documentId}/evals": {
+      "get": {
+        "operationId": "EvalsController_listEvals",
+        "parameters": [
+          {
+            "name": "documentId",
+            "required": true,
+            "in": "path",
+            "description": "Document ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Page size.",
+            "schema": {}
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "1-based page number.",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of evaluations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedEvalsDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List evals for a document",
+        "tags": [
+          "Evals"
+        ]
+      },
+      "post": {
+        "description": "Uploads an eval YAML (test cases) to run against a document.",
+        "operationId": "EvalsController_createEval",
+        "parameters": [
+          {
+            "name": "documentId",
+            "required": true,
+            "in": "path",
+            "description": "Document ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "yaml"
+                ],
+                "properties": {
+                  "yaml": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Eval YAML file (test cases)."
+                  },
+                  "watch": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If true, server may keep the request open longer (optional); most clients should poll job status instead."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Eval created (often schedules a job)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvalCreateResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create an eval from YAML",
+        "tags": [
+          "Evals"
+        ]
+      }
+    },
+    "/documents/{documentId}/evals/validate": {
+      "post": {
+        "description": "Validates an uploaded eval YAML without creating an eval.",
+        "operationId": "EvalsController_validateEvalYaml",
+        "parameters": [
+          {
+            "name": "documentId",
+            "required": true,
+            "in": "path",
+            "description": "Document ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "yaml"
+                ],
+                "properties": {
+                  "yaml": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "YAML file to validate."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Validation result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationResultDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Validate eval YAML",
+        "tags": [
+          "Evals"
+        ]
+      }
+    },
+    "/documents/{documentId}/evals/{evalId}": {
+      "get": {
+        "operationId": "EvalsController_getEval",
+        "parameters": [
+          {
+            "name": "documentId",
+            "required": true,
+            "in": "path",
+            "description": "Document ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "evalId",
+            "required": true,
+            "in": "path",
+            "description": "Evaluation ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Eval details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvalDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Read eval",
+        "tags": [
+          "Evals"
+        ]
+      }
+    },
+    "/health": {
+      "get": {
+        "description": "Returns service health including Redis, database, and GPU status.",
+        "operationId": "HealthController_getHealth",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Health status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get system health",
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/jobs": {
+      "get": {
+        "description": "Lists jobs for document processing, evaluations, and query jobs.",
+        "operationId": "JobsController_listJobs",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "1-based page number.",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Page size.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of jobs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedJobsDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List jobs",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/{jobId}": {
+      "get": {
+        "operationId": "JobsController_getJob",
+        "parameters": [
+          {
+            "name": "jobId",
+            "required": true,
+            "in": "path",
+            "description": "Job ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Read job",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/jobs/{jobId}/status": {
+      "get": {
+        "description": "Returns a lightweight status payload suitable for polling.",
+        "operationId": "JobsController_getJobStatus",
+        "parameters": [
+          {
+            "name": "jobId",
+            "required": true,
+            "in": "path",
+            "description": "Job ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStatusDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get job status",
+        "tags": [
+          "Jobs"
+        ]
+      }
+    },
+    "/profiles": {
+      "get": {
+        "operationId": "ProfilesController_listProfiles",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "1-based page number.",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Page size.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of profiles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedProfilesDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List profiles",
+        "tags": [
+          "Profiles"
+        ]
+      },
+      "post": {
+        "description": "Upload a YAML config file (multipart form). Do not inline YAML parameters in JSON.",
+        "operationId": "ProfilesController_createProfile",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "yaml"
+                ],
+                "properties": {
+                  "yaml": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "YAML file containing the profile/config."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Optional override for profile name (otherwise derived from YAML)."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Profile created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create profile from YAML",
+        "tags": [
+          "Profiles"
+        ]
+      }
+    },
+    "/profiles/schema": {
+      "get": {
+        "description": "Returns the JSON schema for profile YAML configuration files.",
+        "operationId": "ProfilesController_getProfileSchema",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Profile schema in JSON format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Get profile schema",
+        "tags": [
+          "Profiles"
+        ]
+      }
+    },
+    "/profiles/{profileId}": {
+      "get": {
+        "operationId": "ProfilesController_getProfile",
+        "parameters": [
+          {
+            "name": "profileId",
+            "required": true,
+            "in": "path",
+            "description": "Profile/config ID.",
+            "schema": {
+              "pattern": "^cfg-[a-f0-9]{8}$",
+              "example": "cfg-37e32131",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfileDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Read profile",
+        "tags": [
+          "Profiles"
+        ]
+      }
+    },
+    "/query": {
+      "get": {
+        "description": "Lists batch query runs (submitted via YAML).",
+        "operationId": "QueriesController_listQueries",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "1-based page number.",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Page size.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "documentId",
+            "required": false,
+            "in": "query",
+            "description": "Filter by document ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of batch queries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedQueriesDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "List batch queries",
+        "tags": [
+          "Queries"
+        ]
+      },
+      "post": {
+        "description": "Uploads a batch queries YAML (multipart form). Typically schedules a job.",
+        "operationId": "QueriesController_createQuery",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "yaml"
+                ],
+                "properties": {
+                  "yaml": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Batch queries YAML file."
+                  },
+                  "watch": {
+                    "type": "boolean",
+                    "default": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Batch query created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryCreateResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Create batch query from YAML",
+        "tags": [
+          "Queries"
+        ]
+      }
+    },
+    "/query/validate": {
+      "post": {
+        "description": "Validates an uploaded batch queries YAML without creating a query.",
+        "operationId": "QueriesController_validateQueryYaml",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "yaml"
+                ],
+                "properties": {
+                  "yaml": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "YAML file to validate."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Validation result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationResultDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Validate batch query YAML",
+        "tags": [
+          "Queries"
+        ]
+      }
+    },
+    "/query/{queryId}": {
+      "get": {
+        "operationId": "QueriesController_getQuery",
+        "parameters": [
+          {
+            "name": "queryId",
+            "required": true,
+            "in": "path",
+            "description": "Batch query ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Batch query details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchQueryDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Read batch query",
+        "tags": [
+          "Queries"
+        ]
+      }
+    },
+    "/documents/{documentId}/sources": {
+      "get": {
+        "description": "Returns source data used to produce answers/results. If sourceId is provided, returns the matching source. Otherwise returns a list.",
+        "operationId": "SourcesController_getDocumentSources",
+        "parameters": [
+          {
+            "name": "documentId",
+            "required": true,
+            "in": "path",
+            "description": "Document ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "jobId",
+            "required": false,
+            "in": "query",
+            "description": "Optional job ID to scope sources to a specific query job.",
+            "schema": {}
+          },
+          {
+            "name": "sourceId",
+            "required": false,
+            "in": "query",
+            "description": "Optional source ID (full or partial) to retrieve a specific source.",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Source data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentSourcesResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "authorization": []
+          }
+        ],
+        "summary": "Read document sources",
+        "tags": [
+          "Sources"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Nestbox API Documents Processing API",
+    "description": "API for Nestbox Documents Processing",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "ErrorDto": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type",
+            "example": "BadRequest"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Invalid request parameters"
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Request ID for tracking",
+            "example": "req-123"
+          },
+          "details": {
+            "type": "object",
+            "description": "Additional error details",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "error",
+          "message"
+        ]
+      },
+      "DocumentDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Document ID",
+            "example": "doc-12345678-1234-1234-1234-123456789abc",
+            "minLength": 1
+          },
+          "profileId": {
+            "type": "string",
+            "description": "Associated profile ID",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "Document processing status",
+            "enum": [
+              "queued",
+              "processing",
+              "ready",
+              "failed",
+              "deleted"
+            ]
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Original file name"
+          },
+          "contentType": {
+            "type": "string",
+            "description": "MIME content type"
+          },
+          "sizeBytes": {
+            "type": "number",
+            "description": "File size in bytes",
+            "minimum": 0
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Document creation timestamp",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Document last update timestamp",
+            "format": "date-time"
+          },
+          "latestJobId": {
+            "type": "string",
+            "description": "Latest job ID associated with this document"
+          },
+          "metrics": {
+            "type": "object",
+            "description": "Optional processing metrics (pages, chunks, entities, etc.)",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "id",
+          "profileId",
+          "status",
+          "createdAt"
+        ]
+      },
+      "PaginationDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number",
+            "description": "Current page number",
+            "minimum": 1,
+            "example": 1
+          },
+          "limit": {
+            "type": "number",
+            "description": "Page size limit",
+            "minimum": 1,
+            "example": 10
+          },
+          "total": {
+            "type": "number",
+            "description": "Total number of items",
+            "minimum": 0,
+            "example": 100
+          }
+        },
+        "required": [
+          "page",
+          "limit",
+          "total"
+        ]
+      },
+      "PaginatedDocumentsDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Document data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentDto"
+            }
+          },
+          "pagination": {
+            "description": "Pagination information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginationDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "data",
+          "pagination"
+        ]
+      },
+      "JobLinksDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Job status URI",
+            "format": "uri"
+          },
+          "resource": {
+            "type": "string",
+            "description": "Resource URI",
+            "format": "uri"
+          }
+        }
+      },
+      "JobDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Job ID",
+            "example": "job-abc123",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "description": "Job type",
+            "enum": [
+              "document_processing",
+              "evaluation",
+              "batch_query",
+              "other"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "Job state",
+            "enum": [
+              "pending",
+              "processing",
+              "completed",
+              "failed",
+              "canceled"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Job creation timestamp",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Job last update timestamp",
+            "format": "date-time"
+          },
+          "profileId": {
+            "type": "string",
+            "description": "Associated profile ID",
+            "minLength": 1
+          },
+          "documentId": {
+            "type": "string",
+            "description": "Associated document ID",
+            "minLength": 1
+          },
+          "evalId": {
+            "type": "string",
+            "description": "Associated evaluation ID",
+            "minLength": 1
+          },
+          "queryId": {
+            "type": "string",
+            "description": "Associated query ID",
+            "minLength": 1
+          },
+          "progress": {
+            "type": "number",
+            "description": "0..1 progress fraction",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "stage": {
+            "type": "string",
+            "description": "Current pipeline stage",
+            "example": "docling"
+          },
+          "message": {
+            "type": "string",
+            "description": "Current job message"
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if failed"
+          },
+          "links": {
+            "description": "Job-related links",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JobLinksDto"
+              }
+            ]
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Additional job metadata",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "state",
+          "createdAt"
+        ]
+      },
+      "DocumentCreateResponseDto": {
+        "type": "object",
+        "properties": {
+          "document": {
+            "description": "Created document",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DocumentDto"
+              }
+            ]
+          },
+          "job": {
+            "description": "Processing job",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JobDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "document",
+          "job"
+        ]
+      },
+      "ValidationIssueDto": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON pointer-like path into the YAML document",
+            "example": "$.graphrag.models.chatModel"
+          },
+          "message": {
+            "type": "string",
+            "description": "Validation issue message"
+          },
+          "severity": {
+            "type": "string",
+            "description": "Issue severity",
+            "enum": [
+              "error",
+              "warning"
+            ],
+            "default": "error"
+          }
+        },
+        "required": [
+          "path",
+          "message"
+        ]
+      },
+      "ValidationErrorDto": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error type",
+            "example": "ValidationError"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "issues": {
+            "description": "Validation issues",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationIssueDto"
+            }
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Request ID for tracking"
+          }
+        },
+        "required": [
+          "error",
+          "message",
+          "issues"
+        ]
+      },
+      "EvalDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Evaluation ID",
+            "example": "eval-1",
+            "minLength": 1
+          },
+          "documentId": {
+            "type": "string",
+            "description": "Associated document ID",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "Evaluation status",
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Evaluation creation timestamp",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Evaluation last update timestamp",
+            "format": "date-time"
+          },
+          "latestJobId": {
+            "type": "string",
+            "description": "Latest job ID associated with this evaluation"
+          },
+          "yamlFileName": {
+            "type": "string",
+            "description": "YAML file name"
+          },
+          "summary": {
+            "type": "object",
+            "description": "Optional aggregated metrics (e.g., similarity scores)",
+            "additionalProperties": true
+          },
+          "report": {
+            "type": "object",
+            "description": "Optional detailed report (if stored)",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "id",
+          "documentId",
+          "status",
+          "createdAt"
+        ]
+      },
+      "PaginatedEvalsDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Evaluation data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvalDto"
+            }
+          },
+          "pagination": {
+            "description": "Pagination information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginationDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "data",
+          "pagination"
+        ]
+      },
+      "EvalCreateResponseDto": {
+        "type": "object",
+        "properties": {
+          "eval": {
+            "description": "Created evaluation",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EvalDto"
+              }
+            ]
+          },
+          "job": {
+            "description": "Processing job",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JobDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "eval",
+          "job"
+        ]
+      },
+      "ValidationResultDto": {
+        "type": "object",
+        "properties": {
+          "valid": {
+            "type": "boolean",
+            "description": "Whether the validation passed"
+          },
+          "warnings": {
+            "description": "Non-fatal issues",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationIssueDto"
+            }
+          },
+          "normalized": {
+            "type": "object",
+            "description": "Optional normalized representation (if available)",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "valid"
+        ]
+      },
+      "HealthCheckItemDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Health check status",
+            "enum": [
+              "ok",
+              "degraded",
+              "down"
+            ]
+          },
+          "latencyMs": {
+            "type": "number",
+            "description": "Latency in milliseconds",
+            "minimum": 0
+          },
+          "message": {
+            "type": "string",
+            "description": "Status message"
+          },
+          "details": {
+            "type": "object",
+            "description": "Additional details",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "GpuDeviceDto": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "number",
+            "description": "GPU device index",
+            "minimum": 0
+          },
+          "name": {
+            "type": "string",
+            "description": "GPU device name"
+          },
+          "memoryTotalMB": {
+            "type": "number",
+            "description": "Total GPU memory in MB",
+            "minimum": 0
+          },
+          "memoryUsedMB": {
+            "type": "number",
+            "description": "Used GPU memory in MB",
+            "minimum": 0
+          },
+          "utilizationPct": {
+            "type": "number",
+            "description": "GPU utilization percentage",
+            "minimum": 0,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "index",
+          "name",
+          "memoryTotalMB"
+        ]
+      },
+      "GpuHealthCheckDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "GPU health status",
+            "enum": [
+              "ok",
+              "degraded",
+              "down"
+            ]
+          },
+          "deviceCount": {
+            "type": "number",
+            "description": "Number of GPU devices",
+            "minimum": 0
+          },
+          "devices": {
+            "description": "GPU devices information",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GpuDeviceDto"
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "GPU status message"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "HealthChecksDto": {
+        "type": "object",
+        "properties": {
+          "redis": {
+            "description": "Redis health check",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HealthCheckItemDto"
+              }
+            ]
+          },
+          "db": {
+            "description": "Database health check",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HealthCheckItemDto"
+              }
+            ]
+          },
+          "gpu": {
+            "description": "GPU health check",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GpuHealthCheckDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "redis",
+          "db",
+          "gpu"
+        ]
+      },
+      "HealthResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Overall system health status",
+            "enum": [
+              "ok",
+              "degraded",
+              "down"
+            ]
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Health check timestamp",
+            "format": "date-time"
+          },
+          "checks": {
+            "description": "Health check results",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HealthChecksDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "timestamp",
+          "checks"
+        ]
+      },
+      "PaginatedJobsDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Job data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobDto"
+            }
+          },
+          "pagination": {
+            "description": "Pagination information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginationDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "data",
+          "pagination"
+        ]
+      },
+      "JobStatusDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Job ID"
+          },
+          "state": {
+            "type": "string",
+            "description": "Job state",
+            "enum": [
+              "pending",
+              "processing",
+              "completed",
+              "failed",
+              "canceled"
+            ]
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Job last update timestamp",
+            "format": "date-time"
+          },
+          "progress": {
+            "type": "number",
+            "description": "0..1 progress fraction",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "stage": {
+            "type": "string",
+            "description": "Current pipeline stage"
+          },
+          "message": {
+            "type": "string",
+            "description": "Current job message"
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if failed"
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "updatedAt"
+        ]
+      },
+      "ProfileDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Profile ID",
+            "example": "cfg-abc123",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Profile name",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "Profile description"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Profile creation timestamp",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Profile last update timestamp",
+            "format": "date-time"
+          },
+          "yamlFileName": {
+            "type": "string",
+            "description": "YAML file name"
+          },
+          "yamlSha256": {
+            "type": "string",
+            "description": "Optional checksum of the uploaded YAML file"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "createdAt"
+        ]
+      },
+      "PaginatedProfilesDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Profile data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProfileDto"
+            }
+          },
+          "pagination": {
+            "description": "Pagination information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginationDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "data",
+          "pagination"
+        ]
+      },
+      "BatchQueryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Batch query ID",
+            "example": "batch-abc123",
+            "minLength": 1
+          },
+          "documentId": {
+            "type": "string",
+            "description": "Associated document ID",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "Batch query status",
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Batch query creation timestamp",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Batch query last update timestamp",
+            "format": "date-time"
+          },
+          "latestJobId": {
+            "type": "string",
+            "description": "Latest job ID associated with this batch query"
+          },
+          "yamlFileName": {
+            "type": "string",
+            "description": "YAML file name"
+          },
+          "results": {
+            "type": "object",
+            "description": "Optional stored results (if persisted)",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "createdAt"
+        ]
+      },
+      "PaginatedQueriesDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Batch query data",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchQueryDto"
+            }
+          },
+          "pagination": {
+            "description": "Pagination information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaginationDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "data",
+          "pagination"
+        ]
+      },
+      "QueryCreateResponseDto": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "description": "Created batch query",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BatchQueryDto"
+              }
+            ]
+          },
+          "job": {
+            "description": "Processing job",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JobDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "query",
+          "job"
+        ]
+      },
+      "SourceItemDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Source ID",
+            "minLength": 1
+          },
+          "documentId": {
+            "type": "string",
+            "description": "Associated document ID",
+            "minLength": 1
+          },
+          "jobId": {
+            "type": "string",
+            "description": "Associated job ID",
+            "minLength": 1
+          },
+          "chunkId": {
+            "type": "string",
+            "description": "Chunk ID"
+          },
+          "page": {
+            "type": "number",
+            "description": "Page number",
+            "minimum": 1
+          },
+          "text": {
+            "type": "string",
+            "description": "Source text content"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Additional metadata",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "id",
+          "documentId",
+          "text"
+        ]
+      },
+      "DocumentSourcesResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Source items",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceItemDto"
+            }
+          }
+        },
+        "required": [
+          "data"
+        ]
+      }
+    }
+  }
+}

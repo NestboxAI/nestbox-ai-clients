@@ -9,6 +9,7 @@ All URIs are relative to *http://localhost*
 |[**authControllerForgetPasswordVerification**](#authcontrollerforgetpasswordverification) | **POST** /auth/forget-password/verification | Forget password verification|
 |[**authControllerLogin**](#authcontrollerlogin) | **POST** /auth/login | Login to the application|
 |[**authControllerOAuthLogin**](#authcontrolleroauthlogin) | **POST** /auth/login/oauth | Login with OAuth apps|
+|[**authControllerRefreshToken**](#authcontrollerrefreshtoken) | **POST** /auth/google/refresh/{token} | Refresh Google access token|
 |[**authControllerResetPassword**](#authcontrollerresetpassword) | **POST** /auth/reset-password | Forget password initiate|
 |[**authControllerSignup**](#authcontrollersignup) | **POST** /auth/signup | Signup in the application|
 
@@ -276,6 +277,61 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** |  |  -  |
+|**400** |  |  -  |
+|**401** |  |  -  |
+|**403** |  |  -  |
+|**404** |  |  -  |
+|**500** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **authControllerRefreshToken**
+> object authControllerRefreshToken()
+
+
+### Example
+
+```typescript
+import {
+    AuthApi,
+    Configuration
+} from '@nestbox-ai/admin';
+
+const configuration = new Configuration();
+const apiInstance = new AuthApi(configuration);
+
+let token: string; // (default to undefined)
+
+const { status, data } = await apiInstance.authControllerRefreshToken(
+    token
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **token** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
