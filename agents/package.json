@@ -1,11 +1,11 @@
 {
   "name": "@nestbox-ai/agents",
-  "version": "1.0.59",
+  "version": "1.0.60",
   "description": "OpenAPI client for @nestbox-ai/agents",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NestboxAI/nestbox-ai-nests.git"
+    "url": "https://github.com/NestboxAI/nestbox-ai-clients.git"
   },
   "keywords": [
     "axios",
