@@ -82,15 +82,15 @@ jobs:
 
       - name: Generate API Clients
         run: |
-          openapi-generator-cli generate -i specs/openapi-admin.json -g typescript-axios -o admin --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/admin,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
+          openapi-generator-cli generate -i specs/openapi-admin.json -g typescript-axios -o admin --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/admin,npmVersion=1.0.${{ github.run_number }},gitUserId=NestboxAI,gitRepoId=nestbox-ai-dashboard-api
 
-          openapi-generator-cli generate -i specs/openapi-documents.json -g typescript-axios -o documents --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/documents,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
+          openapi-generator-cli generate -i specs/openapi-documents.json -g typescript-axios -o documents --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/documents,npmVersion=1.0.${{ github.run_number }},gitUserId=NestboxAI,gitRepoId=nestbox-ai-nests
 
-          openapi-generator-cli generate -i specs/openapi-agents.json -g typescript-axios -o agents --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/agents,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
+          openapi-generator-cli generate -i specs/openapi-agents.json -g typescript-axios -o agents --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/agents,npmVersion=1.0.${{ github.run_number }},gitUserId=NestboxAI,gitRepoId=nestbox-ai-nests
 
-          openapi-generator-cli generate -i specs/openapi-instances.json -g typescript-axios -o instances --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/instances,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
+          openapi-generator-cli generate -i specs/openapi-instances.json -g typescript-axios -o instances --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/instances,npmVersion=1.0.${{ github.run_number }},gitUserId=NestboxAI,gitRepoId=nestbox-ai-nests
 
-          openapi-generator-cli generate -i specs/openapi-doc-processing-api.json -g typescript-axios -o doc-processing-api --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/doc-processing-api,npmVersion=1.0.${{ github.run_number }},repositoryUrl=https://github.com/NestboxAI/nestbox-ai-clients.git
+          openapi-generator-cli generate -i specs/openapi-doc-processing-api.json -g typescript-axios -o doc-processing-api --skip-validate-spec --additional-properties=supportsES6=true,npmName=@nestbox-ai/doc-processing-api,npmVersion=1.0.${{ github.run_number }},gitUserId=NestboxAI,gitRepoId=nestbox-ai-nests
 
       - name: Commit and Push Generated Clients
         run: |
