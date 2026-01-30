@@ -55,6 +55,7 @@ jobs:
           pnpm --filter=@nestbox/nest-agent exec prisma generate
           pnpm --filter=@nestbox/nest-agent build
           pnpm --filter=@nestbox/nest-document build
+          pnpm --filter=@nestbox/nest-doc-processing-api exec prisma generate
           pnpm --filter=@nestbox/nest-doc-processing-api build
           node ./packages/nest-agent/scripts/generate-swagger.js agents
           node ./packages/nest-agent/scripts/generate-swagger.js instances
