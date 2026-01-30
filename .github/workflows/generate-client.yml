@@ -82,7 +82,7 @@ jobs:
 
       - name: Generate API Clients
         run: |
-          openapi-generator-cli generate -i specs/openapi-admin.json -g typescript-axios -o admin --skip-validate-spec --git-user-id=NestboxAI --git-repo-id=nestbox-ai-dashboard-api --additional-properties=supportsES6=true,npmName=@nestbox-ai/admin,npmVersion=1.0.${{ github.run_number }}
+          openapi-generator-cli generate -i specs/openapi-admin.json -g typescript-axios -o admin --skip-validate-spec --git-user-id=NestboxAI --git-repo-id=nestbox-ai-nests --additional-properties=supportsES6=true,npmName=@nestbox-ai/admin,npmVersion=1.0.${{ github.run_number }}
 
           openapi-generator-cli generate -i specs/openapi-documents.json -g typescript-axios -o documents --skip-validate-spec --git-user-id=NestboxAI --git-repo-id=nestbox-ai-nests --additional-properties=supportsES6=true,npmName=@nestbox-ai/documents,npmVersion=1.0.${{ github.run_number }}
 
