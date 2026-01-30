@@ -1,11 +1,11 @@
 {
   "name": "@nestbox-ai/admin",
-  "version": "1.0.57",
+  "version": "1.0.58",
   "description": "OpenAPI client for @nestbox-ai/admin",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    "url": "https://github.com/NestboxAI/nestbox-ai-dashboard-api.git"
   },
   "keywords": [
     "axios",
