@@ -1,7 +1,7 @@
 {
-  "name": "@nestbox-ai/agents",
+  "name": "@nestbox-ai/doc-processing-api",
   "version": "1.0.63",
-  "description": "OpenAPI client for @nestbox-ai/agents",
+  "description": "OpenAPI client for @nestbox-ai/doc-processing-api",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "typescript",
     "openapi-client",
     "openapi-generator",
-    "@nestbox-ai/agents"
+    "@nestbox-ai/doc-processing-api"
   ],
   "license": "Unlicense",
   "main": "./dist/index.js",
