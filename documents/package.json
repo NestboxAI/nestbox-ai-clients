@@ -1,6 +1,6 @@
 {
   "name": "@nestbox-ai/documents",
-  "version": "1.0.61",
+  "version": "1.0.62",
   "description": "OpenAPI client for @nestbox-ai/documents",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
