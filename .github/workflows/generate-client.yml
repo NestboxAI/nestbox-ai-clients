@@ -96,7 +96,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add specs admin documents agents instances
+          git add specs admin documents agents instances doc-processing-api
           git commit -m "Automatically generated API client from OpenAPI spec [skip ci]" || echo "No changes to commit"
           git push origin HEAD:${{ github.ref_name }}
 
