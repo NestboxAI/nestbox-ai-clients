@@ -2499,6 +2499,10 @@
           "yamlSha256": {
             "type": "string",
             "description": "Optional checksum of the uploaded YAML file"
+          },
+          "yamlFileContent": {
+            "type": "string",
+            "description": "Content of the YAML file"
           }
         },
         "required": [

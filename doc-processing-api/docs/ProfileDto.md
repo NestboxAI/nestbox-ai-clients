@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **updatedAt** | **string** | Profile last update timestamp | [optional] [default to undefined]
 **yamlFileName** | **string** | YAML file name | [optional] [default to undefined]
 **yamlSha256** | **string** | Optional checksum of the uploaded YAML file | [optional] [default to undefined]
+**yamlFileContent** | **string** | Content of the YAML file | [optional] [default to undefined]
 
 ## Example
 
@@ -26,6 +27,7 @@ const instance: ProfileDto = {
     updatedAt,
     yamlFileName,
     yamlSha256,
+    yamlFileContent,
 };
 ```
 
