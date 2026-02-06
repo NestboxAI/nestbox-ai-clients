@@ -566,6 +566,10 @@ export interface ProfileDto {
      * Optional checksum of the uploaded YAML file
      */
     'yamlSha256'?: string;
+    /**
+     * Content of the YAML file
+     */
+    'yamlFileContent'?: string;
 }
 export interface QueryCreateResponseDto {
     /**
