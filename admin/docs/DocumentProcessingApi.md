@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**documentProcessingControllerCreateBatchQuery**](#documentprocessingcontrollercreatebatchquery) | **POST** /projects/{projectId}/document-processing/{instanceId}/queries | Create batch query from YAML file|
-|[**documentProcessingControllerCreateDocumentProcessingJob**](#documentprocessingcontrollercreatedocumentprocessingjob) | **POST** /projects/{projectId}/document-processing/{instanceId}/documents | Create document processing job by uploading file|
-|[**documentProcessingControllerCreateEval**](#documentprocessingcontrollercreateeval) | **POST** /projects/{projectId}/document-processing/{instanceId}/evals | Create evaluation from YAML file|
-|[**documentProcessingControllerCreateProfile**](#documentprocessingcontrollercreateprofile) | **POST** /projects/{projectId}/document-processing/{instanceId}/profiles | Create processing profile from YAML|
+|[**documentProcessingControllerCreateBatchQuery**](#documentprocessingcontrollercreatebatchquery) | **POST** /projects/{projectId}/document-processing/{instanceId}/queries | Create batch query from YAML file (multipart)|
+|[**documentProcessingControllerCreateDocumentProcessingJob**](#documentprocessingcontrollercreatedocumentprocessingjob) | **POST** /projects/{projectId}/document-processing/{instanceId}/documents | Create document processing job by uploading file (multipart)|
+|[**documentProcessingControllerCreateEval**](#documentprocessingcontrollercreateeval) | **POST** /projects/{projectId}/document-processing/{instanceId}/evals | Create evaluation from YAML file (multipart)|
+|[**documentProcessingControllerCreateProfile**](#documentprocessingcontrollercreateprofile) | **POST** /projects/{projectId}/document-processing/{instanceId}/profiles | Create processing profile from YAML file (multipart)|
 |[**documentProcessingControllerCreateWebhook**](#documentprocessingcontrollercreatewebhook) | **POST** /projects/{projectId}/document-processing/{instanceId}/webhooks | Create webhook for receiving notifications|
 |[**documentProcessingControllerDeleteWebhook**](#documentprocessingcontrollerdeletewebhook) | **DELETE** /projects/{projectId}/document-processing/{instanceId}/webhooks/{webhookId} | Delete webhook|
 |[**documentProcessingControllerDownloadDocumentArtifacts**](#documentprocessingcontrollerdownloaddocumentartifacts) | **GET** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/artifacts | Download document artifacts as archive|
@@ -27,8 +27,8 @@ All URIs are relative to *http://localhost*
 |[**documentProcessingControllerListQueries**](#documentprocessingcontrollerlistqueries) | **GET** /projects/{projectId}/document-processing/{instanceId}/queries | List batch queries with pagination and filters|
 |[**documentProcessingControllerListWebhooks**](#documentprocessingcontrollerlistwebhooks) | **GET** /projects/{projectId}/document-processing/{instanceId}/webhooks | List webhooks with pagination|
 |[**documentProcessingControllerUpdateWebhook**](#documentprocessingcontrollerupdatewebhook) | **PUT** /projects/{projectId}/document-processing/{instanceId}/webhooks/{webhookId} | Update webhook configuration|
-|[**documentProcessingControllerValidateEvalYaml**](#documentprocessingcontrollervalidateevalyaml) | **POST** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/evals/validate | Validate eval YAML without creating evaluation|
-|[**documentProcessingControllerValidateQueryYaml**](#documentprocessingcontrollervalidatequeryyaml) | **POST** /projects/{projectId}/document-processing/{instanceId}/queries/validate | Validate batch query YAML without creating query|
+|[**documentProcessingControllerValidateEvalYaml**](#documentprocessingcontrollervalidateevalyaml) | **POST** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/evals/validate | Validate eval YAML without creating evaluation (multipart)|
+|[**documentProcessingControllerValidateQueryYaml**](#documentprocessingcontrollervalidatequeryyaml) | **POST** /projects/{projectId}/document-processing/{instanceId}/queries/validate | Validate batch query YAML without creating query (multipart)|
 
 # **documentProcessingControllerCreateBatchQuery**
 > object documentProcessingControllerCreateBatchQuery()

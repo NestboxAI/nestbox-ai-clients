@@ -1,4 +1,4 @@
-## @nestbox-ai/admin@1.0.65
+## @nestbox-ai/admin@1.0.66
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @nestbox-ai/admin@1.0.65 --save
+npm install @nestbox-ai/admin@1.0.66 --save
 ```
 
 _unPublished (not recommended):_
@@ -59,10 +59,10 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**authControllerRefreshToken**](docs/AuthApi.md#authcontrollerrefreshtoken) | **POST** /auth/google/refresh/{token} | Refresh Google access token
 *AuthApi* | [**authControllerResetPassword**](docs/AuthApi.md#authcontrollerresetpassword) | **POST** /auth/reset-password | Forget password initiate
 *AuthApi* | [**authControllerSignup**](docs/AuthApi.md#authcontrollersignup) | **POST** /auth/signup | Signup in the application
-*DocumentProcessingApi* | [**documentProcessingControllerCreateBatchQuery**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreatebatchquery) | **POST** /projects/{projectId}/document-processing/{instanceId}/queries | Create batch query from YAML file
-*DocumentProcessingApi* | [**documentProcessingControllerCreateDocumentProcessingJob**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreatedocumentprocessingjob) | **POST** /projects/{projectId}/document-processing/{instanceId}/documents | Create document processing job by uploading file
-*DocumentProcessingApi* | [**documentProcessingControllerCreateEval**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreateeval) | **POST** /projects/{projectId}/document-processing/{instanceId}/evals | Create evaluation from YAML file
-*DocumentProcessingApi* | [**documentProcessingControllerCreateProfile**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreateprofile) | **POST** /projects/{projectId}/document-processing/{instanceId}/profiles | Create processing profile from YAML
+*DocumentProcessingApi* | [**documentProcessingControllerCreateBatchQuery**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreatebatchquery) | **POST** /projects/{projectId}/document-processing/{instanceId}/queries | Create batch query from YAML file (multipart)
+*DocumentProcessingApi* | [**documentProcessingControllerCreateDocumentProcessingJob**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreatedocumentprocessingjob) | **POST** /projects/{projectId}/document-processing/{instanceId}/documents | Create document processing job by uploading file (multipart)
+*DocumentProcessingApi* | [**documentProcessingControllerCreateEval**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreateeval) | **POST** /projects/{projectId}/document-processing/{instanceId}/evals | Create evaluation from YAML file (multipart)
+*DocumentProcessingApi* | [**documentProcessingControllerCreateProfile**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreateprofile) | **POST** /projects/{projectId}/document-processing/{instanceId}/profiles | Create processing profile from YAML file (multipart)
 *DocumentProcessingApi* | [**documentProcessingControllerCreateWebhook**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreatewebhook) | **POST** /projects/{projectId}/document-processing/{instanceId}/webhooks | Create webhook for receiving notifications
 *DocumentProcessingApi* | [**documentProcessingControllerDeleteWebhook**](docs/DocumentProcessingApi.md#documentprocessingcontrollerdeletewebhook) | **DELETE** /projects/{projectId}/document-processing/{instanceId}/webhooks/{webhookId} | Delete webhook
 *DocumentProcessingApi* | [**documentProcessingControllerDownloadDocumentArtifacts**](docs/DocumentProcessingApi.md#documentprocessingcontrollerdownloaddocumentartifacts) | **GET** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/artifacts | Download document artifacts as archive
@@ -82,8 +82,8 @@ Class | Method | HTTP request | Description
 *DocumentProcessingApi* | [**documentProcessingControllerListQueries**](docs/DocumentProcessingApi.md#documentprocessingcontrollerlistqueries) | **GET** /projects/{projectId}/document-processing/{instanceId}/queries | List batch queries with pagination and filters
 *DocumentProcessingApi* | [**documentProcessingControllerListWebhooks**](docs/DocumentProcessingApi.md#documentprocessingcontrollerlistwebhooks) | **GET** /projects/{projectId}/document-processing/{instanceId}/webhooks | List webhooks with pagination
 *DocumentProcessingApi* | [**documentProcessingControllerUpdateWebhook**](docs/DocumentProcessingApi.md#documentprocessingcontrollerupdatewebhook) | **PUT** /projects/{projectId}/document-processing/{instanceId}/webhooks/{webhookId} | Update webhook configuration
-*DocumentProcessingApi* | [**documentProcessingControllerValidateEvalYaml**](docs/DocumentProcessingApi.md#documentprocessingcontrollervalidateevalyaml) | **POST** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/evals/validate | Validate eval YAML without creating evaluation
-*DocumentProcessingApi* | [**documentProcessingControllerValidateQueryYaml**](docs/DocumentProcessingApi.md#documentprocessingcontrollervalidatequeryyaml) | **POST** /projects/{projectId}/document-processing/{instanceId}/queries/validate | Validate batch query YAML without creating query
+*DocumentProcessingApi* | [**documentProcessingControllerValidateEvalYaml**](docs/DocumentProcessingApi.md#documentprocessingcontrollervalidateevalyaml) | **POST** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/evals/validate | Validate eval YAML without creating evaluation (multipart)
+*DocumentProcessingApi* | [**documentProcessingControllerValidateQueryYaml**](docs/DocumentProcessingApi.md#documentprocessingcontrollervalidatequeryyaml) | **POST** /projects/{projectId}/document-processing/{instanceId}/queries/validate | Validate batch query YAML without creating query (multipart)
 *DocumentsApi* | [**documentControllerAddDocToCollection**](docs/DocumentsApi.md#documentcontrolleradddoctocollection) | **POST** /projects/{projectId}/document/{instanceId}/collections/{collectionId}/docs | Add a new doc
 *DocumentsApi* | [**documentControllerAddDocToCollectionFromFile**](docs/DocumentsApi.md#documentcontrolleradddoctocollectionfromfile) | **POST** /projects/{projectId}/document/{instanceId}/collections/{collectionId}/docs/file | Use a file to chunk and add to collection
 *DocumentsApi* | [**documentControllerCreateCollection**](docs/DocumentsApi.md#documentcontrollercreatecollection) | **POST** /projects/{projectId}/document/{instanceId}/collections | Create collection

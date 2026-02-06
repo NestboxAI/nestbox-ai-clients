@@ -5971,7 +5971,7 @@
       },
       "post": {
         "operationId": "DocumentProcessingController_createProfile",
-        "summary": "Create processing profile from YAML",
+        "summary": "Create processing profile from YAML file (multipart)",
         "parameters": [
           {
             "name": "projectId",
@@ -6353,7 +6353,7 @@
       },
       "post": {
         "operationId": "DocumentProcessingController_createDocumentProcessingJob",
-        "summary": "Create document processing job by uploading file",
+        "summary": "Create document processing job by uploading file (multipart)",
         "parameters": [
           {
             "name": "projectId",
@@ -6939,7 +6939,7 @@
       },
       "post": {
         "operationId": "DocumentProcessingController_createBatchQuery",
-        "summary": "Create batch query from YAML file",
+        "summary": "Create batch query from YAML file (multipart)",
         "parameters": [
           {
             "name": "projectId",
@@ -7135,7 +7135,7 @@
     "/projects/{projectId}/document-processing/{instanceId}/queries/validate": {
       "post": {
         "operationId": "DocumentProcessingController_validateQueryYaml",
-        "summary": "Validate batch query YAML without creating query",
+        "summary": "Validate batch query YAML without creating query (multipart)",
         "parameters": [
           {
             "name": "projectId",
@@ -7331,7 +7331,7 @@
     "/projects/{projectId}/document-processing/{instanceId}/evals": {
       "post": {
         "operationId": "DocumentProcessingController_createEval",
-        "summary": "Create evaluation from YAML file",
+        "summary": "Create evaluation from YAML file (multipart)",
         "parameters": [
           {
             "name": "projectId",
@@ -7535,7 +7535,7 @@
     "/projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/evals/validate": {
       "post": {
         "operationId": "DocumentProcessingController_validateEvalYaml",
-        "summary": "Validate eval YAML without creating evaluation",
+        "summary": "Validate eval YAML without creating evaluation (multipart)",
         "parameters": [
           {
             "name": "projectId",

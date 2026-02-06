@@ -977,7 +977,7 @@ export const DocumentProcessingApiAxiosParamCreator = function (configuration?: 
     return {
         /**
          * 
-         * @summary Create batch query from YAML file
+         * @summary Create batch query from YAML file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -1015,7 +1015,7 @@ export const DocumentProcessingApiAxiosParamCreator = function (configuration?: 
         },
         /**
          * 
-         * @summary Create document processing job by uploading file
+         * @summary Create document processing job by uploading file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -1053,7 +1053,7 @@ export const DocumentProcessingApiAxiosParamCreator = function (configuration?: 
         },
         /**
          * 
-         * @summary Create evaluation from YAML file
+         * @summary Create evaluation from YAML file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -1091,7 +1091,7 @@ export const DocumentProcessingApiAxiosParamCreator = function (configuration?: 
         },
         /**
          * 
-         * @summary Create processing profile from YAML
+         * @summary Create processing profile from YAML file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -1899,7 +1899,7 @@ export const DocumentProcessingApiAxiosParamCreator = function (configuration?: 
         },
         /**
          * 
-         * @summary Validate eval YAML without creating evaluation
+         * @summary Validate eval YAML without creating evaluation (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {string} documentId 
@@ -1941,7 +1941,7 @@ export const DocumentProcessingApiAxiosParamCreator = function (configuration?: 
         },
         /**
          * 
-         * @summary Validate batch query YAML without creating query
+         * @summary Validate batch query YAML without creating query (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -1988,7 +1988,7 @@ export const DocumentProcessingApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Create batch query from YAML file
+         * @summary Create batch query from YAML file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -2002,7 +2002,7 @@ export const DocumentProcessingApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create document processing job by uploading file
+         * @summary Create document processing job by uploading file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -2016,7 +2016,7 @@ export const DocumentProcessingApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create evaluation from YAML file
+         * @summary Create evaluation from YAML file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -2030,7 +2030,7 @@ export const DocumentProcessingApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create processing profile from YAML
+         * @summary Create processing profile from YAML file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -2322,7 +2322,7 @@ export const DocumentProcessingApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Validate eval YAML without creating evaluation
+         * @summary Validate eval YAML without creating evaluation (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {string} documentId 
@@ -2337,7 +2337,7 @@ export const DocumentProcessingApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Validate batch query YAML without creating query
+         * @summary Validate batch query YAML without creating query (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -2360,7 +2360,7 @@ export const DocumentProcessingApiFactory = function (configuration?: Configurat
     return {
         /**
          * 
-         * @summary Create batch query from YAML file
+         * @summary Create batch query from YAML file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -2371,7 +2371,7 @@ export const DocumentProcessingApiFactory = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Create document processing job by uploading file
+         * @summary Create document processing job by uploading file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -2382,7 +2382,7 @@ export const DocumentProcessingApiFactory = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Create evaluation from YAML file
+         * @summary Create evaluation from YAML file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -2393,7 +2393,7 @@ export const DocumentProcessingApiFactory = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Create processing profile from YAML
+         * @summary Create processing profile from YAML file (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -2625,7 +2625,7 @@ export const DocumentProcessingApiFactory = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Validate eval YAML without creating evaluation
+         * @summary Validate eval YAML without creating evaluation (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {string} documentId 
@@ -2637,7 +2637,7 @@ export const DocumentProcessingApiFactory = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Validate batch query YAML without creating query
+         * @summary Validate batch query YAML without creating query (multipart)
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {*} [options] Override http request option.
@@ -2655,7 +2655,7 @@ export const DocumentProcessingApiFactory = function (configuration?: Configurat
 export class DocumentProcessingApi extends BaseAPI {
     /**
      * 
-     * @summary Create batch query from YAML file
+     * @summary Create batch query from YAML file (multipart)
      * @param {string} projectId 
      * @param {string} instanceId 
      * @param {*} [options] Override http request option.
@@ -2667,7 +2667,7 @@ export class DocumentProcessingApi extends BaseAPI {
 
     /**
      * 
-     * @summary Create document processing job by uploading file
+     * @summary Create document processing job by uploading file (multipart)
      * @param {string} projectId 
      * @param {string} instanceId 
      * @param {*} [options] Override http request option.
@@ -2679,7 +2679,7 @@ export class DocumentProcessingApi extends BaseAPI {
 
     /**
      * 
-     * @summary Create evaluation from YAML file
+     * @summary Create evaluation from YAML file (multipart)
      * @param {string} projectId 
      * @param {string} instanceId 
      * @param {*} [options] Override http request option.
@@ -2691,7 +2691,7 @@ export class DocumentProcessingApi extends BaseAPI {
 
     /**
      * 
-     * @summary Create processing profile from YAML
+     * @summary Create processing profile from YAML file (multipart)
      * @param {string} projectId 
      * @param {string} instanceId 
      * @param {*} [options] Override http request option.
@@ -2943,7 +2943,7 @@ export class DocumentProcessingApi extends BaseAPI {
 
     /**
      * 
-     * @summary Validate eval YAML without creating evaluation
+     * @summary Validate eval YAML without creating evaluation (multipart)
      * @param {string} projectId 
      * @param {string} instanceId 
      * @param {string} documentId 
@@ -2956,7 +2956,7 @@ export class DocumentProcessingApi extends BaseAPI {
 
     /**
      * 
-     * @summary Validate batch query YAML without creating query
+     * @summary Validate batch query YAML without creating query (multipart)
      * @param {string} projectId 
      * @param {string} instanceId 
      * @param {*} [options] Override http request option.
