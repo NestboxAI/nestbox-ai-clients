@@ -971,6 +971,2005 @@ export class AuthApi extends BaseAPI {
 
 
 /**
+ * DocumentProcessingApi - axios parameter creator
+ */
+export const DocumentProcessingApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Create batch query from YAML file
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerCreateBatchQuery: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerCreateBatchQuery', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerCreateBatchQuery', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/queries`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create document processing job by uploading file
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerCreateDocumentProcessingJob: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerCreateDocumentProcessingJob', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerCreateDocumentProcessingJob', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/documents`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create evaluation from YAML file
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerCreateEval: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerCreateEval', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerCreateEval', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/evals`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create processing profile from YAML
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerCreateProfile: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerCreateProfile', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerCreateProfile', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/profiles`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Create webhook for receiving notifications
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerCreateWebhook: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerCreateWebhook', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerCreateWebhook', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/webhooks`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete webhook
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerDeleteWebhook: async (projectId: string, instanceId: string, webhookId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerDeleteWebhook', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerDeleteWebhook', 'instanceId', instanceId)
+            // verify required parameter 'webhookId' is not null or undefined
+            assertParamExists('documentProcessingControllerDeleteWebhook', 'webhookId', webhookId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/webhooks/{webhookId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"webhookId"}}`, encodeURIComponent(String(webhookId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Download document artifacts as archive
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerDownloadDocumentArtifacts: async (projectId: string, instanceId: string, documentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerDownloadDocumentArtifacts', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerDownloadDocumentArtifacts', 'instanceId', instanceId)
+            // verify required parameter 'documentId' is not null or undefined
+            assertParamExists('documentProcessingControllerDownloadDocumentArtifacts', 'documentId', documentId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/artifacts`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get processed document by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetDocument: async (projectId: string, instanceId: string, documentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetDocument', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetDocument', 'instanceId', instanceId)
+            // verify required parameter 'documentId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetDocument', 'documentId', documentId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/documents/{documentId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get evaluation details by document ID and eval ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {string} evalId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetEval: async (projectId: string, instanceId: string, documentId: string, evalId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetEval', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetEval', 'instanceId', instanceId)
+            // verify required parameter 'documentId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetEval', 'documentId', documentId)
+            // verify required parameter 'evalId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetEval', 'evalId', evalId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/evals/{evalId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)))
+                .replace(`{${"evalId"}}`, encodeURIComponent(String(evalId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get document processing API client health
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetHealth: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetHealth', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetHealth', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/health`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get processing job details by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} jobId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetJob: async (projectId: string, instanceId: string, jobId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetJob', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetJob', 'instanceId', instanceId)
+            // verify required parameter 'jobId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetJob', 'jobId', jobId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/jobs/{jobId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"jobId"}}`, encodeURIComponent(String(jobId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get processing job status (lightweight)
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} jobId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetJobStatus: async (projectId: string, instanceId: string, jobId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetJobStatus', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetJobStatus', 'instanceId', instanceId)
+            // verify required parameter 'jobId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetJobStatus', 'jobId', jobId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/jobs/{jobId}/status`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"jobId"}}`, encodeURIComponent(String(jobId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get processing profile by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} profileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetProfile: async (projectId: string, instanceId: string, profileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetProfile', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetProfile', 'instanceId', instanceId)
+            // verify required parameter 'profileId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetProfile', 'profileId', profileId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/profiles/{profileId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"profileId"}}`, encodeURIComponent(String(profileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get profile schema for YAML configuration
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetProfileSchema: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetProfileSchema', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetProfileSchema', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/profiles/schema`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get batch query details by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} queryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetQuery: async (projectId: string, instanceId: string, queryId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetQuery', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetQuery', 'instanceId', instanceId)
+            // verify required parameter 'queryId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetQuery', 'queryId', queryId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/queries/{queryId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"queryId"}}`, encodeURIComponent(String(queryId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get webhook details by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetWebhook: async (projectId: string, instanceId: string, webhookId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetWebhook', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetWebhook', 'instanceId', instanceId)
+            // verify required parameter 'webhookId' is not null or undefined
+            assertParamExists('documentProcessingControllerGetWebhook', 'webhookId', webhookId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/webhooks/{webhookId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"webhookId"}}`, encodeURIComponent(String(webhookId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List processed documents with pagination and filters
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListDocuments: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerListDocuments', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerListDocuments', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/documents`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List evaluations for a document with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListEvals: async (projectId: string, instanceId: string, documentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerListEvals', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerListEvals', 'instanceId', instanceId)
+            // verify required parameter 'documentId' is not null or undefined
+            assertParamExists('documentProcessingControllerListEvals', 'documentId', documentId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/evals`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List processing jobs with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListJobs: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerListJobs', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerListJobs', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/jobs`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List processing profiles with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListProfiles: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerListProfiles', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerListProfiles', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/profiles`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List batch queries with pagination and filters
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListQueries: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerListQueries', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerListQueries', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/queries`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary List webhooks with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListWebhooks: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerListWebhooks', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerListWebhooks', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/webhooks`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update webhook configuration
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerUpdateWebhook: async (projectId: string, instanceId: string, webhookId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerUpdateWebhook', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerUpdateWebhook', 'instanceId', instanceId)
+            // verify required parameter 'webhookId' is not null or undefined
+            assertParamExists('documentProcessingControllerUpdateWebhook', 'webhookId', webhookId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/webhooks/{webhookId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"webhookId"}}`, encodeURIComponent(String(webhookId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Validate eval YAML without creating evaluation
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerValidateEvalYaml: async (projectId: string, instanceId: string, documentId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerValidateEvalYaml', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerValidateEvalYaml', 'instanceId', instanceId)
+            // verify required parameter 'documentId' is not null or undefined
+            assertParamExists('documentProcessingControllerValidateEvalYaml', 'documentId', documentId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/evals/validate`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"documentId"}}`, encodeURIComponent(String(documentId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Validate batch query YAML without creating query
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerValidateQueryYaml: async (projectId: string, instanceId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerValidateQueryYaml', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerValidateQueryYaml', 'instanceId', instanceId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/queries/validate`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DocumentProcessingApi - functional programming interface
+ */
+export const DocumentProcessingApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = DocumentProcessingApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Create batch query from YAML file
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerCreateBatchQuery(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerCreateBatchQuery(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerCreateBatchQuery']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create document processing job by uploading file
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerCreateDocumentProcessingJob(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerCreateDocumentProcessingJob(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerCreateDocumentProcessingJob']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create evaluation from YAML file
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerCreateEval(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerCreateEval(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerCreateEval']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create processing profile from YAML
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerCreateProfile(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerCreateProfile(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerCreateProfile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Create webhook for receiving notifications
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerCreateWebhook(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerCreateWebhook(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerCreateWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Delete webhook
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerDeleteWebhook(projectId: string, instanceId: string, webhookId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerDeleteWebhook(projectId, instanceId, webhookId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerDeleteWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Download document artifacts as archive
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerDownloadDocumentArtifacts(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerDownloadDocumentArtifacts(projectId, instanceId, documentId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerDownloadDocumentArtifacts']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get processed document by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerGetDocument(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerGetDocument(projectId, instanceId, documentId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerGetDocument']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get evaluation details by document ID and eval ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {string} evalId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerGetEval(projectId: string, instanceId: string, documentId: string, evalId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerGetEval(projectId, instanceId, documentId, evalId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerGetEval']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get document processing API client health
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerGetHealth(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerGetHealth(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerGetHealth']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get processing job details by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} jobId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerGetJob(projectId: string, instanceId: string, jobId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerGetJob(projectId, instanceId, jobId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerGetJob']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get processing job status (lightweight)
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} jobId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerGetJobStatus(projectId: string, instanceId: string, jobId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerGetJobStatus(projectId, instanceId, jobId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerGetJobStatus']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get processing profile by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} profileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerGetProfile(projectId: string, instanceId: string, profileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerGetProfile(projectId, instanceId, profileId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerGetProfile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get profile schema for YAML configuration
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerGetProfileSchema(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerGetProfileSchema(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerGetProfileSchema']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get batch query details by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} queryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerGetQuery(projectId: string, instanceId: string, queryId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerGetQuery(projectId, instanceId, queryId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerGetQuery']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get webhook details by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerGetWebhook(projectId: string, instanceId: string, webhookId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerGetWebhook(projectId, instanceId, webhookId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerGetWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary List processed documents with pagination and filters
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerListDocuments(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerListDocuments(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerListDocuments']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary List evaluations for a document with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerListEvals(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerListEvals(projectId, instanceId, documentId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerListEvals']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary List processing jobs with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerListJobs(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerListJobs(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerListJobs']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary List processing profiles with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerListProfiles(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerListProfiles(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerListProfiles']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary List batch queries with pagination and filters
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerListQueries(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerListQueries(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerListQueries']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary List webhooks with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerListWebhooks(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerListWebhooks(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerListWebhooks']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Update webhook configuration
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerUpdateWebhook(projectId: string, instanceId: string, webhookId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerUpdateWebhook(projectId, instanceId, webhookId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerUpdateWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Validate eval YAML without creating evaluation
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerValidateEvalYaml(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerValidateEvalYaml(projectId, instanceId, documentId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerValidateEvalYaml']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Validate batch query YAML without creating query
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerValidateQueryYaml(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerValidateQueryYaml(projectId, instanceId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerValidateQueryYaml']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * DocumentProcessingApi - factory interface
+ */
+export const DocumentProcessingApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = DocumentProcessingApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Create batch query from YAML file
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerCreateBatchQuery(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerCreateBatchQuery(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create document processing job by uploading file
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerCreateDocumentProcessingJob(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerCreateDocumentProcessingJob(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create evaluation from YAML file
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerCreateEval(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerCreateEval(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create processing profile from YAML
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerCreateProfile(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerCreateProfile(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Create webhook for receiving notifications
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerCreateWebhook(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerCreateWebhook(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete webhook
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerDeleteWebhook(projectId: string, instanceId: string, webhookId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerDeleteWebhook(projectId, instanceId, webhookId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Download document artifacts as archive
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerDownloadDocumentArtifacts(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerDownloadDocumentArtifacts(projectId, instanceId, documentId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get processed document by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetDocument(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerGetDocument(projectId, instanceId, documentId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get evaluation details by document ID and eval ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {string} evalId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetEval(projectId: string, instanceId: string, documentId: string, evalId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerGetEval(projectId, instanceId, documentId, evalId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get document processing API client health
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetHealth(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerGetHealth(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get processing job details by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} jobId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetJob(projectId: string, instanceId: string, jobId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerGetJob(projectId, instanceId, jobId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get processing job status (lightweight)
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} jobId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetJobStatus(projectId: string, instanceId: string, jobId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerGetJobStatus(projectId, instanceId, jobId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get processing profile by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} profileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetProfile(projectId: string, instanceId: string, profileId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerGetProfile(projectId, instanceId, profileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get profile schema for YAML configuration
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetProfileSchema(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerGetProfileSchema(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get batch query details by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} queryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetQuery(projectId: string, instanceId: string, queryId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerGetQuery(projectId, instanceId, queryId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get webhook details by ID
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerGetWebhook(projectId: string, instanceId: string, webhookId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerGetWebhook(projectId, instanceId, webhookId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List processed documents with pagination and filters
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListDocuments(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerListDocuments(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List evaluations for a document with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListEvals(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerListEvals(projectId, instanceId, documentId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List processing jobs with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListJobs(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerListJobs(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List processing profiles with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListProfiles(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerListProfiles(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List batch queries with pagination and filters
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListQueries(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerListQueries(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary List webhooks with pagination
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerListWebhooks(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerListWebhooks(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update webhook configuration
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} webhookId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerUpdateWebhook(projectId: string, instanceId: string, webhookId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerUpdateWebhook(projectId, instanceId, webhookId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Validate eval YAML without creating evaluation
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} documentId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerValidateEvalYaml(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerValidateEvalYaml(projectId, instanceId, documentId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Validate batch query YAML without creating query
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerValidateQueryYaml(projectId: string, instanceId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerValidateQueryYaml(projectId, instanceId, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * DocumentProcessingApi - object-oriented interface
+ */
+export class DocumentProcessingApi extends BaseAPI {
+    /**
+     * 
+     * @summary Create batch query from YAML file
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerCreateBatchQuery(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerCreateBatchQuery(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create document processing job by uploading file
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerCreateDocumentProcessingJob(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerCreateDocumentProcessingJob(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create evaluation from YAML file
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerCreateEval(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerCreateEval(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create processing profile from YAML
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerCreateProfile(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerCreateProfile(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Create webhook for receiving notifications
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerCreateWebhook(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerCreateWebhook(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete webhook
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} webhookId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerDeleteWebhook(projectId: string, instanceId: string, webhookId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerDeleteWebhook(projectId, instanceId, webhookId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Download document artifacts as archive
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} documentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerDownloadDocumentArtifacts(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerDownloadDocumentArtifacts(projectId, instanceId, documentId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get processed document by ID
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} documentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerGetDocument(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerGetDocument(projectId, instanceId, documentId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get evaluation details by document ID and eval ID
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} documentId 
+     * @param {string} evalId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerGetEval(projectId: string, instanceId: string, documentId: string, evalId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerGetEval(projectId, instanceId, documentId, evalId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get document processing API client health
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerGetHealth(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerGetHealth(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get processing job details by ID
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} jobId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerGetJob(projectId: string, instanceId: string, jobId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerGetJob(projectId, instanceId, jobId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get processing job status (lightweight)
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} jobId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerGetJobStatus(projectId: string, instanceId: string, jobId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerGetJobStatus(projectId, instanceId, jobId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get processing profile by ID
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} profileId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerGetProfile(projectId: string, instanceId: string, profileId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerGetProfile(projectId, instanceId, profileId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get profile schema for YAML configuration
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerGetProfileSchema(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerGetProfileSchema(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get batch query details by ID
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} queryId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerGetQuery(projectId: string, instanceId: string, queryId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerGetQuery(projectId, instanceId, queryId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get webhook details by ID
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} webhookId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerGetWebhook(projectId: string, instanceId: string, webhookId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerGetWebhook(projectId, instanceId, webhookId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List processed documents with pagination and filters
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerListDocuments(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerListDocuments(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List evaluations for a document with pagination
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} documentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerListEvals(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerListEvals(projectId, instanceId, documentId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List processing jobs with pagination
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerListJobs(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerListJobs(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List processing profiles with pagination
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerListProfiles(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerListProfiles(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List batch queries with pagination and filters
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerListQueries(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerListQueries(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary List webhooks with pagination
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerListWebhooks(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerListWebhooks(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update webhook configuration
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} webhookId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerUpdateWebhook(projectId: string, instanceId: string, webhookId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerUpdateWebhook(projectId, instanceId, webhookId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Validate eval YAML without creating evaluation
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} documentId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerValidateEvalYaml(projectId: string, instanceId: string, documentId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerValidateEvalYaml(projectId, instanceId, documentId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Validate batch query YAML without creating query
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerValidateQueryYaml(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerValidateQueryYaml(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
  * DocumentsApi - axios parameter creator
  */
 export const DocumentsApiAxiosParamCreator = function (configuration?: Configuration) {

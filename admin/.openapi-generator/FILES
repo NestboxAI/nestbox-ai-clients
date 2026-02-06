@@ -30,6 +30,7 @@ docs/CreateWebhookDto.md
 docs/DeleteProjectDto.md
 docs/DeleteProjectResponseDTO.md
 docs/DeleteProjectRoleByIdResponseDto.md
+docs/DocumentProcessingApi.md
 docs/DocumentsApi.md
 docs/EvaluationTestApi.md
 docs/FatalErrorExceptionResponse.md
