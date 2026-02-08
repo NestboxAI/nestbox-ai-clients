@@ -1,4 +1,4 @@
-## @nestbox-ai/admin@1.0.66
+## @nestbox-ai/admin@1.0.67
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @nestbox-ai/admin@1.0.66 --save
+npm install @nestbox-ai/admin@1.0.67 --save
 ```
 
 _unPublished (not recommended):_
@@ -65,7 +65,7 @@ Class | Method | HTTP request | Description
 *DocumentProcessingApi* | [**documentProcessingControllerCreateProfile**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreateprofile) | **POST** /projects/{projectId}/document-processing/{instanceId}/profiles | Create processing profile from YAML file (multipart)
 *DocumentProcessingApi* | [**documentProcessingControllerCreateWebhook**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreatewebhook) | **POST** /projects/{projectId}/document-processing/{instanceId}/webhooks | Create webhook for receiving notifications
 *DocumentProcessingApi* | [**documentProcessingControllerDeleteWebhook**](docs/DocumentProcessingApi.md#documentprocessingcontrollerdeletewebhook) | **DELETE** /projects/{projectId}/document-processing/{instanceId}/webhooks/{webhookId} | Delete webhook
-*DocumentProcessingApi* | [**documentProcessingControllerDownloadDocumentArtifacts**](docs/DocumentProcessingApi.md#documentprocessingcontrollerdownloaddocumentartifacts) | **GET** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/artifacts | Download document artifacts as archive
+*DocumentProcessingApi* | [**documentProcessingControllerDownloadDocumentArtifacts**](docs/DocumentProcessingApi.md#documentprocessingcontrollerdownloaddocumentartifacts) | **GET** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/artifacts | Download document artifacts as ZIP archive
 *DocumentProcessingApi* | [**documentProcessingControllerGetDocument**](docs/DocumentProcessingApi.md#documentprocessingcontrollergetdocument) | **GET** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId} | Get processed document by ID
 *DocumentProcessingApi* | [**documentProcessingControllerGetEval**](docs/DocumentProcessingApi.md#documentprocessingcontrollergeteval) | **GET** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/evals/{evalId} | Get evaluation details by document ID and eval ID
 *DocumentProcessingApi* | [**documentProcessingControllerGetHealth**](docs/DocumentProcessingApi.md#documentprocessingcontrollergethealth) | **GET** /projects/{projectId}/document-processing/{instanceId}/health | Get document processing API client health

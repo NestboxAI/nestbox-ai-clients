@@ -7637,7 +7637,7 @@
     "/projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/artifacts": {
       "get": {
         "operationId": "DocumentProcessingController_downloadDocumentArtifacts",
-        "summary": "Download document artifacts as archive",
+        "summary": "Download document artifacts as ZIP archive",
         "parameters": [
           {
             "name": "projectId",
