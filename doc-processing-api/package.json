@@ -1,6 +1,6 @@
 {
   "name": "@nestbox-ai/doc-processing-api",
-  "version": "1.0.68",
+  "version": "1.0.69",
   "description": "OpenAPI client for @nestbox-ai/doc-processing-api",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
