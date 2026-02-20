@@ -1209,7 +1209,7 @@ export const DocumentProcessingApiAxiosParamCreator = function (configuration?: 
         },
         /**
          * 
-         * @summary Download document artifacts as archive
+         * @summary Download document artifacts as ZIP archive
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {string} documentId 
@@ -2073,7 +2073,7 @@ export const DocumentProcessingApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Download document artifacts as archive
+         * @summary Download document artifacts as ZIP archive
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {string} documentId 
@@ -2427,7 +2427,7 @@ export const DocumentProcessingApiFactory = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Download document artifacts as archive
+         * @summary Download document artifacts as ZIP archive
          * @param {string} projectId 
          * @param {string} instanceId 
          * @param {string} documentId 
@@ -2728,7 +2728,7 @@ export class DocumentProcessingApi extends BaseAPI {
 
     /**
      * 
-     * @summary Download document artifacts as archive
+     * @summary Download document artifacts as ZIP archive
      * @param {string} projectId 
      * @param {string} instanceId 
      * @param {string} documentId 
