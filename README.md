@@ -115,4 +115,3 @@ Contributions, suggestions, and improvements are welcome\! Please create an issu
 ## **License**
 
 This project is licensed under the MIT License. See [LICENSE](https://chatgpt.com/g/g-p-677d3b441f3c819188ef78cb69c1ffe1-nestbox/c/LICENSE) for details.
-
