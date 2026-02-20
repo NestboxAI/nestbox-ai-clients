@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **updatedAt** | **string** | Document last update timestamp | [optional] [default to undefined]
 **latestJobId** | **string** | Latest job ID associated with this document | [optional] [default to undefined]
 **metrics** | **{ [key: string]: any; }** | Optional processing metrics (pages, chunks, entities, etc.) | [optional] [default to undefined]
+**tags** | **Array&lt;string&gt;** | Tags associated with the document | [optional] [default to undefined]
 
 ## Example
 
@@ -32,6 +33,7 @@ const instance: DocumentDto = {
     updatedAt,
     latestJobId,
     metrics,
+    tags,
 };
 ```
 

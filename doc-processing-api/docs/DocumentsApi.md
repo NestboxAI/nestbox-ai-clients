@@ -29,13 +29,15 @@ let file: File; //Document file to process (pdf/md/html/docx/etc). (default to u
 let stages: string; //Comma-separated stages to run (e.g., docling,chunking,graphrag). If omitted, auto-detected by server. (optional) (default to undefined)
 let priority: string; // (optional) (default to 'normal')
 let visualize: boolean; //Whether to generate graph visualization artifacts. (optional) (default to false)
+let tags: Array<string>; //Optional tags to associate with the document (e.g., [\\\"invoice\\\", \\\"2024\\\"]). (optional) (default to undefined)
 
 const { status, data } = await apiInstance.documentsControllerCreateDocument(
     profileId,
     file,
     stages,
     priority,
-    visualize
+    visualize,
+    tags
 );
 ```
 
@@ -48,6 +50,7 @@ const { status, data } = await apiInstance.documentsControllerCreateDocument(
 | **stages** | [**string**] | Comma-separated stages to run (e.g., docling,chunking,graphrag). If omitted, auto-detected by server. | (optional) defaults to undefined|
 | **priority** | [**string**]**Array<&#39;low&#39; &#124; &#39;normal&#39; &#124; &#39;high&#39;>** |  | (optional) defaults to 'normal'|
 | **visualize** | [**boolean**] | Whether to generate graph visualization artifacts. | (optional) defaults to false|
+| **tags** | **Array&lt;string&gt;** | Optional tags to associate with the document (e.g., [\\\&quot;invoice\\\&quot;, \\\&quot;2024\\\&quot;]). | (optional) defaults to undefined|
 
 
 ### Return type
@@ -145,11 +148,13 @@ const apiInstance = new DocumentsApi(configuration);
 let page: number; //1-based page number. (optional) (default to 1)
 let limit: number; //Page size. (optional) (default to 10)
 let profileId: string; //Filter documents by profile/config ID. (optional) (default to undefined)
+let tags: Array<string>; //Filter documents by tags (any match). Pass multiple times or comma-separated. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.documentsControllerListDocuments(
     page,
     limit,
-    profileId
+    profileId,
+    tags
 );
 ```
 
@@ -160,6 +165,7 @@ const { status, data } = await apiInstance.documentsControllerListDocuments(
 | **page** | [**number**] | 1-based page number. | (optional) defaults to 1|
 | **limit** | [**number**] | Page size. | (optional) defaults to 10|
 | **profileId** | [**string**] | Filter documents by profile/config ID. | (optional) defaults to undefined|
+| **tags** | **Array&lt;string&gt;** | Filter documents by tags (any match). Pass multiple times or comma-separated. | (optional) defaults to undefined|
 
 
 ### Return type

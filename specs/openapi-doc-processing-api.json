@@ -88,6 +88,18 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "tags",
+            "required": false,
+            "in": "query",
+            "description": "Filter documents by tags (any match). Pass multiple times or comma-separated.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         ],
         "responses": {
@@ -163,6 +175,13 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Whether to generate graph visualization artifacts."
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Optional tags to associate with the document (e.g., [\"invoice\", \"2024\"])."
                   }
                 }
               }
@@ -856,6 +875,18 @@
               "default": 10,
               "type": "number"
             }
+          },
+          {
+            "name": "tags",
+            "required": false,
+            "in": "query",
+            "description": "Filter profiles by tags (any match). Pass multiple times or comma-separated.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         ],
         "responses": {
@@ -912,6 +943,13 @@
                   "name": {
                     "type": "string",
                     "description": "Optional override for profile name (otherwise derived from YAML)."
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Optional tags to associate with the profile (e.g., [\"production\", \"finance\"])."
                   }
                 }
               }
@@ -1836,6 +1874,13 @@
             "type": "object",
             "description": "Optional processing metrics (pages, chunks, entities, etc.)",
             "additionalProperties": true
+          },
+          "tags": {
+            "description": "Tags associated with the document",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
@@ -2503,6 +2548,13 @@
           "yamlFileContent": {
             "type": "string",
             "description": "Content of the YAML file"
+          },
+          "tags": {
+            "description": "Tags associated with the profile",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
