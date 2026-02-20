@@ -124,6 +124,10 @@ export interface DocumentDto {
      * Optional processing metrics (pages, chunks, entities, etc.)
      */
     'metrics'?: { [key: string]: any; };
+    /**
+     * Tags associated with the document
+     */
+    'tags'?: Array<string>;
 }
 
 export const DocumentDtoStatusEnum = {
@@ -570,6 +574,10 @@ export interface ProfileDto {
      * Content of the YAML file
      */
     'yamlFileContent'?: string;
+    /**
+     * Tags associated with the profile
+     */
+    'tags'?: Array<string>;
 }
 export interface QueryCreateResponseDto {
     /**
@@ -804,10 +812,11 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
          * @param {string} [stages] Comma-separated stages to run (e.g., docling,chunking,graphrag). If omitted, auto-detected by server.
          * @param {DocumentsControllerCreateDocumentPriorityEnum} [priority] 
          * @param {boolean} [visualize] Whether to generate graph visualization artifacts.
+         * @param {Array<string>} [tags] Optional tags to associate with the document (e.g., [\\\&quot;invoice\\\&quot;, \\\&quot;2024\\\&quot;]).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        documentsControllerCreateDocument: async (profileId: string, file: File, stages?: string, priority?: DocumentsControllerCreateDocumentPriorityEnum, visualize?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        documentsControllerCreateDocument: async (profileId: string, file: File, stages?: string, priority?: DocumentsControllerCreateDocumentPriorityEnum, visualize?: boolean, tags?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'profileId' is not null or undefined
             assertParamExists('documentsControllerCreateDocument', 'profileId', profileId)
             // verify required parameter 'file' is not null or undefined
@@ -845,6 +854,10 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
             if (visualize !== undefined) { 
                 localVarFormParams.append('visualize', String(visualize) as any);
             }
+            if (tags) {
+                localVarFormParams.append('tags', tags.join(COLLECTION_FORMATS.csv));
+            }
+
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
             localVarHeaderParameter['Accept'] = 'application/json';
 
@@ -898,10 +911,11 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
          * @param {number} [page] 1-based page number.
          * @param {number} [limit] Page size.
          * @param {string} [profileId] Filter documents by profile/config ID.
+         * @param {Array<string>} [tags] Filter documents by tags (any match). Pass multiple times or comma-separated.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        documentsControllerListDocuments: async (page?: number, limit?: number, profileId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        documentsControllerListDocuments: async (page?: number, limit?: number, profileId?: string, tags?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/documents`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -924,6 +938,10 @@ export const DocumentsApiAxiosParamCreator = function (configuration?: Configura
 
             if (profileId !== undefined) {
                 localVarQueryParameter['profileId'] = profileId;
+            }
+
+            if (tags) {
+                localVarQueryParameter['tags'] = tags;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -954,11 +972,12 @@ export const DocumentsApiFp = function(configuration?: Configuration) {
          * @param {string} [stages] Comma-separated stages to run (e.g., docling,chunking,graphrag). If omitted, auto-detected by server.
          * @param {DocumentsControllerCreateDocumentPriorityEnum} [priority] 
          * @param {boolean} [visualize] Whether to generate graph visualization artifacts.
+         * @param {Array<string>} [tags] Optional tags to associate with the document (e.g., [\\\&quot;invoice\\\&quot;, \\\&quot;2024\\\&quot;]).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async documentsControllerCreateDocument(profileId: string, file: File, stages?: string, priority?: DocumentsControllerCreateDocumentPriorityEnum, visualize?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DocumentCreateResponseDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsControllerCreateDocument(profileId, file, stages, priority, visualize, options);
+        async documentsControllerCreateDocument(profileId: string, file: File, stages?: string, priority?: DocumentsControllerCreateDocumentPriorityEnum, visualize?: boolean, tags?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DocumentCreateResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsControllerCreateDocument(profileId, file, stages, priority, visualize, tags, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentsControllerCreateDocument']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -982,11 +1001,12 @@ export const DocumentsApiFp = function(configuration?: Configuration) {
          * @param {number} [page] 1-based page number.
          * @param {number} [limit] Page size.
          * @param {string} [profileId] Filter documents by profile/config ID.
+         * @param {Array<string>} [tags] Filter documents by tags (any match). Pass multiple times or comma-separated.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async documentsControllerListDocuments(page?: number, limit?: number, profileId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDocumentsDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsControllerListDocuments(page, limit, profileId, options);
+        async documentsControllerListDocuments(page?: number, limit?: number, profileId?: string, tags?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedDocumentsDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentsControllerListDocuments(page, limit, profileId, tags, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DocumentsApi.documentsControllerListDocuments']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1008,11 +1028,12 @@ export const DocumentsApiFactory = function (configuration?: Configuration, base
          * @param {string} [stages] Comma-separated stages to run (e.g., docling,chunking,graphrag). If omitted, auto-detected by server.
          * @param {DocumentsControllerCreateDocumentPriorityEnum} [priority] 
          * @param {boolean} [visualize] Whether to generate graph visualization artifacts.
+         * @param {Array<string>} [tags] Optional tags to associate with the document (e.g., [\\\&quot;invoice\\\&quot;, \\\&quot;2024\\\&quot;]).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        documentsControllerCreateDocument(profileId: string, file: File, stages?: string, priority?: DocumentsControllerCreateDocumentPriorityEnum, visualize?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<DocumentCreateResponseDto> {
-            return localVarFp.documentsControllerCreateDocument(profileId, file, stages, priority, visualize, options).then((request) => request(axios, basePath));
+        documentsControllerCreateDocument(profileId: string, file: File, stages?: string, priority?: DocumentsControllerCreateDocumentPriorityEnum, visualize?: boolean, tags?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<DocumentCreateResponseDto> {
+            return localVarFp.documentsControllerCreateDocument(profileId, file, stages, priority, visualize, tags, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1030,11 +1051,12 @@ export const DocumentsApiFactory = function (configuration?: Configuration, base
          * @param {number} [page] 1-based page number.
          * @param {number} [limit] Page size.
          * @param {string} [profileId] Filter documents by profile/config ID.
+         * @param {Array<string>} [tags] Filter documents by tags (any match). Pass multiple times or comma-separated.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        documentsControllerListDocuments(page?: number, limit?: number, profileId?: string, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedDocumentsDto> {
-            return localVarFp.documentsControllerListDocuments(page, limit, profileId, options).then((request) => request(axios, basePath));
+        documentsControllerListDocuments(page?: number, limit?: number, profileId?: string, tags?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedDocumentsDto> {
+            return localVarFp.documentsControllerListDocuments(page, limit, profileId, tags, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1051,11 +1073,12 @@ export class DocumentsApi extends BaseAPI {
      * @param {string} [stages] Comma-separated stages to run (e.g., docling,chunking,graphrag). If omitted, auto-detected by server.
      * @param {DocumentsControllerCreateDocumentPriorityEnum} [priority] 
      * @param {boolean} [visualize] Whether to generate graph visualization artifacts.
+     * @param {Array<string>} [tags] Optional tags to associate with the document (e.g., [\\\&quot;invoice\\\&quot;, \\\&quot;2024\\\&quot;]).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public documentsControllerCreateDocument(profileId: string, file: File, stages?: string, priority?: DocumentsControllerCreateDocumentPriorityEnum, visualize?: boolean, options?: RawAxiosRequestConfig) {
-        return DocumentsApiFp(this.configuration).documentsControllerCreateDocument(profileId, file, stages, priority, visualize, options).then((request) => request(this.axios, this.basePath));
+    public documentsControllerCreateDocument(profileId: string, file: File, stages?: string, priority?: DocumentsControllerCreateDocumentPriorityEnum, visualize?: boolean, tags?: Array<string>, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentsControllerCreateDocument(profileId, file, stages, priority, visualize, tags, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1075,11 +1098,12 @@ export class DocumentsApi extends BaseAPI {
      * @param {number} [page] 1-based page number.
      * @param {number} [limit] Page size.
      * @param {string} [profileId] Filter documents by profile/config ID.
+     * @param {Array<string>} [tags] Filter documents by tags (any match). Pass multiple times or comma-separated.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public documentsControllerListDocuments(page?: number, limit?: number, profileId?: string, options?: RawAxiosRequestConfig) {
-        return DocumentsApiFp(this.configuration).documentsControllerListDocuments(page, limit, profileId, options).then((request) => request(this.axios, this.basePath));
+    public documentsControllerListDocuments(page?: number, limit?: number, profileId?: string, tags?: Array<string>, options?: RawAxiosRequestConfig) {
+        return DocumentsApiFp(this.configuration).documentsControllerListDocuments(page, limit, profileId, tags, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1807,10 +1831,11 @@ export const ProfilesApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Create profile from YAML
          * @param {File} yaml YAML file containing the profile/config.
          * @param {string} [name] Optional override for profile name (otherwise derived from YAML).
+         * @param {Array<string>} [tags] Optional tags to associate with the profile (e.g., [\\\&quot;production\\\&quot;, \\\&quot;finance\\\&quot;]).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        profilesControllerCreateProfile: async (yaml: File, name?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        profilesControllerCreateProfile: async (yaml: File, name?: string, tags?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'yaml' is not null or undefined
             assertParamExists('profilesControllerCreateProfile', 'yaml', yaml)
             const localVarPath = `/profiles`;
@@ -1834,6 +1859,10 @@ export const ProfilesApiAxiosParamCreator = function (configuration?: Configurat
             if (name !== undefined) { 
                 localVarFormParams.append('name', name as any);
             }
+            if (tags) {
+                localVarFormParams.append('tags', tags.join(COLLECTION_FORMATS.csv));
+            }
+
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
             localVarHeaderParameter['Accept'] = 'application/json';
 
@@ -1916,10 +1945,11 @@ export const ProfilesApiAxiosParamCreator = function (configuration?: Configurat
          * @summary List profiles
          * @param {number} [page] 1-based page number.
          * @param {number} [limit] Page size.
+         * @param {Array<string>} [tags] Filter profiles by tags (any match). Pass multiple times or comma-separated.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        profilesControllerListProfiles: async (page?: number, limit?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        profilesControllerListProfiles: async (page?: number, limit?: number, tags?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/profiles`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1938,6 +1968,10 @@ export const ProfilesApiAxiosParamCreator = function (configuration?: Configurat
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
+            }
+
+            if (tags) {
+                localVarQueryParameter['tags'] = tags;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -1965,11 +1999,12 @@ export const ProfilesApiFp = function(configuration?: Configuration) {
          * @summary Create profile from YAML
          * @param {File} yaml YAML file containing the profile/config.
          * @param {string} [name] Optional override for profile name (otherwise derived from YAML).
+         * @param {Array<string>} [tags] Optional tags to associate with the profile (e.g., [\\\&quot;production\\\&quot;, \\\&quot;finance\\\&quot;]).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async profilesControllerCreateProfile(yaml: File, name?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProfileDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.profilesControllerCreateProfile(yaml, name, options);
+        async profilesControllerCreateProfile(yaml: File, name?: string, tags?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProfileDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.profilesControllerCreateProfile(yaml, name, tags, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProfilesApi.profilesControllerCreateProfile']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2004,11 +2039,12 @@ export const ProfilesApiFp = function(configuration?: Configuration) {
          * @summary List profiles
          * @param {number} [page] 1-based page number.
          * @param {number} [limit] Page size.
+         * @param {Array<string>} [tags] Filter profiles by tags (any match). Pass multiple times or comma-separated.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async profilesControllerListProfiles(page?: number, limit?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedProfilesDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.profilesControllerListProfiles(page, limit, options);
+        async profilesControllerListProfiles(page?: number, limit?: number, tags?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedProfilesDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.profilesControllerListProfiles(page, limit, tags, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProfilesApi.profilesControllerListProfiles']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2027,11 +2063,12 @@ export const ProfilesApiFactory = function (configuration?: Configuration, baseP
          * @summary Create profile from YAML
          * @param {File} yaml YAML file containing the profile/config.
          * @param {string} [name] Optional override for profile name (otherwise derived from YAML).
+         * @param {Array<string>} [tags] Optional tags to associate with the profile (e.g., [\\\&quot;production\\\&quot;, \\\&quot;finance\\\&quot;]).
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        profilesControllerCreateProfile(yaml: File, name?: string, options?: RawAxiosRequestConfig): AxiosPromise<ProfileDto> {
-            return localVarFp.profilesControllerCreateProfile(yaml, name, options).then((request) => request(axios, basePath));
+        profilesControllerCreateProfile(yaml: File, name?: string, tags?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<ProfileDto> {
+            return localVarFp.profilesControllerCreateProfile(yaml, name, tags, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2057,11 +2094,12 @@ export const ProfilesApiFactory = function (configuration?: Configuration, baseP
          * @summary List profiles
          * @param {number} [page] 1-based page number.
          * @param {number} [limit] Page size.
+         * @param {Array<string>} [tags] Filter profiles by tags (any match). Pass multiple times or comma-separated.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        profilesControllerListProfiles(page?: number, limit?: number, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedProfilesDto> {
-            return localVarFp.profilesControllerListProfiles(page, limit, options).then((request) => request(axios, basePath));
+        profilesControllerListProfiles(page?: number, limit?: number, tags?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedProfilesDto> {
+            return localVarFp.profilesControllerListProfiles(page, limit, tags, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2075,11 +2113,12 @@ export class ProfilesApi extends BaseAPI {
      * @summary Create profile from YAML
      * @param {File} yaml YAML file containing the profile/config.
      * @param {string} [name] Optional override for profile name (otherwise derived from YAML).
+     * @param {Array<string>} [tags] Optional tags to associate with the profile (e.g., [\\\&quot;production\\\&quot;, \\\&quot;finance\\\&quot;]).
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public profilesControllerCreateProfile(yaml: File, name?: string, options?: RawAxiosRequestConfig) {
-        return ProfilesApiFp(this.configuration).profilesControllerCreateProfile(yaml, name, options).then((request) => request(this.axios, this.basePath));
+    public profilesControllerCreateProfile(yaml: File, name?: string, tags?: Array<string>, options?: RawAxiosRequestConfig) {
+        return ProfilesApiFp(this.configuration).profilesControllerCreateProfile(yaml, name, tags, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2108,11 +2147,12 @@ export class ProfilesApi extends BaseAPI {
      * @summary List profiles
      * @param {number} [page] 1-based page number.
      * @param {number} [limit] Page size.
+     * @param {Array<string>} [tags] Filter profiles by tags (any match). Pass multiple times or comma-separated.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public profilesControllerListProfiles(page?: number, limit?: number, options?: RawAxiosRequestConfig) {
-        return ProfilesApiFp(this.configuration).profilesControllerListProfiles(page, limit, options).then((request) => request(this.axios, this.basePath));
+    public profilesControllerListProfiles(page?: number, limit?: number, tags?: Array<string>, options?: RawAxiosRequestConfig) {
+        return ProfilesApiFp(this.configuration).profilesControllerListProfiles(page, limit, tags, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

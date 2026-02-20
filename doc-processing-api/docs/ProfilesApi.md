@@ -27,10 +27,12 @@ const apiInstance = new ProfilesApi(configuration);
 
 let yaml: File; //YAML file containing the profile/config. (default to undefined)
 let name: string; //Optional override for profile name (otherwise derived from YAML). (optional) (default to undefined)
+let tags: Array<string>; //Optional tags to associate with the profile (e.g., [\\\"production\\\", \\\"finance\\\"]). (optional) (default to undefined)
 
 const { status, data } = await apiInstance.profilesControllerCreateProfile(
     yaml,
-    name
+    name,
+    tags
 );
 ```
 
@@ -40,6 +42,7 @@ const { status, data } = await apiInstance.profilesControllerCreateProfile(
 |------------- | ------------- | ------------- | -------------|
 | **yaml** | [**File**] | YAML file containing the profile/config. | defaults to undefined|
 | **name** | [**string**] | Optional override for profile name (otherwise derived from YAML). | (optional) defaults to undefined|
+| **tags** | **Array&lt;string&gt;** | Optional tags to associate with the profile (e.g., [\\\&quot;production\\\&quot;, \\\&quot;finance\\\&quot;]). | (optional) defaults to undefined|
 
 
 ### Return type
@@ -181,10 +184,12 @@ const apiInstance = new ProfilesApi(configuration);
 
 let page: number; //1-based page number. (optional) (default to 1)
 let limit: number; //Page size. (optional) (default to 10)
+let tags: Array<string>; //Filter profiles by tags (any match). Pass multiple times or comma-separated. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.profilesControllerListProfiles(
     page,
-    limit
+    limit,
+    tags
 );
 ```
 
@@ -194,6 +199,7 @@ const { status, data } = await apiInstance.profilesControllerListProfiles(
 |------------- | ------------- | ------------- | -------------|
 | **page** | [**number**] | 1-based page number. | (optional) defaults to 1|
 | **limit** | [**number**] | Page size. | (optional) defaults to 10|
+| **tags** | **Array&lt;string&gt;** | Filter profiles by tags (any match). Pass multiple times or comma-separated. | (optional) defaults to undefined|
 
 
 ### Return type

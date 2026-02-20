@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **yamlFileName** | **string** | YAML file name | [optional] [default to undefined]
 **yamlSha256** | **string** | Optional checksum of the uploaded YAML file | [optional] [default to undefined]
 **yamlFileContent** | **string** | Content of the YAML file | [optional] [default to undefined]
+**tags** | **Array&lt;string&gt;** | Tags associated with the profile | [optional] [default to undefined]
 
 ## Example
 
@@ -28,6 +29,7 @@ const instance: ProfileDto = {
     yamlFileName,
     yamlSha256,
     yamlFileContent,
+    tags,
 };
 ```
 
