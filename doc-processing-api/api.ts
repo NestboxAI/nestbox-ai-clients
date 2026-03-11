@@ -563,6 +563,10 @@ export interface ProfileDto {
      */
     'updatedAt'?: string;
     /**
+     * Profile soft-deletion timestamp
+     */
+    'deletedAt'?: string;
+    /**
      * YAML file name
      */
     'yamlFileName'?: string;
@@ -1877,6 +1881,40 @@ export const ProfilesApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Soft-deletes a profile by setting its deletedAt timestamp.
+         * @summary Delete profile
+         * @param {string} profileId Profile/config ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        profilesControllerDeleteProfile: async (profileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'profileId' is not null or undefined
+            assertParamExists('profilesControllerDeleteProfile', 'profileId', profileId)
+            const localVarPath = `/profiles/{profileId}`
+                .replace(`{${"profileId"}}`, encodeURIComponent(String(profileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 
          * @summary Read profile
          * @param {string} profileId Profile/config ID.
@@ -1946,10 +1984,11 @@ export const ProfilesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {number} [page] 1-based page number.
          * @param {number} [limit] Page size.
          * @param {Array<string>} [tags] Filter profiles by tags (any match). Pass multiple times or comma-separated.
+         * @param {boolean} [includeDeleted] Include soft-deleted profiles in the results. Defaults to false.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        profilesControllerListProfiles: async (page?: number, limit?: number, tags?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        profilesControllerListProfiles: async (page?: number, limit?: number, tags?: Array<string>, includeDeleted?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/profiles`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1972,6 +2011,10 @@ export const ProfilesApiAxiosParamCreator = function (configuration?: Configurat
 
             if (tags) {
                 localVarQueryParameter['tags'] = tags;
+            }
+
+            if (includeDeleted !== undefined) {
+                localVarQueryParameter['includeDeleted'] = includeDeleted;
             }
 
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -2010,6 +2053,19 @@ export const ProfilesApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Soft-deletes a profile by setting its deletedAt timestamp.
+         * @summary Delete profile
+         * @param {string} profileId Profile/config ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async profilesControllerDeleteProfile(profileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProfileDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.profilesControllerDeleteProfile(profileId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ProfilesApi.profilesControllerDeleteProfile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * 
          * @summary Read profile
          * @param {string} profileId Profile/config ID.
@@ -2040,11 +2096,12 @@ export const ProfilesApiFp = function(configuration?: Configuration) {
          * @param {number} [page] 1-based page number.
          * @param {number} [limit] Page size.
          * @param {Array<string>} [tags] Filter profiles by tags (any match). Pass multiple times or comma-separated.
+         * @param {boolean} [includeDeleted] Include soft-deleted profiles in the results. Defaults to false.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async profilesControllerListProfiles(page?: number, limit?: number, tags?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedProfilesDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.profilesControllerListProfiles(page, limit, tags, options);
+        async profilesControllerListProfiles(page?: number, limit?: number, tags?: Array<string>, includeDeleted?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedProfilesDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.profilesControllerListProfiles(page, limit, tags, includeDeleted, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ProfilesApi.profilesControllerListProfiles']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -2071,6 +2128,16 @@ export const ProfilesApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.profilesControllerCreateProfile(yaml, name, tags, options).then((request) => request(axios, basePath));
         },
         /**
+         * Soft-deletes a profile by setting its deletedAt timestamp.
+         * @summary Delete profile
+         * @param {string} profileId Profile/config ID.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        profilesControllerDeleteProfile(profileId: string, options?: RawAxiosRequestConfig): AxiosPromise<ProfileDto> {
+            return localVarFp.profilesControllerDeleteProfile(profileId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 
          * @summary Read profile
          * @param {string} profileId Profile/config ID.
@@ -2095,11 +2162,12 @@ export const ProfilesApiFactory = function (configuration?: Configuration, baseP
          * @param {number} [page] 1-based page number.
          * @param {number} [limit] Page size.
          * @param {Array<string>} [tags] Filter profiles by tags (any match). Pass multiple times or comma-separated.
+         * @param {boolean} [includeDeleted] Include soft-deleted profiles in the results. Defaults to false.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        profilesControllerListProfiles(page?: number, limit?: number, tags?: Array<string>, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedProfilesDto> {
-            return localVarFp.profilesControllerListProfiles(page, limit, tags, options).then((request) => request(axios, basePath));
+        profilesControllerListProfiles(page?: number, limit?: number, tags?: Array<string>, includeDeleted?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedProfilesDto> {
+            return localVarFp.profilesControllerListProfiles(page, limit, tags, includeDeleted, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2119,6 +2187,17 @@ export class ProfilesApi extends BaseAPI {
      */
     public profilesControllerCreateProfile(yaml: File, name?: string, tags?: Array<string>, options?: RawAxiosRequestConfig) {
         return ProfilesApiFp(this.configuration).profilesControllerCreateProfile(yaml, name, tags, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Soft-deletes a profile by setting its deletedAt timestamp.
+     * @summary Delete profile
+     * @param {string} profileId Profile/config ID.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public profilesControllerDeleteProfile(profileId: string, options?: RawAxiosRequestConfig) {
+        return ProfilesApiFp(this.configuration).profilesControllerDeleteProfile(profileId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2148,11 +2227,12 @@ export class ProfilesApi extends BaseAPI {
      * @param {number} [page] 1-based page number.
      * @param {number} [limit] Page size.
      * @param {Array<string>} [tags] Filter profiles by tags (any match). Pass multiple times or comma-separated.
+     * @param {boolean} [includeDeleted] Include soft-deleted profiles in the results. Defaults to false.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public profilesControllerListProfiles(page?: number, limit?: number, tags?: Array<string>, options?: RawAxiosRequestConfig) {
-        return ProfilesApiFp(this.configuration).profilesControllerListProfiles(page, limit, tags, options).then((request) => request(this.axios, this.basePath));
+    public profilesControllerListProfiles(page?: number, limit?: number, tags?: Array<string>, includeDeleted?: boolean, options?: RawAxiosRequestConfig) {
+        return ProfilesApiFp(this.configuration).profilesControllerListProfiles(page, limit, tags, includeDeleted, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -1,4 +1,4 @@
-## @nestbox-ai/doc-processing-api@1.0.70
+## @nestbox-ai/doc-processing-api@1.0.71
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @nestbox-ai/doc-processing-api@1.0.70 --save
+npm install @nestbox-ai/doc-processing-api@1.0.71 --save
 ```
 
 _unPublished (not recommended):_
@@ -64,6 +64,7 @@ Class | Method | HTTP request | Description
 *JobsApi* | [**jobsControllerGetJobStatus**](docs/JobsApi.md#jobscontrollergetjobstatus) | **GET** /jobs/{jobId}/status | Get job status
 *JobsApi* | [**jobsControllerListJobs**](docs/JobsApi.md#jobscontrollerlistjobs) | **GET** /jobs | List jobs
 *ProfilesApi* | [**profilesControllerCreateProfile**](docs/ProfilesApi.md#profilescontrollercreateprofile) | **POST** /profiles | Create profile from YAML
+*ProfilesApi* | [**profilesControllerDeleteProfile**](docs/ProfilesApi.md#profilescontrollerdeleteprofile) | **DELETE** /profiles/{profileId} | Delete profile
 *ProfilesApi* | [**profilesControllerGetProfile**](docs/ProfilesApi.md#profilescontrollergetprofile) | **GET** /profiles/{profileId} | Read profile
 *ProfilesApi* | [**profilesControllerGetProfileSchema**](docs/ProfilesApi.md#profilescontrollergetprofileschema) | **GET** /profiles/schema | Get profile schema
 *ProfilesApi* | [**profilesControllerListProfiles**](docs/ProfilesApi.md#profilescontrollerlistprofiles) | **GET** /profiles | List profiles
