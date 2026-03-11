@@ -1167,6 +1167,48 @@ export const DocumentProcessingApiAxiosParamCreator = function (configuration?: 
         },
         /**
          * 
+         * @summary Soft-delete (archive) a processing profile
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} profileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerDeleteProfile: async (projectId: string, instanceId: string, profileId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'projectId' is not null or undefined
+            assertParamExists('documentProcessingControllerDeleteProfile', 'projectId', projectId)
+            // verify required parameter 'instanceId' is not null or undefined
+            assertParamExists('documentProcessingControllerDeleteProfile', 'instanceId', instanceId)
+            // verify required parameter 'profileId' is not null or undefined
+            assertParamExists('documentProcessingControllerDeleteProfile', 'profileId', profileId)
+            const localVarPath = `/projects/{projectId}/document-processing/{instanceId}/profiles/{profileId}`
+                .replace(`{${"projectId"}}`, encodeURIComponent(String(projectId)))
+                .replace(`{${"instanceId"}}`, encodeURIComponent(String(instanceId)))
+                .replace(`{${"profileId"}}`, encodeURIComponent(String(profileId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Delete webhook
          * @param {string} projectId 
          * @param {string} instanceId 
@@ -2058,6 +2100,21 @@ export const DocumentProcessingApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Soft-delete (archive) a processing profile
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} profileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async documentProcessingControllerDeleteProfile(projectId: string, instanceId: string, profileId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.documentProcessingControllerDeleteProfile(projectId, instanceId, profileId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DocumentProcessingApi.documentProcessingControllerDeleteProfile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Delete webhook
          * @param {string} projectId 
          * @param {string} instanceId 
@@ -2415,6 +2472,18 @@ export const DocumentProcessingApiFactory = function (configuration?: Configurat
         },
         /**
          * 
+         * @summary Soft-delete (archive) a processing profile
+         * @param {string} projectId 
+         * @param {string} instanceId 
+         * @param {string} profileId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        documentProcessingControllerDeleteProfile(projectId: string, instanceId: string, profileId: string, options?: RawAxiosRequestConfig): AxiosPromise<object> {
+            return localVarFp.documentProcessingControllerDeleteProfile(projectId, instanceId, profileId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Delete webhook
          * @param {string} projectId 
          * @param {string} instanceId 
@@ -2711,6 +2780,19 @@ export class DocumentProcessingApi extends BaseAPI {
      */
     public documentProcessingControllerCreateWebhook(projectId: string, instanceId: string, options?: RawAxiosRequestConfig) {
         return DocumentProcessingApiFp(this.configuration).documentProcessingControllerCreateWebhook(projectId, instanceId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Soft-delete (archive) a processing profile
+     * @param {string} projectId 
+     * @param {string} instanceId 
+     * @param {string} profileId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public documentProcessingControllerDeleteProfile(projectId: string, instanceId: string, profileId: string, options?: RawAxiosRequestConfig) {
+        return DocumentProcessingApiFp(this.configuration).documentProcessingControllerDeleteProfile(projectId, instanceId, profileId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

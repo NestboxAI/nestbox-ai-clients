@@ -1,4 +1,4 @@
-## @nestbox-ai/admin@1.0.71
+## @nestbox-ai/admin@1.0.72
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @nestbox-ai/admin@1.0.71 --save
+npm install @nestbox-ai/admin@1.0.72 --save
 ```
 
 _unPublished (not recommended):_
@@ -64,6 +64,7 @@ Class | Method | HTTP request | Description
 *DocumentProcessingApi* | [**documentProcessingControllerCreateEval**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreateeval) | **POST** /projects/{projectId}/document-processing/{instanceId}/evals | Create evaluation from YAML file (multipart)
 *DocumentProcessingApi* | [**documentProcessingControllerCreateProfile**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreateprofile) | **POST** /projects/{projectId}/document-processing/{instanceId}/profiles | Create processing profile from YAML file (multipart)
 *DocumentProcessingApi* | [**documentProcessingControllerCreateWebhook**](docs/DocumentProcessingApi.md#documentprocessingcontrollercreatewebhook) | **POST** /projects/{projectId}/document-processing/{instanceId}/webhooks | Create webhook for receiving notifications
+*DocumentProcessingApi* | [**documentProcessingControllerDeleteProfile**](docs/DocumentProcessingApi.md#documentprocessingcontrollerdeleteprofile) | **DELETE** /projects/{projectId}/document-processing/{instanceId}/profiles/{profileId} | Soft-delete (archive) a processing profile
 *DocumentProcessingApi* | [**documentProcessingControllerDeleteWebhook**](docs/DocumentProcessingApi.md#documentprocessingcontrollerdeletewebhook) | **DELETE** /projects/{projectId}/document-processing/{instanceId}/webhooks/{webhookId} | Delete webhook
 *DocumentProcessingApi* | [**documentProcessingControllerDownloadDocumentArtifacts**](docs/DocumentProcessingApi.md#documentprocessingcontrollerdownloaddocumentartifacts) | **GET** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId}/artifacts | Download document artifacts as ZIP archive
 *DocumentProcessingApi* | [**documentProcessingControllerGetDocument**](docs/DocumentProcessingApi.md#documentprocessingcontrollergetdocument) | **GET** /projects/{projectId}/document-processing/{instanceId}/documents/{documentId} | Get processed document by ID
