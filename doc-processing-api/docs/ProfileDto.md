@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **description** | **string** | Profile description | [optional] [default to undefined]
 **createdAt** | **string** | Profile creation timestamp | [default to undefined]
 **updatedAt** | **string** | Profile last update timestamp | [optional] [default to undefined]
+**deletedAt** | **string** | Profile soft-deletion timestamp | [optional] [default to undefined]
 **yamlFileName** | **string** | YAML file name | [optional] [default to undefined]
 **yamlSha256** | **string** | Optional checksum of the uploaded YAML file | [optional] [default to undefined]
 **yamlFileContent** | **string** | Content of the YAML file | [optional] [default to undefined]
@@ -26,6 +27,7 @@ const instance: ProfileDto = {
     description,
     createdAt,
     updatedAt,
+    deletedAt,
     yamlFileName,
     yamlSha256,
     yamlFileContent,

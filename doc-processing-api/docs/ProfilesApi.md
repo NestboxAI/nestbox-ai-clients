@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**profilesControllerCreateProfile**](#profilescontrollercreateprofile) | **POST** /profiles | Create profile from YAML|
+|[**profilesControllerDeleteProfile**](#profilescontrollerdeleteprofile) | **DELETE** /profiles/{profileId} | Delete profile|
 |[**profilesControllerGetProfile**](#profilescontrollergetprofile) | **GET** /profiles/{profileId} | Read profile|
 |[**profilesControllerGetProfileSchema**](#profilescontrollergetprofileschema) | **GET** /profiles/schema | Get profile schema|
 |[**profilesControllerListProfiles**](#profilescontrollerlistprofiles) | **GET** /profiles | List profiles|
@@ -66,6 +67,59 @@ No authorization required
 |**400** | Bad request |  -  |
 |**401** | Unauthorized |  -  |
 |**422** | Validation error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **profilesControllerDeleteProfile**
+> ProfileDto profilesControllerDeleteProfile()
+
+Soft-deletes a profile by setting its deletedAt timestamp.
+
+### Example
+
+```typescript
+import {
+    ProfilesApi,
+    Configuration
+} from '@nestbox-ai/doc-processing-api';
+
+const configuration = new Configuration();
+const apiInstance = new ProfilesApi(configuration);
+
+let profileId: string; //Profile/config ID. (default to undefined)
+
+const { status, data } = await apiInstance.profilesControllerDeleteProfile(
+    profileId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | [**string**] | Profile/config ID. | defaults to undefined|
+
+
+### Return type
+
+**ProfileDto**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Profile soft-deleted |  -  |
+|**401** | Unauthorized |  -  |
+|**404** | Not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -185,11 +239,13 @@ const apiInstance = new ProfilesApi(configuration);
 let page: number; //1-based page number. (optional) (default to 1)
 let limit: number; //Page size. (optional) (default to 10)
 let tags: Array<string>; //Filter profiles by tags (any match). Pass multiple times or comma-separated. (optional) (default to undefined)
+let includeDeleted: boolean; //Include soft-deleted profiles in the results. Defaults to false. (optional) (default to false)
 
 const { status, data } = await apiInstance.profilesControllerListProfiles(
     page,
     limit,
-    tags
+    tags,
+    includeDeleted
 );
 ```
 
@@ -200,6 +256,7 @@ const { status, data } = await apiInstance.profilesControllerListProfiles(
 | **page** | [**number**] | 1-based page number. | (optional) defaults to 1|
 | **limit** | [**number**] | Page size. | (optional) defaults to 10|
 | **tags** | **Array&lt;string&gt;** | Filter profiles by tags (any match). Pass multiple times or comma-separated. | (optional) defaults to undefined|
+| **includeDeleted** | [**boolean**] | Include soft-deleted profiles in the results. Defaults to false. | (optional) defaults to false|
 
 
 ### Return type
